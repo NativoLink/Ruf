@@ -15,7 +15,7 @@ import retrofit.http.POST;
  */
 public interface PacienteService {
     @Headers("Cache-Control: max-age=1")
-    @GET("/WebSites/Tesis/Paciente/ListCliente.php")
+    @GET("/WebSites/Tesis/Paciente/listPacientes.php")
     void getPacientes(Callback<List<Paciente>> callback);
 //    void getFeed(@Path("user") String user,Callback<Paciente> response);
 

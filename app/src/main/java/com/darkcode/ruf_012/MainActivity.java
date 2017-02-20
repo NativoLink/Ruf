@@ -83,9 +83,12 @@ public class MainActivity extends AppCompatActivity
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //recivimos la mac address obtenida en la actividad anterior
 
-        Toast.makeText(this,"ADD: "+address, Toast.LENGTH_LONG).show();
-        new ConnectBT().execute(); //Call the class to connect
-
+        if(address.equals("sinBT")){
+            Log.d("sin BT","Recibido:"+address);
+        }else {
+//        Toast.makeText(this,"ADD: "+address, Toast.LENGTH_LONG).show();
+            new ConnectBT().execute(); //Call the class to connect
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -96,10 +99,10 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 if(init==false) {
-                    permitirEscuchar();
-//                    Escuchar();
+//                    permitirEscuchar();
+                    Escuchar();
                     init=true;
-                }
+                }else{ Escuchar();} // PARA PRUEBAS SIN ARDUINO QUITAR LUEGO DE PROBAR
             }
         });
 
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity
 
 
 //    =================================
-//    |   CAPTAR PULSO DE PEDAL        |
+//    |   CAPTAR PULSO DEL PEDAL        |
 //    =================================
     private void permitirEscuchar()
     {
@@ -165,7 +168,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //  =================================
+//  =================================
 //  |   INSTANCIAMOS EL GOOGLE NOW  |
 //  =================================
     private  void Escuchar(){
@@ -189,8 +192,8 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 
-    //    =========================
-//        THREAD PRINCIPAL
+//    =========================
+//         THREAD PRINCIPAL
 //    =========================
     @Override
     public void run() {
@@ -245,9 +248,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void regPacienteComm(String nombre,String sexo,int edad,String direccion,String telefono,String ocupacion, String direccion_cu, String telefono_ocu,String allegado) {
-        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentManager fragmentManager = getFragmentManager();
         VistaRegPaciente fragmentb=(VistaRegPaciente) getSupportFragmentManager().findFragmentById(R.id.f_main);
         fragmentb.setRegPaciente(nombre,sexo,edad,direccion,telefono,ocupacion,direccion_cu,telefono_ocu,allegado);
+    }
+
+    @Override
+    public void editDiente(int posicionDiente, String pared, String estado) {
+        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_main);
+        fragmentb.editDiente(posicionDiente,pared,estado);
+    }
+
+    @Override
+    public void guardarDiagrama(int id_paciente) {
+        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_main);
+        fragmentb.guardarDiagrama(id_paciente);
     }
 
 
@@ -350,15 +365,19 @@ public class MainActivity extends AppCompatActivity
         Fragment vista = null;
         boolean trans = false;
         if (id == R.id.nav_camera) {
-            vista = new VistaRegPaciente();
+            vistaActual = "diagrama";
+            vista = new VistaRegDiagrama();
             trans= true;
         } else if (id == R.id.nav_gallery) {
             vista = new VistaPrincipal();
             trans= true;
         } else if (id == R.id.nav_slideshow) {
-
+            vistaActual = "pacientes";
+            vista = new VistaPacientes();
+            trans= true;
         } else if (id == R.id.nav_manage) {
-
+            vista = new VistaPacientes();
+            trans= true;
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -371,14 +390,12 @@ public class MainActivity extends AppCompatActivity
         if(trans){
             Bundle bundle = new Bundle();
             //PARAMS RECIBIDOS POR LOGIN
-            String id_cliente = getIntent().getStringExtra("id_cliente");
+            String id_doctor = getIntent().getStringExtra("id_doctor");
             String nombre = getIntent().getStringExtra("nombre");
-            String apellido = getIntent().getStringExtra("apellido");
 
             //PARAMS PARA ENVIAR A FRAGMENTS
-            bundle.putString("id_cliente", id_cliente);
+            bundle.putString("id_doctor", id_doctor);
             bundle.putString("nombre", nombre);
-            bundle.putString("apellido", apellido);
             vista.setArguments(bundle);
 
             FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
@@ -400,7 +417,26 @@ public class MainActivity extends AppCompatActivity
 //    =====================================================================================
     public void interpretar(String comandos,Object vista){
 
+//        0.ODONTODIAGRAMA (PRIMERA PRUEBA)
+        if(vistaActual=="diagrama"){
+            if(comandos.equals("guardar")) {
+                guardarDiagrama(1);
+            }else{
 
+                String[] split = comandos.split(" ");
+                String pared;
+                Toast.makeText(getApplicationContext(), "PosiconDiente:"+split[0]+" Pared:"+split[1]+" Estado:"+split[2], Toast.LENGTH_LONG).show();
+                int pos_diente = Integer.parseInt(split[0]);
+                String estado_pared = split[2];
+                if(split[1].equals("arriba")){pared = "U";}
+                else if(split[1].equals("abajo")){pared = "D";}
+                else if(split[1].equals("izquierda")){pared = "L";}
+                else if(split[1].equals("derecha")){pared = "R";}
+                else {pared = "C";}
+
+                editDiente(pos_diente,pared,estado_pared);
+            }
+        }
 //        1.REGISTRAR PACIENTE (PRIMERA PRUEBA)
         if((comandos.equals("registrar paciente")) || (comandos.equals( "agregar nuevo paciente"))
                 || (comandos.equals("nuevo paciente")) || (comandos.equals("registar un nuevo paciente"))
@@ -424,11 +460,11 @@ public class MainActivity extends AppCompatActivity
 
             for (int i = 0; i < split.length; i++) {
 
-                if (split[0].equals("nombre")) {if(i>0){NOMBRES = nombre.append(" "+split[i]).toString();} }
-                if (split[0].equals("dirección")) {if(i>0){ DIRECCION = direccion.append(" "+split[i]).toString();}}
-                if (split[0].equals("teléfono")) {if(i>0){TELEFONO = telefono.append(" "+split[i]).toString();}}
-                if (split[0].equals("estado civil")) {if(i>0){ESTADO_CIVIL = estado_civil.append(" "+split[i]).toString();}}
-                if (split[0].equals("sexo")) {if(i>0){SEXO = sexo.append(" "+split[i]).toString();}}
+                if (split[0].equals("nombre"))      {if(i>0){NOMBRES = nombre.append(" "+split[i]).toString();} }
+                if (split[0].equals("dirección"))   {if(i>0){ DIRECCION = direccion.append(" "+split[i]).toString();}}
+                if (split[0].equals("teléfono"))    {if(i>0){TELEFONO = telefono.append(" "+split[i]).toString();}}
+                if (split[0].equals("estado civil")){if(i>0){ESTADO_CIVIL = estado_civil.append(" "+split[i]).toString();}}
+                if (split[0].equals("sexo"))        {if(i>0){SEXO = sexo.append(" "+split[i]).toString();}}
                 regPacienteComm(NOMBRES, SEXO, 22, DIRECCION, TELEFONO, OCUPACION,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO);
             }
             if(comandos.equals("guardar registro") || comandos.equals("guardar") || comandos.equals("confirmar registro")){
@@ -451,7 +487,7 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    public void cambioVista(final android.support.v4.app.Fragment vistaObj, final String vActual){
+    public void cambioVista(final Fragment vistaObj, final String vActual){
         new Handler().post(new Runnable() {
             public void run() {
                 vistaActual = vActual;

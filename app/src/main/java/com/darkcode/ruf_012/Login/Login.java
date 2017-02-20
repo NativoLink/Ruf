@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.DeviceList;
-import com.darkcode.ruf_012.Paciente.Paciente;
-import com.darkcode.ruf_012.Paciente.PacienteService;
+import com.darkcode.ruf_012.Doctor.Doctor;
+import com.darkcode.ruf_012.Doctor.DoctorService;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
@@ -70,74 +71,51 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                if (isOnline() == false) {
-//                    Toast.makeText(Login.this, "Sin conexion", Toast.LENGTH_LONG).show();
-//                }else {
+                if (isOnline() == false) {
+                    Toast.makeText(Login.this, "Sin conexión", Toast.LENGTH_LONG).show();
+                }else {
 
                     name_user = user.getText().toString();
                     pass_user = pass.getText().toString();
                     if ((!name_user.equals("") && !pass_user.equals("")) && (!name_user.equals(" ") && !pass_user.equals(" ")))
                     {
                         pb.setVisibility(View.VISIBLE);
-//                        RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
-//                        PacienteService servicio = restadpter.create(PacienteService.class);
-                        Intent inten= new Intent(Login.this, DeviceList.class);
-                        startActivity(inten);
-//                        servicio.postLogin(name_user, pass_user, new Callback<Paciente>() {
-//                        @Override
-//                        public void success(Paciente cliente, Response response) {
-//                            if (cliente.isLogin().equals("true")) {
-//
-//
-//                                if (cliente.getUsertype() == 1) {
-//
-//
-//                                    Intent intent2 = new Intent(Login.this, MainActivity.class);
-//                                    String idCliente = String.valueOf(cliente.getId_cliente());
-//                                    intent2.putExtra("id_cliente", idCliente);
-//                                    intent2.putExtra("nombre", cliente.getNombre());
-//                                    String tel = String.valueOf(cliente.getTelefono());
-//                                    intent2.putExtra("telefono", tel);
-//                                    intent2.putExtra("correo", cliente.getCorreo());
-//                                    intent2.putExtra("apellido", cliente.getApellido());
-//                                    String saldo = String.valueOf(cliente.getSaldo());
-//                                    intent2.putExtra("saldo", saldo);
-//                                    pb.setVisibility(View.GONE);
-//                                    startActivity(intent2);
-//                                }
-//                                if (cliente.getUsertype() == 2) {
-//                                    Intent intent = new Intent(Login.this, MainActivity.class);
-//
-//                                    String idCliente = String.valueOf(cliente.getId_cliente());
-//                                    intent.putExtra("id_vendedor", idCliente);
-//                                    intent.putExtra("nombre", cliente.getNombre());
-//                                    intent.putExtra("correo", cliente.getCorreo());
-//                                    intent.putExtra("apellido", cliente.getApellido());
-//                                    pb.setVisibility(View.GONE);
-//                                    String saldo = String.valueOf(cliente.getSaldo());
-//                                    intent.putExtra("saldo", saldo);
-//                                    startActivity(intent);
-//                                }
-//                                Toast.makeText(Login.this, "Bienvenid@ " + cliente.getNombre(), Toast.LENGTH_LONG).show();
-//
-//                            }else{
-//                                pb.setVisibility(View.INVISIBLE);
-//                                Toast.makeText(Login.this, "Acceso No valido", Toast.LENGTH_LONG).show();
-//                            }
+                        RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+                        DoctorService servicio = restadpter.create(DoctorService.class);
+//                        Intent inten= new Intent(Login.this, DeviceList.class);
+//                        startActivity(inten);
+                        servicio.postLogin(name_user, pass_user, new Callback<Doctor>() {
+                        @Override
+                        public void success(Doctor doctor, Response response) {
+                            if (doctor.isLogin().equals("true")) {
+                                    Intent intent2 = new Intent(Login.this, DeviceList.class);
+                                    String idDoctor = String.valueOf(doctor.getId_doctor());
+                                    intent2.putExtra("id_doctor", idDoctor);
+                                    intent2.putExtra("nombre", doctor.getNombre());
+                                    pb.setVisibility(View.GONE);
+                                    startActivity(intent2);
 
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError error) {
-//                            Toast.makeText(Login.this, "Error en Servidor", Toast.LENGTH_LONG).show();
-//                            pb.setVisibility(View.INVISIBLE);
-//                        }
-//                    });
+                                Toast.makeText(Login.this, "Bienvenid@ " + doctor.getNombre(), Toast.LENGTH_LONG).show();
+
+                            }else{
+                                pb.setVisibility(View.INVISIBLE);
+                                Toast.makeText(Login.this, "Acceso No valido", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Toast.makeText(Login.this, "Error en Servidor", Toast.LENGTH_LONG).show();
+                            Log.d("ERROR RETROFIT",error.getMessage());
+                            pb.setVisibility(View.INVISIBLE);
+                        }
+                    });
                 }else{
                         Toast.makeText(Login.this, "Campos vacíos", Toast.LENGTH_LONG).show();
                         pb.setVisibility(View.INVISIBLE);
                     }
-//                }
+                }
             }
         });
 

@@ -22,22 +22,32 @@ import java.util.Set;
 public class DeviceList extends ActionBarActivity
 {
     //Declaramos Los Componentes
-    Button btnVinculados;
+    Button btnVinculados,btnSinBT;
     ListView listaDispositivos;
     //Bluetooth
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> dispVinculados;
     public static String EXTRA_ADDRESS = "device_address";
 
+    String id_doctor;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
 
+        //=====================| RECIBIMOS VARIABLES DE SESSION | ===================
+        id_doctor = getIntent().getStringExtra("id_doctor");
+        nombre = getIntent().getStringExtra("nombre");
+
         //Declaramos nuestros componenetes ralcionandolos con los del layout
         btnVinculados = (Button)findViewById(R.id.button);
+        btnSinBT = (Button)findViewById(R.id.btnSinBT);
         listaDispositivos = (ListView)findViewById(R.id.listView);
+
+
+
 
         //Comprobamos que el dispositivo tiene bluetooth
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
@@ -55,8 +65,22 @@ public class DeviceList extends ActionBarActivity
         {
                 //Preguntamos al usuario si desea encender el bluetooth
                 Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                turnBTon.putExtra("id_doctor",id_doctor);
+                turnBTon.putExtra("nombre",nombre);
                 startActivityForResult(turnBTon,1);
         }
+        btnSinBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeviceList.this, MainActivity.class);
+
+//            Change the activity.
+                i.putExtra(EXTRA_ADDRESS, "sinBT"); //this will be received at ledControl (class) Activity
+                i.putExtra("id_doctor",id_doctor);
+                i.putExtra("nombre",nombre);
+                startActivity(i);
+            }
+        });
 
         btnVinculados.setOnClickListener(new View.OnClickListener() {
             @Override

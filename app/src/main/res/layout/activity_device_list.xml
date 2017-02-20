@@ -27,9 +27,16 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listView"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/button"
         android:layout_below="@+id/textView" />
+
+    <Button
+        android:text="Continuar sin conectar BT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btnSinBT" />
 </RelativeLayout>

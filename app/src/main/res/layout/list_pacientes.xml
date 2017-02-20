@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="11dp"
+    android:layout_height="wrap_content"
+    style="@style/fondoItemPaciente">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+        android:text="TextView"
+        style="@style/nombrePaciente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNombrePaciente"
+        android:layout_weight="1"
+        android:textSize="24sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTelefonoPaciente"
+            android:layout_weight="1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvEdadPaciente"
+            android:layout_weight="1"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/tvIdPaciente"
+                style="@style/nombrePaciente"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="1" >
+
+            <Button
+                style="@style/btnDiagrama"
+                android:text="Odontodiagramas"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button4" />
+
+            <Button
+                style="@style/btnConsultas"
+                android:text="Consultas"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button5" />
+
+            <Button
+                style="@style/btnExamen"
+                android:text="Examen Clinico"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button6" />
+        </TableRow>
+    </LinearLayout>
+</LinearLayout>

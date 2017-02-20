@@ -4,16 +4,17 @@ package com.darkcode.ruf_012.Paciente;
  * Created by NativoLink on 15/12/15.
  */
 public class Paciente {
+    int id_paciente;
 
     String nombre;
     String direccion;
-    int telefono;
+    String telefono;
     String sexo;
     int edad;
     String estado_civil;
     String ocupacion;
     String direccion_oc;
-    int telefono_oc;
+    String telefono_oc;
     String responsable;
     String fecha;
     String estado_salud;
@@ -23,6 +24,14 @@ public class Paciente {
     String medico;
     String alergia;
     String enfermedad_sistematica;
+
+    public int getId_paciente() {
+        return id_paciente;
+    }
+
+    public void setId_paciente(int id_paciente) {
+        this.id_paciente = id_paciente;
+    }
 
     public String getNombre() {
         return nombre;
@@ -40,11 +49,11 @@ public class Paciente {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -88,11 +97,11 @@ public class Paciente {
         this.direccion_oc = direccion_oc;
     }
 
-    public int getTelefono_oc() {
+    public String getTelefono_oc() {
         return telefono_oc;
     }
 
-    public void setTelefono_oc(int telefono_oc) {
+    public void setTelefono_oc(String telefono_oc) {
         this.telefono_oc = telefono_oc;
     }
 
