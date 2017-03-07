@@ -1,9 +1,13 @@
 package com.darkcode.ruf_012.Diagrama;
 
 
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
+import retrofit.http.GET;
+import retrofit.http.Headers;
 import retrofit.http.POST;
 
 /**
@@ -18,4 +22,8 @@ public interface DienteService {
                           @Field("pared") String pared,
                           @Field("estado") String estado,
                           Callback<String> callback);
+
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Diagrama/unDiagrama.php")
+    public void unDiagrama(Callback<List<DienteDB>> callback);
 }

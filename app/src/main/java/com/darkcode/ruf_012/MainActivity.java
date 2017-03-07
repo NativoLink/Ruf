@@ -1,7 +1,6 @@
 package com.darkcode.ruf_012;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,7 +13,6 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-//import android.app.Fragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -31,10 +29,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.Paciente.PacienteService;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import retrofit.Callback;
@@ -71,10 +71,12 @@ public class MainActivity extends AppCompatActivity
     private boolean isBtConnected = false;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 //        Button ecu = (Button)findViewById(R.id.)
 
@@ -369,17 +371,19 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaRegDiagrama();
             trans= true;
         } else if (id == R.id.nav_gallery) {
-            vista = new VistaPrincipal();
+            vista = new VistaRegPlanTratamiento();
             trans= true;
         } else if (id == R.id.nav_slideshow) {
             vistaActual = "pacientes";
             vista = new VistaPacientes();
             trans= true;
         } else if (id == R.id.nav_manage) {
-            vista = new VistaPacientes();
+            vistaActual = "plan";
+            vista = new VistaRegPlanTratamiento();
             trans= true;
         } else if (id == R.id.nav_share) {
-
+            vista = new VistaConsultarDiagrama();
+            trans= true;
         } else if (id == R.id.nav_send) {
 
         }
@@ -398,7 +402,7 @@ public class MainActivity extends AppCompatActivity
             bundle.putString("nombre", nombre);
             vista.setArguments(bundle);
 
-            FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.f_main, vista);
             vistaA = vista;
             transaction.addToBackStack(null);
@@ -433,8 +437,9 @@ public class MainActivity extends AppCompatActivity
                 else if(split[1].equals("izquierda")){pared = "L";}
                 else if(split[1].equals("derecha")){pared = "R";}
                 else {pared = "C";}
-
-                editDiente(pos_diente,pared,estado_pared);
+//                if(pos_diente>=18 && pos_diente<=85) {  // ========================== ESTA LINEA DE CODE NO ESTA PROBADA < < <
+                    editDiente(pos_diente, pared, estado_pared);
+//                }
             }
         }
 //        1.REGISTRAR PACIENTE (PRIMERA PRUEBA)
@@ -461,7 +466,7 @@ public class MainActivity extends AppCompatActivity
             for (int i = 0; i < split.length; i++) {
 
                 if (split[0].equals("nombre"))      {if(i>0){NOMBRES = nombre.append(" "+split[i]).toString();} }
-                if (split[0].equals("dirección"))   {if(i>0){ DIRECCION = direccion.append(" "+split[i]).toString();}}
+                if (split[0].equals("dirección"))   {if(i>0){DIRECCION = direccion.append(" "+split[i]).toString();}}
                 if (split[0].equals("teléfono"))    {if(i>0){TELEFONO = telefono.append(" "+split[i]).toString();}}
                 if (split[0].equals("estado civil")){if(i>0){ESTADO_CIVIL = estado_civil.append(" "+split[i]).toString();}}
                 if (split[0].equals("sexo"))        {if(i>0){SEXO = sexo.append(" "+split[i]).toString();}}
@@ -486,7 +491,20 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+
     }
+
+
+    private boolean removeItemToList(List<Tratamiento> l, Tratamiento it){
+        boolean result = l.remove(it);
+        return result;
+    }
+
+    private boolean addItemToList(List<Tratamiento> l, Tratamiento it){
+        boolean result = l.add(it);
+        return result;
+    }
+
     public void cambioVista(final Fragment vistaObj, final String vActual){
         new Handler().post(new Runnable() {
             public void run() {

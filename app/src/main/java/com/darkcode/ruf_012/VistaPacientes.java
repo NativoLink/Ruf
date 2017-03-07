@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,6 +30,10 @@ import retrofit.client.Response;
 public class VistaPacientes extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    Button buscarPaciente;
+    EditText nombrePaciente;
+    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+    PacienteService servicio = restadpter.create(PacienteService.class);
 
     public VistaPacientes() {
 
@@ -45,14 +51,38 @@ public class VistaPacientes extends Fragment {
 
         final ListView lvresult;
         lvresult = (ListView)view.findViewById(R.id.lvTrans);
+        buscarPaciente = (Button)view.findViewById(R.id.btnBuscarPaciente);
+        nombrePaciente = (EditText)view.findViewById(R.id.etBuscarPaciente);
 
-        RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
-        PacienteService servicio = restadpter.create(PacienteService.class);
+        buscarPaciente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nombreP = nombrePaciente.getText().toString();
+                servicio.getPaciente(nombreP,new Callback<List<Paciente>>() {
+
+
+                    @Override
+                    public void success(List<Paciente> pacientes, Response response) {
+                        AdapterPacientes listAdapter = new AdapterPacientes(getContext(), pacientes);
+                        listAdapter.setId_doctor(id_d);
+                        lvresult.setAdapter(listAdapter);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+
 
         servicio.getPacientes(new Callback<List<Paciente>>() {
             @Override
             public void success(List<Paciente> pacientes, Response response) {
-                ListAdapter listAdapter = new AdapterPacientes(getContext(), pacientes);
+                AdapterPacientes listAdapter = new AdapterPacientes(getContext(), pacientes);
+                listAdapter.setId_doctor(id_d);
                 lvresult.setAdapter(listAdapter);
             }
 
@@ -61,6 +91,7 @@ public class VistaPacientes extends Fragment {
                 Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
         return view;
 
 

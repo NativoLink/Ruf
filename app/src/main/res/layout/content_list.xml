@@ -3,10 +3,32 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etBuscarPaciente"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:hint="Nombre o ID" />
+
+        <Button
+            android:text="Buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBuscarPaciente"
+            android:layout_weight="3" />
+    </TableRow>
+
     <ListView
         android:id="@+id/lvTrans"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:translationZ="0dp"
         android:elevation="1dp"
         android:layout_weight="1"

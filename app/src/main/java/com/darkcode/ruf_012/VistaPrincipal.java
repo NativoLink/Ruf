@@ -35,15 +35,15 @@ public class VistaPrincipal extends Fragment {
 //        address = this.getArguments().getString("address");
         View view = inflater.inflate(R.layout.v_principal, container, false);
 
-        btnEscuchar = (Button)view.findViewById(R.id.btnEscuchar);
-
-        btnEscuchar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-
-            }
-        });
+//        btnEscuchar = (Button)view.findViewById(R.id.btnEscuchar);
+//
+//        btnEscuchar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//
+//            }
+//        });
 
         return view;
 

@@ -4,7 +4,9 @@
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">#0187d0</item>
+        <item name="android:colorPrimary">#779baf</item>
+        <item name="android:colorPrimaryDark">#0187d0</item>
     </style>
     <style name="login_fondo">
         <item name="android:background">#424242</item>
@@ -25,4 +27,24 @@
     <style name="btnExamen">
         <item name="android:background">#E0E0E0</item>
     </style>
+
+    <style name="ThemeCustom" parent="android:style/Theme">
+        <item name="android:colorPrimary">#779baf</item>
+        <item name="android:colorPrimaryDark">#0187d0</item>
+        <item name="android:capitalize">characters</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">12pt</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorPrimary">#779baf</item>
+        <item name="colorPrimaryDark">#0187d0</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
 </resources>

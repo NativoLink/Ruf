@@ -17,7 +17,11 @@ public interface PacienteService {
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Paciente/listPacientes.php")
     void getPacientes(Callback<List<Paciente>> callback);
-//    void getFeed(@Path("user") String user,Callback<Paciente> response);
+
+    @Headers("Cache-Control: max-age=1")
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Paciente/listBuscarPaciente.php")
+    void getPaciente(@Field("nombre") String nombre,Callback<List<Paciente>> callback);
 
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Login/login.php")
