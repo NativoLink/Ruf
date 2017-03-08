@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
@@ -41,6 +42,7 @@ import retrofit.client.Response;
 public class VistaRegPlanTratamiento extends Fragment {
 
     ListView lvPlaneadas,lvTratamientos;
+    View view;
 
     public VistaRegPlanTratamiento() {
 
@@ -66,9 +68,9 @@ public class VistaRegPlanTratamiento extends Fragment {
     public class ItemsListAdapter11 extends BaseAdapter {
 
         private Context context;
-        private List<Item2> list;
+        private List<Tratamiento> list;
 
-        ItemsListAdapter11(Context c, List<Item2> l){
+        ItemsListAdapter11(Context c, List<Tratamiento> l){
             context = c;
             list = l;
         }
@@ -107,12 +109,12 @@ public class VistaRegPlanTratamiento extends Fragment {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 holder.icon.setImageDrawable(getContext().getDrawable(R.drawable.plus));
             }
-            holder.text.setText(list.get(position).ItemString);
+            holder.text.setText(list.get(position).getNombre());
 
             return rowView;
         }
 
-        public List<Item2> getList(){
+        public List<Tratamiento> getList(){
             return list;
         }
     }
@@ -120,9 +122,9 @@ public class VistaRegPlanTratamiento extends Fragment {
     public class ItemsListAdapter22  extends BaseAdapter {
 
         private Context context;
-        private List<Item2> list;
+        private List<Tratamiento> list;
 
-        ItemsListAdapter22(Context c, List<Item2> l){
+        ItemsListAdapter22(Context c, List<Tratamiento> l){
             context = c;
             list = l;
         }
@@ -161,24 +163,24 @@ public class VistaRegPlanTratamiento extends Fragment {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 holder.icon.setImageDrawable(getContext().getDrawable(R.drawable.remove));
             }
-            holder.text.setText(list.get(position).ItemString);
+            holder.text.setText(list.get(position).getNombre());
 
             return rowView;
         }
 
-        public List<Item2> getList(){
+        public List<Tratamiento> getList(){
             return list;
         }
     }
 
-    List<Item2> items1, items2;
+    List<Tratamiento> items1, items2;
     ListView listView1, listView2;
     ItemsListAdapter11 myItemsListAdapter1;
     ItemsListAdapter22 myItemsListAdapter2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reg_plan_tratamiento, container, false);
+        view = inflater.inflate(R.layout.reg_plan_tratamiento, container, false);
         listView1 = (ListView)view.findViewById(R.id.lvTratamientos);
         listView2 = (ListView)view.findViewById(R.id.lvTPlaneados);
 
@@ -196,18 +198,18 @@ public class VistaRegPlanTratamiento extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-                Item2 selectedItem = (Item2)(parent.getItemAtPosition(position));
+                Tratamiento selectedItem = (Tratamiento)(parent.getItemAtPosition(position));
 
-                ItemsListAdapter11 associatedAdapter = (ItemsListAdapter11)(parent.getAdapter());
-                List<Item2> associatedList = associatedAdapter.getList();
-                Item2 associatedItem = associatedList.get(position);
+                AdapterTratamientos associatedAdapter = (AdapterTratamientos)(parent.getAdapter());
+                List<Tratamiento> associatedList = associatedAdapter.getTratamientos();
+                Tratamiento associatedItem = associatedList.get(position);
                 if(removeItemToList(associatedList, associatedItem)){
 
                     view.invalidate();
                     associatedAdapter.notifyDataSetChanged();
 
-                    ItemsListAdapter22 list2Adapter = (ItemsListAdapter22)(listView2.getAdapter());
-                    List<Item2> list2List = list2Adapter.getList();
+                    ListRegPlanTratamientos.ItemsListAdapter2 list2Adapter = (ListRegPlanTratamientos.ItemsListAdapter2)(listView2.getAdapter());
+                    List<Tratamiento> list2List = list2Adapter.getList();
 
                     addItemToList(list2List, selectedItem);
                     list2Adapter.notifyDataSetChanged();
@@ -224,15 +226,15 @@ public class VistaRegPlanTratamiento extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
             Toast.makeText(getContext(),
-                    ((Item2)(parent.getItemAtPosition(position))).ItemString,
+                    ((Tratamiento)(parent.getItemAtPosition(position))).getNombre(),
                     Toast.LENGTH_SHORT).show();
         }
 
     };
 
     private void initItems(){
-        items1 = new ArrayList<Item2>();
-        items2 = new ArrayList<Item2>();
+        items1 = new ArrayList<Tratamiento>();
+        items2 = new ArrayList<Tratamiento>();
 
 
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
@@ -241,14 +243,10 @@ public class VistaRegPlanTratamiento extends Fragment {
         servicio.getTratamientos(new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
-//                Toast.makeText(ListRegPlanTratamientos.this,"TRAT "+tratamientos.size(), Toast.LENGTH_LONG).show();
-//                Log.i( "TRAT", "I "+tratamientos.size());
-                for(int i=0; i<tratamientos.size(); i++){
-                    String s = tratamientos.get(i).getNombre()+" ("+tratamientos.get(i).getTipo()+")";
-                    int idT =  tratamientos.get(i).getId_tratamiento();
-                    Item2 item = new Item2(s,idT);
-                    items1.add(item);
-                }
+//                Toast.makeText(getContext(),"TRAT "+tratamientos.size(), Toast.LENGTH_LONG).show();
+                ListView lvresult = (ListView)view.findViewById(R.id.lvTratamientos);
+                AdapterTratamientos listAdapter = new AdapterTratamientos(getContext(), tratamientos);
+                lvresult.setAdapter(listAdapter);
             }
             @Override
             public void failure(RetrofitError error) {
@@ -258,12 +256,12 @@ public class VistaRegPlanTratamiento extends Fragment {
 
     }
 
-    private boolean removeItemToList(List<Item2> l,Item2 it){
+    private boolean removeItemToList(List<Tratamiento> l,Tratamiento it){
         boolean result = l.remove(it);
         return result;
     }
 
-    private boolean addItemToList(List<Item2> l,Item2 it){
+    private boolean addItemToList(List<Tratamiento> l,Tratamiento it){
         boolean result = l.add(it);
         return result;
     }

@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -58,10 +59,10 @@ public class Diente extends View {
         PosDiente = posDiente;
     }
 
-    int x;
-    int y;
-    int xx 	=  	x;
-    int xy 	=	y;
+    float x;
+    float y;
+    float xx 	=  	x;
+    float xy 	=	y;
     Paint paint = new Paint(); // pintura o pincel
     Paint paint2 = new Paint(); // pintura o pincel
 
@@ -69,15 +70,11 @@ public class Diente extends View {
     Paint paint4 = new Paint(); // pintura o pincel
     Paint paint5 = new Paint(); // pintura o pincel
     Paint paint6 = new Paint(); // pintura o pincel
-    Drawable img_up_1,img_up_2,img_up_3,img_up_4,img_up_5;  // UP AREA
-    Drawable img_left_1,img_left_2,img_left_3,img_left_4,img_left_5;  // LEFT AREA
-    Drawable img_down_1;
-    Drawable img_down_2;
-    Drawable img_down_3;
-    Drawable img_down_4;
-    Drawable img_down_5;  // DOWN AREA
-    Drawable img_right_1,img_right_2,img_right_3,img_right_4,img_right_5;  // RIGHT AREA
-    Drawable img_center_1,img_center_2,img_center_3,img_center_4,img_center_5;  // CENTER AREA
+    Drawable img_up_1;  // UP AREA
+    Drawable img_left_1;  // LEFT AREA
+    Drawable img_down_1;   // DOWN AREA
+    Drawable img_right_1;  // RIGHT AREA
+    Drawable img_center_1;  // CENTER AREA
 
 
     String Estado_U="vacio";
@@ -139,7 +136,7 @@ public class Diente extends View {
     Context contexto;
 
     private Paint myCircle;
-    public Diente(Context context,int dientePosicion,int xc, int yc,boolean tipoDiente){
+    public Diente(Context context,int dientePosicion,float xc, float yc,boolean tipoDiente){
         super(context);
         setTipo_diente(tipoDiente);
         xx= xc;
@@ -152,46 +149,28 @@ public class Diente extends View {
         // 			* * * AREA UP * * *
         // =======================================
         img_up_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_up_2 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_up_3 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_up_4 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_up_5 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
+//        img_up_1 = contexto.getResources().getDrawable(R.drawable.add);
 
         //=======================================
         // 			* * * AREA LEFT * * *
         // =======================================
         img_left_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_left_2 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_left_3 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_left_4 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_left_5 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
+
 
         //=======================================
         // 			* * * AREA DOWN * * *
         // =======================================
         img_down_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_down_2 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_down_3 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_down_4 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_down_5 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
 
         //=======================================
         // 			* * * AREA RIGHT * * *
         // =======================================
         img_right_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_right_2 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_right_3 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_right_4 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_right_5 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
 
         //=======================================
         // 			* * * AREA CENTER * * *
         // =======================================
         img_center_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_center_2 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_center_3 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_center_4 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-        img_center_5 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
 
         initView();
 
@@ -246,20 +225,29 @@ public class Diente extends View {
 
     public void onDraws(Canvas canvas) {
         // pintamos un rectangulo negro
+        float div = (float) 1.2;
+        float cPosXIni  =  50/div;
+        float cPosYIni  = 40/div;
+        float cWH       = 180/div;
+        float cWH_ext   = 230/div;
+
+        float cDPosX   = 110/div;
+        float radioInt = 2/div;
+        float radioExt = 7/div;
         if(tipo_diente==false) {
-            canvas.drawRect(dpToPx(xx), dpToPx(xy), dpToPx(xx + 240), dpToPx(xy + 240), paint);
+            canvas.drawRect(dpToPx(xx), dpToPx(xy), dpToPx(xx + cWH_ext), dpToPx(xy + cWH_ext), paint);
 
             // pintamos un rectangulo INTERIOR
-            canvas.drawRect(dpToPx(xx + 60), dpToPx(xy + 45), dpToPx(xx + 180), dpToPx(xy + 195), paint);
+            canvas.drawRect(dpToPx(xx + cPosXIni), dpToPx(xy + cPosYIni), dpToPx(xx + cWH), dpToPx(xy + cWH), paint);
         }else{
-            canvas.drawCircle(dpToPx(xx+120), dpToPx(xy+120), 8 * 15, paint);
-            canvas.drawCircle(dpToPx(xx + 120),  dpToPx(xy + 120), 4 * 15, paint);
+            canvas.drawCircle(dpToPx(xx+ cDPosX), dpToPx(xy + cDPosX), radioExt * (18/div), paint);
+            canvas.drawCircle(dpToPx(xx + cDPosX),  dpToPx(xy + cDPosX), radioInt * (17/div), paint);
         }
         Paint font = new Paint();
         font.setARGB(255, 255, 0, 0);
         font.setTextSize(42);
         font.setTypeface(Typeface.SERIF);
-        canvas.drawText(""+PosDiente,dpToPx(xx+95), dpToPx(xy-15), font);
+        canvas.drawText(""+PosDiente,dpToPx(xx+85), dpToPx(xy-5), font);
 
 
 
@@ -268,79 +256,44 @@ public class Diente extends View {
         //=======================================
         // 			* * * AREA UP * * *
         //=======================================
-        img_up_1.setBounds(dpToPx(xx+55),dpToPx(xy+5),dpToPx(xx+175), dpToPx(xy+40));
-        img_up_2.setBounds(dpToPx(xx+80),dpToPx(xy+5),dpToPx(xx+100), dpToPx(xy+40));
-        img_up_3.setBounds(dpToPx(xx+105),dpToPx(xy+5),dpToPx(xx+125), dpToPx(xy+40));
-        img_up_4.setBounds(dpToPx(xx+130),dpToPx(xy+5),dpToPx(xx+150), dpToPx(xy+40));
-        img_up_5.setBounds(dpToPx(xx+155),dpToPx(xy+5),dpToPx(xx+175), dpToPx(xy+40));
-
+        if(tipo_diente==false) {img_up_1.setBounds(dpToPx(xx+55),dpToPx(xy+5),dpToPx(xx+cWH), dpToPx(xy+40)); }else{
+            img_up_1.setBounds(dpToPx(xx+cPosXIni+40),dpToPx(xy+20),dpToPx(xx+140), dpToPx(xy+140));
+        }
         img_up_1.draw(canvas);
-//        img_up_2.draw(canvas);
-//        img_up_3.draw(canvas);
-//        img_up_4.draw(canvas);
-//        img_up_5.draw(canvas);
-
 
         //=======================================
         // 			* * * AREA LEFT * * *
         //=======================================
-        img_left_1.setBounds(dpToPx(xx+10),dpToPx(xy+60),dpToPx(xx+55), dpToPx(xy+180));
-        img_left_2.setBounds(dpToPx(xx+10),dpToPx(xy+85),dpToPx(xx+55), dpToPx(xy+105));
-        img_left_3.setBounds(dpToPx(xx+10),dpToPx(xy+110),dpToPx(xx+55), dpToPx(xy+130));
-        img_left_4.setBounds(dpToPx(xx+10),dpToPx(xy+135),dpToPx(xx+55), dpToPx(xy+155));
-        img_left_5.setBounds(dpToPx(xx+10),dpToPx(xy+160),dpToPx(xx+55), dpToPx(xy+180));
-
+        if(tipo_diente==false) {img_left_1.setBounds(dpToPx(xx),dpToPx(xy+cPosYIni),dpToPx(xx+55), dpToPx(xy+180));}else{
+            img_left_1.setBounds(dpToPx(xx+20),dpToPx(xy+cPosYIni+40),dpToPx(xx+70), dpToPx(xy+150));
+        }
         img_left_1.draw(canvas);
-//        img_left_2.draw(canvas);
-//        img_left_3.draw(canvas);
-//        img_left_4.draw(canvas);
-//        img_left_5.draw(canvas);
 
         //=======================================
         // 			* * * AREA DOWN * * *
         //=======================================
-        img_down_1.setBounds(dpToPx(xx+55),dpToPx(xy+200),dpToPx(xx+175), dpToPx(xy+235));
-        img_down_2.setBounds(dpToPx(xx+80),dpToPx(xy+200),dpToPx(xx+100), dpToPx(xy+235));
-        img_down_3.setBounds(dpToPx(xx+105),dpToPx(xy+200),dpToPx(xx+125), dpToPx(xy+235));
-        img_down_4.setBounds(dpToPx(xx+130),dpToPx(xy+200),dpToPx(xx+150), dpToPx(xy+235));
-        img_down_5.setBounds(dpToPx(xx+155),dpToPx(xy+200),dpToPx(xx+175), dpToPx(xy+235));
-
+        if(tipo_diente==false) {img_down_1.setBounds(dpToPx(xx+cPosXIni),dpToPx(xy+cWH),dpToPx(xx+cWH), dpToPx(xy+235/div));}else{
+            img_down_1.setBounds(dpToPx(xx+cPosXIni+40),dpToPx(xy+140),dpToPx(xx+140), dpToPx(xy+205));
+        }
         img_down_1.draw(canvas);
-//        img_down_2.draw(canvas);
-//        img_down_3.draw(canvas);
-//        img_down_4.draw(canvas);
-//        img_down_5.draw(canvas);
 
         //=======================================
         // 			* * * AREA RIGHT * * *
         //=======================================
-        img_right_1.setBounds(dpToPx(xx+190),dpToPx(xy+60),dpToPx(xx+235), dpToPx(xy+180));
-        img_right_2.setBounds(dpToPx(xx+190),dpToPx(xy+85),dpToPx(xx+235), dpToPx(xy+105));
-        img_right_3.setBounds(dpToPx(xx+190),dpToPx(xy+110),dpToPx(xx+235), dpToPx(xy+130));
-        img_right_4.setBounds(dpToPx(xx+190),dpToPx(xy+135),dpToPx(xx+235), dpToPx(xy+155));
-        img_right_5.setBounds(dpToPx(xx+190),dpToPx(xy+160),dpToPx(xx+235), dpToPx(xy+180));
-
+        if(tipo_diente==false) {img_right_1.setBounds(dpToPx(xx+cWH),dpToPx(xy+cPosYIni),dpToPx(xx+235/div), dpToPx(xy+180));}else{
+            img_right_1.setBounds(dpToPx(xx+150),dpToPx(xy+cPosYIni+40),dpToPx(xx+200), dpToPx(xy+150));
+        }
         img_right_1.draw(canvas);
-//        img_right_2.draw(canvas);
-//        img_right_3.draw(canvas);
-//        img_right_4.draw(canvas);
-//        img_right_5.draw(canvas);
-
 
         //=======================================
         // 			* * * AREA CENTER * * *
         //=======================================
-        img_center_1.setBounds(dpToPx(xx+60),dpToPx(xy+45),dpToPx(xx+180), dpToPx(xy+195));
-        img_center_2.setBounds(dpToPx(xx+190),dpToPx(xy+85),dpToPx(xx+235), dpToPx(xy+105));
-        img_center_3.setBounds(dpToPx(xx+190),dpToPx(xy+110),dpToPx(xx+235), dpToPx(xy+130));
-        img_center_4.setBounds(dpToPx(xx+190),dpToPx(xy+135),dpToPx(xx+235), dpToPx(xy+155));
-        img_center_5.setBounds(dpToPx(xx+190),dpToPx(xy+160),dpToPx(xx+235), dpToPx(xy+180));
+        if(tipo_diente==false) {
+            img_center_1.setBounds(dpToPx(xx + cPosXIni), dpToPx(xy + cPosYIni), dpToPx(xx + cWH), dpToPx(xy + cWH));
+            img_center_1.draw(canvas);
+        }
 
-        img_center_1.draw(canvas);
-//        img_center_2.draw(canvas);
-//        img_center_3.draw(canvas);
-//        img_center_4.draw(canvas);
-//        img_center_5.draw(canvas);
+
 
 
 
@@ -354,39 +307,39 @@ public class Diente extends View {
         Paint paintx = new Paint();
         paintx.setStyle(Paint.Style.FILL);
         paintx.setStrokeWidth(10);
-//        paintx.setColor(Color.BLUE);
 
-        Path path = new Path();  // MUELAA Y DIENTES
-        Path path2 = new Path(); // MUELAA Y DIENTES
+
+        Path path = new Path();  // MUELA Y DIENTES
+        Path path2 = new Path(); // MUELA Y DIENTES
+        // *  * MUELAS *  *
+        float x1 = 50/div;
+        float x2 = 35/div;
+        float x3 = 185/div;
+        float x4 = 230/div;
+        float x5 = 180/div;
+        // *  * DIENTES *  *
+        float x6 = 50/div;
+        float x8 = 20/div;
+        float x9 = 170/div;
+        float x10 = 205/div;
 
         if(tipo_diente==false) {
+            path.moveTo(dpToPx(xx), dpToPx(xy));
+            path.lineTo(dpToPx(xx + x1), dpToPx(xy + x2));
+            path.lineTo(dpToPx(xx + x1), dpToPx(xy + x3));
+            path.lineTo(dpToPx(xx), dpToPx(xy + x4));
 
-            path.moveTo(dpToPx(xx), xy);
-            path.lineTo(dpToPx(xx + 60), dpToPx(xy + 45));
-            path.lineTo(dpToPx(xx + 60), dpToPx(xy + 195));
-            path.lineTo(dpToPx(xx), dpToPx(xy + 240));
-
-//            canvas.drawPath(path, paint);
-
-            path2.moveTo(dpToPx(xx + 240), xy);
-            path2.lineTo(dpToPx(xx + 180), dpToPx(xy + 45));
-            path2.lineTo(dpToPx(xx + 180), dpToPx(xy + 195));
-            path2.lineTo(dpToPx(xx + 240), dpToPx(xy + 240));
+            path2.moveTo(dpToPx(xx + x4), dpToPx(xy));
+            path2.lineTo(dpToPx(xx + (x4-x1)), dpToPx(xy + x2));
+            path2.lineTo(dpToPx(xx + x5), dpToPx(xy + x3));
+            path2.lineTo(dpToPx(xx + x4), dpToPx(xy + x4));
         }else{
-            path.moveTo(dpToPx(xx+32), xy+5);
-            path.lineTo(dpToPx(xx + 80), dpToPx(xy + 65));
+            path.moveTo(dpToPx(xx + x6), dpToPx(xy + x8));
+            path.lineTo(dpToPx(xx + x9), dpToPx(xy + x10));
 
-//            canvas.drawPath(path, paint);
+            path2.moveTo(dpToPx(xx + x9),  dpToPx(xy + x8));
+            path2.lineTo(dpToPx(xx + x6), dpToPx(xy + x10));
 
-            path2.moveTo(dpToPx(xx + 200), xy+5);
-            path2.lineTo(dpToPx(xx + 160), dpToPx(xy+65));
-
-
-//            path.moveTo(dpToPx(xx+80), xy+155);
-            path2.lineTo(dpToPx(xx + 32), dpToPx(xy + 227));
-
-//            path2.moveTo(dpToPx(xx+160), xy+155);
-            path.lineTo(dpToPx(xx +205), dpToPx(xy + 227));
         }
 
 
@@ -396,7 +349,7 @@ public class Diente extends View {
     }
 
 
-    public int dpToPx(int dp) {
+    public int dpToPx(float dp) {
         DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
         int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_XXXHIGH));
         return px;

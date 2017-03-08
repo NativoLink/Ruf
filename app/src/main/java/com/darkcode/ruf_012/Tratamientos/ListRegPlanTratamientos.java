@@ -54,9 +54,9 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
     public class ItemsListAdapter extends BaseAdapter {
 
         private Context context;
-        private List<Item> list;
+        private List<Tratamiento> list;
 
-        ItemsListAdapter(Context c, List<Item> l){
+        ItemsListAdapter(Context c, List<Tratamiento> l){
             context = c;
             list = l;
         }
@@ -93,12 +93,12 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 
             ViewHolder holder = (ViewHolder) rowView.getTag();
             holder.icon.setImageDrawable(getDrawable(R.drawable.add));
-            holder.text.setText(list.get(position).ItemString);
+            holder.text.setText(list.get(position).getNombre());
 
             return rowView;
         }
 
-        public List<Item> getList(){
+        public List<Tratamiento> getList(){
             return list;
         }
     }
@@ -106,9 +106,9 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
     public class ItemsListAdapter2 extends BaseAdapter {
 
         private Context context;
-        private List<Item> list;
+        private List<Tratamiento> list;
 
-        ItemsListAdapter2(Context c, List<Item> l){
+        ItemsListAdapter2(Context c, List<Tratamiento> l){
             context = c;
             list = l;
         }
@@ -145,17 +145,17 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 
             ViewHolder holder = (ViewHolder) rowView.getTag();
             holder.icon.setImageDrawable(getDrawable(R.drawable.remove));
-            holder.text.setText(list.get(position).ItemString);
+            holder.text.setText(list.get(position).getNombre());
 
             return rowView;
         }
 
-        public List<Item> getList(){
+        public List<Tratamiento> getList(){
             return list;
         }
     }
 
-    List<Item> items1, items2;
+    List<Tratamiento> items1, items2;
     ListView listView1, listView2;
     ItemsListAdapter myItemsListAdapter1;
     ItemsListAdapter2 myItemsListAdapter2;
@@ -176,29 +176,28 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
         listView1.setOnItemClickListener(listOnItemClickListener);
         listView2.setOnItemClickListener(listOnItemClickListener);
 
-        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
+            public void onItemClick(AdapterView<?> parent, View view,
                                            int position, long id) {
-                Item selectedItem = (Item)(parent.getItemAtPosition(position));
+                Tratamiento selectedItem = (Tratamiento)(parent.getItemAtPosition(position));
 
-                ItemsListAdapter associatedAdapter = (ItemsListAdapter)(parent.getAdapter());
-                List<Item> associatedList = associatedAdapter.getList();
-                Item associatedItem = associatedList.get(position);
+                AdapterTratamientos associatedAdapter = (AdapterTratamientos)(parent.getAdapter());
+                List<Tratamiento> associatedList = associatedAdapter.getTratamientos();
+                Tratamiento associatedItem = associatedList.get(position);
                 if(removeItemToList(associatedList, associatedItem)){
 
                     view.invalidate();
                     associatedAdapter.notifyDataSetChanged();
 
                     ItemsListAdapter2 list2Adapter = (ItemsListAdapter2)(listView2.getAdapter());
-                    List<Item> list2List = list2Adapter.getList();
+                    List<Tratamiento> list2List = list2Adapter.getList();
 
                     addItemToList(list2List, selectedItem);
                     list2Adapter.notifyDataSetChanged();
                 }
 
-                return true;
             }});
 
     }
@@ -209,52 +208,44 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
             Toast.makeText(ListRegPlanTratamientos.this,
-                    ((Item)(parent.getItemAtPosition(position))).ItemString,
+                    ((Tratamiento)(parent.getItemAtPosition(position))).getNombre(),
                     Toast.LENGTH_SHORT).show();
         }
 
     };
 
     private void initItems(){
-        items1 = new ArrayList<Item>();
-        items2 = new ArrayList<Item>();
+        items1 = new ArrayList<Tratamiento>();
+        items2 = new ArrayList<Tratamiento>();
 
 
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         TratamientoService servicio = restadpter.create(TratamientoService.class);
 
+
         servicio.getTratamientos(new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
                 Toast.makeText(ListRegPlanTratamientos.this,"TRAT "+tratamientos.size(), Toast.LENGTH_LONG).show();
-//                Log.i( "TRAT", "I "+tratamientos.size());
-                for(int i=1; i<tratamientos.size(); i++){
-                    String s = tratamientos.get(i).getNombre()+" ("+tratamientos.get(i).getTipo()+")";
-                    Item item = new Item(s);
-                    items1.add(item);
-                }
+                ListView lvresult = (ListView)findViewById(R.id.lvTratamientos);
+                AdapterTratamientos listAdapter = new AdapterTratamientos(getApplicationContext(), tratamientos);
+                lvresult.setAdapter(listAdapter);
+
+
             }
             @Override
             public void failure(RetrofitError error) {
                 Toast.makeText(getApplicationContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
-//        for(int i=0; i<4; i++){
-//            String s = i+"->ALGO";
-//            Item item = new Item(s);
-//            items1.add(item);
-//        }
-
     }
 
-    private boolean removeItemToList(List<Item> l, Item it){
+    private boolean removeItemToList(List<Tratamiento> l, Tratamiento it){
         boolean result = l.remove(it);
         return result;
     }
 
-    private boolean addItemToList(List<Item> l, Item it){
+    private boolean addItemToList(List<Tratamiento> l, Tratamiento it){
         boolean result = l.add(it);
         return result;
     }
