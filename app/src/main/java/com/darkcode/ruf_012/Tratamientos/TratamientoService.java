@@ -24,4 +24,9 @@ public interface TratamientoService {
     void getPlanes(@Query("id_paciente") int id_paciente, Callback<List<Plan>> callback);
 
 
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Tratamiento/listTratamientosDeUnPlan.php")
+    void getTratsDeUnPlan(@Query("id_paciente") int id_paciente,@Query("id_plan") int id_plan,Callback<List<Tratamiento>> callback);
+
+
 }

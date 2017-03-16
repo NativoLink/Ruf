@@ -1,4 +1,4 @@
-package com.darkcode.ruf_012;
+package com.darkcode.ruf_012.Diagrama;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -29,7 +29,7 @@ import retrofit.client.Response;
  * Created by NativoLink on 2/2/17.
  */
 
-public class VistaConsultarDiagrama extends Fragment {
+public class VistaGetDiagrama extends Fragment {
 
     boolean estado_o = false;
     //--------- PRIMER CUADRANTE ------

@@ -9,6 +9,7 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Headers;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 /**
  * Created by NativoLink on 15/12/15.
@@ -23,9 +24,21 @@ public interface PacienteService {
     @POST("/WebSites/Tesis/Paciente/listBuscarPaciente.php")
     void getPaciente(@Field("nombre") String nombre,Callback<List<Paciente>> callback);
 
+
+    @GET("/WebSites/Tesis/Consulta/listConsulta.php")
+    void getConsultas(@Query("id_paciente") int id_paciente, Callback<List<Consulta>> callback);
+
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Login/login.php")
     public void postLogin(@Field("username") String username, @Field("password") String password, Callback<Paciente> callback);
+
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Consulta/regConsulta.php")
+    public void postRegConsulta(
+            @Field("id_p_tratamiento") String id_p_tratamiento,
+            @Field("estado") String estado,
+            @Field("descripcion") String descripcion,
+            Callback<String> callback);
 
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Paciente/regPaciente.php")

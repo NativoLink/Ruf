@@ -1,11 +1,11 @@
 package com.darkcode.ruf_012.Paciente;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -20,13 +20,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 import com.darkcode.ruf_012.Tratamientos.AdapterPlan;
 import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
-import com.darkcode.ruf_012.VistaRegDiagrama;
-import com.darkcode.ruf_012.VistaRegPaciente;
+import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.VistaRegConsulta;
 
 import java.util.List;
 
@@ -45,23 +46,47 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     private List<Paciente> pacientes;
     Bundle bundle = new Bundle();
     String id_paciente;
+    int ultP,id_Paciente;
+    String ultimo_plan = "";
+    String id_doctor;
     Fragment vista;
 
-    public String getId_doctor() {
-        return id_doctor;
-    }
 
     public void setId_doctor(String id_doctor) {
         this.id_doctor = id_doctor;
     }
-
-    String id_doctor;
     public AdapterPacientes(Context context, List<Paciente> pacients) {
         super(context, R.layout.list_pacientes, pacients);
         contexto=context;
         pacientes = pacients;
     }
 
+    public void getConsultas() {
+
+        final RestAdapter[] restadpter = {new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build()};
+        PacienteService servicio = restadpter[0].create(PacienteService.class);
+
+
+        final CharSequence[] items = new CharSequence[99999];
+        servicio.getConsultas(1, new Callback<List<Consulta>>() {
+            @Override
+            public void success(List<Consulta> consultas, Response response) {
+
+                AdapterConsultas modeAdapter = new AdapterConsultas(getContext(),consultas);
+                ListView modeList = new ListView(getContext());
+                modeList.setAdapter(modeAdapter);
+                AlertDialog.Builder  builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Consultas");
+                builder.setView(modeList);
+                builder.show();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -75,17 +100,32 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
 
         Button btnNuevaConsulta = (Button) customView.findViewById(R.id.btnNuevaConsulta);
+        Button btnConsultas = (Button) customView.findViewById(R.id.btnConsultas);
         Button btnPlans = (Button) customView.findViewById(R.id.btnPlanes);
         Button btnDiagramas = (Button) customView.findViewById(R.id.btnDiagramas);
         Button btnExamen = (Button) customView.findViewById(R.id.btnExamen);
 
 
 
+
+
+
+        btnConsultas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id_paciente = idPaciente.getText().toString();
+                setParametros(position);
+                vista = new VistaRegDiagrama();
+
+            }
+        });
         btnNuevaConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
-                vista = new VistaRegDiagrama();
+                setParametros(position);
+                ((MainActivity)getContext()).setVistaActual("diagrama");
+                vista = new VistaRegConsulta();
                 cambiarVista(vista);
             }
         });
@@ -162,6 +202,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 vista = new VistaRegDiagrama();
+                setParametros(position);
                 cambiarVista(vista);
             }
         });
@@ -170,9 +211,14 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 vista = new VistaRegDiagrama();
+                setParametros(position);
                 cambiarVista(vista);
             }
         });
+
+
+
+
 
 
         int id = pacientes.get(position).getId_paciente();
@@ -191,10 +237,21 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
     }
 
+    private void setParametros(int pos) {
+        ultimo_plan = Integer.toString(pacientes.get(pos).getUltimo_plan());
+        id_Paciente = pacientes.get(pos).getId_paciente();
+        ultP = pacientes.get(pos).getUltimo_plan();
+    }
+
 
     public void cambiarVista(Fragment vistaObj){
             bundle.putString("id_doctor", id_doctor);
             bundle.putString("id_paciente", id_paciente);
+            bundle.putString("ultimo_plan", ultimo_plan);
+            vistaObj.setArguments(bundle);
+            ((MainActivity)getContext()).setId_pacienteA(id_Paciente);
+            ((MainActivity)getContext()).setUltimo_plan(ultP);
+
             FragmentTransaction transaction = ((FragmentActivity)contexto).getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.f_main, vistaObj);
             transaction.addToBackStack(null);

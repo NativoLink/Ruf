@@ -28,7 +28,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
+import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.Paciente.PacienteService;
+import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 
 import java.io.IOException;
@@ -52,12 +55,41 @@ public class MainActivity extends AppCompatActivity
     Thread t,t1;
     int  escucha;
     Object vistaA;
-//===========================
+
+    public String vistaActual="principal";
+
+    public String getVistaActual() {
+        return vistaActual;
+    }
+
+    public void setVistaActual(String vistaActual) {
+        this.vistaActual = vistaActual;
+    }
+
+    public int getUltimo_plan() {
+        return ultimo_plan;
+    }
+
+    public void setUltimo_plan(int ultimo_plan) {
+        this.ultimo_plan = ultimo_plan;
+    }
+
+    public int getId_pacienteA() {
+        return id_pacienteA;
+    }
+
+    public void setId_pacienteA(int id_pacienteA) {
+        this.id_pacienteA = id_pacienteA;
+    }
+
+    //===========================
 //    VARIABLES DE PACIENTE
     String NOMBRES,SEXO,OCUPACION,DIRECCION,TELEFONO,ESTADO_CIVIL,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO;
     int EDAD;
+    int id_pacienteA;
+    int ultimo_plan;
 //===========================
-    private String vistaActual="principal";
+
 
     private InputStream mmInStream;
     private Handler mHandler;
@@ -178,8 +210,8 @@ public class MainActivity extends AppCompatActivity
 //Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-ES");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"9999");
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"9999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 100);
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
@@ -257,14 +289,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void editDiente(int posicionDiente, String pared, String estado) {
-        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_main);
+        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_diagrama);
         fragmentb.editDiente(posicionDiente,pared,estado);
     }
 
     @Override
-    public void guardarDiagrama(int id_paciente) {
-        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_main);
-        fragmentb.guardarDiagrama(id_paciente);
+    public void guardarDiagrama(int id_paciente,int ultimo_plan) {
+        VistaRegDiagrama fragmentb=(VistaRegDiagrama) getSupportFragmentManager().findFragmentById(R.id.f_diagrama);
+        fragmentb.guardarDiagrama(id_paciente,ultimo_plan);
     }
 
 
@@ -382,10 +414,11 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaRegPlanTratamiento();
             trans= true;
         } else if (id == R.id.nav_share) {
-            vista = new VistaConsultarDiagrama();
+            vista = new VistaGetDiagrama();
             trans= true;
         } else if (id == R.id.nav_send) {
-
+            vista = new VistaRegConsulta();
+            trans= true;
         }
 
 //        =========================================
@@ -424,12 +457,12 @@ public class MainActivity extends AppCompatActivity
 //        0.ODONTODIAGRAMA (PRIMERA PRUEBA)
         if(vistaActual=="diagrama"){
             if(comandos.equals("guardar")) {
-                guardarDiagrama(1);
+                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
             }else{
 
                 String[] split = comandos.split(" ");
                 String pared;
-                Toast.makeText(getApplicationContext(), "PosiconDiente:"+split[0]+" Pared:"+split[1]+" Estado:"+split[2], Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "PosiconDiente:"+split[0]+" Pared:"+split[1]+" Estado:"+split[2], Toast.LENGTH_LONG).show();
                 int pos_diente = Integer.parseInt(split[0]);
                 String estado_pared = split[2];
                 if(split[1].equals("arriba")){pared = "U";}
@@ -495,16 +528,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private boolean removeItemToList(List<Tratamiento> l, Tratamiento it){
-        boolean result = l.remove(it);
-        return result;
-    }
-
-    private boolean addItemToList(List<Tratamiento> l, Tratamiento it){
-        boolean result = l.add(it);
-        return result;
-    }
-
     public void cambioVista(final Fragment vistaObj, final String vActual){
         new Handler().post(new Runnable() {
             public void run() {
@@ -516,10 +539,5 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-//    ================================================================================
-//    ---------------------- FUNCIONES DE VISTA REG_PACIENTE -------------------------
-//    ================================================================================
-    private void UpdateVistaRegPaciente(){
-        name.setText("..UPDATE");
-    }
+
 }

@@ -1,4 +1,4 @@
-package com.darkcode.ruf_012;
+package com.darkcode.ruf_012.Paciente;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.darkcode.ruf_012.R;
 
 
 /**
