@@ -28,10 +28,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 
 import java.io.IOException;
@@ -55,8 +57,19 @@ public class MainActivity extends AppCompatActivity
     Thread t,t1;
     int  escucha;
     Object vistaA;
+    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
 
     public String vistaActual="principal";
+    //VARIABLE DE TRATS REALIZADOS
+    private ArrayList<AdapterTratsConsulta.checkItem> ite = new ArrayList<AdapterTratsConsulta.checkItem>();
+
+    public ArrayList<AdapterTratsConsulta.checkItem> getIte() {
+        return ite;
+    }
+
+    public void setIte(ArrayList<AdapterTratsConsulta.checkItem> ite) {
+        this.ite = ite;
+    }
 
     public String getVistaActual() {
         return vistaActual;
@@ -457,7 +470,32 @@ public class MainActivity extends AppCompatActivity
 //        0.ODONTODIAGRAMA (PRIMERA PRUEBA)
         if(vistaActual=="diagrama"){
             if(comandos.equals("guardar")) {
-                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
+//                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
+                DienteService servicio = restadpter.create(DienteService.class);
+                for(int i=0; i< ite.size(); i++) {
+                    try
+                    {
+                    servicio.regConsulta(
+                        id_pacienteA,
+                        ite.get(i).getId_tratamiento(),
+                        ite.get(i).getEstado(),
+                        "FALTA ESTO EN LA APP",
+//                        ite.get(i).getCantidad(),
+                            3,
+                        new Callback<String>() {
+                            @Override
+                            public void success(String s, Response response) {
+                                Toast.makeText(getApplicationContext(), "..." +s+"...", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    ); Thread.sleep(999);
+                    }catch(InterruptedException e){}
+                }
             }else{
 
                 String[] split = comandos.split(" ");
@@ -506,7 +544,6 @@ public class MainActivity extends AppCompatActivity
                 regPacienteComm(NOMBRES, SEXO, 22, DIRECCION, TELEFONO, OCUPACION,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO);
             }
             if(comandos.equals("guardar registro") || comandos.equals("guardar") || comandos.equals("confirmar registro")){
-                RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
                 PacienteService servicio = restadpter.create(PacienteService.class);
                 servicio.regPaciente( NOMBRES, DIRECCION,TELEFONO, new Callback<String>() {
                     @Override

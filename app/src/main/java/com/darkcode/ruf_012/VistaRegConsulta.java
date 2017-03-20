@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,7 +33,8 @@ import retrofit.client.Response;
 
 public class VistaRegConsulta  extends Fragment {
 
-
+    ListView lvresult;
+    AdapterTratsConsulta listAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,18 +47,30 @@ public class VistaRegConsulta  extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
 
-
-        final ListView lvresult;
         lvresult = (ListView)view.findViewById(R.id.lvTrats);
 
 
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         TratamientoService servicio = restadpter.create(TratamientoService.class);
 
-        servicio.getTratsDeUnPlan(1, 1, new Callback<List<Tratamiento>>() {
+
+        //==== PARAMETROS DE CADA PACIENTE  =====
+        String nombreP = this.getArguments().getString("nombre_paciente");
+        String idPaciente = this.getArguments().getString("id_paciente");
+        String idUltimoPlan = this.getArguments().getString("ultimo_plan");
+
+        final int id_paciente  = Integer.valueOf(idPaciente);
+        final int ultimo_plan  = Integer.valueOf(idUltimoPlan);
+
+        Toast.makeText(getContext(),"ID_P => "+id_paciente+" ulP=>"+ultimo_plan, Toast.LENGTH_LONG).show();
+
+        TextView nombrePaciente = (TextView)view.findViewById(R.id.tvNombrePaciente);
+        nombrePaciente.setText(nombreP);
+
+        servicio.getTratsDeUnPlan(id_paciente, ultimo_plan, new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
-                AdapterTratsConsulta listAdapter = new AdapterTratsConsulta(getContext(), tratamientos);
+                listAdapter = new AdapterTratsConsulta(getContext(), tratamientos);
                 lvresult.setAdapter(listAdapter);
             }
 
@@ -63,7 +80,13 @@ public class VistaRegConsulta  extends Fragment {
             }
         });
 
+
+        Button btnNota = (Button)view.findViewById(R.id.btnNota);
         return  view;
 
+
+
     }
+
+
 }

@@ -23,6 +23,15 @@ public interface DienteService {
                           @Field("estado") String estado,
                           Callback<String> callback);
 
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Consulta/regConsulta.php")
+    public void regConsulta(@Field("id_paciente") int id_paciente,
+                            @Field("id_p_tratamiento") int id_p_tratamiento,
+                            @Field("estado") String estado,
+                            @Field("descripcion") String descripcion,
+                            @Field("cantidad") int cantidad,
+                              Callback<String> callback);
+
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Diagrama/unDiagrama.php")
     public void unDiagrama(Callback<List<DienteDB>> callback);

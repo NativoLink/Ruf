@@ -45,11 +45,12 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     private Context contexto;
     private List<Paciente> pacientes;
     Bundle bundle = new Bundle();
-    String id_paciente;
+    String id_paciente,nombreP;
     int ultP,id_Paciente;
     String ultimo_plan = "";
     String id_doctor;
     Fragment vista;
+
 
 
     public void setId_doctor(String id_doctor) {
@@ -59,7 +60,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         super(context, R.layout.list_pacientes, pacients);
         contexto=context;
         pacientes = pacients;
+
     }
+
 
     public void getConsultas() {
 
@@ -218,9 +221,6 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
 
 
-
-
-
         int id = pacientes.get(position).getId_paciente();
         String idP = Integer.toString(id);
         idPaciente.setText(idP);
@@ -241,12 +241,14 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         ultimo_plan = Integer.toString(pacientes.get(pos).getUltimo_plan());
         id_Paciente = pacientes.get(pos).getId_paciente();
         ultP = pacientes.get(pos).getUltimo_plan();
+        nombreP =  pacientes.get(pos).getNombre();
     }
 
 
     public void cambiarVista(Fragment vistaObj){
             bundle.putString("id_doctor", id_doctor);
             bundle.putString("id_paciente", id_paciente);
+            bundle.putString("nombre_paciente", nombreP);
             bundle.putString("ultimo_plan", ultimo_plan);
             vistaObj.setArguments(bundle);
             ((MainActivity)getContext()).setId_pacienteA(id_Paciente);
