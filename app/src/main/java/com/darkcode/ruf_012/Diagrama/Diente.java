@@ -183,7 +183,7 @@ public class Diente extends View {
         myCircle = new Paint();
         myCircle.setColor(Color.parseColor("#0187d0"));
 
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(2);
         paint.setStyle(Paint.Style.STROKE); // el tipo de trazado
         paint2.setStyle(Paint.Style.STROKE); // el tipo de trazado
 
@@ -225,7 +225,7 @@ public class Diente extends View {
 
     public void onDraws(Canvas canvas) {
         // pintamos un rectangulo negro
-        float div = (float) 0.90;
+        float div = (float) 0.5;
         float cPosXIni  =  25/div;
         float cPosYIni  = 20/div;
         float cWH       = 90/div;
@@ -245,7 +245,7 @@ public class Diente extends View {
         }
         Paint font = new Paint();
         font.setARGB(255, 255, 0, 0);
-        font.setTextSize(11);
+        font.setTextSize(38*div);
         font.setTypeface(Typeface.SERIF);
         canvas.drawText(""+PosDiente,dpToPx(xx+40/div), dpToPx(xy-5), font);
 
@@ -257,7 +257,7 @@ public class Diente extends View {
         // 			* * * AREA UP * * *
         //=======================================
         if(tipo_diente==false) {img_up_1.setBounds(dpToPx(xx+cPosXIni),dpToPx(xy+(5/div)),dpToPx(xx+cWH), dpToPx(xy+(20/div))); }else{
-            img_up_1.setBounds(dpToPx(xx+cPosXIni+15),dpToPx(xy+(3/div)),dpToPx(xx+(70/div)), dpToPx(xy+(35/div)));
+            img_up_1.setBounds(dpToPx(xx+cPosXIni+30),dpToPx(xy+(3/div)),dpToPx(xx+(70/div)), dpToPx(xy+(35/div)));
         }
         img_up_1.draw(canvas);
 
@@ -265,25 +265,25 @@ public class Diente extends View {
         // 			* * * AREA LEFT * * *
         //=======================================
         if(tipo_diente==false) {img_left_1.setBounds(dpToPx(xx),dpToPx(xy+cPosYIni),dpToPx(xx+(22/div)), dpToPx(xy+(90/div)));}else{
-            img_left_1.setBounds(dpToPx(xx+20),dpToPx(xy+cPosYIni+40),dpToPx(xx+70), dpToPx(xy+150));
+            img_left_1.setBounds(dpToPx(xx+20),dpToPx(xy+cPosYIni+40),dpToPx(xx+180*div), dpToPx(xy+150));
         }
-//        img_left_1.draw(canvas);
+        img_left_1.draw(canvas);
 
         //=======================================
         // 			* * * AREA DOWN * * *
         //=======================================
-        if(tipo_diente==false) {img_down_1.setBounds(dpToPx(xx+cPosXIni),dpToPx(xy+cWH),dpToPx(xx+cWH), dpToPx(xy+120));}else{
-            img_down_1.setBounds(dpToPx(xx+cPosXIni+15),dpToPx(xy+(cWH-30)),dpToPx(xx+70/div), dpToPx(xy+100));
+        if(tipo_diente==false) {img_down_1.setBounds(dpToPx(xx+cPosXIni),dpToPx(xy+(cWH-15*div)),dpToPx(xx+cWH), dpToPx(xy+115/div));}else{
+            img_down_1.setBounds(dpToPx(xx+cPosXIni+30),dpToPx(xy+(cWH-20*div)),dpToPx(xx+70/div), dpToPx(xy+115/div));
         }
         img_down_1.draw(canvas);
 
         //=======================================
         // 			* * * AREA RIGHT * * *
         //=======================================
-        if(tipo_diente==false) {img_right_1.setBounds(dpToPx(xx+cWH),dpToPx(xy+cPosYIni),dpToPx(xx+120/div), dpToPx(xy+90/div));}else{
-            img_right_1.setBounds(dpToPx(xx+150),dpToPx(xy+cPosYIni+40),dpToPx(xx+200), dpToPx(xy+150));
+        if(tipo_diente==false) {img_right_1.setBounds(dpToPx(xx+cWH),dpToPx(xy+cPosYIni),dpToPx(xx+115/div), dpToPx(xy+90/div));}else{
+            img_right_1.setBounds(dpToPx(xx+150),dpToPx(xy+cPosYIni+40),dpToPx(xx+420*div), dpToPx(xy+150));
         }
-//        img_right_1.draw(canvas);
+        img_right_1.draw(canvas);
 
         //=======================================
         // 			* * * AREA CENTER * * *

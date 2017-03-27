@@ -470,7 +470,7 @@ public class MainActivity extends AppCompatActivity
 //        0.ODONTODIAGRAMA (PRIMERA PRUEBA)
         if(vistaActual=="diagrama"){
             if(comandos.equals("guardar")) {
-//                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
+                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
                 DienteService servicio = restadpter.create(DienteService.class);
                 for(int i=0; i< ite.size(); i++) {
                     try

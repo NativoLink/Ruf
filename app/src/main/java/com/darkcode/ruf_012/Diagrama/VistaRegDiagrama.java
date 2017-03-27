@@ -32,9 +32,18 @@ public class VistaRegDiagrama extends Fragment {
     Diente diente18,diente17,diente16,diente15,diente14,diente13,diente12,diente11;
     Diente diente55,diente54,diente53,diente52,diente51;
 
-    //--------- PRIMER CUADRANTE ------
+    //--------- CUARTO CUADRANTE ------
+    Diente diente31,diente32,diente33,diente34,diente35,diente36,diente37,diente38;
+    Diente diente75,diente74,diente73,diente72,diente71;
+
+    //--------- SEGUNDO CUADRANTE ------
+    Diente diente21,diente22,diente23,diente24,diente25,diente26,diente27,diente28;
+    Diente diente61,diente62,diente63,diente64,diente65;
+
+    //--------- CUARTO CUADRANTE ------
     Diente diente48,diente47,diente46,diente45,diente44,diente43,diente42,diente41;
     Diente diente85,diente84,diente83,diente82,diente81;
+
 
 
 
@@ -57,21 +66,21 @@ public class VistaRegDiagrama extends Fragment {
             //=======================================
             float div = (float) (1.2);
             float ejeX = 70/div;
-            float X_D=210;
+            float X_D=330;
             diente18 = new Diente(getContext(),18,50,ejeX,false);
-            diente17 = new Diente(getContext(),17,250/div,ejeX,false);
-            diente16 = new Diente(getContext(),16,450/div,ejeX,false);
-            diente15 = new Diente(getContext(),15,650/div,ejeX,false);
-            diente14 = new Diente(getContext(),14,850/div,ejeX,false);
-            diente13 = new Diente(getContext(),13,1050/div,ejeX,false);
-            diente12 = new Diente(getContext(),12,1250/div,ejeX,false);
-            diente11 = new Diente(getContext(),11,1450/div,ejeX,false);
+            diente17 = new Diente(getContext(),17,395/div,ejeX,false);
+            diente16 = new Diente(getContext(),16,740/div,ejeX,false);
+            diente15 = new Diente(getContext(),15,1085/div,ejeX,false);
+            diente14 = new Diente(getContext(),14,1430/div,ejeX,false);
+            diente13 = new Diente(getContext(),13,1775/div,ejeX,false);
+            diente12 = new Diente(getContext(),12,2120/div,ejeX,false);
+            diente11 = new Diente(getContext(),11,2465/div,ejeX,false);
 
-            diente55 = new Diente(getContext(),55,300/div,ejeX+X_D,true);
-//            diente54 = new Diente(getContext(),54,500/div,ejeX+X_D,true);
-//            diente53 = new Diente(getContext(),53,700/div,ejeX+X_D,true);
-//            diente52 = new Diente(getContext(),52,900/div,ejeX+X_D,true);
-//            diente51 = new Diente(getContext(),51,1100/div,ejeX+X_D,true);
+            diente55 = new Diente(getContext(),55,600/div,ejeX+X_D,true);
+            diente54 = new Diente(getContext(),54,900/div,ejeX+X_D,true);
+            diente53 = new Diente(getContext(),53,1200/div,ejeX+X_D,true);
+            diente52 = new Diente(getContext(),52,1500/div,ejeX+X_D,true);
+            diente51 = new Diente(getContext(),51,1800/div,ejeX+X_D,true);
 
             lista.add(diente18);
             lista.add(diente17);
@@ -82,32 +91,100 @@ public class VistaRegDiagrama extends Fragment {
             lista.add(diente12);
             lista.add(diente11);
 
-
             lista.add(diente55);
-//            lista.add(diente54);
-//            lista.add(diente53);
-//            lista.add(diente52);
-//            lista.add(diente51);
-
+            lista.add(diente54);
+            lista.add(diente53);
+            lista.add(diente52);
+            lista.add(diente51);
 
             //=======================================
             //      * * * SEGUNDO CUADRANTE * * *
             //=======================================
-            float ejeX2 = 610/div;
-            diente48 = new Diente(getContext(),48,50/div,ejeX2,false);
-            diente47 = new Diente(getContext(),47,250/div,ejeX2,false);
-            diente46 = new Diente(getContext(),46,450/div,ejeX2,false);
-            diente45 = new Diente(getContext(),45,650/div,ejeX2,false);
-            diente44 = new Diente(getContext(),44,850/div,ejeX2,false);
-            diente43 = new Diente(getContext(),43,1050/div,ejeX2,false);
-            diente42 = new Diente(getContext(),42,1250/div,ejeX2,false);
-            diente41 = new Diente(getContext(),41,1450/div,ejeX2,false);
+            float ejeX2 = 70/div;
+            float X_D2=330;
+            diente21 = new Diente(getContext(),21,3110/div,ejeX2,false);
+            diente22 = new Diente(getContext(),22,3455/div,ejeX2,false);
+            diente23 = new Diente(getContext(),23,3800/div,ejeX2,false);
+            diente24 = new Diente(getContext(),24,4145/div,ejeX2,false);
+            diente25 = new Diente(getContext(),25,4490/div,ejeX2,false);
+            diente26 = new Diente(getContext(),26,4835/div,ejeX2,false);
+            diente27 = new Diente(getContext(),27,5180/div,ejeX2,false);
+            diente28 = new Diente(getContext(),28,5525/div,ejeX2,false);
 
-            diente85 = new Diente(getContext(),85,300/div,ejeX2+X_D,true);
-            diente84 = new Diente(getContext(),84,500/div,ejeX2+X_D,true);
-            diente83 = new Diente(getContext(),83,700/div,ejeX2+X_D,true);
-            diente82 = new Diente(getContext(),82,900/div,ejeX2+X_D,true);
-            diente81 = new Diente(getContext(),81,1100/div,ejeX2+X_D,true);
+            diente61 = new Diente(getContext(),61,3660/div,ejeX+X_D2,true);
+            diente62 = new Diente(getContext(),62,3960/div,ejeX+X_D2,true);
+            diente63 = new Diente(getContext(),63,4260/div,ejeX+X_D2,true);
+            diente64 = new Diente(getContext(),64,4560/div,ejeX+X_D2,true);
+            diente65 = new Diente(getContext(),65,4860/div,ejeX+X_D2,true);
+
+            lista.add(diente21);
+            lista.add(diente22);
+            lista.add(diente23);
+            lista.add(diente24);
+            lista.add(diente25);
+            lista.add(diente26);
+            lista.add(diente27);
+            lista.add(diente28);
+
+            lista.add(diente61);
+            lista.add(diente62);
+            lista.add(diente63);
+            lista.add(diente64);
+            lista.add(diente65);
+
+            //=======================================
+            //      * * * TERCER CUADRANTE * * *
+            //=======================================
+            float ejeX3 = 1000/div;
+            diente31 = new Diente(getContext(),31,3110/div,ejeX3+X_D,false);
+            diente32 = new Diente(getContext(),32,3455/div,ejeX3+X_D,false);
+            diente33 = new Diente(getContext(),33,3800/div,ejeX3+X_D,false);
+            diente34 = new Diente(getContext(),34,4145/div,ejeX3+X_D,false);
+            diente35 = new Diente(getContext(),35,4490/div,ejeX3+X_D,false);
+            diente36 = new Diente(getContext(),36,4835/div,ejeX3+X_D,false);
+            diente37 = new Diente(getContext(),37,5180/div,ejeX3+X_D,false);
+            diente38 = new Diente(getContext(),38,5525/div,ejeX3+X_D,false);
+
+            diente75 = new Diente(getContext(),75,3660/div,ejeX3,true);
+            diente74 = new Diente(getContext(),74,3960/div,ejeX3,true);
+            diente73 = new Diente(getContext(),73,4260/div,ejeX3,true);
+            diente72 = new Diente(getContext(),72,4560/div,ejeX3,true);
+            diente71 = new Diente(getContext(),71,4860/div,ejeX3,true);
+
+            lista.add(diente38);
+            lista.add(diente37);
+            lista.add(diente36);
+            lista.add(diente35);
+            lista.add(diente34);
+            lista.add(diente33);
+            lista.add(diente32);
+            lista.add(diente31);
+
+            lista.add(diente75);
+            lista.add(diente74);
+            lista.add(diente73);
+            lista.add(diente72);
+            lista.add(diente71);
+
+
+            //=======================================
+            //      * * * CUARTO CUADRANTE * * *
+            //=======================================
+            float ejeX4 = 1000/div;
+            diente48 = new Diente(getContext(),48,50/div,ejeX4+X_D,false);
+            diente47 = new Diente(getContext(),47,395/div,ejeX4+X_D,false);
+            diente46 = new Diente(getContext(),46,740/div,ejeX4+X_D,false);
+            diente45 = new Diente(getContext(),45,1085/div,ejeX4+X_D,false);
+            diente44 = new Diente(getContext(),44,1430/div,ejeX4+X_D,false);
+            diente43 = new Diente(getContext(),43,1775/div,ejeX4+X_D,false);
+            diente42 = new Diente(getContext(),42,2120/div,ejeX4+X_D,false);
+            diente41 = new Diente(getContext(),41,2465/div,ejeX4+X_D,false);
+
+            diente85 = new Diente(getContext(),85,600/div,ejeX4,true);
+            diente84 = new Diente(getContext(),84,900/div,ejeX4,true);
+            diente83 = new Diente(getContext(),83,1200/div,ejeX4,true);
+            diente82 = new Diente(getContext(),82,1500/div,ejeX4,true);
+            diente81 = new Diente(getContext(),81,1800/div,ejeX4,true);
 
             lista.add(diente48);
             lista.add(diente47);
@@ -118,12 +195,15 @@ public class VistaRegDiagrama extends Fragment {
             lista.add(diente42);
             lista.add(diente41);
 
-
             lista.add(diente85);
             lista.add(diente84);
             lista.add(diente83);
             lista.add(diente82);
             lista.add(diente81);
+
+
+
+
 
 
 
@@ -167,12 +247,48 @@ public class VistaRegDiagrama extends Fragment {
 
 
             diente55.onDraws(canvas);
-//            diente54.onDraws(canvas);
-//            diente53.onDraws(canvas);
-//            diente52.onDraws(canvas);
-//            diente51.onDraws(canvas);
+            diente54.onDraws(canvas);
+            diente53.onDraws(canvas);
+            diente52.onDraws(canvas);
+            diente51.onDraws(canvas);
             //=======================================
             //      * * * SEGUNDO CUADRANTE * * *
+            //=======================================
+            diente21.onDraws(canvas);
+            diente22.onDraws(canvas);
+            diente23.onDraws(canvas);
+            diente24.onDraws(canvas);
+            diente25.onDraws(canvas);
+            diente26.onDraws(canvas);
+            diente27.onDraws(canvas);
+            diente28.onDraws(canvas);
+
+
+            diente61.onDraws(canvas);
+            diente62.onDraws(canvas);
+            diente63.onDraws(canvas);
+            diente64.onDraws(canvas);
+            diente65.onDraws(canvas);
+            //=======================================
+            //      * * * TERCER CUADRANTE * * *
+            //=======================================
+            diente31.onDraws(canvas);
+            diente32.onDraws(canvas);
+            diente33.onDraws(canvas);
+            diente34.onDraws(canvas);
+            diente35.onDraws(canvas);
+            diente36.onDraws(canvas);
+            diente37.onDraws(canvas);
+            diente38.onDraws(canvas);
+
+
+            diente71.onDraws(canvas);
+            diente72.onDraws(canvas);
+            diente73.onDraws(canvas);
+            diente74.onDraws(canvas);
+            diente75.onDraws(canvas);
+            //=======================================
+            //      * * * CUARTO CUADRANTE * * *
             //=======================================
             diente48.onDraws(canvas);
             diente47.onDraws(canvas);
@@ -189,6 +305,9 @@ public class VistaRegDiagrama extends Fragment {
             diente83.onDraws(canvas);
             diente82.onDraws(canvas);
             diente81.onDraws(canvas);
+
+
+
 
 
         }

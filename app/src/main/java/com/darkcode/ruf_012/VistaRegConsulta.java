@@ -82,6 +82,12 @@ public class VistaRegConsulta  extends Fragment {
 
 
         Button btnNota = (Button)view.findViewById(R.id.btnNota);
+        btnNota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return  view;
 
 
