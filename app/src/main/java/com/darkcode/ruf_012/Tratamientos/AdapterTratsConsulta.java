@@ -1,12 +1,17 @@
 package com.darkcode.ruf_012.Tratamientos;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,33 +40,36 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
 
 
 
+
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         contexto = getContext() ;
-        LayoutInflater inflater = LayoutInflater.from(contexto);
-        final View customView = inflater.inflate(R.layout.list_trats_p_consulta, parent, false);
+        if(convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(contexto);
+            convertView = inflater.inflate(R.layout.list_trats_p_consulta, parent, false);
+            EditText cantidad = (EditText) convertView.findViewById(R.id.etCantidad);
+            cantidad.addTextChangedListener(new MyTextWatcher(convertView));
+        }
 
+            TextView costo = (TextView) convertView.findViewById(R.id.tvCosto);
+            TextView estado = (TextView) convertView.findViewById(R.id.tvEstado);
+            final CheckBox nombreT = (CheckBox) convertView.findViewById(R.id.cbNombreTrat);
+            nombreT.setText(tratamientos.get(position).getNombre());
+            costo.setText(tratamientos.get(position).getCosto());
 
-
-        TextView costo = (TextView) customView.findViewById(R.id.tvCosto);
-        TextView estado = (TextView) customView.findViewById(R.id.tvEstado);
-        final CheckBox nombreT = (CheckBox) customView.findViewById(R.id.cbNombreTrat);
-        nombreT.setText(tratamientos.get(position).getNombre());
-        costo.setText(tratamientos.get(position).getCosto());
-
-        nombreT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    ite.add(new checkItem(position,tratamientos.get(position).getId_tratamiento()));
-                }else{
-                    ite.remove(position);
-                }
+            nombreT.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        ite.add(new checkItem(position, tratamientos.get(position).getId_tratamiento()));
+                    } else {
+                        ite.remove(position);
+                    }
 //                for(int i=0; i< ite.size(); i++) {
-                    ((MainActivity)getContext()).setIte(ite);
+                    ((MainActivity) getContext()).setIte(ite);
 //                }
-            }
-        });
+                }
+            });
 
 //        nombreT.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -72,7 +80,7 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
 
 
 
-        return customView;
+        return convertView;
 
     }
 
@@ -119,6 +127,43 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
             setId_tratamiento(id_p_tratamiento);
         }
     }
+
+
+    private class MyTextWatcher implements TextWatcher {
+
+        private View view;
+        private int tratamiento = 0 ;
+        private String trat ;
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //do nothing
+        }
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            Toast.makeText(getContext()," VALOR => "+s.toString(), Toast.LENGTH_SHORT).show();
+//            tratamiento =  Integer.parseInt(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            TextView ext = (TextView) view.findViewById(R.id.etCantidad);
+            trat =  s.toString();
+            if(trat != "0"){
+//                ext.setText(s.toString());
+//                Toast.makeText(getContext()," VALOR => "+s.toString(), Toast.LENGTH_SHORT).show();
+                Log.v("EDIT-VAL","=>>"+s.toString());
+            }
+            else {
+                ext.setText("");
+            }
+
+        }
+
+
+    }
+
 
 
 

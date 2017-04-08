@@ -30,6 +30,7 @@
             android:label="LED Control" >
         </activity>
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".MainActivity"
             android:label="LED Control" >
         </activity>

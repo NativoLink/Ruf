@@ -1,10 +1,17 @@
 package com.darkcode.ruf_012.Tratamientos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by NativoLink on 22/2/17.
  */
 
 public class Tratamiento {
+
+    public Tratamiento(Parcel input){
+
+    }
 
 
     int id_tratamiento;
@@ -53,9 +60,21 @@ public class Tratamiento {
         this.tipo = tipo;
     }
 
-
-
     Tratamiento(String nombre){
         setNombre(nombre);
     }
+
+    public static final Parcelable.Creator<Tratamiento>CREATOR
+            = new Parcelable.Creator<Tratamiento>() {
+
+        @Override
+        public Tratamiento createFromParcel(Parcel source) {
+            return new Tratamiento(source);
+        }
+
+        @Override
+        public Tratamiento[] newArray(int size) {
+            return new Tratamiento[size];
+        }
+    };
 }

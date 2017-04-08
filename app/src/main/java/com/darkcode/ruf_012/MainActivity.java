@@ -404,6 +404,11 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -462,7 +467,18 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-//    =====================================================================================
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//    }
+//
+//
+//    @Override
+//    public Object onRetainCustomNonConfigurationInstance() {
+//        return super.onRetainCustomNonConfigurationInstance();
+//    }
+
+    //    =====================================================================================
 //                         * * *  INTERPRETE DE COMANDOS * * *
 //    =====================================================================================
     public void interpretar(String comandos,Object vista){
@@ -559,6 +575,8 @@ public class MainActivity extends AppCompatActivity
                 });
             }
         }
+
+
 
 
 

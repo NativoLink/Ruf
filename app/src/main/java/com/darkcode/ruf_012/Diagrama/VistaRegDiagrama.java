@@ -3,6 +3,7 @@ package com.darkcode.ruf_012.Diagrama;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,7 @@ public class VistaRegDiagrama extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //     View rootView= inflater.inflate(R.layout.reg_paciente, container,false);
 
+        setRetainInstance(true);
 
         return new MyView(getContext());
 
@@ -381,4 +383,24 @@ public class VistaRegDiagrama extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+//        outState.putInt("CONT", cont);
+    }
+
+    @Override
+    public void setRetainInstance(boolean retain) {
+        super.setRetainInstance(retain);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }
