@@ -37,14 +37,7 @@ import retrofit.client.Response;
 
 public class ListRegPlanTratamientos extends ActionBarActivity {
 
-    public class Item {
-        Drawable ItemDrawable;
-        String ItemString;
-        Item( String t){
-//            ItemDrawable = drawable;
-            ItemString = t;
-        }
-    }
+
 
     static class ViewHolder {
         ImageView icon;
@@ -200,6 +193,8 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 
             }});
 
+
+
     }
 
     OnItemClickListener listOnItemClickListener = new OnItemClickListener(){
@@ -210,6 +205,18 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
             Toast.makeText(ListRegPlanTratamientos.this,
                     ((Tratamiento)(parent.getItemAtPosition(position))).getNombre(),
                     Toast.LENGTH_SHORT).show();
+//            Object associatedItem = parent.getItemAtPosition(position).getClass();
+//            if(removeItemToList(parent, associatedItem)){
+//
+//                view.invalidate();
+//                associatedAdapter.notifyDataSetChanged();
+//
+//                ItemsListAdapter2 list2Adapter = (ItemsListAdapter2)(listView2.getAdapter());
+//                List<Tratamiento> list2List = list2Adapter.getList();
+//
+//                addItemToList(list2List, selectedItem);
+//                list2Adapter.notifyDataSetChanged();
+//            }
         }
 
     };
@@ -226,7 +233,7 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
         servicio.getTratamientos(new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
-                Toast.makeText(ListRegPlanTratamientos.this,"TRAT "+tratamientos.size(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(ListRegPlanTratamientos.this,"TRAT "+tratamientos.size(), Toast.LENGTH_LONG).show();
                 ListView lvresult = (ListView)findViewById(R.id.lvTratamientos);
                 AdapterTratamientos listAdapter = new AdapterTratamientos(getApplicationContext(), tratamientos);
                 lvresult.setAdapter(listAdapter);

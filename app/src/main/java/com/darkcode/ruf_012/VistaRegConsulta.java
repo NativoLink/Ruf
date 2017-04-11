@@ -1,6 +1,8 @@
 package com.darkcode.ruf_012;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.os.Parcelable;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -65,6 +68,7 @@ public class VistaRegConsulta  extends Fragment {
         transaction.commit();
 
         lvresult = (ListView) view.findViewById(R.id.lvTrats);
+//        lvresult.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
 
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
@@ -118,16 +122,70 @@ public class VistaRegConsulta  extends Fragment {
         setRetainInstance(true);
 
 
+
+
         Button btnNota = (Button) view.findViewById(R.id.btnNota);
         btnNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                createNotaDialogo().show();
 
             }
         });
         return view;
 
 
+    }
+
+    public AlertDialog createNotaDialogo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Agregar Nota")
+        .setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Acciones
+                    }
+                })
+                .setNegativeButton("CANCELAR",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Acciones
+                            }
+                        });
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        View v = inflater.inflate(R.layout.reg_nota, null);
+
+        builder.setView(v);
+//
+//        Button signup = (Button) v.findViewById(R.id.crear_boton);
+//        Button signin = (Button) v.findViewById(R.id.entrar_boton);
+//
+//        signup.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        // Crear Cuenta...
+//                        dismiss();
+//                    }
+//                }
+//        );
+//
+//        signin.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        // Loguear...
+//                        dismiss();
+//                    }
+//                }
+//
+//        );
+
+        return builder.create();
     }
 
 

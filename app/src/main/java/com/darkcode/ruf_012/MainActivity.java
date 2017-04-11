@@ -239,9 +239,9 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 
-//    =========================
-//         THREAD PRINCIPAL
-//    =========================
+//    ============================
+//         THREAD PRINCIPAL BT
+//    ============================
     @Override
     public void run() {
         t1 = Thread.currentThread();
@@ -292,12 +292,14 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
     }
 
-
+//    ================================================
+//        * * * FUNCIONES FRAGMENTADAS * * *
+//    ================================================
     @Override
-    public void regPacienteComm(String nombre,String sexo,int edad,String direccion,String telefono,String ocupacion, String direccion_cu, String telefono_ocu,String allegado) {
+    public void regPacienteComm(String nombre,String sexo,int edad,String direccion,String telefono,String ocupacion, String direccion_ocu, String telefono_ocu,String allegado) {
 //        FragmentManager fragmentManager = getFragmentManager();
         VistaRegPaciente fragmentb=(VistaRegPaciente) getSupportFragmentManager().findFragmentById(R.id.f_main);
-        fragmentb.setRegPaciente(nombre,sexo,edad,direccion,telefono,ocupacion,direccion_cu,telefono_ocu,allegado);
+        fragmentb.setRegPaciente(nombre,sexo,edad,direccion,telefono,ocupacion,direccion_ocu,telefono_ocu,allegado);
     }
 
     @Override
@@ -467,37 +469,25 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//    }
-//
-//
-//    @Override
-//    public Object onRetainCustomNonConfigurationInstance() {
-//        return super.onRetainCustomNonConfigurationInstance();
-//    }
 
-    //    =====================================================================================
+//    =====================================================================================
 //                         * * *  INTERPRETE DE COMANDOS * * *
 //    =====================================================================================
     public void interpretar(String comandos,Object vista){
 
-//        0.ODONTODIAGRAMA (PRIMERA PRUEBA)
+// ----------------------------------------[ VISTA REG. DIAGRAMA ]----------------------------------------
         if(vistaActual=="diagrama"){
-            if(comandos.equals("guardar")) {
-                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
+            if(comandos.equals("guardar") || comandos.equals("Guardar") || comandos.equals("guarda")) {
+
                 DienteService servicio = restadpter.create(DienteService.class);
                 for(int i=0; i< ite.size(); i++) {
-                    try
-                    {
+                    try {
                     servicio.regConsulta(
                         id_pacienteA,
-                        ite.get(i).getId_tratamiento(),
+                        ite.get(i).getId_p_tratamiento(),
                         ite.get(i).getEstado(),
                         "FALTA ESTO EN LA APP",
-//                        ite.get(i).getCantidad(),
-                            3,
+                        ite.get(i).getCantidad(),
                         new Callback<String>() {
                             @Override
                             public void success(String s, Response response) {
@@ -509,26 +499,48 @@ public class MainActivity extends AppCompatActivity
                                 Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
                             }
                         }
-                    ); Thread.sleep(999);
+                    ); Thread.sleep(100);
                     }catch(InterruptedException e){}
+                    Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
                 }
+                guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
             }else{
 
                 String[] split = comandos.split(" ");
                 String pared;
-//                Toast.makeText(getApplicationContext(), "PosiconDiente:"+split[0]+" Pared:"+split[1]+" Estado:"+split[2], Toast.LENGTH_LONG).show();
-                int pos_diente = Integer.parseInt(split[0]);
+
+                    int pos_diente = Integer.parseInt(split[0]);
                 String estado_pared = split[2];
+
+                //PALABRAS PARECIDAS A DERECHA  O RELACIONADAS
                 if(split[1].equals("arriba")){pared = "U";}
+                else if(split[1].equals("superior")){pared = "U";}
+                else if(split[1].equals("Superior")){pared = "U";}
+
+                //PALABRAS PARECIDAS A ABAJO O RELACIONADAS
                 else if(split[1].equals("abajo")){pared = "D";}
+                else if(split[1].equals("Abajo")){pared = "D";}
+                else if(split[1].equals("inferior")){pared = "D";}
+                else if(split[1].equals("Inferior")){pared = "D";}
+
+                //PALABRAS PARECIDAS A IZQUIERDA O RELACIONADAS
                 else if(split[1].equals("izquierda")){pared = "L";}
+                else if(split[1].equals("izquierdas")){pared = "L";}
+
+                //PALABRAS PARECIDAS A DERECHA O RELACIONADAS
                 else if(split[1].equals("derecha")){pared = "R";}
+                else if(split[1].equals("derechos")){pared = "R";}
+
+                //PALABRAS PARECIDAS A CENTRO
+                else  if(split[1].equals("centro")){pared = "C";}
+                else  if(split[1].equals("Centro")){pared = "C";}
+                else  if(split[1].equals("centros")){pared = "C";}
+                else  if(split[1].equals("Centros")){pared = "C";}
                 else {pared = "C";}
-//                if(pos_diente>=18 && pos_diente<=85) {  // ========================== ESTA LINEA DE CODE NO ESTA PROBADA < < <
-                    editDiente(pos_diente, pared, estado_pared);
-//                }
+                editDiente(pos_diente, pared, estado_pared);
             }
         }
+// ----------------------------------------[ VISTA REG. PACIENTE ]----------------------------------------
 //        1.REGISTRAR PACIENTE (PRIMERA PRUEBA)
         if((comandos.equals("registrar paciente")) || (comandos.equals( "agregar nuevo paciente"))
                 || (comandos.equals("nuevo paciente")) || (comandos.equals("registar un nuevo paciente"))

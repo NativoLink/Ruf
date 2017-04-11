@@ -32,13 +32,13 @@ public interface PacienteService {
     @POST("/WebSites/Tesis/Login/login.php")
     public void postLogin(@Field("username") String username, @Field("password") String password, Callback<Paciente> callback);
 
-    @FormUrlEncoded
-    @POST("/WebSites/Tesis/Consulta/regConsulta.php")
-    public void postRegConsulta(
-            @Field("id_p_tratamiento") String id_p_tratamiento,
-            @Field("estado") String estado,
-            @Field("descripcion") String descripcion,
-            Callback<String> callback);
+//    @FormUrlEncoded
+//    @POST("/WebSites/Tesis/Consulta/regConsulta.php")
+//    public void postRegConsulta(
+//            @Field("id_p_tratamiento") String id_p_tratamiento,
+//            @Field("estado") String estado,
+//            @Field("descripcion") String descripcion,
+//            Callback<String> callback);
 
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Paciente/regPaciente.php")
