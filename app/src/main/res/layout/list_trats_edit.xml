@@ -19,14 +19,14 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cbTrat" />
+            android:id="@+id/cbTratE" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:id="@+id/etMonto"
+            android:id="@+id/etMontoE"
             android:hint="Monto"
             android:textSize="16sp"
             android:textAlignment="center"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:id="@+id/etCantidadAP"
+            android:id="@+id/etCantidadE"
             android:hint="Cantidad"
             android:textSize="16sp"
             android:textAlignment="center" />

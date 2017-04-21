@@ -17,9 +17,18 @@ public class Tratamiento {
     int id_tratamiento;
     String nombre;
     String tipo;
-    String costo;
+    int costo;
     int id_plan;
     int id_p_tratamiento;
+    int cantidad;
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
     public int getId_p_tratamiento() {
         return id_p_tratamiento;
@@ -37,11 +46,11 @@ public class Tratamiento {
         this.id_plan = id_plan;
     }
 
-    public String getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(String costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 

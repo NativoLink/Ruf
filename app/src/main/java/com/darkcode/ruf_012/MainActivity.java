@@ -14,6 +14,7 @@ import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -57,18 +58,37 @@ public class MainActivity extends AppCompatActivity
     Thread t,t1;
     int  escucha;
     Object vistaA;
+    FloatingActionButton btnUniversal;
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+
+
+
 
     public String vistaActual="principal";
     //VARIABLE DE TRATS REALIZADOS
     private ArrayList<AdapterTratsConsulta.checkItem> ite = new ArrayList<AdapterTratsConsulta.checkItem>();
+    private ArrayList<AdapterTratsConsulta.checkItem> itemRegPlan = new ArrayList<AdapterTratsConsulta.checkItem>();
 
-    public ArrayList<AdapterTratsConsulta.checkItem> getIte() {
-        return ite;
+    public ArrayList<AdapterTratsConsulta.checkItem> getItemRegPlan() {
+        return itemRegPlan;
+    }
+
+
+
+    public void hideBtnUnivesal(String vistaAct){
+        getSupportActionBar().setTitle( vistaActual);
+        if(vistaAct!="Diagrama" && vistaAct!="Nuevo Paciente"){
+            btnUniversal.hide();
+        }else{
+            btnUniversal.show();
+        }
     }
 
     public void setIte(ArrayList<AdapterTratsConsulta.checkItem> ite) {
         this.ite = ite;
+    }
+    public void setItemRegPlan(ArrayList<AdapterTratsConsulta.checkItem> itemRegPlan) {
+        this.itemRegPlan = itemRegPlan;
     }
 
     public String getVistaActual() {
@@ -95,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         this.id_pacienteA = id_pacienteA;
     }
 
-    //===========================
+//===========================
 //    VARIABLES DE PACIENTE
     String NOMBRES,SEXO,OCUPACION,DIRECCION,TELEFONO,ESTADO_CIVIL,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO;
     int EDAD;
@@ -139,8 +159,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        btnUniversal = (FloatingActionButton) findViewById(R.id.fab);
+        btnUniversal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -419,7 +439,7 @@ public class MainActivity extends AppCompatActivity
         Fragment vista = null;
         boolean trans = false;
         if (id == R.id.nav_camera) {
-            vistaActual = "diagrama";
+            vistaActual = "Diagrama";
             vista = new VistaRegDiagrama();
             trans= true;
         } else if (id == R.id.nav_gallery) {
@@ -458,10 +478,12 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.f_main, vista);
             vistaA = vista;
+            String titulo_Bar = item.getTitle().toString();
+            vistaActual= titulo_Bar;
+            hideBtnUnivesal(vistaActual);
             transaction.addToBackStack(null);
             transaction.commit();
             item.setCheckable(true);
-            getSupportActionBar().setTitle(item.getTitle());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -476,7 +498,7 @@ public class MainActivity extends AppCompatActivity
     public void interpretar(String comandos,Object vista){
 
 // ----------------------------------------[ VISTA REG. DIAGRAMA ]----------------------------------------
-        if(vistaActual=="diagrama"){
+        if(vistaActual=="Diagrama"){
             if(comandos.equals("guardar") || comandos.equals("Guardar") || comandos.equals("guarda")) {
 
                 DienteService servicio = restadpter.create(DienteService.class);
@@ -540,6 +562,32 @@ public class MainActivity extends AppCompatActivity
                 editDiente(pos_diente, pared, estado_pared);
             }
         }
+        if(vistaActual=="Nuevo Plan"){
+            DienteService servicio = restadpter.create(DienteService.class);
+            for(int i=0; i< ite.size(); i++) {
+                try {
+                    servicio.regConsulta(
+                            id_pacienteA,
+                            ite.get(i).getId_p_tratamiento(),
+                            ite.get(i).getEstado(),
+                            "FALTA ESTO EN LA APP",
+                            ite.get(i).getCantidad(),
+                            new Callback<String>() {
+                                @Override
+                                public void success(String s, Response response) {
+                                    Toast.makeText(getApplicationContext(), "..." +s+"...", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                    ); Thread.sleep(100);
+                }catch(InterruptedException e){}
+                Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
+            }
+        }
 // ----------------------------------------[ VISTA REG. PACIENTE ]----------------------------------------
 //        1.REGISTRAR PACIENTE (PRIMERA PRUEBA)
         if((comandos.equals("registrar paciente")) || (comandos.equals( "agregar nuevo paciente"))
@@ -548,11 +596,11 @@ public class MainActivity extends AppCompatActivity
         {
             Fragment vista2 = new VistaRegPaciente();
             Toast.makeText(this,"..."+vistaActual+"...",Toast.LENGTH_LONG).show();
-            cambioVista(vista2, "reg_paciente");
+            cambioVista(vista2, "Nuevo Paciente");
 
         }
 
-        if(vistaActual=="reg_paciente"){
+        if(vistaActual=="Nuevo Paciente"){
             vistaA = vista;
             String[] split = comandos.split(" ");
             final StringBuilder nombre = new StringBuilder();
@@ -602,9 +650,23 @@ public class MainActivity extends AppCompatActivity
                 FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.f_main, vistaObj);
                 transaction.addToBackStack(null);
+                hideBtnUnivesal(vActual);
                 transaction.commit();
             }
         });
     }
 
+    public void cambioVistaU(final Fragment vistaObj, final String vActual,Bundle parametros){
+                vistaActual = vActual;
+                vistaObj.setArguments(parametros);
+                FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.f_main, vistaObj);
+                transaction.addToBackStack(null);
+                hideBtnUnivesal(vActual);
+                transaction.commit();
+     }
+
+
+
 }
+

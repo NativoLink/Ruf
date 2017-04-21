@@ -7,7 +7,7 @@
     android:clickable="false"
     android:layout_height="wrap_content"
     style="@style/fondoItemPaciente"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TableRow
         android:layout_width="match_parent"
@@ -18,7 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/lvPlanes" />
+            android:id="@+id/lvTrats" />
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3" >
+
+        <Button
+            android:layout_weight="1"
+            android:text="Registrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGuardarPlan" />
+    </TableRow>
+
 
 </LinearLayout>

@@ -166,8 +166,8 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
         listView1.setAdapter(myItemsListAdapter1);
         listView2.setAdapter(myItemsListAdapter2);
 
-        listView1.setOnItemClickListener(listOnItemClickListener);
-        listView2.setOnItemClickListener(listOnItemClickListener);
+//        listView1.setOnItemClickListener(listOnItemClickListener);
+//        listView2.setOnItemClickListener(listOnItemClickListener);
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -176,20 +176,20 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
                                            int position, long id) {
                 Tratamiento selectedItem = (Tratamiento)(parent.getItemAtPosition(position));
 
-                AdapterTratamientos associatedAdapter = (AdapterTratamientos)(parent.getAdapter());
-                List<Tratamiento> associatedList = associatedAdapter.getTratamientos();
-                Tratamiento associatedItem = associatedList.get(position);
-                if(removeItemToList(associatedList, associatedItem)){
-
-                    view.invalidate();
-                    associatedAdapter.notifyDataSetChanged();
-
-                    ItemsListAdapter2 list2Adapter = (ItemsListAdapter2)(listView2.getAdapter());
-                    List<Tratamiento> list2List = list2Adapter.getList();
-
-                    addItemToList(list2List, selectedItem);
-                    list2Adapter.notifyDataSetChanged();
-                }
+//                AdapterTratamientos associatedAdapter = (AdapterTratamientos)(parent.getAdapter());
+//                List<Tratamiento> associatedList = associatedAdapter.getTratamientos();
+//                Tratamiento associatedItem = associatedList.get(position);
+//                if(removeItemToList(associatedList, associatedItem)){
+//
+//                    view.invalidate();
+//                    associatedAdapter.notifyDataSetChanged();
+//
+//                    ItemsListAdapter2 list2Adapter = (ItemsListAdapter2)(listView2.getAdapter());
+//                    List<Tratamiento> list2List = list2Adapter.getList();
+//
+//                    addItemToList(list2List, selectedItem);
+//                    list2Adapter.notifyDataSetChanged();
+//                }
 
             }});
 
@@ -197,14 +197,14 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 
     }
 
-    OnItemClickListener listOnItemClickListener = new OnItemClickListener(){
+//    OnItemClickListener listOnItemClickListener = new OnItemClickListener(){
 
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            Toast.makeText(ListRegPlanTratamientos.this,
-                    ((Tratamiento)(parent.getItemAtPosition(position))).getNombre(),
-                    Toast.LENGTH_SHORT).show();
+//        @Override
+//        public void onItemClick(AdapterView<?> parent, View view, int position,
+//                                long id) {
+//            Toast.makeText(ListRegPlanTratamientos.this,
+//                    ((Tratamiento)(parent.getItemAtPosition(position))).getNombre(),
+//                    Toast.LENGTH_SHORT).show();
 //            Object associatedItem = parent.getItemAtPosition(position).getClass();
 //            if(removeItemToList(parent, associatedItem)){
 //
@@ -217,9 +217,9 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 //                addItemToList(list2List, selectedItem);
 //                list2Adapter.notifyDataSetChanged();
 //            }
-        }
+//        }
 
-    };
+//    };
 
     private void initItems(){
         items1 = new ArrayList<Tratamiento>();

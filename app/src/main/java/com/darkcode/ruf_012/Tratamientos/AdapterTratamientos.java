@@ -1,121 +1,229 @@
 package com.darkcode.ruf_012.Tratamientos;
 
-
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.darkcode.ruf_012.Paciente.Paciente;
-import com.darkcode.ruf_012.R;
-import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
+import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.R;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta.checkItem;
+
+import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Created by NativoLink on 18/2/17.
+ * Created by NativoLink on 14/3/17.
  */
 
-public class AdapterTratamientos extends ArrayAdapter<Tratamiento> {
+public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
     private Context contexto;
     private List<Tratamiento> tratamientos;
-    ListView lvPlaneadas;
+    private boolean existe;
 
-    public View getVist() {
-        return vist;
+
+    public ArrayList<checkItem> getIte() {
+        return ite;
     }
 
-    public void setVist(View vist) {
-        this.vist = vist;
-    }
-
-    public View vist;
+    private ArrayList<checkItem> ite = new ArrayList<checkItem>();
+    private  int cantt = 0;
+    private  int monto = 0;
 
 
     public AdapterTratamientos(Context context, List<Tratamiento> tratamients) {
-        super(context, R.layout.list_tratamientos, tratamients);
+        super(context, R.layout.list_tratamientos_planeados, tratamients);
         contexto=context;
         tratamientos = tratamients;
     }
 
-
-
-
-    @Override
-    public int getCount() {
-        return tratamientos.size();
-    }
-
-    @Override
-    public Tratamiento getItem(int position) {
-        return tratamientos.get(position);
+    private class ViewHolder {
+        EditText etCantidad;
+        EditText etCosto;
+        CheckBox cbMarcado;
+        int ref;
     }
 
 
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+
+
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        contexto = getContext() ;
-        LayoutInflater inflater = LayoutInflater.from(contexto);
-        final View customView = inflater.inflate(R.layout.list_tratamientos, parent, false);
-//        vist = customView;
-//        vist.invalidate();
-//        customView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                lvPlaneadas = (ListView)customView.findViewById(R.id.lvTPlaneados);
-//                Toast.makeText(getContext(),"ADAPTER ITEM", Toast.LENGTH_LONG).show();
-//
-//                Tratamiento selectedItem = (Tratamiento)(tratamientos.get(position));
-//
-//                        AdapterTratamientos associatedAdapter = (AdapterTratamientos)(tratamientos.getAdapter());
-//                        List<Tratamiento> associatedList = associatedAdapter.getTratamientos();
-//
-//                        Tratamiento associatedItem = associatedList.get(position);
-//                        if(removeItemToList(associatedList, associatedItem)){
-//
-//                            vist.invalidate();
-//                            associatedAdapter.notifyDataSetChanged();
-//
-//                            AdapterTratamientos list2Adapter = (AdapterTratamientos)(lvPlaneadas.getAdapter());
-//                            List<Tratamiento> list2List = list2Adapter.getTratamientos();
-//
-//                            addItemToList(list2List, selectedItem);
-//                            list2Adapter.notifyDataSetChanged();
-//                        }
-//            }
-//        });
+        contexto = getContext();
 
-        TextView nombreT = (TextView) customView.findViewById(R.id.tvNombreTratamiento);
+//        if (tratamientos.get(position).getId_p_tratamiento() != 0) {
+             final ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                LayoutInflater inflater = LayoutInflater.from(contexto);
+                convertView = inflater.inflate(R.layout.list_tratamientos_planeados, parent, false);
+                holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidadAP);
+                holder.etCosto = (EditText) convertView.findViewById(R.id.etMonto);
+                holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbTrat);
 
-        nombreT.setText(tratamientos.get(position).getNombre());
+                convertView.setTag(holder);
+//                cant.addTextChangedListener(new MyTextWatcher2(convertView));
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
 
-        return customView;
+            final checkItem ckItem = new checkItem(position);
+            holder.ref = position;
+            holder.cbMarcado.setText(tratamientos.get(position).getNombre());
+            holder.etCantidad.addTextChangedListener(new TextWatcher() {
+
+                public void onTextChanged(CharSequence s, int start, int before,
+                                          int count) {
+                    if (!s.toString().equals("")) {
+
+                        cantt = Integer.valueOf(s.toString());
+
+                    }
+
+                }
+
+                public void beforeTextChanged(CharSequence s, int start, int count,
+                                              int after) {
+
+                }
+
+                public void afterTextChanged(Editable s) {
+                    if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
+                        cantt = Integer.valueOf(s.toString());
+                        ckItem.setChecado(true);
+                        ckItem.setCantidad(cantt);
+                        ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
+                        ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
+                        ckItem.setNombreTrat(tratamientos.get(position).getNombre());
+                        ckItem.setPosi(position);
+                    }else{
+                        cantt = Integer.valueOf(1);
+                        ckItem.setChecado(true);
+                        ckItem.setCantidad(cantt);
+                        ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
+                        ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
+                        ckItem.setNombreTrat(tratamientos.get(position).getNombre());
+                        ckItem.setPosi(position);
+                    }
+                }
+            });
+
+            holder.etCosto.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                if (!s.toString().equals("")) {
+
+                    monto = Integer.valueOf(s.toString());
+
+                }
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
+                    monto = Integer.valueOf(s.toString());
+                    ckItem.setChecado(true);
+                    ckItem.setCosto(monto);
+                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
+                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
+                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
+                    ckItem.setPosi(position);
+                }else{
+                    monto = Integer.valueOf(1);
+                    ckItem.setChecado(true);
+                    ckItem.setCosto(monto);
+                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
+                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
+                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
+                    ckItem.setPosi(position);
+                }
+            }
+        });
+
+            holder.cbMarcado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                //position, tratamientos.get(position).getId_tratamiento(), cantt, tratamientos.get(position).getId_p_tratamiento(
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+
+                        if (holder.etCantidad.getText().toString().equals(" ") ||
+                                holder.etCantidad.getText().toString().equals("") ||
+                                holder.etCantidad.getText().toString().matches("") ||
+                                holder.etCantidad.getText().toString() == "" ||
+                                holder.etCantidad.getText().toString() == null ||
+                                holder.etCantidad.getText().toString() == " " ||
+                                holder.etCantidad.getText().toString() == "0") {
+
+                                holder.etCantidad.setText("1");
+                                cantt = Integer.valueOf(holder.etCantidad.getText().toString());
+
+                        } else {
+                            cantt = Integer.valueOf(holder.etCantidad.getText().toString());
+                        }
+                        ckItem.setChecado(true);
+                        ckItem.setCantidad(cantt);
+                        ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
+                        ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
+                        ckItem.setNombreTrat(tratamientos.get(position).getNombre());
+                        ckItem.setPosi(position);
+
+                        existe = ite.contains(ckItem);
+                        if(existe==false) {
+                            ite.add(ckItem);
+                        }else{
+                            ite.set(position,ckItem);
+                        }
+
+                        Log.v("CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
+                        ((MainActivity) getContext()).setItemRegPlan(getIte());
+                    } else {
+                        ckItem.setChecado(false);
+                        existe = ite.contains(ckItem);
+                        if(existe==false) {
+                           ite.add(ckItem);
+                        }else{
+                           ite.set(position,ckItem);
+                        }
+                        Log.v("NOT CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
+                        ((MainActivity) getContext()).setItemRegPlan(getIte());
+                    }
+
+                }
+            });
+
+
+
+        return convertView;
+
 
     }
 
-    private boolean removeItemToList(List<Tratamiento> l, Tratamiento it){
-        boolean result = l.remove(it);
-        return result;
-    }
 
-    private boolean addItemToList(List<Tratamiento> l, Tratamiento it){
-        boolean result = l.add(it);
-        return result;
-    }
 
-    public List<Tratamiento> getTratamientos() {
-        return tratamientos;
-    }
+
+
 
 }
+

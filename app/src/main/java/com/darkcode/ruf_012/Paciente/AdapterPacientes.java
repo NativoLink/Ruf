@@ -27,6 +27,7 @@ import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.VistaRegConsulta;
+import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         PacienteService servicio = restadpter[0].create(PacienteService.class);
 
 
-        final CharSequence[] items = new CharSequence[99999];
+//        final CharSequence[] items = new CharSequence[99999];
         servicio.getConsultas(1, new Callback<List<Consulta>>() {
             @Override
             public void success(List<Consulta> consultas, Response response) {
@@ -126,9 +127,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 setParametros(position);
-                ((MainActivity)getContext()).setVistaActual("diagrama");
                 vista = new VistaRegConsulta();
-                cambiarVista(vista);
+                String Titulo_Bar = "Diagrama";
+                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                cambiarVista(vista,Titulo_Bar);
             }
         });
         btnPlans.setOnClickListener(new View.OnClickListener() {
@@ -163,11 +165,12 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                 .setCancelable(false)
                                 .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        Intent intent = new Intent(contexto, ListRegPlanTratamientos.class);
-//                                      String idDoctor = String.valueOf(doctor.getId_doctor());
-//                                      intent.putExtra("id_doctor", idDoctor);
-                                        contexto.startActivity(intent);
-                                        Toast.makeText(getContext(),"YES: ", Toast.LENGTH_LONG).show();
+                                        id_paciente = idPaciente.getText().toString();
+                                        setParametros(position);
+                                        vista = new VistaRegPlanTratamiento();
+                                        String Titulo_Bar = "Nuevo Plan"+id_Paciente;
+                                        ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                                        cambiarVista(vista,Titulo_Bar);
                                     }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -181,10 +184,12 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     }
                 });
 
+                setParametros(position);
+
                 RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
                 TratamientoService servicio = restadpter.create(TratamientoService.class);
 
-                servicio.getPlanes(1, new Callback<List<Plan>>() {
+                servicio.getPlanes(id_Paciente, new Callback<List<Plan>>() {
                     @Override
                     public void success(List<Plan> planes, Response response) {
                         ListView lvresult = (ListView)vi.findViewById(R.id.lvPlanes);
@@ -205,7 +210,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 id_paciente = idPaciente.getText().toString();
                 vista = new VistaRegDiagrama();
                 setParametros(position);
-                cambiarVista(vista);
+                String Titulo_Bar = "Odontodiagramas";
+                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                cambiarVista(vista,Titulo_Bar);
             }
         });
         btnExamen.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +221,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 id_paciente = idPaciente.getText().toString();
                 vista = new VistaRegDiagrama();
                 setParametros(position);
-                cambiarVista(vista);
+                String Titulo_Bar = "Odontodiagramas";
+                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                cambiarVista(vista,Titulo_Bar);
             }
         });
 
@@ -244,7 +253,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     }
 
 
-    public void cambiarVista(Fragment vistaObj){
+
+    public void cambiarVista(Fragment vistaObj, String vActual){
             bundle.putString("id_doctor", id_doctor);
             bundle.putString("id_paciente", id_paciente);
             bundle.putString("nombre_paciente", nombreP);
@@ -257,6 +267,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             transaction.replace(R.id.f_main, vistaObj);
             transaction.addToBackStack(null);
             transaction.commit();
+            ((MainActivity)getContext()).hideBtnUnivesal(vActual);
+            ((MainActivity)getContext()).getSupportActionBar().setTitle(vActual);
     }
 
 }

@@ -92,10 +92,8 @@ public class VistaRegConsulta  extends Fragment {
             servicio.getTratsDeUnPlan(id_paciente, ultimo_plan, new Callback<List<Tratamiento>>() {
                 @Override
                 public void success(List<Tratamiento> tratamientos, Response response) {
-//                myData = tratamientos;
                     listAdapter = new AdapterTratsConsulta(getContext(), tratamientos);
                     lvresult.setAdapter(listAdapter);
-//                    bundle.putParcelable("lvresult", (Parcelable) lvresult);
                 }
 
                 @Override
@@ -129,7 +127,6 @@ public class VistaRegConsulta  extends Fragment {
             @Override
             public void onClick(View v) {
                 createNotaDialogo().show();
-
             }
         });
         return view;
@@ -160,30 +157,7 @@ public class VistaRegConsulta  extends Fragment {
         View v = inflater.inflate(R.layout.reg_nota, null);
 
         builder.setView(v);
-//
-//        Button signup = (Button) v.findViewById(R.id.crear_boton);
-//        Button signin = (Button) v.findViewById(R.id.entrar_boton);
-//
-//        signup.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        // Crear Cuenta...
-//                        dismiss();
-//                    }
-//                }
-//        );
-//
-//        signin.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        // Loguear...
-//                        dismiss();
-//                    }
-//                }
-//
-//        );
+
 
         return builder.create();
     }
