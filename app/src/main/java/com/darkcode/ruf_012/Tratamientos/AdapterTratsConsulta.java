@@ -38,7 +38,6 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
     private  int cantt = 0;
     private  int monto = 0;
 
-
     public ArrayList<checkItem> getIte() {
         return ite;
     }
@@ -50,14 +49,10 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
         tratamientos = tratamients;
     }
 
-
-
-
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         contexto = getContext();
         final ViewHolder holder;
-//        if (tratamientos.get(position).getId_p_tratamiento() != 0) {
 
             if (convertView == null) {
                 holder = new ViewHolder();
@@ -121,12 +116,12 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (holder.etCantidad.getText().toString().equals(" ") ||
-                            holder.etCantidad.getText().toString().equals("") ||
-                            holder.etCantidad.getText().toString().matches("") ||
-                            holder.etCantidad.getText().toString() == "" ||
-                            holder.etCantidad.getText().toString() == null ||
-                            holder.etCantidad.getText().toString() == " " ||
-                            holder.etCantidad.getText().toString() == "0") {
+                        holder.etCantidad.getText().toString().equals("") ||
+                        holder.etCantidad.getText().toString().matches("") ||
+                        holder.etCantidad.getText().toString() == "" ||
+                        holder.etCantidad.getText().toString() == null ||
+                        holder.etCantidad.getText().toString() == " " ||
+                        holder.etCantidad.getText().toString() == "0") {
 
                         holder.etCantidad.setText("1");
                         cantt = Integer.valueOf(holder.etCantidad.getText().toString());
@@ -156,7 +151,8 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
                     if(existe==false) {
                         ite.add(ckItem);
                     }else{
-                        ite.set(position,ckItem);
+                        int pos = ite.indexOf(ckItem);
+                        ite.set(pos,ckItem);
                     }
                     Log.v("NOT CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
                     ((MainActivity) getContext()).setIte(getIte());
@@ -242,43 +238,6 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
             setPosi(posicion);
         }
     }
-
-
-    public static final class MyTextWatcher implements TextWatcher {
-
-        private View view;
-        private String trat ;
-        public MyTextWatcher(View view) {
-            this.view = view;
-        }
-
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            //do nothing
-        }
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            Toast.makeText(getContext()," VALOR => "+s.toString(), Toast.LENGTH_SHORT).show();
-//            tratamiento =  Integer.parseInt(s.toString());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            TextView ext = (TextView) view.findViewById(R.id.etCantidad);
-            trat =  s.toString();
-            if(trat != "0"){
-//                ext.setText(s.toString());
-//                Toast.makeText(getContext()," VALOR => "+s.toString(), Toast.LENGTH_SHORT).show();
-                Log.v("EDIT-VAL","=>>"+s.toString());
-            }
-            else {
-                ext.setText("");
-            }
-
-        }
-
-
-    }
-
-
 
 
 }
