@@ -12,61 +12,134 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:background="#B2E4FB"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#B2E4FB"
         android:orientation="vertical">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <Button
-                android:text="Consultas"
+                android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button2"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Consultas" />
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/tvNombrePaciente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvNombrePaciente"
                 android:layout_weight="6"
+                android:text="TextView"
                 android:textAlignment="center" />
 
             <Button
-                android:text="Nota"
+                android:id="@+id/btnNota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnNota"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Nota" />
         </TableRow>
 
         <TableRow
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/lvTrats" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#02A8F3"
+                    android:orientation="vertical"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp">
+
+
+                    <CheckBox
+                        android:id="@+id/cbNombreTrat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="CheckBox"
+                        android:textAlignment="center"
+                        android:textColor="#FFF" />
+
+                    <TextView
+                        android:id="@+id/etCantidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Cant. Realizada"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:textColor="#FFF" />
+
+                    <TextView
+                        android:id="@+id/tvCosto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Costo"
+                        android:textAlignment="center"
+                        android:textColor="#FFF" />
+
+                    <TextView
+                        android:id="@+id/tvEstado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Estado"
+                        android:textAlignment="center"
+                        android:textColor="#FFF" />
+
+                </TableRow>
+
+                <ListView
+                    android:id="@+id/lvTrats"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/colorPrimary" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#FFF">
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:background="@color/common_action_bar_splitter"
+            android:gravity="center">
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4" />
+                android:text="TextView" />
         </TableRow>
 
     </LinearLayout>
