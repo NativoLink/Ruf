@@ -43,7 +43,7 @@ import static com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta.*;
 /**
  * Created by NativoLink on 22/2/17.
  */
-///hola, melani
+
 
 public class VistaRegPlanTratamiento extends Fragment {
 
