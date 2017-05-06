@@ -261,6 +261,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             bundle.putString("ultimo_plan", ultimo_plan);
             vistaObj.setArguments(bundle);
             ((MainActivity)getContext()).setId_pacienteA(id_Paciente);
+            ((MainActivity)getContext()).setTotalRegConsulta(0);
             ((MainActivity)getContext()).setUltimo_plan(ultP);
 
             FragmentTransaction transaction = ((FragmentActivity)contexto).getSupportFragmentManager().beginTransaction();

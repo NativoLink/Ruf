@@ -58,8 +58,13 @@ public class MainActivity extends AppCompatActivity
     Thread t,t1;
     int  escucha;
     Object vistaA;
+    int TotalRegConsulta = 0;
+
+
+
     FloatingActionButton btnUniversal;
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+
 
 
 
@@ -73,7 +78,12 @@ public class MainActivity extends AppCompatActivity
         return itemRegPlan;
     }
 
-
+    public int getTotalRegConsulta() {
+        return TotalRegConsulta;
+    }
+    public void setTotalRegConsulta(int totalRegConsulta) {
+        TotalRegConsulta = totalRegConsulta;
+    }
 
     public void hideBtnUnivesal(String vistaAct){
         getSupportActionBar().setTitle( vistaActual);

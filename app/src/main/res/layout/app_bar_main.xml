@@ -29,7 +29,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_btn_speak_now"
         app:backgroundTint="#02A8F3"
-        app:itemTextColor="#FFF" />
+        app:itemTextColor="#FFFFFF" />
 
     <include layout="@layout/content_main" />
 
