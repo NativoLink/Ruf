@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,6 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         final RestAdapter[] restadpter = {new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build()};
         PacienteService servicio = restadpter[0].create(PacienteService.class);
 
-
-//        final CharSequence[] items = new CharSequence[99999];
         servicio.getConsultas(1, new Callback<List<Consulta>>() {
             @Override
             public void success(List<Consulta> consultas, Response response) {
@@ -86,7 +85,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
