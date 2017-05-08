@@ -153,7 +153,7 @@
 
     </TableRow>
     <ListView
-        android:id="@+id/listConsultas"
+        android:id="@+id/lvConsultas"
         android:layout_width="374dp"
         android:layout_height="391dp"
          >
