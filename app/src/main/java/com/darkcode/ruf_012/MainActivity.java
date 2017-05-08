@@ -450,8 +450,8 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaPacientes();
             trans= true;
         } else if (id == R.id.nav_manage) {
-            vistaActual = "plan";
-            vista = new VistaRegPlanTratamiento();
+            vistaActual = "pagos";
+            vista = new VistaListConsultasPendientes();
             trans= true;
         } else if (id == R.id.nav_share) {
             vista = new VistaGetDiagrama();
