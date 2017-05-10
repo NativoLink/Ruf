@@ -27,34 +27,37 @@
         <RelativeLayout
             android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             tools:ignore="ExtraText">
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/r"
                 android:gravity="center"
-                android:text="@string/ruf"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="#FFF"
-                android:textSize="70sp"
-                android:textStyle="italic"
-                android:typeface="serif" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView12"
-                android:layout_centerHorizontal="true"
-                android:text="@string/asistente"
-                android:textAlignment="center"
-                android:textColor="#FFF"
                 android:textStyle="italic"
-                android:textSize="30sp" />
+                android:typeface="serif"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView13"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/textView12"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="@string/asistente"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColor="#FFF"-->
+            <!--android:textStyle="italic"-->
+            <!--android:textSize="30sp" />-->
 
         </RelativeLayout>
 
@@ -74,9 +77,9 @@
             android:maxLines="1"
             android:padding="10dp"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="10sp"
 
-            tools:ignore="HardcodedText,ObsoleteLayoutParam,UnusedAttribute" />
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,SmallSp,UnusedAttribute" />
 
         <EditText
             android:id="@+id/etPassLogin"
@@ -90,7 +93,7 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:textAlignment="center"
-            android:textSize="30dp"
+            android:textSize="10dp"
             tools:ignore="HardcodedText,SpUsage,UnusedAttribute"
             android:layout_below="@+id/etUserLogin"
             android:layout_alignRight="@+id/etUserLogin"
@@ -125,35 +128,34 @@
 
             style="@style/btnLogin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_gravity=""
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/etPassLogin"
+            android:layout_alignLeft="@id/etPassLogin"
+            android:layout_alignRight="@+id/etPassLogin"
+            android:layout_below="@id/etPassLogin"
+            android:background="@drawable/round_b"
 
             android:clickable="true"
             android:elevation="5dp"
+
             android:focusable="false"
             android:focusableInTouchMode="true"
             android:foreground="#ff5500"
             android:foregroundGravity="fill_vertical"
             android:onClick="onButtonClick"
-            android:text="Accesar"
-            android:textSize="30sp"
-
-            android:layout_alignLeft="@id/etPassLogin"
-            android:layout_alignRight="@id/etPassLogin"
-            android:layout_below="@id/etPassLogin"
-            tools:ignore="HardcodedText,KeyboardInaccessibleWidget,RtlHardcoded,UnusedAttribute"
-            android:background="@drawable/round_b"
-            android:layout_centerHorizontal="true" />
+            android:text="@string/accesar"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText,KeyboardInaccessibleWidget,RtlHardcoded,SmallSp,UnusedAttribute" />
         <ProgressBar
             android:id="@+id/pbHeaderProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/btnLogin"
-            android:layout_centerHorizontal="true"></ProgressBar>
+            android:layout_above="@+id/tvVersion"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="77dp"></ProgressBar>
 
     </RelativeLayout>
 </LinearLayout>
