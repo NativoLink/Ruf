@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.VistaListConsultasPendientes;
 import com.darkcode.ruf_012.VistaRegConsulta;
 import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
@@ -69,8 +71,6 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         final RestAdapter[] restadpter = {new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build()};
         PacienteService servicio = restadpter[0].create(PacienteService.class);
 
-
-//        final CharSequence[] items = new CharSequence[99999];
         servicio.getConsultas(1, new Callback<List<Consulta>>() {
             @Override
             public void success(List<Consulta> consultas, Response response) {
@@ -86,7 +86,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -118,7 +118,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 setParametros(position);
-                vista = new VistaRegDiagrama();
+                vista = new VistaListConsultasPendientes();
+                String Titulo_Bar = "Consultas y Pagos";
+                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                cambiarVista(vista,Titulo_Bar);
 
             }
         });
@@ -261,6 +264,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             bundle.putString("ultimo_plan", ultimo_plan);
             vistaObj.setArguments(bundle);
             ((MainActivity)getContext()).setId_pacienteA(id_Paciente);
+            ((MainActivity)getContext()).setTotalRegConsulta(0);
             ((MainActivity)getContext()).setUltimo_plan(ultP);
 
             FragmentTransaction transaction = ((FragmentActivity)contexto).getSupportFragmentManager().beginTransaction();

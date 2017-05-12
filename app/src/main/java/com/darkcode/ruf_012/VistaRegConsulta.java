@@ -5,13 +5,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,8 @@ import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -42,6 +47,7 @@ import retrofit.client.Response;
 
 public class VistaRegConsulta  extends Fragment {
     Bundle bundle = new Bundle();
+    TextView tvCTotalRealizados;
 
     @Override
     public void onStart() {
@@ -70,6 +76,8 @@ public class VistaRegConsulta  extends Fragment {
         lvresult = (ListView) view.findViewById(R.id.lvTrats);
 //        lvresult.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
+        tvCTotalRealizados = (TextView) view.findViewById(R.id.tvTotalRealizado);
+
 
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         TratamientoService servicio = restadpter.create(TratamientoService.class);
@@ -88,7 +96,7 @@ public class VistaRegConsulta  extends Fragment {
 
         TextView nombrePaciente = (TextView) view.findViewById(R.id.tvNombrePaciente);
         nombrePaciente.setText(nombreP);
-        if(listAdapter == null) {
+        if (listAdapter == null) {
             servicio.getTratsDeUnPlan(id_paciente, ultimo_plan, new Callback<List<Tratamiento>>() {
                 @Override
                 public void success(List<Tratamiento> tratamientos, Response response) {
@@ -116,10 +124,7 @@ public class VistaRegConsulta  extends Fragment {
         });
 
 
-
         setRetainInstance(true);
-
-
 
 
         Button btnNota = (Button) view.findViewById(R.id.btnNota);
@@ -129,10 +134,41 @@ public class VistaRegConsulta  extends Fragment {
                 createNotaDialogo().show();
             }
         });
+
+
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int total = ((MainActivity) getContext()).getTotalRegConsulta();
+                        tvCTotalRealizados.setText(String.valueOf(total));
+                        Log.v("ACTUALIZAR", "TOTAL ->" + total);
+                    }
+                });
+            }
+        }, 0, 1000); // End of your timer code.
+
+
         return view;
 
 
+
+
+
     }
+
+    private void runOnUiThread() {
+
+        int total = ((MainActivity) getContext()).getTotalRegConsulta();
+        tvCTotalRealizados.setText(String.valueOf(total));
+        Log.v("ACTUALIZAR", "TOTAL ->" + total);
+
+    }
+
 
     public AlertDialog createNotaDialogo() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

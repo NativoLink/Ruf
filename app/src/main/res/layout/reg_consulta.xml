@@ -66,26 +66,23 @@
                     android:paddingTop="3dp">
 
 
-                    <CheckBox
+                    <TextView
                         android:id="@+id/cbNombreTrat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="CheckBox"
+                        android:text="Tratamiento"
                         android:textAlignment="center"
                         android:textColor="#FFF" />
 
                     <TextView
-                        android:id="@+id/etCantidad"
+                        android:id="@+id/tvCantidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
                         android:layout_weight="1"
-                        android:ems="10"
                         android:gravity="center"
-                        android:hint="Cant. Realizada"
-                        android:inputType="number"
+                        android:text="Cantidad"
                         android:textAlignment="center"
                         android:textColor="#FFF" />
 
@@ -98,14 +95,13 @@
                         android:text="Costo"
                         android:textAlignment="center"
                         android:textColor="#FFF" />
-
                     <TextView
-                        android:id="@+id/tvEstado"
+                        android:id="@+id/tvTotalIndi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Estado"
+                        android:text="Total"
                         android:textAlignment="center"
                         android:textColor="#FFF" />
 
@@ -125,6 +121,28 @@
                 android:layout_weight="3"
                 android:background="#FFF">
 
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="89dp"
+                    android:gravity="center"
+                    android:text="Total"
+                    android:textSize="42sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTotalRealizado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView10"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textSize="32sp" />
             </RelativeLayout>
         </TableRow>
 
