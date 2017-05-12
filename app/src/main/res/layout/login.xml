@@ -1,129 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/login_fondo">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+    android:layout_weight="1"
+    android:background="@mipmap/tooth"
+    android:baselineAligned="false">
 
     <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="top">
-
+        android:layout_weight=".5"
+        tools:ignore="UselessLeaf">
 
     </RelativeLayout>
-    </ScrollView>
 
-    <EditText
-android:layout_width="300dp"
-android:layout_height="wrap_content"
-android:id="@+id/etUserLogin"
-android:hint="Nombre de usuario"
-android:textAlignment="center"
-android:layout_weight="1"
-android:padding="10dp"
-android:ems="10"
-
-android:layout_gravity="center_vertical"
-    android:layout_above="@+id/etPassLogin"
-    android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="4dp"
-        android:elevation="5dp"
-        android:maxLines="1"
-        android:inputType="textPersonName" />
-
-    <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textPassword"
-    android:hint="Password"
-    android:textAlignment="center"
-    android:textSize="17dp"
-
-    android:padding="10dp"
-    android:ems="10"
-    android:id="@+id/etPassLogin"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="2dp"
-        android:elevation="5dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vesión: 0.1.1"
-        android:id="@+id/tvVersion"
-        android:textColor="#606060"
-        android:layout_gravity="center_vertical|bottom"
-        android:textAlignment="center"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/textView"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Powered by: LinksDominicana"
-        android:id="@+id/textView"
-        android:textColor="#606060"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Iniciar"
-
-        android:id="@+id/btnLogin"
-        android:onClick="onButtonClick"
-        style="@style/btnLogin"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_below="@+id/etPassLogin"
-        android:layout_centerHorizontal="true"
-        android:elevation="4dp"
-        android:foreground="#ff5500"
-        android:foregroundGravity="fill_vertical"
-        android:focusable="false"
-        android:focusableInTouchMode="true"
-        android:clickable="true"
-        android:textStyle="bold" />
-
-    <ProgressBar
-android:id="@+id/pbHeaderProgress"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="150dp"
-        android:layout_above="@+id/tvVersion"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp">
-</ProgressBar>
-
-   <!-- <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/imageView2"
-    android:background="@drawable/logo_login4"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-        android:layout_above="@+id/etUserLogin"
-        android:layout_centerHorizontal="true" />-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        tools:ignore="UselessLeaf"
+        style="@style/login_fondo"
+        android:background="#789db3">
 
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            tools:ignore="ExtraText">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/r"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFF"
+
+                android:textStyle="italic"
+                android:typeface="serif"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/textView13"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/textView12"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="@string/asistente"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColor="#FFF"-->
+            <!--android:textStyle="italic"-->
+            <!--android:textSize="30sp" />-->
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/etUserLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:layout_below="@+id/relativeLayout2"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity=""
+            android:layout_weight="1"
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Nombre de usuario"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textSize="10sp"
+
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,SmallSp,UnusedAttribute" />
+
+        <EditText
+            android:id="@+id/etPassLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:layout_gravity=""
+            android:elevation="5dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textSize="10dp"
+            tools:ignore="HardcodedText,SpUsage,UnusedAttribute"
+            android:layout_below="@+id/etUserLogin"
+            android:layout_alignRight="@+id/etUserLogin"
+            android:layout_alignEnd="@+id/etUserLogin" />
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_vertical|bottom"
+            android:text="Vesión: 0.1.1"
+            android:textAlignment="center"
+            android:textColor="#606060"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_horizontal"
+            android:text="Powered by: LinksDominicana"
+            android:textAlignment="center"
+            android:textColor="#606060"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnLogin"
+
+            style="@style/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/etPassLogin"
+            android:layout_alignLeft="@id/etPassLogin"
+            android:layout_alignRight="@+id/etPassLogin"
+            android:layout_below="@id/etPassLogin"
+            android:background="@drawable/round_b"
+
+            android:clickable="true"
+            android:elevation="5dp"
+
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:foreground="#ff5500"
+            android:foregroundGravity="fill_vertical"
+            android:onClick="onButtonClick"
+            android:text="@string/accesar"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText,KeyboardInaccessibleWidget,RtlHardcoded,SmallSp,UnusedAttribute" />
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:layout_above="@+id/tvVersion"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="77dp"></ProgressBar>
+
+    </RelativeLayout>
+</LinearLayout>
+
+    <!--<ScrollView-->
+    <!--android:id="@+id/scrollView"-->
+    <!--android:layout_width="106dp"-->
+    <!--android:layout_height="535dp"-->
+    <!--android:layout_weight="1"-->
+    <!--tools:ignore="ScrollViewCount">-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="top"-->
+    <!--android:orientation="vertical"-->
+    <!--tools:ignore="ScrollViewSize,UselessLeaf">-->
+
+
+    <!--</RelativeLayout>-->
+    <!--</ScrollView>-->
+    <!-- <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:background="@drawable/logo_login4"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+                android:layout_above="@+id/etUserLogin"
+                android:layout_centerHorizontal="true" />-->

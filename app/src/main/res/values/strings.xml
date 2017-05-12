@@ -6,4 +6,11 @@
 
     <string name="action_settings">Settings</string>
     <string name="paciente">Paciente</string>
+    <string name="accesar">Accesar</string>
+    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="password">Password</string>
+    <string name="powered_by_linksdominicana">Powered by: LinksDominicana</string>
+    <string name="vesi_n_0_1_1">Vesión: 0.1.1</string>
+    <string name="ruf">RUF</string>
+    <string name="asistente">Asistente</string>
 </resources>
