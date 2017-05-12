@@ -27,6 +27,7 @@ import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.VistaListConsultasPendientes;
 import com.darkcode.ruf_012.VistaRegConsulta;
 import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
@@ -117,7 +118,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 setParametros(position);
-                vista = new VistaRegDiagrama();
+                vista = new VistaListConsultasPendientes();
+                String Titulo_Bar = "Consultas y Pagos";
+                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
+                cambiarVista(vista,Titulo_Bar);
 
             }
         });

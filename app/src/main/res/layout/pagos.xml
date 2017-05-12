@@ -6,17 +6,16 @@
     android:weightSum="1"
     android:baselineAligned="false">
 <fragment
-    android:id="@+id/consultas_pendientes"
-    android:layout_width="0dp"
-    android:layout_weight=".5"
+    android:id="@+id/fconsultas_pendientes"
+    android:layout_width="match_parent"
+    android:layout_weight="0.5"
     android:layout_height="match_parent"
-    class=""
+
     />
+
     <fragment
-        android:id="@+id/reg_pago"
-        android:layout_width="0dp"
-        android:layout_weight=".5"
+        android:id="@+id/freg_pago"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class=""
-        />
+        android:layout_weight="0.5" />
 </LinearLayout>
