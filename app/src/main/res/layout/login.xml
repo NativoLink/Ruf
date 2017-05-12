@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         tools:ignore="UselessLeaf">
 
     </RelativeLayout>
@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
+        android:layout_weight="2"
         tools:ignore="UselessLeaf"
         style="@style/login_fondo"
         android:background="#789db3">
