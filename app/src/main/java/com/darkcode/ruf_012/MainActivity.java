@@ -252,10 +252,10 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 //Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-ES");
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 100);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE);
+//        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
+//        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1000);
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
             startActivityForResult(intent, 1);
@@ -461,7 +461,7 @@ public class MainActivity extends AppCompatActivity
             trans= true;
         } else if (id == R.id.nav_manage) {
             vistaActual = "pagos";
-            vista = new VistaListConsultasPendientes();
+            vista = new  VistaRegPagos();
             trans= true;
         } else if (id == R.id.nav_share) {
             vista = new VistaGetDiagrama();
@@ -539,10 +539,33 @@ public class MainActivity extends AppCompatActivity
             }else{
 
                 String[] split = comandos.split(" ");
-                String pared;
+                String pared = "";
 
+                String keywordR = "mesial",keywordL= "distal",
+                        keywordR2 = "mecial",keywordL2= "distal";
                     int pos_diente = Integer.parseInt(split[0]);
                 String estado_pared = split[2];
+
+                //------------ LEFT ---------------
+                if((pos_diente>=11 && pos_diente<=18)
+                        || (pos_diente>=51 && pos_diente<=55)
+                        || (pos_diente>=41 && pos_diente<=48)
+                        || (pos_diente>=81 && pos_diente<=85)){
+                    keywordR = "mesial";
+                    keywordL = "distal";
+                    keywordR2 = "mecial";
+                }
+
+                //------------ RIGHT ---------------
+                if((pos_diente>=21 && pos_diente<=28)
+                        || (pos_diente>=61 && pos_diente<=65)
+                        || (pos_diente>=31 && pos_diente<=38)
+                        || (pos_diente>=71 && pos_diente<=75)){
+                    keywordR = "distal";
+                    keywordL = "mesial";
+                    keywordL2 = "mecial";
+                }
+
 
                 //PALABRAS PARECIDAS A DERECHA  O RELACIONADAS
                 if(split[1].equals("arriba")){pared = "U";}
@@ -556,19 +579,19 @@ public class MainActivity extends AppCompatActivity
                 else if(split[1].equals("Inferior")){pared = "D";}
 
                 //PALABRAS PARECIDAS A IZQUIERDA O RELACIONADAS
-                else if(split[1].equals("izquierda")){pared = "L";}
-                else if(split[1].equals("izquierdas")){pared = "L";}
+                else if(split[1].equals(keywordL)){pared = "L";}
+                else if(split[1].equals(keywordL2)){pared = "L";}
 
                 //PALABRAS PARECIDAS A DERECHA O RELACIONADAS
-                else if(split[1].equals("derecha")){pared = "R";}
-                else if(split[1].equals("derechos")){pared = "R";}
+                else if(split[1].equals(keywordR)){pared = "R";}
+                else if(split[1].equals(keywordR2)){pared = "R";}
 
                 //PALABRAS PARECIDAS A CENTRO
                 else  if(split[1].equals("centro")){pared = "C";}
                 else  if(split[1].equals("Centro")){pared = "C";}
                 else  if(split[1].equals("centros")){pared = "C";}
                 else  if(split[1].equals("Centros")){pared = "C";}
-                else {pared = "C";}
+
                 editDiente(pos_diente, pared, estado_pared);
             }
         }
