@@ -11,14 +11,14 @@
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/noconsulta"
+            android:id="@+id/tvid_consulta"
             android:layout_width="179dp"
             android:layout_height="wrap_content"
             android:text="consulta"
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/pago_o_abono"
+            android:id="@+id/tvpago_o_abono"
             android:layout_width="226dp"
             android:layout_height="wrap_content"
             android:text="pago o abono"
