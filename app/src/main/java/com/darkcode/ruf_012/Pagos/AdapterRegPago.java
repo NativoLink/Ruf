@@ -34,16 +34,6 @@ public class AdapterRegPago extends ArrayAdapter< RegDetallePago> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.list_consultas_pago, parent, false);
 
-        final TextView idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
-        TextView pago_abono = (TextView) customView.findViewById(R.id.tvpago_o_abono);
-
-        int id = pago.get(position).getId_consulta();
-        String idC = Integer.toString(id);
-        idConsulta.setText(idC);
-
-        int pagoab = pago.get(position).getPago();
-        String pagoC = Integer.toString(pagoab);
-        pago_abono.setText(pagoC);
 
 
         return customView;

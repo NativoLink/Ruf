@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/tvid_consulta"
-            android:layout_width="84dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -25,7 +25,7 @@
         <Button
             android:id="@+id/btndetalle"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/tvfecha"
-            android:layout_width="48dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/tvmonto"
-            android:layout_width="48dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/tvpendiente"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/tvestado"
-            android:layout_width="48dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -75,7 +75,7 @@
         <Button
             android:id="@+id/btnsaldar"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"
@@ -87,7 +87,7 @@
         <Button
             android:id="@+id/btnabonar"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"

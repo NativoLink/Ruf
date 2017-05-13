@@ -20,9 +20,6 @@ public class VistaPrincipal extends Fragment {
     private OnFragmentInteractionListener mListener;
 
 
-    Button btnEscuchar;
-
-
     public VistaPrincipal() {
 
     }

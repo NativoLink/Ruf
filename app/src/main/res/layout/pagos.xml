@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:weightSum="1"
     android:baselineAligned="false">
-<fragment
+<FrameLayout
     android:id="@+id/fconsultas_pendientes"
     android:layout_width="match_parent"
     android:layout_weight="0.5"
@@ -13,7 +13,7 @@
 
     />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/freg_pago"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
