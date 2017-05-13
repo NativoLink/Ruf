@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion '25'
-
     defaultConfig {
         applicationId "com.darkcode.ruf_012"
         minSdkVersion 16
@@ -17,7 +16,6 @@ android {
         }
     }
 }
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
