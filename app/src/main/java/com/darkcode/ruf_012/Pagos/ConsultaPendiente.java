@@ -4,7 +4,7 @@ package com.darkcode.ruf_012.Pagos;
  * Created by usuario on 07/05/2017.
  */
 
-public class ConsultasPendientes {
+public class ConsultaPendiente {
 
     int id_consulta;
     String fecha;
