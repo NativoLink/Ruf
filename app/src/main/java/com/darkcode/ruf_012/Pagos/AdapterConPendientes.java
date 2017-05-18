@@ -15,6 +15,10 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -75,39 +79,34 @@ public class AdapterConPendientes extends ArrayAdapter {
         }
 
             holder.btnSaldar.setTag(position);
-        final View finalCustomView = customView;
+
         holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     int tag = (Integer)v.getTag();
-                    if (tag != (pago.size() - 1)) {
+                    List<Integer> tagsUse = new ArrayList<Integer>();
+
+                    if(!estaEnArray(tag ,tagsUse)) {
+                        ((MainActivity)getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+
                         pago.remove(tag);
                         AdapterConPendientes.this.notifyDataSetChanged();
-
-                        ((MainActivity)getContext()).AddPago(pago.get(position));
-
-                        AdapterConPendientes adp = new AdapterConPendientes(contexto,((MainActivity)getContext()).getaPago());
-                        ((MainActivity)getContext()).setMyAdapter2(adp);
-                        AdapterConPendientes.this.notifyDataSetChanged();
-                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
-                    } else {
-                        pago.add(pago.get(position));
-                        ((MainActivity)getContext()).AddPago(pago.get(position));
-
-                        ((MainActivity)getContext()).sumConCP();
-                        AdapterConPendientes adp = new AdapterConPendientes(contexto,((MainActivity)getContext()).getaPago());
-                        ListView listView2 = (ListView) finalCustomView.findViewById(R.id.lvConAPagar);
-                        ((MainActivity)getContext()).setMyList2(listView2);
-                        ((MainActivity)getContext()).setMyAdapter2(adp);
-                        for(ConsultaPendiente cp : ((MainActivity)getContext()).getaPago())
-                        {
-                            Log.v("ARRAY ADAPTER CP",cp.getId_consulta()+"=>"+cp.getCosto()+"conCP=>"+((MainActivity)getContext()).getContCP());
-                        }
-
-                        AdapterConPendientes.this.notifyDataSetChanged();
-                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
                     }
+
+
+//                    if (tag != (pago.size() - 1)) {
+//                        for (Iterator<Integer> i = tagsUse.iterator(); i.hasNext();) {
+//                            int item = i.next();
+//                            if(item)
+//                            System.out.println(item);
+//                        }
+//                    } else {
+
+//                        ((MainActivity)getContext()).AddPago(pago.get(position));
+//                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
+//                    }
                 }
             });
 
@@ -147,6 +146,15 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     public List<ConsultaPendiente> getList(){
         return pago;
+    }
+
+    public boolean estaEnArray(int numero , List<Integer> permitidos){
+        if(Arrays.asList(permitidos).contains(numero)){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 }

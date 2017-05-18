@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -28,11 +27,9 @@ import retrofit.client.Response;
 public class p2ListView extends Fragment {
 
     ListView listView1, listView2;
-    List<ConsultaPendiente> items1, items2;
 
     AdapterConPendientes myItemsListAdapter1;
     AdapterConPendientes myItemsListAdapter2;
-//    AdapterRegPago myItemsListAdapter2;
 
     public p2ListView() {
     }
@@ -45,30 +42,24 @@ public class p2ListView extends Fragment {
         listView1 = (ListView)view.findViewById(R.id.lvConPendientes);
         listView2 = (ListView)view.findViewById(R.id.lvConAPagar);
 
+        listView2.setBackgroundColor(0xFF00FF00);
+
 
         ((MainActivity)getContext()).setMyList1(listView1);
         ((MainActivity)getContext()).setMyList2(listView2);
 
         initItems();
-//        ((MainActivity)getContext()).setMyAdapter(myItemsListAdapter1);
-//        ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
-        myItemsListAdapter1 = new AdapterConPendientes(getContext(), items1);
         myItemsListAdapter2 = new AdapterConPendientes(getContext(),((MainActivity)getContext()).getaPago());
 
-
-
-
-
-
-//        ((MainActivity)getContext()).setMyAdapter2( ((MainActivity)getContext()));
+        ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
+        ((MainActivity)getContext()).getMyList2().setAdapter(myItemsListAdapter2);
+        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
 
         return view;
     }
 
     private void initItems(){
-//        items1 = new ArrayList<ConsultaPendiente>();
-//        items2 = new ArrayList<ConsultaPendiente>();
-
+        ((MainActivity)getContext()).aPago.clear();
 
         RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
         PagoService servicio = restadpter.create(PagoService.class);
@@ -79,7 +70,6 @@ public class p2ListView extends Fragment {
                 myItemsListAdapter1 = new AdapterConPendientes(getContext(), pagos);
                 ((MainActivity)getContext()).setMyAdapter(myItemsListAdapter1);
                 listView1.setAdapter(myItemsListAdapter1);
-//                ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
             }
 
             @Override
@@ -89,15 +79,6 @@ public class p2ListView extends Fragment {
         });
     }
 
-    private boolean removeItemToList(List<ConsultaPendiente> l, ConsultaPendiente it){
-        boolean result = l.remove(it);
-        return result;
-    }
-
-    private boolean addItemToList(List<ConsultaPendiente> l, ConsultaPendiente it){
-        boolean result = l.add(it);
-        return result;
-    }
 
 
 }

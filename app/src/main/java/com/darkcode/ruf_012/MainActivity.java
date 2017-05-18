@@ -64,11 +64,12 @@ public class MainActivity extends AppCompatActivity
     int TotalRegConsulta = 0;
 
     // ------------ VARIABLES PARA REG-PAGOS
-    private AdapterConPendientes myAdapter;
-    private AdapterConPendientes myAdapter2;
-    private List<ConsultaPendiente> aPago = new ArrayList<ConsultaPendiente>();
-    private ListView myList1;
-    private ListView myList2;
+    public AdapterConPendientes myAdapter;
+    public AdapterConPendientes myAdapter2;
+    public List<ConsultaPendiente> aPago = new ArrayList<ConsultaPendiente>();
+    public List<ConsultaPendiente> cPagos;
+    public ListView myList1;
+    public ListView myList2;
 
     public int getContCP() {
         return contCP;
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity
     public void setMyList2(ListView myList2) {
         this.myList2 = myList2;
     }
+
+
+    public void setML2(AdapterConPendientes adapter){ this.myList1.setAdapter(adapter);}
 
 
     public void AddPago(ConsultaPendiente Pago) {
