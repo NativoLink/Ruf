@@ -12,19 +12,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +35,12 @@ import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import retrofit.Callback;
@@ -450,14 +453,15 @@ public class MainActivity extends AppCompatActivity
             vistaActual = "pagos";
             vista = new VistaListConsultasPendientes();
             trans= true;
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of c24b59c... prueba del fragmento
         } else if (id == R.id.nav_share) {
             vista = new VistaGetDiagrama();
             trans= true;
         } else if (id == R.id.nav_send) {
-           Intent regTratamiento= new Intent (MainActivity.this, PrueFragment.class);
-            //vista = new VistaRegConsulta();
-            startActivity(regTratamiento);
+            vista = new VistaRegConsulta();
             trans= true;
         }
 

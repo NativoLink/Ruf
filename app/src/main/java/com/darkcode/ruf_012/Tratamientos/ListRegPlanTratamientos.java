@@ -1,23 +1,33 @@
 package com.darkcode.ruf_012.Tratamientos;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.Context;
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+
+
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -188,7 +198,7 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
     }
 
 //    OnItemClickListener listOnItemClickListener = new OnItemClickListener(){
-//
+
 //        @Override
 //        public void onItemClick(AdapterView<?> parent, View view, int position,
 //                                long id) {
@@ -208,7 +218,7 @@ public class ListRegPlanTratamientos extends ActionBarActivity {
 //                list2Adapter.notifyDataSetChanged();
 //            }
 //        }
-//
+
 //    };
 
     private void initItems(){
