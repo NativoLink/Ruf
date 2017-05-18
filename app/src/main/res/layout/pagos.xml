@@ -8,7 +8,7 @@
 <FrameLayout
     android:id="@+id/fconsultas_pendientes"
     android:layout_width="match_parent"
-    android:layout_weight="0.5"
+    android:layout_weight="0.4"
     android:layout_height="match_parent"
 
     />
@@ -17,5 +17,5 @@
         android:id="@+id/freg_pago"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.6" />
 </LinearLayout>

@@ -79,6 +79,7 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:padding="10dp"
+            android:text="123"
             android:textAlignment="center"
             android:textSize="26sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,SmallSp,UnusedAttribute" />
@@ -99,6 +100,7 @@
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:padding="10dp"
+            android:text="123"
             android:textAlignment="center"
             android:textSize="26sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,SmallSp,UnusedAttribute" />
