@@ -448,12 +448,9 @@ public class MainActivity extends AppCompatActivity
             trans= true;
         } else if (id == R.id.nav_manage) {
             vistaActual = "pagos";
-//            vista = new VistaListConsultasPendientes();
-//            trans= true;
-            Intent regTratamiento= new Intent (MainActivity.this, PrueFragment.class);
-            //vista = new VistaRegConsulta();
-            startActivity(regTratamiento);
-            //trans= true;
+            vista = new VistaListConsultasPendientes();
+            trans= true;
+
         } else if (id == R.id.nav_share) {
             vista = new VistaGetDiagrama();
             trans= true;
