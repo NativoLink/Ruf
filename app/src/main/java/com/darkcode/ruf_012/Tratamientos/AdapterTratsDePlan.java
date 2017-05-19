@@ -55,6 +55,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
         EditText etCosto;
         CheckBox cbMarcado;
         TextView tvCosto;
+        TextView tvTotalIndi;
         int ref;
     }
 
@@ -73,6 +74,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidadE);
             holder.etCosto = (EditText) convertView.findViewById(R.id.etMontoE);
             holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbTratE);
+
 
             holder.etCantidad.setText(String.valueOf(tratamientos.get(position).getCantidad()));
             holder.etCosto.setText(String.valueOf(tratamientos.get(position).getCosto()));
@@ -93,6 +95,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
                 if (!s.toString().equals("")) {
 
                     cantt = Integer.valueOf(s.toString());
+
 
                 }
 

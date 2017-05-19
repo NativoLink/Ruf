@@ -50,6 +50,8 @@ public class VistaRegPlanTratamiento extends Fragment {
     ArrayList<AdapterTratsConsulta.checkItem> callback_trats;
     View view;
 
+    int id_plan = 0;
+
     public VistaRegPlanTratamiento() {
 
     }
@@ -86,31 +88,40 @@ public class VistaRegPlanTratamiento extends Fragment {
             @Override
             public void onClick(View v) {
                 callback_trats = ((MainActivity) getContext()).getItemRegPlan();
-//                Iterator<checkItem> iterProyectil = callback_trats.iterator();
-//                while(iterProyectil.hasNext()) {
-//                    callback_trats = listAdapter.getIte();
-//                    Toast.makeText(getContext(),"Posi=> "+iterProyectil.next().getPosi()+" Cantidad:"+iterProyectil.next().getCantidad(), Toast.LENGTH_SHORT).show();
-//                    Log.v("callbacks -->","Posi =>> "+iterProyectil.next().getPosi()+" Cant =>>"+iterProyectil.next().getCantidad());
-//                }
 
-                for(int i=0; i< callback_trats.size(); i++) {
-                Log.v("callbacks -->","Posi =>> "+callback_trats.get(i).getPosi()+" Nomb =>>"+callback_trats.get(i).getNombreTrat()+" Monto =>>"+callback_trats.get(i).getCosto()+" Cant =>>"+callback_trats.get(i).getCantidad());
-                    int plan = 1; //ESTO SE DEBE DE GENERAR DESDE EL API RESTful
-                    int id_trat = callback_trats.get(i).getId_tratamiento();
-                    int cant = callback_trats.get(i).getCantidad();
-                    int costo = callback_trats.get(i).getCosto();
-                    servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, "Descripcion", new Callback<String>() {
-                        @Override
-                        public void success(String s, Response response) {
-                            Toast.makeText(getContext(),"Result: "+s.toString(), Toast.LENGTH_LONG).show();
-                        }
+                int id_paciente = 1; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
+                servicio.regPlan(id_paciente, "La descripcion tampoco esta", new Callback<Integer>() {
+                    @Override
+                    public void success(Integer integer, Response response) {
+                        id_plan = integer;
+                        Toast.makeText(getContext(),"Plan: "+integer, Toast.LENGTH_LONG).show();
+                        for(int i=0; i< callback_trats.size(); i++) {
+                            Log.v("callbacks -->","Posi =>> "+callback_trats.get(i).getPosi()+" Nomb =>>"+callback_trats.get(i).getNombreTrat()+" Monto =>>"+callback_trats.get(i).getCosto()+" Cant =>>"+callback_trats.get(i).getCantidad());
+                            int plan = id_plan;
+                            int id_trat = callback_trats.get(i).getId_tratamiento();
+                            int cant = callback_trats.get(i).getCantidad();
+                            int costo = callback_trats.get(i).getCosto();
+                            servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, "Descripcion", new Callback<String>() {
+                                @Override
+                                public void success(String s, Response response) {
+                                    Toast.makeText(getContext(),"Result: "+s.toString(), Toast.LENGTH_LONG).show();
+                                }
 
-                        @Override
-                        public void failure(RetrofitError error) {
-                            Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
             }
         });
 

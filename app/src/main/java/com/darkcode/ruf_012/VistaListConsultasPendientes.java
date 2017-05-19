@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
-import com.darkcode.ruf_012.Pagos.ConsultasPendientes;
+import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
 import com.darkcode.ruf_012.Pagos.PagoService;
 
 import java.util.List;
@@ -34,14 +34,13 @@ public class VistaListConsultasPendientes extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.consultas_pendientes, container,false);
-        final ListView lvresult;
-        lvresult = (ListView)view.findViewById(R.id.lvConsultas);
+        final ListView lvresult = (ListView)view.findViewById(R.id.lvConPendientes);
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         PagoService servicio = restadpter.create(PagoService.class);
         //PRUEBA
-        servicio.getPagos(2, new Callback<List<ConsultasPendientes>>() {
+        servicio.getPagos(2, new Callback<List<ConsultaPendiente>>() {
             @Override
-            public void success(List<ConsultasPendientes> pagos, Response response) {
+            public void success(List<ConsultaPendiente> pagos, Response response) {
                 listAdapter = new AdapterConPendientes(getContext(), pagos);
                 lvresult.setAdapter(listAdapter);
             }

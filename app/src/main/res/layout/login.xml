@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
+        android:layout_weight="1"
         tools:ignore="UselessLeaf">
 
     </RelativeLayout>
@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".5"
+        android:layout_weight="2"
         tools:ignore="UselessLeaf"
         style="@style/login_fondo"
         android:background="#789db3">
@@ -65,39 +65,41 @@
             android:id="@+id/etUserLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFF"
             android:layout_below="@+id/relativeLayout2"
             android:layout_centerHorizontal="true"
             android:layout_gravity=""
             android:layout_weight="1"
+            android:background="#FFF"
             android:elevation="5dp"
             android:ems="10"
             android:hint="Nombre de usuario"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:padding="10dp"
+            android:text="123"
             android:textAlignment="center"
-            android:textSize="10sp"
 
+            android:textSize="10sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,SmallSp,UnusedAttribute" />
 
         <EditText
             android:id="@+id/etPassLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFF"
+            android:layout_alignEnd="@+id/etUserLogin"
+            android:layout_alignRight="@+id/etUserLogin"
+            android:layout_below="@+id/etUserLogin"
             android:layout_gravity=""
+            android:background="#FFF"
             android:elevation="5dp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
+            android:text="123"
             android:textAlignment="center"
             android:textSize="10dp"
-            tools:ignore="HardcodedText,SpUsage,UnusedAttribute"
-            android:layout_below="@+id/etUserLogin"
-            android:layout_alignRight="@+id/etUserLogin"
-            android:layout_alignEnd="@+id/etUserLogin" />
+            tools:ignore="HardcodedText,SpUsage,UnusedAttribute" />
         <TextView
             android:id="@+id/tvVersion"
             android:layout_width="match_parent"

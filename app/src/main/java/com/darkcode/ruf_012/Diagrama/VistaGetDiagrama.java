@@ -31,6 +31,11 @@ import retrofit.client.Response;
 
 public class VistaGetDiagrama extends Fragment {
 
+    int idPaciente,idConsulta;
+    public VistaGetDiagrama(int idPaciente,int idConsulta) {
+        getDiagrama( idPaciente,idConsulta);
+    }
+
     boolean estado_o = false;
     //--------- PRIMER CUADRANTE ------
     Diente diente18,diente17,diente16,diente15,diente14,diente13,diente12,diente11;
@@ -129,25 +134,25 @@ public class VistaGetDiagrama extends Fragment {
             lista.add(diente82);
             lista.add(diente81);
 
-            RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
-            DienteService servicio = restadpter.create(DienteService.class);
-            servicio.unDiagrama(new Callback<List<DienteDB>>() {
-                @Override
-                public void success(List<DienteDB> dienteDBs, Response response) {
-                    for(int i=0; i<dienteDBs.size(); i++){
-                        int posDiente = dienteDBs.get(i).getPosDiente();
-                        String pared = dienteDBs.get(i).getArea();
-                        String estado = dienteDBs.get(i).getEstadoDB();
-                        editDiente(posDiente, pared, estado);
-                    }
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    Toast.makeText(getContext(), "ERROR :" + error + "...", Toast.LENGTH_LONG).show();
-                    Log.d("RETORNO",">"+error.getMessage());
-                }
-            });
+//            RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+//            DienteService servicio = restadpter.create(DienteService.class);
+//            servicio.unDiagrama(new Callback<List<DienteDB>>() {
+//                @Override
+//                public void success(List<DienteDB> dienteDBs, Response response) {
+//                    for(int i=0; i<dienteDBs.size(); i++){
+//                        int posDiente = dienteDBs.get(i).getPosDiente();
+//                        String pared = dienteDBs.get(i).getArea();
+//                        String estado = dienteDBs.get(i).getEstadoDB();
+//                        editDiente(posDiente, pared, estado);
+//                    }
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                    Toast.makeText(getContext(), "ERROR :" + error + "...", Toast.LENGTH_LONG).show();
+//                    Log.d("RETORNO",">"+error.getMessage());
+//                }
+//            });
             new Thread(new Runnable() {
                 public void run() {
                     while(true){
@@ -217,6 +222,28 @@ public class VistaGetDiagrama extends Fragment {
 
 
         }
+    }
+    public void getDiagrama(int id_paciente,int id_consulta){
+        RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+        DienteService servicio = restadpter.create(DienteService.class);
+        servicio.unDiagrama(id_paciente,id_consulta,new Callback<List<DienteDB>>() {
+            @Override
+            public void success(List<DienteDB> dienteDBs, Response response) {
+                for(int i=0; i<dienteDBs.size(); i++){
+                    int posDiente = dienteDBs.get(i).getPosDiente();
+                    String pared = dienteDBs.get(i).getArea();
+                    String estado = dienteDBs.get(i).getEstadoDB();
+                    editDiente(posDiente, pared, estado);
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getContext(), "ERROR :" + error + "...", Toast.LENGTH_LONG).show();
+                Log.d("RETORNO",">"+error.getMessage());
+            }
+        });
+
     }
     public  void editDiente(int posicionDiente,String pared,String estado){
 

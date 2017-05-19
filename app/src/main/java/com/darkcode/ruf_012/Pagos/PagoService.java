@@ -15,7 +15,7 @@ import retrofit.http.Query;
 public interface PagoService {
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Pagos/listConsultasPendientes.php")
-    void getPagos(@Query("id_paciente") int id_paciente, Callback<List<ConsultasPendientes>> callback);
+    void getPagos(@Query("id_paciente") int id_paciente, Callback<List<ConsultaPendiente>> callback);
 
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Pagos/regDetallePago.php")

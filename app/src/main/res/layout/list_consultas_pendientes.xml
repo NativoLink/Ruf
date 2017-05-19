@@ -3,69 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:textAlignment="center">
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/tvid_consulta"
-            android:layout_width="84dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="#consulta"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btndetalle"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
-            android:layout_height="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"
+            android:gravity="center"
             android:text="" />
+
         <TextView
             android:id="@+id/tvfecha"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="fecha"
+            android:textAlignment="center"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/tvmonto"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="monto"
+            android:textAlignment="center"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/tvpendiente"
-            android:layout_width="80dp"
-            android:layout_height="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="pendiente"
+            android:textAlignment="center"
             tools:ignore="HardcodedText" />
+
         <TextView
             android:id="@+id/tvestado"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="estado"
+            android:textAlignment="center"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnsaldar"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
-            android:layout_height="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"
             android:backgroundTint="#fd6cd2e4"
+            android:gravity="center"
             android:text=""
             tools:ignore="UnusedAttribute" />
+
         <Button
             android:id="@+id/btnabonar"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="27dp"
-            android:layout_height="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@android:drawable/checkbox_off_background"
             android:backgroundTint="#fd7ce46c"
+            android:gravity="center"
             android:text=""
             tools:ignore="UnusedAttribute" />
 
