@@ -29,6 +29,7 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     private Context contexto;
     private List<ConsultaPendiente> pago;
+    List<ConsultaPendiente> tagsUse;
 
 
     public AdapterConPendientes(Context context, List<ConsultaPendiente> pagos) {
@@ -84,29 +85,17 @@ public class AdapterConPendientes extends ArrayAdapter {
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
-                    int tag = (Integer)v.getTag();
-                    List<Integer> tagsUse = new ArrayList<Integer>();
+//                    int tag = (Integer)v.getTag();
+                    ConsultaPendiente tag = pago.get(position);
 
-                    if(!estaEnArray(tag ,tagsUse)) {
+                    tagsUse = ((MainActivity)getContext()).getaPago();
+                    if(estaEnArray(tag ,tagsUse)) {
+                        Toast.makeText(getContext(),"Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                    }else{
                         ((MainActivity)getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                         ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-
-                        pago.remove(tag);
-                        AdapterConPendientes.this.notifyDataSetChanged();
+                        Toast.makeText(getContext(),"Add", Toast.LENGTH_LONG).show();
                     }
-
-
-//                    if (tag != (pago.size() - 1)) {
-//                        for (Iterator<Integer> i = tagsUse.iterator(); i.hasNext();) {
-//                            int item = i.next();
-//                            if(item)
-//                            System.out.println(item);
-//                        }
-//                    } else {
-
-//                        ((MainActivity)getContext()).AddPago(pago.get(position));
-//                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
-//                    }
                 }
             });
 
@@ -148,12 +137,17 @@ public class AdapterConPendientes extends ArrayAdapter {
         return pago;
     }
 
-    public boolean estaEnArray(int numero , List<Integer> permitidos){
-        if(Arrays.asList(permitidos).contains(numero)){
-            return true;
-        }else{
-            return false;
+    public boolean estaEnArray(ConsultaPendiente cp, List<ConsultaPendiente> permitidos){
+        boolean existe = false;
+        for (Iterator<ConsultaPendiente> i = permitidos.iterator(); i.hasNext();) {
+//               Log.v("CP","ITEM => "+item);
+            ConsultaPendiente item = i.next();
+            if(item.id_consulta == cp.id_consulta){
+                Log.v("CP","EXITE CP => "+cp.id_consulta + " COMO ITEM => "+item.id_consulta);
+                existe = true;
+            }
         }
+        return existe;
 
     }
 

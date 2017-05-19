@@ -1,13 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/lvConPendientes"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B2E4FB">
+
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Paciente"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/NombrePaciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:hint="Nombre o ID"
+                android:inputType=""
+                android:textAlignment="center"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#3caee2"
+                android:text="Buscar"
+                tools:ignore="HardcodedText" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="17dp"
+                android:layout_height="54dp"
+                android:layout_weight=".3"
+                android:text="Monto a Pagar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                tools:ignore="HardcodedText" />
+
+            <EditText
+                android:id="@+id/MONTO"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".4"
+                android:background="@drawable/borde"
+                android:inputType=""
+                android:text="monto"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText"
+                tools:layout_height="match_parent" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#02A8F3">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="#Consulta"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Detalle"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Fecha"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Monto"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Pendiente"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Estado"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Saldar"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Abonar"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/lvConPendientes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1">
+
+            </ListView>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:gravity="bottom|end"
+                tools:ignore="ExtraText">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="@color/common_signin_btn_default_background"
+                    android:text="Anular"
+                    tools:ignore="ButtonStyle,HardcodedText,ObsoleteLayoutParam" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#3caee2"
+                    android:text="Modificar"
+                    tools:ignore="ButtonStyle,HardcodedText" />
+
+            </TableRow>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lvConAPagar"

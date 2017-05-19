@@ -20,7 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Pagos.p2ListView;
 import com.darkcode.ruf_012.R;
 import com.darkcode.ruf_012.Tratamientos.AdapterPlan;
 import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
@@ -118,7 +120,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
                 setParametros(position);
-                vista = new VistaListConsultasPendientes();
+                vista = new p2ListView();
                 String Titulo_Bar = "Consultas y Pagos";
                 ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
                 cambiarVista(vista,Titulo_Bar);
@@ -211,9 +213,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             @Override
             public void onClick(View v) {
                 id_paciente = idPaciente.getText().toString();
-                vista = new VistaRegDiagrama();
-                setParametros(position);
-                String Titulo_Bar = "Odontodiagramas";
+                vista = new VistaGetDiagrama(Integer.valueOf(id_paciente),5); // ============= 5 = ID Ulti.Consulta
+//                setParametros(position);
+                String Titulo_Bar = "Ulti. Odontodiagrama "+id_paciente;
                 ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
                 cambiarVista(vista,Titulo_Bar);
             }
