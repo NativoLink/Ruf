@@ -8,5 +8,6 @@
 /build
 /captures
 /app/*.gradle
-/app/*.iml
-/app/*gradle
+/app / *. IML
+/app / * Gradle 
+
