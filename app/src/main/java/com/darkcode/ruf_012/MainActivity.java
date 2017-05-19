@@ -29,6 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Diagrama.DienteDB;
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
@@ -67,31 +68,12 @@ public class MainActivity extends AppCompatActivity
     public AdapterConPendientes myAdapter;
     public AdapterConPendientes myAdapter2;
     public List<ConsultaPendiente> aPago = new ArrayList<ConsultaPendiente>();
-    public List<ConsultaPendiente> cPagos;
     public ListView myList1;
     public ListView myList2;
 
-    public int getContCP() {
-        return contCP;
-    }
 
-    public void setContCP(int contCP) {
-        this.contCP = contCP;
-    }
-    public void sumConCP(){
-        contCP++;
-    }
-
-    private int contCP=0;
-
-    public ListView getMyList1() {
-        return myList1;
-    }
     public ListView getMyList2() {
         return myList2;
-    }
-    public AdapterConPendientes getMyAdapter() {
-        return myAdapter;
     }
     public AdapterConPendientes getMyAdapter2() {
         return myAdapter2;
@@ -112,8 +94,6 @@ public class MainActivity extends AppCompatActivity
         this.myList2 = myList2;
     }
 
-
-    public void setML2(AdapterConPendientes adapter){ this.myList1.setAdapter(adapter);}
 
 
     public void AddPago(ConsultaPendiente Pago) {
@@ -533,8 +513,8 @@ public class MainActivity extends AppCompatActivity
             vista = new  VistaRegPagos();
             trans= true;
         } else if (id == R.id.nav_share) {
-            vista = new VistaGetDiagrama();
-            trans= true;
+//            vista = new VistaGetDiagrama();
+//            trans= true;
         } else if (id == R.id.nav_send) {
             vista = new p2ListView();
             trans= true;

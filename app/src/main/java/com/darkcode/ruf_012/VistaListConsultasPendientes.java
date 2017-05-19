@@ -34,7 +34,7 @@ public class VistaListConsultasPendientes extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.consultas_pendientes, container,false);
-        final ListView lvresult = (ListView)view.findViewById(R.id.lvConsultas);
+        final ListView lvresult = (ListView)view.findViewById(R.id.lvConPendientes);
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         PagoService servicio = restadpter.create(PagoService.class);
         //PRUEBA
