@@ -19,7 +19,7 @@ public class AdapterRegPago extends ArrayAdapter< RegDetallePago> {
     private Context contexto;
     //private List<RegDetallePago> pago;
 
-    public AdapterRegPago(Context context ) {
+    public AdapterRegPago(Context context) {
         super(context, R.layout.list_consultas_pago);
         contexto=context;
 

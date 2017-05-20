@@ -30,6 +30,7 @@ import retrofit.client.Response;
  */
 
 public class VistaGetDiagrama extends Fragment {
+    
 
     int idPaciente,idConsulta;
     public VistaGetDiagrama(int idPaciente,int idConsulta) {

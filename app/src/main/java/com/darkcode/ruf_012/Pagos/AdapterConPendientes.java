@@ -58,6 +58,9 @@ public class AdapterConPendientes extends ArrayAdapter {
     @Override
     public View getView(final int position, View customView, final ViewGroup parent) {
         final ViewConHolder holder;
+
+        int idps = pago.get(position).getId_consulta();
+//        if (idps != 0) {
         if (customView == null) {
             holder = new ViewConHolder();
             LayoutInflater inflater = LayoutInflater.from(contexto);
@@ -75,29 +78,29 @@ public class AdapterConPendientes extends ArrayAdapter {
             holder.btnAbonar = (Button) customView.findViewById(R.id.btnabonar);
 
             customView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewConHolder) customView.getTag();
         }
 
-            holder.btnSaldar.setTag(position);
+        holder.btnSaldar.setTag(position);
 
         holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
 //                    int tag = (Integer)v.getTag();
-                    ConsultaPendiente tag = pago.get(position);
+                ConsultaPendiente tag = pago.get(position);
 
-                    tagsUse = ((MainActivity)getContext()).getaPago();
-                    if(estaEnArray(tag ,tagsUse)) {
-                        Toast.makeText(getContext(),"Ya se encuentra añadido", Toast.LENGTH_LONG).show();
-                    }else{
-                        ((MainActivity)getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                        Toast.makeText(getContext(),"Add", Toast.LENGTH_LONG).show();
-                    }
+                tagsUse = ((MainActivity) getContext()).getaPago();
+                if (estaEnArray(tag, tagsUse)) {
+                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                } else {
+                    ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                    ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
                 }
-            });
+            }
+        });
 
 
         int id = pago.get(position).getId_consulta();
@@ -115,7 +118,9 @@ public class AdapterConPendientes extends ArrayAdapter {
         holder.idConsulta.setText(idC);
         holder.estado.setText(pago.get(position).getEstado());
 
-
+        if (idps == 0) {
+            customView.setVisibility(View.INVISIBLE);
+        }
         return customView;
 
     }

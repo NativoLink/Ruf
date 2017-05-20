@@ -98,154 +98,150 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.list_pacientes, parent, false);
 
-        TextView nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
-        final TextView idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
-        TextView edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
-        TextView telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
+        int idps = pacientes.get(position).getId_paciente();
+        if (idps != 0) {
+            TextView nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
+            final TextView idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
+            TextView edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
+            TextView telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
 
 
-        Button btnNuevaConsulta = (Button) customView.findViewById(R.id.btnNuevaConsulta);
-        Button btnConsultas = (Button) customView.findViewById(R.id.btnConsultas);
-        Button btnPlans = (Button) customView.findViewById(R.id.btnPlanes);
-        Button btnDiagramas = (Button) customView.findViewById(R.id.btnDiagramas);
-        Button btnExamen = (Button) customView.findViewById(R.id.btnExamen);
+            Button btnNuevaConsulta = (Button) customView.findViewById(R.id.btnNuevaConsulta);
+            Button btnConsultas = (Button) customView.findViewById(R.id.btnConsultas);
+            Button btnPlans = (Button) customView.findViewById(R.id.btnPlanes);
+            Button btnDiagramas = (Button) customView.findViewById(R.id.btnDiagramas);
+            Button btnExamen = (Button) customView.findViewById(R.id.btnExamen);
 
 
+            btnConsultas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    setParametros(position);
+                    vista = new p2ListView();
+                    String Titulo_Bar = "Consultas y Pagos";
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
+            btnNuevaConsulta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    setParametros(position);
+                    vista = new VistaRegConsulta();
+                    String Titulo_Bar = "Diagrama";
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
 
-
-
-
-        btnConsultas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id_paciente = idPaciente.getText().toString();
-                setParametros(position);
-                vista = new p2ListView();
-                String Titulo_Bar = "Consultas y Pagos";
-                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
-                cambiarVista(vista,Titulo_Bar);
-
-            }
-        });
-        btnNuevaConsulta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id_paciente = idPaciente.getText().toString();
-                setParametros(position);
-                vista = new VistaRegConsulta();
-                String Titulo_Bar = "Diagrama";
-                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
-                cambiarVista(vista,Titulo_Bar);
-            }
-        });
-        btnPlans.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            btnPlans.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                id_paciente = idPaciente.getText().toString();
 //                vista = new VistaRegDiagrama();
 //                cambiarVista(vista);
 
-                AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
-                final View vi = View.inflate(contexto,R.layout.plan_list,null);
-//                aBuilder.setTitle("Planes");
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                    final View vi = View.inflate(contexto, R.layout.plan_list, null);
 
-                final View view = View.inflate(contexto, R.layout.planes_title, null);
+                    final View view = View.inflate(contexto, R.layout.planes_title, null);
 
-                aBuilder.setCustomTitle(view);
-                aBuilder.setView(vi);
-                AlertDialog dialog = aBuilder.create();
-                dialog.show();
+                    aBuilder.setCustomTitle(view);
+                    aBuilder.setView(vi);
+                    AlertDialog dialog = aBuilder.create();
+                    dialog.show();
 
 
-                ImageButton  btnAddPlan = (ImageButton)view.findViewById(R.id.imgBtnAddPlan);
-                btnAddPlan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getContext(),"ADD PLAN: ", Toast.LENGTH_LONG).show();
-                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
-                        final View vi = View.inflate(contexto,R.layout.reg_plan,null);
-                        aBuilder.setTitle("Nuevo Plan de Tratamiento");
-                        aBuilder.setView(vi);
-                        aBuilder.setMessage("Click yes to exit!")
-                                .setCancelable(false)
-                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        id_paciente = idPaciente.getText().toString();
-                                        setParametros(position);
-                                        vista = new VistaRegPlanTratamiento();
-                                        String Titulo_Bar = "Nuevo Plan"+id_Paciente;
-                                        ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
-                                        cambiarVista(vista,Titulo_Bar);
-                                    }
-                                })
-                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        Toast.makeText(getContext(),"NO: ", Toast.LENGTH_LONG).show();
-                                        dialog.cancel();
-                                    }
-                                });
-                        AlertDialog dialog = aBuilder.create();
-                        dialog.show();
-                    }
-                });
+                    ImageButton btnAddPlan = (ImageButton) view.findViewById(R.id.imgBtnAddPlan);
+                    btnAddPlan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getContext(), "ADD PLAN: ", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                            final View vi = View.inflate(contexto, R.layout.reg_plan, null);
+                            aBuilder.setTitle("Nuevo Plan de Tratamiento");
+                            aBuilder.setView(vi);
+                            aBuilder.setMessage("Click yes to exit!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            id_paciente = idPaciente.getText().toString();
+                                            setParametros(position);
+                                            vista = new VistaRegPlanTratamiento();
+                                            String Titulo_Bar = "Nuevo Plan" + id_Paciente;
+                                            ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                                            cambiarVista(vista, Titulo_Bar);
+                                        }
+                                    })
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Toast.makeText(getContext(), "NO: ", Toast.LENGTH_LONG).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog dialog = aBuilder.create();
+                            dialog.show();
+                        }
+                    });
 
-                setParametros(position);
+                    setParametros(position);
 
-                RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
-                TratamientoService servicio = restadpter.create(TratamientoService.class);
+                    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+                    TratamientoService servicio = restadpter.create(TratamientoService.class);
 
-                servicio.getPlanes(id_Paciente, new Callback<List<Plan>>() {
-                    @Override
-                    public void success(List<Plan> planes, Response response) {
-                        ListView lvresult = (ListView)vi.findViewById(R.id.lvPlanes);
-                        AdapterPlan listAdapter = new AdapterPlan(getContext(), planes);
-                        lvresult.setAdapter(listAdapter);
-                    }
+                    servicio.getPlanes(id_Paciente, new Callback<List<Plan>>() {
+                        @Override
+                        public void success(List<Plan> planes, Response response) {
+                            ListView lvresult = (ListView) vi.findViewById(R.id.lvPlanes);
+                            AdapterPlan listAdapter = new AdapterPlan(getContext(), planes);
+                            lvresult.setAdapter(listAdapter);
+                        }
 
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
-            }
-        });
-        btnDiagramas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id_paciente = idPaciente.getText().toString();
-                vista = new VistaGetDiagrama(Integer.valueOf(id_paciente),5); // ============= 5 = ID Ulti.Consulta
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Log.v("ERROR", "=>" + error.getMessage());
+                        }
+                    });
+                }
+            });
+            btnDiagramas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    vista = new VistaGetDiagrama(Integer.valueOf(id_paciente), 5); // ============= 5 = ID Ulti.Consulta
 //                setParametros(position);
-                String Titulo_Bar = "Ulti. Odontodiagrama "+id_paciente;
-                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
-                cambiarVista(vista,Titulo_Bar);
-            }
-        });
-        btnExamen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id_paciente = idPaciente.getText().toString();
-                vista = new VistaRegDiagrama();
-                setParametros(position);
-                String Titulo_Bar = "Odontodiagramas";
-                ((MainActivity)getContext()).setVistaActual(Titulo_Bar);
-                cambiarVista(vista,Titulo_Bar);
-            }
-        });
+                    String Titulo_Bar = "Ulti. Odontodiagrama " + id_paciente;
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
+            btnExamen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    vista = new VistaRegDiagrama();
+                    setParametros(position);
+                    String Titulo_Bar = "Odontodiagramas";
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
 
 
+            int id = pacientes.get(position).getId_paciente();
+            String idP = Integer.toString(id);
+            idPaciente.setText(idP);
 
-        int id = pacientes.get(position).getId_paciente();
-        String idP = Integer.toString(id);
-        idPaciente.setText(idP);
+            nombrePaciente.setText(pacientes.get(position).getNombre());
 
-        nombrePaciente.setText(pacientes.get(position).getNombre());
+            int edad = pacientes.get(position).getEdad();
+            String edadP = Integer.toString(edad);
+            edadPaciente.setText(edadP);
 
-        int edad = pacientes.get(position).getEdad();
-        String edadP = Integer.toString(edad);
-        edadPaciente.setText(edadP);
-
-        telPaciente.setText(pacientes.get(position).getTelefono());
-
+            telPaciente.setText(pacientes.get(position).getTelefono());
+        }else{ customView.setVisibility(View.INVISIBLE);}
         return customView;
 
     }
