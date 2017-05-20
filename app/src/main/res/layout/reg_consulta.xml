@@ -150,7 +150,7 @@
             android:layout_weight="4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/common_action_bar_splitter"
+
             android:gravity="center">
 
             <TextView
