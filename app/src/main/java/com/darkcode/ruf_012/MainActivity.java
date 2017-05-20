@@ -512,6 +512,10 @@ public class MainActivity extends AppCompatActivity
             vistaActual = "pagos";
             vista = new  VistaRegPagos();
             trans= true;
+<<<<<<< HEAD
+
+=======
+>>>>>>> parent of c24b59c... prueba del fragmento
         } else if (id == R.id.nav_share) {
 //            vista = new VistaGetDiagrama();
 //            trans= true;
