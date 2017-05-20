@@ -64,7 +64,7 @@ public class p2ListView extends Fragment {
         RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
         PagoService servicio = restadpter.create(PagoService.class);
         //PRUEBA
-        servicio.getPagos(2, new Callback<List<ConsultaPendiente>>() {
+        servicio.getPagos(1, new Callback<List<ConsultaPendiente>>() {
             @Override
             public void success(List<ConsultaPendiente> pagos, Response response) {
                 myItemsListAdapter1 = new AdapterConPendientes(getContext(), pagos);
