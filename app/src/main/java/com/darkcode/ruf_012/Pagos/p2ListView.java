@@ -29,7 +29,7 @@ public class p2ListView extends Fragment {
     ListView listView1, listView2;
 
     AdapterConPendientes myItemsListAdapter1;
-    AdapterConPendientes myItemsListAdapter2;
+   AdapterRegPago myItemsListAdapter2;
 
     public p2ListView() {
     }
@@ -49,7 +49,7 @@ public class p2ListView extends Fragment {
         ((MainActivity)getContext()).setMyList2(listView2);
 
         initItems();
-        myItemsListAdapter2 = new AdapterConPendientes(getContext(),((MainActivity)getContext()).getaPago());
+        myItemsListAdapter2 = new AdapterRegPago(getContext(),((MainActivity)getContext()).getaPago());
 
         ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
         ((MainActivity)getContext()).getMyList2().setAdapter(myItemsListAdapter2);

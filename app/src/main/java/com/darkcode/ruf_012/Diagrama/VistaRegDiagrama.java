@@ -11,10 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.darkcode.ruf_012.Diagrama.Diente;
-import com.darkcode.ruf_012.Diagrama.DienteService;
-import com.darkcode.ruf_012.MainActivity;
-
 import java.util.ArrayList;
 
 import retrofit.Callback;
@@ -403,4 +399,5 @@ public class VistaRegDiagrama extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
 }
