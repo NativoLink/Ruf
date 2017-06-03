@@ -49,6 +49,7 @@ public class p2ListView extends Fragment {
         ((MainActivity)getContext()).setMyList2(listView2);
 
         initItems();
+
         myItemsListAdapter2 = new AdapterRegPago(getContext(),((MainActivity)getContext()).getaPago());
 
         ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
