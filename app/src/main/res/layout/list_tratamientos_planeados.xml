@@ -14,12 +14,12 @@
         android:layout_weight="1"
         android:background="#F2F2F2">
 
-        <CheckBox
-            android:text="CheckBox"
-            android:layout_weight="1"
+        <TextView
+            android:id="@+id/tvNombreTratamiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cbTrat" />
+            android:layout_weight="1"
+            android:text="Nombre Trat" />
 
         <EditText
             android:layout_width="match_parent"

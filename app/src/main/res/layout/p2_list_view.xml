@@ -14,7 +14,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#B2E4FB">
+            android:background="#B2E4FB"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
 
             <TextView
@@ -22,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="16dp"
                 android:text="Paciente"
                 tools:ignore="HardcodedText" />
 
@@ -42,6 +45,7 @@
                 android:layout_weight="1"
                 android:background="#3caee2"
                 android:text="Buscar"
+                android:textColor="#FFFFFF"
                 tools:ignore="HardcodedText" />
 
 
@@ -50,27 +54,36 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFF">
+            android:background="#FFF"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="17dp"
                 android:layout_height="54dp"
                 android:layout_weight=".3"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:paddingLeft="16dp"
                 android:text="Monto a Pagar"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textIsSelectable="false"
+                android:textSize="24sp"
                 tools:ignore="HardcodedText" />
 
             <EditText
-                android:id="@+id/MONTO"
+                android:id="@+id/tvMonto"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
                 android:background="@drawable/borde"
+                android:hint="$"
                 android:inputType=""
-                android:text="monto"
+                android:paddingLeft="16dp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 tools:ignore="HardcodedText"
@@ -80,7 +93,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#02A8F3">
+            android:background="#02A8F3"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView4"
@@ -88,6 +103,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="#Consulta"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -98,6 +115,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Detalle"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -108,6 +127,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Fecha"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -118,6 +139,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Monto"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -128,17 +151,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Pendiente"
-                android:textColor="#FFF"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Estado"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
 
@@ -148,6 +163,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Saldar"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -158,6 +175,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="Abonar"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -167,7 +186,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <ListView
                 android:id="@+id/lvConPendientes"
@@ -182,36 +203,225 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
                 android:gravity="bottom|end"
+                android:paddingTop="16dp"
                 tools:ignore="ExtraText">
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_weight="1"
-
-                    android:text="Anular"
-                    tools:ignore="ButtonStyle,HardcodedText,ObsoleteLayoutParam" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#3caee2"
-                    android:text="Modificar"
-                    tools:ignore="ButtonStyle,HardcodedText" />
+                    android:orientation="vertical">
 
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+
+                        <TextView
+                            android:id="@+id/textView23"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+                    </TableRow>
+                </LinearLayout>
             </TableRow>
 
         </LinearLayout>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lvConAPagar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1.3"
+        android:background="#f2f2f2"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="bottom|end"
+            android:paddingTop="16dp"
+            tools:ignore="ExtraText">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </TableRow>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3.4"
+            android:background="#02A8F3" >
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:text="#Consulta"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:text="Pago"
+                android:textColor="#FFF" />
+        </TableRow>
+
+        <ListView
+            android:id="@+id/lvConAPagar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="2"
+            android:background="#FFFFFF" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="bottom|end"
+            android:paddingTop="16dp"
+            tools:ignore="ExtraText">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/textView25"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/borde"
+                        android:gravity="top"
+                        android:hint="Nota"
+                        android:inputType="textMultiLine|textLongMessage"
+                        android:padding="4dp" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+                    </TableRow>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </TableRow>
+            </LinearLayout>
+        </TableRow>
+
+    </LinearLayout>
 </LinearLayout>

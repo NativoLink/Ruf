@@ -12,15 +12,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
 import com.darkcode.ruf_012.R;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta.checkItem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -32,21 +35,31 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
     private Context contexto;
     private List<Tratamiento> tratamientos;
+    List<Tratamiento> tagsUse;
     private boolean existe;
 
-    private ArrayList<checkItem> ite = new ArrayList<checkItem>();
-    private  int cantt = 0;
-    private  int monto = 0;
 
-    public ArrayList<checkItem> getIte() {
-        return ite;
-    }
 
 
     public AdapterTratamientos(Context context, List<Tratamiento> tratamients) {
-        super(context, R.layout.list_tratamientos_planeados, tratamients);
+        super(context, R.layout.list_tratamientos, tratamients);
         contexto=context;
         tratamientos = tratamients;
+    }
+
+    @Override
+    public int getCount() {
+        return tratamientos.size();
+    }
+
+    @Override
+    public Tratamiento getItem(int position) {
+        return tratamientos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -57,146 +70,42 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
             if (convertView == null) {
                 holder = new ViewHolder();
                 LayoutInflater inflater = LayoutInflater.from(contexto);
-                convertView = inflater.inflate(R.layout.list_tratamientos_planeados, parent, false);
-                holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidadAP);
-                holder.etCosto = (EditText) convertView.findViewById(R.id.etMonto);
-                holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbTrat);
+                convertView = inflater.inflate(R.layout.list_tratamientos, parent, false);
+                holder.tvNombreTratamiento = (TextView) convertView.findViewById(R.id.tvNombreTratamiento);
+                holder.imgBtnAdd = (ImageButton)convertView.findViewById(R.id.imgBtnAdd);
+
 
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
+        holder.imgBtnAdd.setTag(position);
+        holder.tvNombreTratamiento.setText( tratamientos.get(position).getNombre());
+        holder.imgBtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+//                    int tag = (Integer)v.getTag();
+                Tratamiento tag = tratamientos.get(position);
+
+                tagsUse = ((MainActivity) getContext()).getaTras();
+                if (estaEnArray(tag, tagsUse)) {
+                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                } else {
+                    ((MainActivity) getContext()).AddTras(tratamientos.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                    ((MainActivity) getContext()).getMyAdapter22().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         final checkItem ckItem = new checkItem(position);
         holder.ref = position;
-        holder.cbMarcado.setText(tratamientos.get(position).getNombre());
-        holder.etCantidad.addTextChangedListener(new TextWatcher() {
 
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                if (!s.toString().equals("")) {
 
-                    cantt = Integer.valueOf(s.toString());
 
-                }
 
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-                    cantt = Integer.valueOf(s.toString());
-                    ckItem.setChecado(true);
-                    ckItem.setCantidad(cantt);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-                }else{
-                    cantt = Integer.valueOf(1);
-                    ckItem.setChecado(true);
-                    ckItem.setCantidad(cantt);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-                }
-            }
-        });
-
-            holder.etCosto.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                if (!s.toString().equals("")) {
-
-                    monto = Integer.valueOf(s.toString());
-
-                }
-
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-                    monto = Integer.valueOf(s.toString());
-                    ckItem.setChecado(true);
-                    ckItem.setCosto(monto);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-                }else{
-                    monto = Integer.valueOf(1);
-                    ckItem.setChecado(true);
-                    ckItem.setCosto(monto);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-                }
-            }
-        });
-
-        holder.cbMarcado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            //position, tratamientos.get(position).getId_tratamiento(), cantt, tratamientos.get(position).getId_p_tratamiento(
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (holder.etCantidad.getText().toString().equals(" ") ||
-                        holder.etCantidad.getText().toString().equals("") ||
-                        holder.etCantidad.getText().toString().matches("") ||
-                        holder.etCantidad.getText().toString() == "" ||
-                        holder.etCantidad.getText().toString() == null ||
-                        holder.etCantidad.getText().toString() == " " ||
-                        holder.etCantidad.getText().toString() == "0") {
-
-                        holder.etCantidad.setText("1");
-                        cantt = Integer.valueOf(holder.etCantidad.getText().toString());
-
-                    } else {
-                        cantt = Integer.valueOf(holder.etCantidad.getText().toString());
-                    }
-                    ckItem.setChecado(true);
-                    ckItem.setCantidad(cantt);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-
-                    existe = ite.contains(ckItem);
-                    if(existe==false) {
-                        ite.add(ckItem);
-                    }else{
-                        ite.set(position,ckItem);
-                    }
-
-                    Log.v("CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
-                    ((MainActivity) getContext()).setItemRegPlan(getIte());
-                } else {
-                    ckItem.setChecado(false);
-                    existe = ite.contains(ckItem);
-                    if(existe==false) {
-                       ite.add(ckItem);
-                    }else{
-                        int pos = ite.indexOf(ckItem);
-                        ite.set(pos,ckItem);
-                    }
-                    Log.v("NOT CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
-                    ((MainActivity) getContext()).setItemRegPlan(getIte());
-                }
-
-            }
-        });
 
 
 
@@ -205,11 +114,24 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
     }
 
+    public boolean estaEnArray(Tratamiento cp, List<Tratamiento> permitidos){
+        boolean existe = false;
+        for (Iterator<Tratamiento> i = permitidos.iterator(); i.hasNext();) {
+//               Log.v("CP","ITEM => "+item);
+            Tratamiento item = i.next();
+            if(item.id_p_tratamiento == cp.id_p_tratamiento){
+                Log.v("CP","EXITE CP => "+cp.id_p_tratamiento + " COMO ITEM => "+item.id_p_tratamiento);
+                existe = true;
+            }
+        }
+        return existe;
+
+    }
+
 
     private class ViewHolder {
-        EditText etCantidad;
-        EditText etCosto;
-        CheckBox cbMarcado;
+        TextView tvNombreTratamiento;
+        ImageButton imgBtnAdd;
         int ref;
     }
 

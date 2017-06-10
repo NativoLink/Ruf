@@ -37,7 +37,10 @@ import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
 import com.darkcode.ruf_012.Pagos.AdapterRegPago;
 import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
 import com.darkcode.ruf_012.Pagos.p2ListView;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -105,6 +108,49 @@ public class MainActivity extends AppCompatActivity
 
     // ------------ VARIABLES PARA REG-PAGOS ------| END | ---
 
+
+    // ------------ VARIABLES PARA REG-TRATAMEINTOS EN NEW PLAN
+    public AdapterTratamientos myAdapter1;
+    public AdapterTratsParaPlan myAdapter22;
+
+    public List<Tratamiento> aTras = new ArrayList<Tratamiento>();
+
+    public ListView myList11;
+    public ListView myList22;
+
+
+    public ListView getMyList22() {
+        return myList2;
+    }
+    public AdapterTratsParaPlan getMyAdapter22() {
+        return myAdapter22;
+    }
+
+    public void setMyAdapter1(AdapterTratamientos myAdapter) {
+        this.myAdapter1 = myAdapter;
+    }
+    public void setMyAdapter22(AdapterTratsParaPlan myAdapter2) {
+        this.myAdapter22 = myAdapter2;
+    }
+
+
+    public void setMyList11(ListView myList1) {
+        this.myList11 = myList1;
+    }
+    public void setMyList22(ListView myList2) {
+        this.myList22 = myList2;
+    }
+
+
+    public List<Tratamiento> getaTras() {
+        return  aTras;
+    }
+    public void AddTras(Tratamiento Tras) {
+        aTras.add(Tras);
+    }
+
+
+    // ------------ VARIABLES PARA REG-TRATAMEINTOS ------| END | ---
 
     FloatingActionButton btnUniversal;
 

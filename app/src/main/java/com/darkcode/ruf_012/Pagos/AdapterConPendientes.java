@@ -70,7 +70,7 @@ public class AdapterConPendientes extends ArrayAdapter {
             holder.fecha = (TextView) customView.findViewById(R.id.tvfecha);
             holder.monto = (TextView) customView.findViewById(R.id.tvmonto);
             holder.pendiente = (TextView) customView.findViewById(R.id.tvpendiente);
-            holder.estado = (TextView) customView.findViewById(R.id.tvestado);
+//            holder.estado = (TextView) customView.findViewById(R.id.tvestado);
 
 
             holder.btnDetalle = (Button) customView.findViewById(R.id.btndetalle);
@@ -116,7 +116,7 @@ public class AdapterConPendientes extends ArrayAdapter {
         holder.monto.setText(costoP);
         holder.pendiente.setText(pen);
         holder.idConsulta.setText(idC);
-        holder.estado.setText(pago.get(position).getEstado());
+//        holder.estado.setText(pago.get(position).getEstado());
 
         if (idps == 0) {
 //            customView.setVisibility(View.INVISIBLE);
@@ -130,7 +130,7 @@ public class AdapterConPendientes extends ArrayAdapter {
         TextView fecha;
         TextView monto;
         TextView pendiente;
-        TextView estado;
+//        TextView estado;
 
         Button btnDetalle;
         Button btnSaldar;

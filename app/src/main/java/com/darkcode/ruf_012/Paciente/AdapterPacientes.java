@@ -31,6 +31,7 @@ import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.VistaListConsultasPendientes;
 import com.darkcode.ruf_012.VistaRegConsulta;
+import com.darkcode.ruf_012.VistaRegPlanTratNew;
 import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
 import java.util.List;
@@ -169,7 +170,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                         public void onClick(DialogInterface dialog, int id) {
                                             id_paciente = idPaciente.getText().toString();
                                             setParametros(position);
-                                            vista = new VistaRegPlanTratamiento();
+                                            vista = new VistaRegPlanTratNew();
                                             String Titulo_Bar = "Nuevo Plan" + id_Paciente;
                                             ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                                             cambiarVista(vista, Titulo_Bar);
