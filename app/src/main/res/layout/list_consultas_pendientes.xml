@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:drawable/checkbox_off_background"
+            android:background="?android:attr/listChoiceIndicatorSingle"
+            android:backgroundTint="#FFFF8800"
             android:gravity="center"
             android:text="" />
 
@@ -62,23 +63,24 @@
             android:textAlignment="center"
             tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/tvestado"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="estado"
-            android:textAlignment="center"
-            tools:ignore="HardcodedText" />
+        <!--<TextView-->
+            <!--android:id="@+id/tvestado"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:text="estado"-->
+            <!--android:textAlignment="center"-->
+            <!--tools:ignore="HardcodedText" />-->
 
         <Button
+
             android:id="@+id/btnsaldar"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:drawable/checkbox_off_background"
+            android:background="?android:attr/listChoiceIndicatorSingle"
             android:backgroundTint="#fd6cd2e4"
             android:gravity="center"
             android:text=""
@@ -90,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:drawable/checkbox_off_background"
+            android:background="?android:attr/listChoiceIndicatorSingle"
             android:backgroundTint="#fd7ce46c"
             android:gravity="center"
             android:text=""

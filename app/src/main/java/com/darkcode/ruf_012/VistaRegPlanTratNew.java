@@ -1,4 +1,4 @@
-package com.darkcode.ruf_012.Pagos;
+package com.darkcode.ruf_012;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.darkcode.ruf_012.MainActivity;
-import com.darkcode.ruf_012.R;
+
+import com.darkcode.ruf_012.Pagos.AdapterRegPago;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
+import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 
 import java.util.List;
 
@@ -19,19 +23,18 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-
 /**
- * Created by NativoLink on 14/5/17.
+ * Created by NativoLink on 8/6/17.
  */
 
-public class p2ListView extends Fragment {
+public class VistaRegPlanTratNew extends Fragment {
 
     ListView listView1, listView2;
 
-    AdapterConPendientes myItemsListAdapter1;
-   AdapterRegPago myItemsListAdapter2;
+    AdapterTratamientos myItemsListAdapter1;
+    AdapterTratsParaPlan myItemsListAdapter2;
 
-    public p2ListView() {
+    public VistaRegPlanTratNew() {
     }
 
     @Nullable
@@ -42,32 +45,34 @@ public class p2ListView extends Fragment {
         listView1 = (ListView)view.findViewById(R.id.lvConPendientes);
         listView2 = (ListView)view.findViewById(R.id.lvConAPagar);
 
+        listView2.setBackgroundColor(0xFF00FF00);
+
 
         ((MainActivity)getContext()).setMyList1(listView1);
         ((MainActivity)getContext()).setMyList2(listView2);
 
         initItems();
 
-        myItemsListAdapter2 = new AdapterRegPago(getContext(),((MainActivity)getContext()).getaPago());
+        myItemsListAdapter2 = new AdapterTratsParaPlan(getContext(),((MainActivity)getContext()).getaTras());
 
-        ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
-        ((MainActivity)getContext()).getMyList2().setAdapter(myItemsListAdapter2);
-        ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
+        ((MainActivity)getContext()).setMyAdapter22(myItemsListAdapter2);
+        ((MainActivity)getContext()).getMyList22().setAdapter(myItemsListAdapter2);
+        ((MainActivity)getContext()).getMyAdapter22().notifyDataSetChanged();
 
         return view;
     }
 
     private void initItems(){
-        ((MainActivity)getContext()).aPago.clear();
+        ((MainActivity)getContext()).aTras.clear();
 
         RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
-        PagoService servicio = restadpter.create(PagoService.class);
+        TratamientoService servicio = restadpter.create(TratamientoService.class);
         //PRUEBA
-        servicio.getPagos(1, new Callback<List<ConsultaPendiente>>() {
+        servicio.getTratamientos(new Callback<List<Tratamiento>>() {
             @Override
-            public void success(List<ConsultaPendiente> pagos, Response response) {
-                myItemsListAdapter1 = new AdapterConPendientes(getContext(), pagos);
-                ((MainActivity)getContext()).setMyAdapter(myItemsListAdapter1);
+            public void success(List<Tratamiento> tratamientos, Response response) {
+                myItemsListAdapter1 = new AdapterTratamientos(getContext(), tratamientos);
+                ((MainActivity)getContext()).setMyAdapter1(myItemsListAdapter1);
                 listView1.setAdapter(myItemsListAdapter1);
             }
 
@@ -81,5 +86,3 @@ public class p2ListView extends Fragment {
 
 
 }
-
-
