@@ -9,17 +9,19 @@ import android.widget.TextView;
 
 import com.darkcode.ruf_012.R;
 
+import java.util.List;
+
 /**
  * Created by usuario on 12/05/2017.
  */
 
 
-public class AdapterRegPago extends ArrayAdapter< RegDetallePago> {
+public class AdapterRegPago extends ArrayAdapter< ConsultaPendiente> {
 
     private Context contexto;
-    //private List<RegDetallePago> pago;
+    private List<ConsultaPendiente> pago;
 
-    public AdapterRegPago(Context context) {
+    public AdapterRegPago(Context context, List<ConsultaPendiente> pagos) {
         super(context, R.layout.list_consultas_pago);
         contexto=context;
 
