@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/fondoItemPaciente"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false"
+    android:orientation="vertical"
+    android:padding="11dp">
+
+    <TableRow
+        android:layout_width="372dp"
+        android:layout_height="26dp"
+        android:layout_weight="1"
+        android:background="#F2F2F2">
+
+        <ImageButton
+            android:id="@+id/imgBtnAddPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/plus" />
+
+        <TextView
+            android:id="@+id/tvNombreTratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="Tratamientos"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+    </TableRow>
+
+    <ListView
+        android:id="@+id/lvTratamiento"
+        android:layout_width="521dp"
+        android:layout_height="471dp"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btnregistrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:background="#3caee2"
+        android:text="Registrar" />
+
+</LinearLayout>

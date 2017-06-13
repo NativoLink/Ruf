@@ -188,7 +188,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_weight="1"
-
+                android:background="#3caee2"
                 android:text="Anular"
                 tools:ignore="ButtonStyle,HardcodedText,ObsoleteLayoutParam" />
 
