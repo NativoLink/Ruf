@@ -22,6 +22,16 @@
             android:text="Nombre Trat" />
 
         <EditText
+            android:id="@+id/etCantidadAP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Cantidad"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -32,15 +42,6 @@
             android:textAlignment="center"
             android:layout_marginLeft="10dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:layout_weight="1"
-            android:id="@+id/etCantidadAP"
-            android:hint="Cantidad"
-            android:textSize="16sp"
-            android:textAlignment="center" />
     </TableRow>
 
 </LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="11dp"
+    android:focusable="false"
+    android:clickable="false"
+    android:layout_height="wrap_content"
+    style="@style/fondoItemPaciente"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#F2F2F2">
+
+        <TextView
+            android:text="Planes"
+            android:layout_weight="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNombreTratamiento"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnAddPlan"
+            android:layout_gravity="center"
+            android:background="@drawable/plus" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#02A8F3">
+
+        <TextView
+            android:id="@+id/tvnombre"
+            android:layout_width="138dp"
+            android:layout_height="match_parent"
+            android:text="Tratamiento"
+            android:textColor="#FFF"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvcantidad"
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:text="Cantidad"
+            android:textColor="#FFF"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvCosto"
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:text="Costo"
+            android:textColor="#FFF"
+            android:gravity="center"/>
+    </TableRow>
+
+    <ListView
+        android:id="@+id/lvplanTrat"
+        android:layout_width="wrap_content"
+        android:layout_height="438dp"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvtotal"
+            android:layout_width="122dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Total"
+            android:background="#02A8F3"
+            android:textColor="#FFF"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvtotalplan"
+            android:layout_width="249dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="$" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etnota"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nota" />
+
+</LinearLayout>
