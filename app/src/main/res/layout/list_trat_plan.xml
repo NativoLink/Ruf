@@ -10,8 +10,8 @@
     android:padding="11dp">
 
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="372dp"
+        android:layout_height="26dp"
         android:layout_weight="1"
         android:background="#F2F2F2">
 
@@ -37,16 +37,16 @@
 
     <ListView
         android:id="@+id/lvTratamiento"
-        android:layout_width="489dp"
-        android:layout_height="423dp"
+        android:layout_width="521dp"
+        android:layout_height="471dp"
         android:layout_weight="1">
 
     </ListView>
 
     <Button
         android:id="@+id/btnregistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="0.4"
         android:background="#3caee2"
         android:text="Registrar" />
