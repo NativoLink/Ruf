@@ -5,16 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-<<<<<<< HEAD
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.darkcode.ruf_012.MainActivity;
-=======
 import android.widget.TextView;
 
->>>>>>> a637198abaa9cd3f0a6e7d8b138bf1c46a1c023f
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -24,31 +16,23 @@ import java.util.List;
  */
 
 
-<<<<<<< HEAD
+
 public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
-=======
-public class AdapterRegPago extends ArrayAdapter< ConsultaPendiente> {
->>>>>>> a637198abaa9cd3f0a6e7d8b138bf1c46a1c023f
+
 
     private Context contexto;
     private List<ConsultaPendiente> pago;
 
-<<<<<<< HEAD
-    public AdapterRegPago(Context context, List<ConsultaPendiente> consultasPs) {
-        super(context, R.layout.list_consultas_pago,consultasPs);
-        contexto=context;
-        pago = consultasPs;
-=======
-    public AdapterRegPago(Context context, List<ConsultaPendiente> pagos) {
-        super(context, R.layout.list_consultas_pago);
-        contexto=context;
 
->>>>>>> a637198abaa9cd3f0a6e7d8b138bf1c46a1c023f
+    public AdapterRegPago(Context context, List<ConsultaPendiente> consultasPs) {
+        super(context, R.layout.list_consultas_pago, consultasPs);
+        contexto = context;
+        pago = consultasPs;
 
 
     }
+
     @Override
-<<<<<<< HEAD
     public View getView(final int position, View customView, ViewGroup parent) {
         final ViewCPagoHolder holder;
 
@@ -105,19 +89,18 @@ public class AdapterRegPago extends ArrayAdapter< ConsultaPendiente> {
 
 //        Button btnSaldar;
 
-=======
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View customView = inflater.inflate(R.layout.list_consultas_pago, parent, false);
+
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View customView = inflater.inflate(R.layout.list_consultas_pago, parent, false);
 
 
-        final TextView idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
-        TextView pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
+            final TextView idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
+            TextView pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
 
 
+            return customView;
 
-
-        return customView;
->>>>>>> a637198abaa9cd3f0a6e7d8b138bf1c46a1c023f
+        }
     }
 }
