@@ -56,6 +56,7 @@
             android:layout_weight=".3"
             android:text="Monto a Pagar"
             android:textAlignment="center"
+            android:gravity="center"
             android:textAllCaps="false"
             android:textIsSelectable="false"
             tools:ignore="HardcodedText" />
@@ -66,7 +67,7 @@
             android:layout_height="match_parent"
             android:layout_weight=".4"
             android:background="@drawable/borde"
-            android:text="monto"
+            android:text=""
             android:textAlignment="center"
             android:textAllCaps="false"
             tools:layout_height="match_parent"

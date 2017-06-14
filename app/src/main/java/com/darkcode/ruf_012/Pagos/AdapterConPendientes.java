@@ -1,23 +1,19 @@
 package com.darkcode.ruf_012.Pagos;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -101,7 +97,21 @@ public class AdapterConPendientes extends ArrayAdapter {
                 }
             }
         });
+        holder.btnAbonar.setTag(position);
+        holder.btnAbonar.setOnClickListener(new View.OnClickListener() {
 
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+               AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                final View view = View.inflate(contexto, R.layout.dialog_abono, null);
+
+                aBuilder.setCustomTitle(view);
+                AlertDialog dialog = aBuilder.create();
+                dialog.show();
+            }
+        });
 
         int id = pago.get(position).getId_consulta();
         String idC = Integer.toString(id);
