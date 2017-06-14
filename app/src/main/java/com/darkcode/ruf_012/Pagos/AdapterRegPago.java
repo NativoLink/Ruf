@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.darkcode.ruf_012.R;
@@ -22,7 +24,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
     private Context contexto;
     private List<ConsultaPendiente> pago;
-
+    private EditText monto;
 
     public AdapterRegPago(Context context, List<ConsultaPendiente> consultasPs) {
         super(context, R.layout.list_consultas_pago, consultasPs);
@@ -31,6 +33,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
 
     }
+
 
     @Override
     public View getView(final int position, View customView, ViewGroup parent) {
@@ -45,7 +48,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
             holder.idConsulta = (TextView) customView.findViewById(R.id.tvConsulta);
             holder.pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
 
-//            holder.btnSaldar = (Button) customView.findViewById(R.id.btnabonar);
+            holder.btnSaldar = (Button) customView.findViewById(R.id.btnabonar);
 
             customView.setTag(holder);
         } else {
@@ -63,6 +66,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
 //            }
 //        });
+
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         //    EL MONTO A PAGAR O ABONAR DEBE SER ADD EN LA COMPROBACION DEL BOTTON ADD DE LA LISTA 1
@@ -83,11 +87,12 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
     }
 
+
     class ViewCPagoHolder {
         TextView idConsulta;
         TextView pago_abono;
 
-//        Button btnSaldar;
+        Button btnSaldar;
 
 
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -103,4 +108,18 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
         }
     }
+
+    boolean ComprobacionSaldar(int monto, int p){
+        boolean estado;
+        if (monto<=p){
+            estado= true;
+
+        }
+        else {
+            estado= false;
+        }
+
+        return estado;
+    }
+
 }

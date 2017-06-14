@@ -107,7 +107,14 @@ public class MainActivity extends AppCompatActivity
 
 
     // ------------ VARIABLES PARA REG-PAGOS ------| END | ---
+    // ------------ VARIABLES PARA PAGOS
+    int monto_temp;
+    int pago_temp;
+    int monto;
+    int pago;
 
+
+    // ------------ VARIABLES PARA PAGOS ------| END | ---
 
     // ------------ VARIABLES PARA REG-TRATAMEINTOS EN NEW PLAN
     public AdapterTratamientos myAdapter1;
