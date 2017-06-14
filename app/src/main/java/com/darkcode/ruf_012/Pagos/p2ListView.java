@@ -3,9 +3,12 @@ package com.darkcode.ruf_012.Pagos;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -53,6 +56,39 @@ public class p2ListView extends Fragment {
         ((MainActivity)getContext()).setMyAdapter2(myItemsListAdapter2);
         ((MainActivity)getContext()).getMyList2().setAdapter(myItemsListAdapter2);
         ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
+
+
+        EditText cliente_paga = (EditText)view.findViewById(R.id.etMontoP);
+
+        cliente_paga.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
+//                    int monto = Integer.valueOf(s.toString());
+//                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
+//                    Toast.makeText(getContext(),"BEFORE", Toast.LENGTH_LONG).show();
+//                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
+                    int monto = Integer.valueOf(s.toString());
+                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
+//                    Toast.makeText(getContext(),"CHANGE", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
+//                    int monto = Integer.valueOf(s.toString());
+//                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
+//                    Toast.makeText(getContext(),"AFTER", Toast.LENGTH_LONG).show();
+//                }
+
+            }
+        });
 
         return view;
     }

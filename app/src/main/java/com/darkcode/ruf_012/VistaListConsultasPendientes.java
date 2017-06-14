@@ -3,10 +3,14 @@ package com.darkcode.ruf_012;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
@@ -37,6 +41,9 @@ public class VistaListConsultasPendientes extends Fragment{
         final ListView lvresult = (ListView)view.findViewById(R.id.lvConPendientes);
         RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         PagoService servicio = restadpter.create(PagoService.class);
+        String deuda_total = Integer.toString(((MainActivity) getContext()).getTvdetotal());
+        TextView tvdetotal = (TextView)view.findViewById(R.id.tvdetotal);
+
         //PRUEBA
         servicio.getPagos(2, new Callback<List<ConsultaPendiente>>() {
             @Override

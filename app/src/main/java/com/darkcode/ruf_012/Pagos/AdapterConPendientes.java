@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -30,6 +33,14 @@ public class AdapterConPendientes extends ArrayAdapter {
     private Context contexto;
     private List<ConsultaPendiente> pago;
     List<ConsultaPendiente> tagsUse;
+    int  Monto_u = 0 ;
+
+
+    int monto_restante;
+    int deudaTotal = 0;
+    int saldado = 0;
+
+    boolean monto_valido = false;
 
 
     public AdapterConPendientes(Context context, List<ConsultaPendiente> pagos) {
@@ -84,6 +95,13 @@ public class AdapterConPendientes extends ArrayAdapter {
 
         holder.btnSaldar.setTag(position);
 
+
+
+
+//        Monto_u  =  Integer.parseInt(holder.monto.getText().toString());
+//        ((MainActivity) getContext()).setMonto_a_pagar(monto_a_pagar);
+
+        final View finalCustomView = customView;
         holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,14 +109,48 @@ public class AdapterConPendientes extends ArrayAdapter {
 //                    int tag = (Integer)v.getTag();
                 ConsultaPendiente tag = pago.get(position);
 
+
+
+
+
+
                 tagsUse = ((MainActivity) getContext()).getaPago();
                 if (estaEnArray(tag, tagsUse)) {
                     Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
                 } else {
-                    ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                    ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
+
+//                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
+
+
+                    if(monto_valido == false) {
+                        monto_valido = true;
+                        Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+                        monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
+                        if(updateDispoSaldar(position)) {
+                            ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                            ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                            Toast.makeText(getContext(), "Monto disponible = "+monto_restante, Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        if(updateDispoSaldar(position)) {
+                            ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                            ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                        }
+                    }
+
+
+                    if(monto_restante >= pago.get(position).getCosto()){
+//                        Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
+
+                    }else{
+//                        Toast.makeText(getContext(), "Monto insufuciente", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
                 }
+
+//                Toast.makeText(getContext(), "Pago "+ pago.get(position).getPendiente(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -121,6 +173,11 @@ public class AdapterConPendientes extends ArrayAdapter {
         if (idps == 0) {
 //            customView.setVisibility(View.INVISIBLE);
         }
+
+        deudaTotal = deudaTotal + pendienteP;
+        ((MainActivity) getContext()).setTvdetotal(deudaTotal);
+//        saldado = deudaTotal
+
         return customView;
 
     }
@@ -136,6 +193,23 @@ public class AdapterConPendientes extends ArrayAdapter {
         Button btnSaldar;
         Button btnAbonar;
     }
+
+
+    public boolean updateDispoSaldar(int position){
+        boolean resta = false;
+        if(monto_restante >= pago.get(position).getCosto()){
+            Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
+            monto_restante = monto_restante - pago.get(position).getCosto();
+            resta = true;
+        }else{
+            resta = false;
+            Toast.makeText(getContext(), "Monto insufuciente", Toast.LENGTH_SHORT).show();
+        }
+        return resta;
+    }
+
+
+
 
 
     public List<ConsultaPendiente> getList(){

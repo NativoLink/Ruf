@@ -76,7 +76,7 @@
                 tools:ignore="HardcodedText" />
 
             <EditText
-                android:id="@+id/tvMonto"
+                android:id="@+id/etMontoP"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"

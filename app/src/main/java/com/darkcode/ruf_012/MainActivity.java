@@ -107,11 +107,38 @@ public class MainActivity extends AppCompatActivity
 
 
     // ------------ VARIABLES PARA REG-PAGOS ------| END | ---
+
+
+
     // ------------ VARIABLES PARA PAGOS
-    int monto_temp;
-    int pago_temp;
-    int monto;
-    int pago;
+
+    int monto_a_pagar;
+
+    public int  getMonto_a_pagar() {
+        return monto_a_pagar;
+    }
+    public void setMonto_a_pagar(int monto_a_pagar) {
+        this.monto_a_pagar = monto_a_pagar;
+    }
+
+
+    int tvdetotal;
+    int tvdesaldada;
+
+    public int getTvdetotal() {
+        return tvdetotal;
+    }
+    public void setTvdetotal(int tvdetotal) {
+        this.tvdetotal = tvdetotal;
+    }
+    public int getTvdesaldada() {
+        return tvdesaldada;
+    }
+    public void setTvdesaldada(int tvdesaldada) {
+        this.tvdesaldada = tvdesaldada;
+    }
+
+
 
 
     // ------------ VARIABLES PARA PAGOS ------| END | ---
