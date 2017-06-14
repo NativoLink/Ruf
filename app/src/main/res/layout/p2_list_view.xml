@@ -219,14 +219,26 @@
 
                         <TextView
                             android:id="@+id/textView14"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:background="#FFE2DEDE"
+                            android:text="Deuda Total"
+                            android:textColor="#191818"
+
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvdetotal"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#fdf0f8f3"
+                            android:text="" />
 
                         <TextView
                             android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="TextView" />
@@ -242,10 +254,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:background="#e2dede"
+                            android:text="Deuda Saldada"
+                            android:textColor="#252424"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView23"
+                            android:id="@+id/tvdesaldada"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#fdf0f8f3"
+                            android:text="" />
+
+                        <TextView
+                            android:id="@+id/textView15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -257,20 +281,29 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.3"
-        android:background="#f2f2f2"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false"
         android:orientation="vertical">
 
-        <TableRow
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="bottom|end"
-            android:paddingTop="16dp"
-            tools:ignore="ExtraText">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="UselessLeaf">
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,150 +311,123 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="#02A8F3"
+                    android:text="No.Recibo"
+                    android:textColor="#ffffff"
+                    tools:ignore="HardcodedText,NestedWeights" />
 
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </TableRow>
+                <TextView
+                    android:id="@+id/tvnoregistro"
+                    android:layout_width="94dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="no"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
-        </TableRow>
+
+        </LinearLayout>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3.4"
-            android:background="#02A8F3" >
+            android:layout_height="20dp"
+            android:layout_weight="4"
+            android:background="#02A8F3">
 
             <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="286dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingLeft="8dp"
                 android:text="#Consulta"
-                android:textColor="#FFF" />
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/textView95"
+                android:layout_width="313dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingLeft="8dp"
-                android:text="Pago"
-                android:textColor="#FFF" />
+                android:text="Pago y/o Abono"
+                android:textColor="#FFF"
+                tools:ignore="HardcodedText" />
+
         </TableRow>
 
         <ListView
             android:id="@+id/lvConAPagar"
+            android:layout_width="1384dp"
+            android:layout_height="533dp"
+            android:layout_weight="300">
+
+        </ListView>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="2"
-            android:background="#FFFFFF" />
+            android:layout_weight=".5"
+            android:orientation="vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="bottom|end"
-            android:paddingTop="16dp"
-            tools:ignore="ExtraText">
-
-            <LinearLayout
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/tvnota"
+                    android:layout_width="339dp"
+                    android:layout_height="87dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:inputType=""
+                    android:text="Nota"
+                    tools:ignore="HardcodedText" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#02A8F3"
+                        android:text="Total"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvtotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="37dp"
+                        android:text="TextView"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp">
+                android:gravity="right">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/btnregistrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center|end"
+                    android:text="Registrar" />
+            </TableRow>
 
-                    <EditText
-                        android:id="@+id/textView25"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/borde"
-                        android:gravity="top"
-                        android:hint="Nota"
-                        android:inputType="textMultiLine|textLongMessage"
-                        android:padding="4dp" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/textView26"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="TextView" />
-                    </TableRow>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </TableRow>
-            </LinearLayout>
-        </TableRow>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
