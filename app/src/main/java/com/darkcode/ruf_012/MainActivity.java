@@ -65,7 +65,9 @@ public class MainActivity extends AppCompatActivity
     Object vistaA;
     int TotalRegConsulta = 0;
 
-    // ------------ VARIABLES PARA REG-PAGOS
+//      ===============================================
+//      |       VARIABLES PARA MANEJAR LISTAS         |
+//      ===============================================
     public AdapterConPendientes myAdapter;
     public AdapterRegPago myAdapter2;
     public List<ConsultaPendiente> aPago = new ArrayList<ConsultaPendiente>();
@@ -101,16 +103,19 @@ public class MainActivity extends AppCompatActivity
     public void AddPago(ConsultaPendiente Pago) {
         aPago.add(Pago);
     }
+    public void RemovePago(ConsultaPendiente Pago) {
+        aPago.remove(Pago);
+    }
     public List<ConsultaPendiente> getaPago() {
         return aPago;
     }
 
 
-    // ------------ VARIABLES PARA REG-PAGOS ------| END | ---
 
 
-
-    // ------------ VARIABLES PARA PAGOS
+//      ===============================================
+//      |           VARIABLES PARA PAGOS              |
+//      ===============================================
 
     int monto_a_pagar;
 
@@ -141,9 +146,10 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    // ------------ VARIABLES PARA PAGOS ------| END | ---
+//      ===============================================
+//      | VARIABLES PARA REG-TRATAMEINTOS EN NEW PLAN |
+//      ===============================================
 
-    // ------------ VARIABLES PARA REG-TRATAMEINTOS EN NEW PLAN
     public AdapterTratamientos myAdapter1;
     public AdapterTratsParaPlan myAdapter22;
 

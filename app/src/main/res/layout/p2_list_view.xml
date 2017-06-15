@@ -82,7 +82,7 @@
                 android:layout_weight=".4"
                 android:background="@drawable/borde"
                 android:hint="$"
-                android:inputType=""
+                android:inputType="number"
                 android:paddingLeft="16dp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -92,7 +92,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:background="#02A8F3"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -103,8 +103,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="#Consulta"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -115,8 +117,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Detalle"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -127,8 +131,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Fecha"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -139,8 +145,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Monto"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -151,8 +159,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Pendiente"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -163,8 +173,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Saldar"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -175,8 +187,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text="Abonar"
                 android:textColor="#FFF"
                 tools:ignore="HardcodedText" />
@@ -201,9 +215,8 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9"
+                android:layout_weight="0.5"
                 android:gravity="bottom|end"
-                android:paddingTop="16dp"
                 tools:ignore="ExtraText">
 
                 <LinearLayout
@@ -220,28 +233,31 @@
                         <TextView
                             android:id="@+id/textView14"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#FFE2DEDE"
+                            android:gravity="center"
                             android:text="Deuda Total"
-                            android:textColor="#191818"
 
+                            android:textColor="#191818"
                             android:textSize="18dp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvdetotal"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#fdf0f8f3"
+                            android:gravity="center"
                             android:text="" />
 
                         <TextView
                             android:id="@+id/textView13"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:gravity="center"
+                            android:text="" />
                     </TableRow>
 
                     <TableRow
@@ -252,9 +268,10 @@
                         <TextView
                             android:id="@+id/textView22"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#e2dede"
+                            android:gravity="center"
                             android:text="Deuda Saldada"
                             android:textColor="#252424"
                             android:textSize="18dp"
@@ -263,17 +280,19 @@
                         <TextView
                             android:id="@+id/tvdesaldada"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#fdf0f8f3"
+                            android:gravity="center"
                             android:text="" />
 
                         <TextView
                             android:id="@+id/textView15"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:gravity="center"
+                            android:text="" />
                     </TableRow>
                 </LinearLayout>
             </TableRow>
@@ -283,23 +302,27 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:background="@color/common_action_bar_splitter"
         android:baselineAligned="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="0.1"
             android:orientation="horizontal"
             tools:ignore="DisableBaselineAlignment">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:ignore="UselessLeaf">
 
@@ -307,26 +330,36 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="96dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="#02A8F3"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
                     android:text="No.Recibo"
                     android:textColor="#ffffff"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     tools:ignore="HardcodedText,NestedWeights" />
 
                 <TextView
                     android:id="@+id/tvnoregistro"
-                    android:layout_width="94dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="no"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
 
@@ -334,61 +367,79 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="4"
-            android:background="#02A8F3">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="#02A8F3"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="286dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
                 android:text="#Consulta"
                 android:textColor="#FFF"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/textView95"
-                android:layout_width="313dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
                 android:text="Pago y/o Abono"
                 android:textColor="#FFF"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
         </TableRow>
 
-        <ListView
-            android:id="@+id/lvConAPagar"
-            android:layout_width="1384dp"
-            android:layout_height="533dp"
-            android:layout_weight="300">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
 
-        </ListView>
+            <ListView
+                android:id="@+id/lvConAPagar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:background="#FFF">
+
+            </ListView>
+        </TableRow>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.01"
             android:orientation="vertical">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
 
                 <EditText
                     android:id="@+id/tvnota"
-                    android:layout_width="339dp"
-                    android:layout_height="87dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:background="@drawable/borde"
                     android:inputType=""
                     android:text="Nota"
                     tools:ignore="HardcodedText" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -396,18 +447,29 @@
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:background="#02A8F3"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
                         android:text="Total"
-                        android:textSize="18sp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
                         tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/tvtotal"
                         android:layout_width="match_parent"
-                        android:layout_height="37dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
                         android:text="TextView"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         tools:ignore="HardcodedText" />
 
                 </LinearLayout>
@@ -415,15 +477,16 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="101dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right">
 
                 <Button
                     android:id="@+id/btnregistrar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="top|center|end"
+                    android:paddingLeft="32dp"
                     android:text="Registrar" />
             </TableRow>
 

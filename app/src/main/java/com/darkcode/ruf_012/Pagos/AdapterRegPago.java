@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -48,7 +50,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
             holder.idConsulta = (TextView) customView.findViewById(R.id.tvConsulta);
             holder.pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
 
-            holder.btnSaldar = (Button) customView.findViewById(R.id.btnabonar);
+            holder.btnRemove = (ImageButton) customView.findViewById(R.id.imgBtnRemove);
 
             customView.setTag(holder);
         } else {
@@ -58,14 +60,15 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         //                  SE DEBE HABILITAR EL BOTON DE REMOVER
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//        holder.btnSaldar.setTag(position);
+        holder.btnRemove.setTag(position);
 
-//        holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-
-//            }
-//        });
+        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getContext()).RemovePago(pago.get(position));
+                ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged();
+            }
+        });
 
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -92,7 +95,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
         TextView idConsulta;
         TextView pago_abono;
 
-        Button btnSaldar;
+        ImageButton btnRemove;
 
 
         public View getView(final int position, View convertView, ViewGroup parent) {

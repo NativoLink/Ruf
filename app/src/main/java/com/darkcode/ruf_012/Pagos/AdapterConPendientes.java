@@ -189,7 +189,7 @@ public class AdapterConPendientes extends ArrayAdapter {
 
 
     public boolean updateDispoSaldar(int position){
-        boolean resta = false;
+        boolean resta;
         if(monto_restante >= pago.get(position).getCosto()){
             Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
             monto_restante = monto_restante - pago.get(position).getCosto();

@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
         tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/tvConsulta"
-            android:layout_width="179dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="consulta"
+            android:textSize="22dp"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tvPago_o_abono"
-            android:layout_width="226dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="pago o abono"
+            android:textSize="22dp"
             tools:ignore="HardcodedText" />
+
+        <ImageButton
+            android:id="@+id/imgBtnRemove"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/remove" />
     </TableRow>
 </LinearLayout>
