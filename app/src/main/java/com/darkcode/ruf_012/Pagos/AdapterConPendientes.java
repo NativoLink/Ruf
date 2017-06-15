@@ -1,6 +1,7 @@
 package com.darkcode.ruf_012.Pagos;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -153,6 +154,23 @@ public class AdapterConPendientes extends ArrayAdapter {
 //                Toast.makeText(getContext(), "Pago "+ pago.get(position).getPendiente(), Toast.LENGTH_LONG).show();
             }
         });
+
+        holder.btnAbonar.setTag(position);
+        holder.btnAbonar.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                final View view = View.inflate(contexto, R.layout.dialog_abono, null);
+
+                aBuilder.setCustomTitle(view);
+                AlertDialog dialog = aBuilder.create();
+                dialog.show();
+            }
+        });
+
 
 
         int id = pago.get(position).getId_consulta();

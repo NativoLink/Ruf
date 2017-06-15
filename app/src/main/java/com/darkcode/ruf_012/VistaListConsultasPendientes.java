@@ -44,6 +44,7 @@ public class VistaListConsultasPendientes extends Fragment{
         String deuda_total = Integer.toString(((MainActivity) getContext()).getTvdetotal());
         TextView tvdetotal = (TextView)view.findViewById(R.id.tvdetotal);
 
+
         //PRUEBA
         servicio.getPagos(2, new Callback<List<ConsultaPendiente>>() {
             @Override
