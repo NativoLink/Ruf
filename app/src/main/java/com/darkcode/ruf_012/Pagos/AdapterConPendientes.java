@@ -1,6 +1,7 @@
 package com.darkcode.ruf_012.Pagos;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -98,60 +99,34 @@ public class AdapterConPendientes extends ArrayAdapter {
 
 
 
-
-//        Monto_u  =  Integer.parseInt(holder.monto.getText().toString());
-//        ((MainActivity) getContext()).setMonto_a_pagar(monto_a_pagar);
-
-        final View finalCustomView = customView;
         holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-//                    int tag = (Integer)v.getTag();
-                ConsultaPendiente tag = pago.get(position);
 
+                final ConsultaPendiente tag = pago.get(position);
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Desea saldar la consulta con ID("+pago.get(position).getId_consulta()+") ?")
+                        .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                tagsUse = ((MainActivity) getContext()).getaPago();
+                                if (estaEnArray(tag, tagsUse)) {
+                                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                                } else {
+                                    ProcesarSaldar(position);
+                                }
+                            }
+                        })
+                        .setTitle("Confirmar Pago")
+                        .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                // Create the AlertDialog object and return it
 
-
-
-
-                tagsUse = ((MainActivity) getContext()).getaPago();
-                if (estaEnArray(tag, tagsUse)) {
-                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
-                } else {
-
-//                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
-
-
-                    if(monto_valido == false) {
-                        monto_valido = true;
-                        Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-                        monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
-                        if(updateDispoSaldar(position)) {
-                            ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                            ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                            Toast.makeText(getContext(), "Monto disponible = "+monto_restante, Toast.LENGTH_LONG).show();
-                        }
-                    }else{
-                        if(updateDispoSaldar(position)) {
-                            ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                            ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                        }
-                    }
-
-
-                    if(monto_restante >= pago.get(position).getCosto()){
-//                        Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
-
-                    }else{
-//                        Toast.makeText(getContext(), "Monto insufuciente", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                }
-
-//                Toast.makeText(getContext(), "Pago "+ pago.get(position).getPendiente(), Toast.LENGTH_LONG).show();
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -224,6 +199,25 @@ public class AdapterConPendientes extends ArrayAdapter {
             Toast.makeText(getContext(), "Monto insufuciente", Toast.LENGTH_SHORT).show();
         }
         return resta;
+    }
+
+
+    public void ProcesarSaldar(int position){
+        if(monto_valido == false) {
+            monto_valido = true;
+            Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
+            if(updateDispoSaldar(position)) {
+                ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                Toast.makeText(getContext(), "Monto disponible = "+monto_restante, Toast.LENGTH_LONG).show();
+            }
+        }else{
+            if(updateDispoSaldar(position)) {
+                ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+                ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+            }
+        }
     }
 
 
