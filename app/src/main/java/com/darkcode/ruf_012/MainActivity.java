@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        android.support.v4.app.Fragment vista = new VistaPrincipal();
+        Fragment vista = new VistaPrincipal();
         Bundle bundle = new Bundle();
         bundle.putString("address", address);
         FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
