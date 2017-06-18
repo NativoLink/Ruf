@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.Diagrama.DienteService;
+import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
@@ -125,6 +126,12 @@ public class MainActivity extends AppCompatActivity
     public void setMonto_a_pagar(int monto_a_pagar) {
         this.monto_a_pagar = monto_a_pagar;
     }
+    public void MotoPagarSuma(int montoRetornado){
+        monto_a_pagar = monto_a_pagar + montoRetornado;
+    }
+    public void MotoPagarResta(int montoRetornado){
+        monto_a_pagar = monto_a_pagar - montoRetornado;
+    }
 
 
     int tvdetotal;
@@ -144,7 +151,31 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    //    - - - TOTAL EN DEUDA - - - [ LADO IZQUIERDO ]
+    public void UpddateDeuda(){
+        TextView deuda_total = (TextView)findViewById(R.id.tvdetotal);
+        deuda_total.setText(String.valueOf(getTvdetotal()));
 
+        TextView saldado_total = (TextView)findViewById(R.id.tvdesaldada);
+        saldado_total.setText(String.valueOf(getTvdesaldada()));
+    }
+    //    - - - TOTAL A PAGAR - - -  [ LADO DERECHO ]
+    int total;
+    public int getTotal() {
+        return total;
+    }
+    public void TotalSuma(int total) {
+        this.total = this.total+total;
+    }
+    public void TotalResta(int total) {
+        this.total = this.total- total;
+    }
+
+//  - - - ACTAULIZAR tv TOTAL - - -
+    public void UpdateTotal(){
+        TextView pagara_total = (TextView)findViewById(R.id.tvtotal);
+        pagara_total.setText(String.valueOf(getTotal()));
+    }
 
 //      ===============================================
 //      | VARIABLES PARA REG-TRATAMEINTOS EN NEW PLAN |
@@ -598,8 +629,8 @@ public class MainActivity extends AppCompatActivity
             vista = new  VistaRegPagos();
             trans= true;
         } else if (id == R.id.nav_share) {
-            vista = new VistaRegPaciente();
-//            vista = new VistaGetDiagrama();
+//            vista = new VistaRegPaciente();
+            vista = new VistaGetDiagrama(1,1); // << ? ? ? PRUEBA PARA HISTORIAL
             trans= true;
         } else if (id == R.id.nav_send) {
             vista = new p2ListView();

@@ -52,10 +52,29 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
             holder.btnRemove = (ImageButton) customView.findViewById(R.id.imgBtnRemove);
 
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            //    EL MONTO A PAGAR O ABONAR DEBE SER ADD EN LA COMPROBACION DEL BOTTON ADD DE LA LISTA 1
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            int id = pago.get(position).getId_consulta();
+            String idC = Integer.toString(id);
+
+            int costo = pago.get(position).getCosto();
+            String costoP = Integer.toString(costo);
+
+            int pendienteP = pago.get(position).getPendiente();
+            String pen = Integer.toString(pendienteP);
+
+            holder.idConsulta.setText(idC);
+            holder.pago_abono.setText(pen);
+            holder.pago = costo;
+
             customView.setTag(holder);
         } else {
             holder = (ViewCPagoHolder) customView.getTag();
         }
+
+
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         //                  SE DEBE HABILITAR EL BOTON DE REMOVER
@@ -65,26 +84,13 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getContext()).RemovePago(pago.get(position));
+                ((MainActivity) getContext()).TotalResta(pago.get(position).getCosto());
+                ((MainActivity) getContext()).UpdateTotal();
+                ((MainActivity) getContext()).RemovePago(pago.get(position));   // << ? ? ? DEBE REVISAR ESTO PARA QUE PUEDA REMOVER EL CORRECTO
+                ((MainActivity) getContext()).MotoPagarSuma(holder.pago);
                 ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged();
             }
         });
-
-
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        //    EL MONTO A PAGAR O ABONAR DEBE SER ADD EN LA COMPROBACION DEL BOTTON ADD DE LA LISTA 1
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        int id = pago.get(position).getId_consulta();
-        String idC = Integer.toString(id);
-
-        int costo = pago.get(position).getCosto();
-        String costoP = Integer.toString(costo);
-
-        int pendienteP = pago.get(position).getPendiente();
-        String pen = Integer.toString(pendienteP);
-
-        holder.idConsulta.setText(idC);
-        holder.pago_abono.setText(pen);
 
         return customView;
 
@@ -94,6 +100,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
     class ViewCPagoHolder {
         TextView idConsulta;
         TextView pago_abono;
+        int pago;
 
         ImageButton btnRemove;
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -39,8 +40,12 @@ public class AdapterConPendientes extends ArrayAdapter {
 
 
     int monto_restante;
-    int deudaTotal = 0;
+    int deudaTotal,deudaTotalSaldada = 0;
     int saldado = 0;
+    int total_pendiente=0;
+
+
+    int id,costo,pendienteP ;
 
     boolean monto_valido = false;
 
@@ -89,6 +94,21 @@ public class AdapterConPendientes extends ArrayAdapter {
             holder.btnDetalle = (Button) customView.findViewById(R.id.btndetalle);
             holder.btnSaldar = (Button) customView.findViewById(R.id.btnsaldar);
             holder.btnAbonar = (Button) customView.findViewById(R.id.btnabonar);
+
+
+            id = pago.get(position).getId_consulta();
+            String idC = Integer.toString(id);
+
+             costo = pago.get(position).getCosto();
+            String costoP = Integer.toString(costo);
+
+            pendienteP = pago.get(position).getPendiente();
+            String pen = Integer.toString(pendienteP);
+
+            holder.fecha.setText(pago.get(position).getFecha());
+            holder.monto.setText(costoP);
+            holder.pendiente.setText(pen);
+            holder.idConsulta.setText(idC);
 
             customView.setTag(holder);
         } else {
@@ -143,33 +163,26 @@ public class AdapterConPendientes extends ArrayAdapter {
                 aBuilder.setCustomTitle(view);
                 AlertDialog dialog = aBuilder.create();
                 dialog.show();
+
+
             }
         });
 
 
 
-        int id = pago.get(position).getId_consulta();
-        String idC = Integer.toString(id);
 
-        int costo = pago.get(position).getCosto();
-        String costoP = Integer.toString(costo);
-
-        int pendienteP = pago.get(position).getPendiente();
-        String pen = Integer.toString(pendienteP);
-
-        holder.fecha.setText(pago.get(position).getFecha());
-        holder.monto.setText(costoP);
-        holder.pendiente.setText(pen);
-        holder.idConsulta.setText(idC);
 //        holder.estado.setText(pago.get(position).getEstado());
 
         if (idps == 0) {
 //            customView.setVisibility(View.INVISIBLE);
         }
 
-        deudaTotal = deudaTotal + pendienteP;
+        deudaTotal = deudaTotal + costo;
+        total_pendiente += pendienteP;
+        deudaTotalSaldada = deudaTotal - total_pendiente;
         ((MainActivity) getContext()).setTvdetotal(deudaTotal);
-//        saldado = deudaTotal
+        ((MainActivity) getContext()).setTvdesaldada(deudaTotalSaldada);
+        ((MainActivity) getContext()).UpddateDeuda();
 
         return customView;
 
@@ -190,9 +203,10 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     public boolean updateDispoSaldar(int position){
         boolean resta;
-        if(monto_restante >= pago.get(position).getCosto()){
-            Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
-            monto_restante = monto_restante - pago.get(position).getCosto();
+        if(((MainActivity) getContext()).getMonto_a_pagar() >= pago.get(position).getCosto()){
+//            Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
+//            monto_restante = ((MainActivity) getContext()).getMonto_a_pagar() - pago.get(position).getCosto();
+            ((MainActivity) getContext()).MotoPagarResta(pago.get(position).getCosto());
             resta = true;
         }else{
             resta = false;
@@ -210,12 +224,18 @@ public class AdapterConPendientes extends ArrayAdapter {
             if(updateDispoSaldar(position)) {
                 ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                 ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                Toast.makeText(getContext(), "Monto disponible = "+monto_restante, Toast.LENGTH_LONG).show();
+                ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());
+                ((MainActivity) getContext()).UpdateTotal();
+                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
             }
         }else{
+            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
             if(updateDispoSaldar(position)) {
                 ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                 ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+                ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());
+                ((MainActivity) getContext()).UpdateTotal();
+                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
             }
         }
     }
