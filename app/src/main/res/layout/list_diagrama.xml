@@ -5,37 +5,25 @@
     android:orientation="vertical">
 
 
-
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/tvfechadiente"
-            android:layout_width="294dp"
+            android:id="@+id/tvFechaDiagrma"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="" />
 
         <Button
-            android:id="@+id/bntdetalle"
-            android:layout_width="148dp"
-            android:layout_height="58dp"
-            android:layout_weight="1"
+            android:id="@+id/btnDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:text="DETALLE" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="" />
     </TableRow>
 </LinearLayout>

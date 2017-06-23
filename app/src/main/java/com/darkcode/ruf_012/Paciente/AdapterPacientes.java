@@ -20,6 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darkcode.ruf_012.Diagrama.AdapterDiagrama;
+import com.darkcode.ruf_012.Diagrama.Diagrama;
+import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.Pagos.p2ListView;
@@ -163,8 +166,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                             AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                             final View vi = View.inflate(contexto, R.layout.reg_plan, null);
                             aBuilder.setTitle("Nuevo Plan de Tratamiento");
-                            aBuilder.setView(vi);
-                            aBuilder.setMessage("Click yes to exit!")
+//                            aBuilder.setView(vi);
+                            aBuilder.setMessage("Esta seguro que desea agregar un nuevo plan?")
                                     .setCancelable(false)
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
@@ -210,12 +213,41 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             btnDiagramas.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    id_paciente = idPaciente.getText().toString();
-                    vista = new VistaGetDiagrama(Integer.valueOf(id_paciente), 5); // ============= 5 = ID Ulti.Consulta
-//                setParametros(position);
-                    String Titulo_Bar = "Ulti. Odontodiagrama " + id_paciente;
-                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
-                    cambiarVista(vista, Titulo_Bar);
+
+
+                    ((MainActivity) getContext()).setId_pacienteA(pacientes.get(position).getId_paciente());
+                    // - - - - - -  UPDATE VIEW  - - - - -
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
+                    final View vi = View.inflate(contexto, R.layout.plan_list, null);
+
+//                    final View view = View.inflate(contexto, R.layout.planes_title, null);
+
+//                    aBuilder.setCustomTitle(view);
+                    aBuilder.setTitle("Historial de Diagrmas");
+                    aBuilder.setView(vi);
+                    AlertDialog dialog = aBuilder.create();
+                    dialog.show();
+
+                    setParametros(position);
+
+                    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+                    DienteService servicio = restadpter.create(DienteService.class);
+
+                    servicio.listDiagramaFecha(id_Paciente, new Callback<List<Diagrama>>() {
+                        @Override
+                        public void success(List<Diagrama> diagrams, Response response) {
+                            ListView lvresult = (ListView) vi.findViewById(R.id.lvPlanes);
+                            AdapterDiagrama listAdapter = new AdapterDiagrama(getContext(), diagrams);
+                            lvresult.setAdapter(listAdapter);
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Log.v("ERROR", "=>" + error.getMessage());
+                        }
+                    });
+
+
                 }
             });
             btnExamen.setOnClickListener(new View.OnClickListener() {

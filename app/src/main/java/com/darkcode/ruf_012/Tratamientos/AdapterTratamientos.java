@@ -74,14 +74,14 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
                 holder.tvNombreTratamiento = (TextView) convertView.findViewById(R.id.tvNombreTratamiento);
                 holder.imgBtnAdd = (ImageButton)convertView.findViewById(R.id.imgBtnAdd);
 
-
+                holder.tvNombreTratamiento.setText( tratamientos.get(position).getNombre());
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
+        holder.ref = position;
         holder.imgBtnAdd.setTag(position);
-        holder.tvNombreTratamiento.setText( tratamientos.get(position).getNombre());
         holder.imgBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
                 tagsUse = ((MainActivity) getContext()).getaTras();
                 if (estaEnArray(tag, tagsUse)) {
-                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Ya se encuentra añadido =>"+tag, Toast.LENGTH_LONG).show();
                 } else {
                     ((MainActivity) getContext()).AddTras(tratamientos.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                     ((MainActivity) getContext()).getMyAdapter22().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
@@ -101,7 +101,7 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
         });
 
         final checkItem ckItem = new checkItem(position);
-        holder.ref = position;
+
 
 
 

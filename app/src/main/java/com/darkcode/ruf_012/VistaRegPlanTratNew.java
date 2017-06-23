@@ -40,10 +40,10 @@ public class VistaRegPlanTratNew extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.p2_list_view, container,false);
+        View view = inflater.inflate(R.layout.reg_plan_tratamiento, container,false);
 
-        listView1 = (ListView)view.findViewById(R.id.lvConPendientes);
-        listView2 = (ListView)view.findViewById(R.id.lvConAPagar);
+        listView1 = (ListView)view.findViewById(R.id.lvTratamientos);
+        listView2 = (ListView)view.findViewById(R.id.lvTPlaneados);
 
         listView2.setBackgroundColor(0xFF00FF00);
 

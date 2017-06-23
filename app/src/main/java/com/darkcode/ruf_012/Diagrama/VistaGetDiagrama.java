@@ -99,7 +99,7 @@ public class VistaGetDiagrama extends Fragment {
             lista.add(diente12);
             lista.add(diente11);
 
-            lista.add(diente55);view;
+            lista.add(diente55);
             lista.add(diente54);
             lista.add(diente53);
             lista.add(diente52);

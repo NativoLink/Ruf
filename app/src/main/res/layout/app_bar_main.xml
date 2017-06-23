@@ -28,8 +28,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_btn_speak_now"
-        app:backgroundTint="#02A8F3"
-        app:itemTextColor="#FFFFFF" />
+        app:backgroundTint="@android:color/holo_green_light"
+        app:itemTextColor="#FFFFFF"
+        app:rippleColor="#212121" />
 
     <include layout="@layout/content_main" />
 

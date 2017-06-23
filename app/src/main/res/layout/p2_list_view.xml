@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#3caee2"
+                android:background="@android:color/holo_green_dark"
                 android:text="Buscar"
                 android:textColor="#FFFFFF"
                 tools:ignore="HardcodedText" />
@@ -304,8 +304,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.2"
+        android:layout_weight="1.3"
 
+        android:background="?attr/colorPrimary"
         android:baselineAligned="false"
         android:orientation="vertical"
         android:paddingLeft="16dp"
@@ -434,8 +435,8 @@
                     android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/borde"
+                    android:hint="Nota"
                     android:inputType=""
-                    android:text="Nota"
                     tools:ignore="HardcodedText" />
 
                 <LinearLayout
@@ -485,9 +486,12 @@
                     android:id="@+id/btnregistrar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="top|center|end"
+                    android:background="@android:color/holo_green_light"
+                    android:gravity="center"
                     android:paddingLeft="32dp"
-                    android:text="Registrar" />
+                    android:paddingRight="32dp"
+                    android:text="Registrar"
+                    android:textColor="#ffffff" />
             </TableRow>
 
         </LinearLayout>
