@@ -290,13 +290,30 @@ public class MainActivity extends AppCompatActivity
         this.id_pacienteA = id_pacienteA;
     }
 
-//===========================
-//    VARIABLES DE PACIENTE
-    String NOMBRES,SEXO,OCUPACION,DIRECCION,TELEFONO,ESTADO_CIVIL,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO;
+    public String getNOMBRES() {
+        return NOMBRES;
+    }
+
+    public void setNOMBRES(String NOMBRES) {
+        this.NOMBRES = NOMBRES;
+    }
+
+//================================================
+//   * * *  VARIABLES DE PACIENTE  * * *
+
+    String NOMBRES;
+    String SEXO;
+    String OCUPACION;
+    String DIRECCION;
+    String TELEFONO;
+    String ESTADO_CIVIL;
+    String DIRECCION_OCU;
+    String TELEFONO_OCU;
+    String ALLEGADO;
     int EDAD;
     int id_pacienteA;
     int ultimo_plan;
-//===========================
+//================================================
 
 
     private InputStream mmInStream;

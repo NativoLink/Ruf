@@ -60,6 +60,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     Fragment vista;
 
 
+    int idps;
+
+    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
 
     public void setId_doctor(String id_doctor) {
         this.id_doctor = id_doctor;
@@ -74,8 +77,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
     public void getConsultas() {
 
-        final RestAdapter[] restadpter = {new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build()};
-        PacienteService servicio = restadpter[0].create(PacienteService.class);
+
+        PacienteService servicio = restadpter.create(PacienteService.class);
 
         servicio.getConsultas(1, new Callback<List<Consulta>>() {
             @Override
@@ -102,7 +105,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.list_pacientes, parent, false);
 
-        int idps = pacientes.get(position).getId_paciente();
+        idps = pacientes.get(position).getId_paciente();
         if (idps != 0) {
             TextView nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
             final TextView idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
@@ -110,11 +113,11 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             TextView telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
 
 
-            Button btnNuevaConsulta = (Button) customView.findViewById(R.id.btnNuevaConsulta);
-            Button btnConsultas = (Button) customView.findViewById(R.id.btnConsultas);
-            Button btnPlans = (Button) customView.findViewById(R.id.btnPlanes);
-            Button btnDiagramas = (Button) customView.findViewById(R.id.btnDiagramas);
-            Button btnExamen = (Button) customView.findViewById(R.id.btnExamen);
+            ImageButton btnNuevaConsulta = (ImageButton) customView.findViewById(R.id.btnNuevaConsulta);
+            ImageButton btnConsultas = (ImageButton) customView.findViewById(R.id.btnConsultas);
+            ImageButton btnPlans = (ImageButton) customView.findViewById(R.id.btnPlanes);
+            ImageButton btnDiagramas = (ImageButton) customView.findViewById(R.id.btnDiagramas);
+            ImageButton btnExamen = (ImageButton) customView.findViewById(R.id.btnExamen);
 
 
             btnConsultas.setOnClickListener(new View.OnClickListener() {
@@ -143,9 +146,6 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             btnPlans.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                id_paciente = idPaciente.getText().toString();
-//                vista = new VistaRegDiagrama();
-//                cambiarVista(vista);
 
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                     final View vi = View.inflate(contexto, R.layout.plan_list, null);
@@ -192,7 +192,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
                     setParametros(position);
 
-                    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+
                     TratamientoService servicio = restadpter.create(TratamientoService.class);
 
                     servicio.getPlanes(id_Paciente, new Callback<List<Plan>>() {
@@ -216,6 +216,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
 
                     ((MainActivity) getContext()).setId_pacienteA(pacientes.get(position).getId_paciente());
+                    ((MainActivity) getContext()).setNOMBRES(pacientes.get(position).getNombre());
                     // - - - - - -  UPDATE VIEW  - - - - -
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                     final View vi = View.inflate(contexto, R.layout.plan_list, null);
@@ -223,14 +224,14 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 //                    final View view = View.inflate(contexto, R.layout.planes_title, null);
 
 //                    aBuilder.setCustomTitle(view);
-                    aBuilder.setTitle("Historial de Diagrmas");
+                    String nombre_paciente =  ((MainActivity) getContext()).getNOMBRES();
+                    aBuilder.setTitle("Historial de Diagramas - "+nombre_paciente+" (ID - "+ ((MainActivity) getContext()).getId_pacienteA()+")");
                     aBuilder.setView(vi);
                     AlertDialog dialog = aBuilder.create();
                     dialog.show();
 
                     setParametros(position);
 
-                    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
                     DienteService servicio = restadpter.create(DienteService.class);
 
                     servicio.listDiagramaFecha(id_Paciente, new Callback<List<Diagrama>>() {
@@ -271,9 +272,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             int edad = pacientes.get(position).getEdad();
             String edadP = Integer.toString(edad);
-            edadPaciente.setText(edadP);
-
-            telPaciente.setText(pacientes.get(position).getTelefono());
+            edadPaciente.setText("Edad : "+edadP);
+             telPaciente.setText("Tel..: "+pacientes.get(position).getTelefono());
         }else{ customView.setVisibility(View.INVISIBLE);}
         return customView;
 

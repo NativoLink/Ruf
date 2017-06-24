@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.darkcode.ruf_012.MainActivity;
@@ -23,6 +24,7 @@ import java.util.List;
 public class AdapterPlan extends ArrayAdapter<Plan> {
     private List<Plan> plans;
     Fragment vista;
+    ImageButton btnDetalle, btnEditar;
     public AdapterPlan(Context context,  List<Plan> planes) {
         super(context, R.layout.list_planes, planes);
         plans= planes;
@@ -35,13 +37,15 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
         View customView = inflater.inflate(R.layout.list_planes, parent, false);
 
         int id = plans.get(position).getId_plan();
-        if (id != 0) {
+
             TextView id_plan = (TextView) customView.findViewById(R.id.tvPlan);
             id_plan.setText("ID:" + plans.get(position).getId_plan() + " | Fecha: (" + plans.get(position).getFecha_reg() + ")");
 
-            Button btnDetalle, btnEditar;
-            btnDetalle = (Button) customView.findViewById(R.id.btnDetallePlan);
-            btnEditar = (Button) customView.findViewById(R.id.btnEditarPlan);
+//        if (id != 0) {
+
+            btnDetalle = (ImageButton) customView.findViewById(R.id.btnDetallePlan);
+            btnEditar = (ImageButton) customView.findViewById(R.id.btnEditarPlan);
+
 
             btnDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,7 +59,11 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
                     ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
                 }
             });
-        }else{ customView.setVisibility(View.INVISIBLE);}
+//        }else{
+//            customView.setVisibility(View.INVISIBLE);
+//            btnEditar.setVisibility(View.INVISIBLE);
+//            btnEditar.setVisibility(View.INVISIBLE);
+//        }
 
 
 

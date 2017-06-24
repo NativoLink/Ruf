@@ -26,10 +26,16 @@ public interface TratamientoService {
     @GET("/WebSites/Tesis/Tratamiento/listPlanesPaciente.php")
     void getPlanes(@Query("id_paciente") int id_paciente, Callback<List<Plan>> callback);
 
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Consulta/listDetalleConsulta.php")
+    void getDetalleConsulta(@Query("id_paciente") int id_paciente,
+                            @Query("id_consulta") int id_consulta, Callback<List<Tratamiento>> callback);
+
 
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Tratamiento/listTratamientosDeUnPlan.php")
-    void getTratsDeUnPlan(@Query("id_paciente") int id_paciente,@Query("id_plan") int id_plan,Callback<List<Tratamiento>> callback);
+    void getTratsDeUnPlan(@Query("id_paciente") int id_paciente,
+                          @Query("id_plan") int id_plan,Callback<List<Tratamiento>> callback);
 
 
     @Headers("Cache-Control: max-age=1")

@@ -21,11 +21,11 @@
         android:textSize="24sp" />
 
         <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tvTelefonoPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="TextView"
             android:textSize="18sp" />
 
         <TextView
@@ -49,21 +49,53 @@
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <Button
-                android:text="Nueva Consulta"
+            <ImageButton
+                android:id="@+id/btnNuevaConsulta"
                 style="@style/btnExamen"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/btnNuevaConsulta" />
+                android:src="@drawable/add"
+                android:text="Nueva Consulta" />
 
-            <Button
-                android:text="Planes"
+            <ImageButton
+                android:id="@+id/btnPlanes"
                 style="@style/btnDiagrama"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/btnPlanes" />
+                android:src="@drawable/notepad"
+                android:text="Planes" />
+
+            <ImageButton
+                android:id="@+id/btnConsultas"
+                style="@style/btnConsultas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/check"
+                android:text="Consultas" />
+
+            <ImageButton
+                android:id="@+id/btnDiagramas"
+                style="@style/btnDiagrama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/history"
+                android:text="Odontodiagramas" />
+
+            <ImageButton
+                android:id="@+id/btnExamen"
+                style="@style/btnExamen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/notepad"
+                android:text="Examen Clinico" />
 
             <TextView
                 android:text="TextView"
@@ -76,38 +108,5 @@
                 android:textSize="24sp" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:layout_weight="1" >
-
-            <Button
-                style="@style/btnDiagrama"
-                android:text="Odontodiagramas"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btnDiagramas" />
-
-            <Button
-                style="@style/btnConsultas"
-                android:text="Consultas"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btnConsultas" />
-
-            <Button
-                style="@style/btnExamen"
-                android:text="Examen Clinico"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btnExamen" />
-        </TableRow>
     </LinearLayout>
 </LinearLayout>
