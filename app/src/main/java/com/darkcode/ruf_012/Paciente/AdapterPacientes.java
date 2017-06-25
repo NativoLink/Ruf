@@ -59,6 +59,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     String id_doctor;
     Fragment vista;
 
+    String Titulo_Bar;
+
 
     int idps;
 
@@ -126,7 +128,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     id_paciente = idPaciente.getText().toString();
                     setParametros(position);
                     vista = new p2ListView();
-                    String Titulo_Bar = "Consultas y Pagos";
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_consultas_pagos();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);
                 }
@@ -137,7 +139,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     id_paciente = idPaciente.getText().toString();
                     setParametros(position);
                     vista = new VistaRegConsulta();
-                    String Titulo_Bar = "Diagrama";
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_reg_consulta();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);
                 }
@@ -174,7 +176,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                             id_paciente = idPaciente.getText().toString();
                                             setParametros(position);
                                             vista = new VistaRegPlanTratNew();
-                                            String Titulo_Bar = "Nuevo Plan" + id_Paciente;
+                                            Titulo_Bar = "Nuevo Plan" + id_Paciente;
                                             ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                                             cambiarVista(vista, Titulo_Bar);
                                         }
@@ -257,7 +259,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     id_paciente = idPaciente.getText().toString();
                     vista = new VistaRegDiagrama();
                     setParametros(position);
-                    String Titulo_Bar = "Odontodiagramas";
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_examen_clinico();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);
                 }

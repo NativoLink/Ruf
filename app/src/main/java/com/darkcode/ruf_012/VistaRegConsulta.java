@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,7 +128,7 @@ public class VistaRegConsulta  extends Fragment {
         setRetainInstance(true);
 
 
-        Button btnNota = (Button) view.findViewById(R.id.btnNota);
+        ImageButton btnNota = (ImageButton) view.findViewById(R.id.btnNota);
         btnNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

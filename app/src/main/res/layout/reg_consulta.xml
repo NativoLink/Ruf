@@ -24,6 +24,7 @@
 
             <Button
                 android:id="@+id/button2"
+                style="@style/btnDiagrama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,12 +38,13 @@
                 android:text="TextView"
                 android:textAlignment="center" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnNota"
+                style="@style/btnDiagrama"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Nota" />
+                android:src="@drawable/note" />
         </TableRow>
 
         <TableRow

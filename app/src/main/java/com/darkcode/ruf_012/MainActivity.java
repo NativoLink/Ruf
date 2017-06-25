@@ -66,6 +66,27 @@ public class MainActivity extends AppCompatActivity
     Object vistaA;
     int TotalRegConsulta = 0;
 
+//    - - - - - - - - - - - - - - - - - - - -
+//    |   * * *  LISTADO DE VISTAS  * * *   |
+//    - - - - - - - - - - - - - - - - - - - -
+    String v_reg_consulta = "Nueva Consulta";
+    String v_list_pacientes = "Listado de Pacientes";
+    String v_consultas_pagos = "Consultas y Pagos";
+    String v_examen_clinico = "Examen Clinico";
+
+    public String getV_examen_clinico() {
+        return v_examen_clinico;
+    }
+    public String getV_consultas_pagos() {
+        return v_consultas_pagos;
+    }
+    public String getV_reg_consulta() {
+        return v_reg_consulta;
+    }
+    public String getV_list_pacientes() {
+        return v_list_pacientes;
+    }
+
 //      ===============================================
 //      |       VARIABLES PARA MANEJAR LISTAS         |
 //      ===============================================
@@ -252,7 +273,7 @@ public class MainActivity extends AppCompatActivity
 
     public void hideBtnUnivesal(String vistaAct){
         getSupportActionBar().setTitle( vistaActual);
-        if(vistaAct!="Diagrama" && vistaAct!="Nuevo Paciente"){
+        if(vistaAct!=v_reg_consulta && vistaAct!="Nuevo Paciente"){
             btnUniversal.hide();
         }else{
             btnUniversal.show();
@@ -313,8 +334,13 @@ public class MainActivity extends AppCompatActivity
     int EDAD;
     int id_pacienteA;
     int ultimo_plan;
-//================================================
 
+
+
+//================================================
+//  * * * VARIABLES DEL DOCTOR * * *
+    String id_doctor;
+    String nombre;
 
     private InputStream mmInStream;
     private Handler mHandler;
@@ -334,9 +360,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        Button ecu = (Button)findViewById(R.id.)
-
+        //PARAMS RECIBIDOS POR LOGIN
+        id_doctor = getIntent().getStringExtra("id_doctor");
+        nombre = getIntent().getStringExtra("nombre");
 
         mHandler = new Handler();
         Intent newint = getIntent();
@@ -374,13 +400,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment vista = new VistaPrincipal();
+        Fragment vista = new VistaPacientes();
         Bundle bundle = new Bundle();
         bundle.putString("address", address);
-        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.f_main, vista);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        bundle.putString("id_doctor", id_doctor);
+        bundle.putString("nombre", nombre);
+        cambioVistaU(vista,v_list_pacientes,bundle);
     }
 
 
@@ -631,14 +656,14 @@ public class MainActivity extends AppCompatActivity
         Fragment vista = null;
         boolean trans = false;
         if (id == R.id.nav_camera) {
-            vistaActual = "Diagrama";
+            vistaActual = v_reg_consulta;
             vista = new VistaRegDiagrama();
             trans= true;
         } else if (id == R.id.nav_gallery) {
             vista = new VistaRegPlanTratamiento();
             trans= true;
         } else if (id == R.id.nav_slideshow) {
-            vistaActual = "pacientes";
+            vistaActual = v_list_pacientes;
             vista = new VistaPacientes();
             trans= true;
         } else if (id == R.id.nav_manage) {
@@ -659,9 +684,6 @@ public class MainActivity extends AppCompatActivity
 //        =========================================
         if(trans){
             Bundle bundle = new Bundle();
-            //PARAMS RECIBIDOS POR LOGIN
-            String id_doctor = getIntent().getStringExtra("id_doctor");
-            String nombre = getIntent().getStringExtra("nombre");
 
             //PARAMS PARA ENVIAR A FRAGMENTS
             bundle.putString("id_doctor", id_doctor);
@@ -691,7 +713,7 @@ public class MainActivity extends AppCompatActivity
     public void interpretar(String comandos,Object vista){
 
 // ----------------------------------------[ VISTA REG. DIAGRAMA ]----------------------------------------
-        if(vistaActual=="Diagrama"){
+        if(vistaActual==v_reg_consulta){
             if(comandos.equals("guardar") || comandos.equals("Guardar") || comandos.equals("guarda")) {
 
                 DienteService servicio = restadpter.create(DienteService.class);
@@ -725,7 +747,10 @@ public class MainActivity extends AppCompatActivity
                 String pared = "";
 
                 String keywordR = "mesial",keywordL= "distal",
-                        keywordR2 = "mecial",keywordL2= "distal";
+                        keywordR2 = "mecial",keywordL2= "distal",
+                        keywordR3 = "marcial" ,keywordL3 = "distal",
+                        keywordR4 = "marcial" ,keywordL4 = "distal",
+                        keywordR5 = "marcial" ,keywordL5 = "distal";
                     int pos_diente = Integer.parseInt(split[0]);
                 String estado_pared = split[2];
 
@@ -737,6 +762,9 @@ public class MainActivity extends AppCompatActivity
                     keywordR = "mesial";
                     keywordL = "distal";
                     keywordR2 = "mecial";
+                    keywordR3 = "marcial";
+                    keywordR4 = "marcial";
+                    keywordR5 = "Marcial";
                 }
 
                 //------------ RIGHT ---------------
@@ -746,7 +774,10 @@ public class MainActivity extends AppCompatActivity
                         || (pos_diente>=71 && pos_diente<=75)){
                     keywordR = "distal";
                     keywordL = "mesial";
-                    keywordL2 = "mecial";
+                    keywordL2 = "macial";
+                    keywordL3 = "mercial";
+                    keywordL4 = "marcial";
+                    keywordL5 = "Marcial";
                 }
 
 
@@ -764,10 +795,16 @@ public class MainActivity extends AppCompatActivity
                 //PALABRAS PARECIDAS A IZQUIERDA O RELACIONADAS
                 else if(split[1].equals(keywordL)){pared = "L";}
                 else if(split[1].equals(keywordL2)){pared = "L";}
+                else if(split[1].equals(keywordL3)){pared = "L";}
+                else if(split[1].equals(keywordL4)){pared = "L";}
+                else if(split[1].equals(keywordL5)){pared = "L";}
 
                 //PALABRAS PARECIDAS A DERECHA O RELACIONADAS
                 else if(split[1].equals(keywordR)){pared = "R";}
                 else if(split[1].equals(keywordR2)){pared = "R";}
+                else if(split[1].equals(keywordR3)){pared = "R";}
+                else if(split[1].equals(keywordR4)){pared = "R";}
+                else if(split[1].equals(keywordR5)){pared = "R";}
 
                 //PALABRAS PARECIDAS A CENTRO
                 else  if(split[1].equals("centro")){pared = "C";}

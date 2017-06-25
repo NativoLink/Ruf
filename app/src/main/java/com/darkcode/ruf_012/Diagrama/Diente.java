@@ -148,8 +148,8 @@ public class Diente extends View {
         //=======================================
         // 			* * * AREA UP * * *
         // =======================================
+//        img_up_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
         img_up_1 = contexto.getResources().getDrawable(R.drawable.abc_list_pressed_holo_dark);
-//        img_up_1 = contexto.getResources().getDrawable(R.drawable.add);
 
         //=======================================
         // 			* * * AREA LEFT * * *
@@ -206,10 +206,26 @@ public class Diente extends View {
 
     public void cambiarColor(String estado,String pared){
 
+        String restaurado = "#40c4ff"; //AZUL CLARO
+        String careado = "#d50000"; // ROJO CLARO
+
+        String exo_ind =  "#ff5722"; // NARANJA
+        String no_erupcionado = "#673ab7"; // MORADO
+        String ausente = "#000000"; // NEGRO
+
+        String endo_ind =  "#cddc39"; // AMARILLO
+        String endo_rea = "#8bc34a"; // VERDE LIMON
+
         int color = 0; // CARRIE ,ETC
-        if(estado.equals("restaurado")){color = Color.parseColor("#40c4ff");}
-        if(estado.equals("careado")){color = Color.parseColor("#d50000");}
-        if(estado.equals("ausente")){color = Color.parseColor("#3e2723");}
+        if(estado.equals("restaurado")){color = Color.parseColor(restaurado);}
+        if(estado.equals("careado")){color = Color.parseColor(careado);}
+
+        //  - - - * * * > NO VALDIADOS < * * * - - -
+        if(estado.equals("exodoncia")){color = Color.parseColor(exo_ind);}
+        if(estado.equals("erupcionado")){color = Color.parseColor(no_erupcionado);}
+        if(estado.equals("ausente")){color = Color.parseColor(ausente);}
+        if(estado.equals("endodoncia")){color = Color.parseColor(endo_ind);}
+        if(estado.equals("realizado")){color = Color.parseColor(endo_rea);}
 
         PorterDuff.Mode mMode = PorterDuff.Mode.SRC_ATOP;
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ import retrofit.client.Response;
 public class VistaPacientes extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    Button buscarPaciente;
+    ImageButton buscarPaciente;
     EditText nombrePaciente;
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     PacienteService servicio = restadpter.create(PacienteService.class);
@@ -50,7 +51,7 @@ public class VistaPacientes extends Fragment {
 
         final ListView lvresult;
         lvresult = (ListView)view.findViewById(R.id.lvTrans);
-        buscarPaciente = (Button)view.findViewById(R.id.btnBuscarPaciente);
+        buscarPaciente = (ImageButton)view.findViewById(R.id.btnBuscarPaciente);
         nombrePaciente = (EditText)view.findViewById(R.id.etBuscarPaciente);
 
         buscarPaciente.setOnClickListener(new View.OnClickListener() {
