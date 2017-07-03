@@ -44,7 +44,7 @@ import static com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta.*;
  * Created by NativoLink on 22/2/17.
  */
 
-
+// - - - - - - - - - - - - - - - | ESTE NO SE VA A USAR |
 public class VistaRegPlanTratamiento extends Fragment {
 
     ArrayList<AdapterTratsConsulta.checkItem> callback_trats;

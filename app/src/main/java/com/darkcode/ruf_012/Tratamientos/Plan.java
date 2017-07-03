@@ -9,6 +9,15 @@ public class Plan {
     int id_paciente;
     int monto;
     String fecha_reg;
+    String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public int getId_plan() {
         return id_plan;

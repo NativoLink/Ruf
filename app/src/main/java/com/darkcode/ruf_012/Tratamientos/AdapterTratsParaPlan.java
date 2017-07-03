@@ -73,6 +73,8 @@ public class AdapterTratsParaPlan  extends ArrayAdapter<Tratamiento> {
         String costoP = Integer.toString(costo);
 
         holder.nombre.setText(tratamientos.get(position).getNombre());
+        holder.monto.setText(costoP);
+        holder.cant.setText("1");
 
         return customView;
 

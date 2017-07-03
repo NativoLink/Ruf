@@ -20,10 +20,10 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by NativoLink on 18/4/17.
+ * Created by NativoLink on 28/6/17.
  */
 
-public class VistaEditPlan extends Fragment {
+public class VistaRegPlan  extends Fragment {
 
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     TratamientoService servicio  = restadpter.create(TratamientoService.class);
@@ -40,7 +40,7 @@ public class VistaEditPlan extends Fragment {
         TextView tvNombreP = (TextView)view.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());
 
-        servicio.getTratsDeUnPlan(id_paciente, id_plan, new Callback<List<Tratamiento>>() {
+        servicio.getTratamientos(new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
                 AdapterTratsDePlan listAdapter = new AdapterTratsDePlan(getContext(),tratamientos);

@@ -660,7 +660,7 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaRegDiagrama();
             trans= true;
         } else if (id == R.id.nav_gallery) {
-            vista = new VistaRegPlanTratamiento();
+            vista = new VistaEditPlan();
             trans= true;
         } else if (id == R.id.nav_slideshow) {
             vistaActual = v_list_pacientes;
@@ -671,11 +671,10 @@ public class MainActivity extends AppCompatActivity
             vista = new  VistaRegPagos();
             trans= true;
         } else if (id == R.id.nav_share) {
-//            vista = new VistaRegPaciente();
-            vista = new VistaGetDiagrama(1,1); // << ? ? ? PRUEBA PARA HISTORIAL
+            vista = new VistaRegPaciente();
             trans= true;
         } else if (id == R.id.nav_send) {
-            vista = new p2ListView();
+            vista = new VistaRegPlanTratNew();
             trans= true;
         }
 

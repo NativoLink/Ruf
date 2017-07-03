@@ -32,8 +32,10 @@ import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.VistaEditPlan;
 import com.darkcode.ruf_012.VistaListConsultasPendientes;
 import com.darkcode.ruf_012.VistaRegConsulta;
+import com.darkcode.ruf_012.VistaRegPlan;
 import com.darkcode.ruf_012.VistaRegPlanTratNew;
 import com.darkcode.ruf_012.VistaRegPlanTratamiento;
 
@@ -65,6 +67,13 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     int idps;
 
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+
+
+
+    TextView nombrePaciente;
+    TextView idPaciente;
+    TextView edadPaciente;
+    TextView telPaciente;
 
     public void setId_doctor(String id_doctor) {
         this.id_doctor = id_doctor;
@@ -109,10 +118,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
         idps = pacientes.get(position).getId_paciente();
         if (idps != 0) {
-            TextView nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
-            final TextView idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
-            TextView edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
-            TextView telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
+             nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
+             idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
+             edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
+             telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
 
 
             ImageButton btnNuevaConsulta = (ImageButton) customView.findViewById(R.id.btnNuevaConsulta);
@@ -175,8 +184,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                         public void onClick(DialogInterface dialog, int id) {
                                             id_paciente = idPaciente.getText().toString();
                                             setParametros(position);
-                                            vista = new VistaRegPlanTratNew();
-                                            Titulo_Bar = "Nuevo Plan" + id_Paciente;
+//                                            vista = new VistaRegPlanTratNew();
+                                            vista = new VistaRegPlan();
+                                            Titulo_Bar = "Nuevo Plan";
+                                            ((MainActivity) getContext()).setNOMBRES(pacientes.get(position).getNombre());
                                             ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                                             cambiarVista(vista, Titulo_Bar);
                                         }
@@ -295,6 +306,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             bundle.putString("id_paciente", id_paciente);
             bundle.putString("nombre_paciente", nombreP);
             bundle.putString("ultimo_plan", ultimo_plan);
+            bundle.putString("id_plan", ultimo_plan);
             vistaObj.setArguments(bundle);
             ((MainActivity)getContext()).setId_pacienteA(id_Paciente);
             ((MainActivity)getContext()).setTotalRegConsulta(0);

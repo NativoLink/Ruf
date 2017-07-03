@@ -27,6 +27,10 @@ import retrofit.client.Response;
  * Created by NativoLink on 8/6/17.
  */
 
+
+
+// - - - - - - - - - - - - - - - | ESTE NO SE VA A USAR |
+
 public class VistaRegPlanTratNew extends Fragment {
 
     ListView listView1, listView2;
