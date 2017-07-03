@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     android:orientation="vertical">
-
 
 
     <LinearLayout
@@ -17,57 +18,60 @@
 
             <TextView
                 android:id="@+id/tvnumcepillar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="¿Cuántas veces al día se cepilla?"
+                android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/etnumcepillar"
-                android:layout_width="83dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="39dp"
-                android:layout_height="wrap_content" />
+                android:gravity="center_vertical"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tvenjuague"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="¿Utiliza enjuague bucal?"
+                android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/etenjuague"
-                android:layout_width="83dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="39dp"
-                android:layout_height="wrap_content" />
+                android:gravity="center_vertical"
+                android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/tvhilo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="¿Utiliza hilo dental?"
+                android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/ethilo"
-                android:layout_width="88dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
+                android:gravity="center_vertical"
+                android:inputType="textPersonName" />
 
 
         </TableRow>
@@ -80,15 +84,18 @@
 
             <TextView
                 android:id="@+id/tvrevision"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="¿Última vez que vino al odontólogo?"
+                android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/etREVISION"
-                android:layout_width="443dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="phone" />
 
@@ -98,20 +105,23 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/tvTRAT"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="¿Qué tipo de tratamiento se realizó?"
+                android:textSize="18sp"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/ettratamientoRealizado"
-                android:layout_width="443dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
 
         </TableRow>

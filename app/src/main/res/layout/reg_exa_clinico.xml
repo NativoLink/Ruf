@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     android:orientation="vertical">
-
-
-
 
 
     <LinearLayout
@@ -15,32 +14,39 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tvLabios"
-                android:layout_width="78dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="Labios"
                 android:textStyle="normal|bold" />
 
             <EditText
                 android:id="@+id/etLabios"
                 android:layout_width="90dp"
-                android:layout_height="57dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:gravity="center_vertical"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="39dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tvFistulas"
-                android:layout_width="51dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="Fistulas"
                 android:textStyle="normal|bold" />
 
@@ -48,19 +54,23 @@
                 android:id="@+id/etFistulas"
                 android:layout_width="129dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:gravity="center_vertical"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tvMovilidad"
-                android:layout_width="74dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="Movilidad"
                 android:textStyle="normal|bold" />
 
@@ -68,9 +78,10 @@
                 android:id="@+id/etMovilidad"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:inputType="numberSigned" />
-
 
 
         </TableRow>
@@ -92,8 +103,7 @@
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView212"
@@ -131,11 +141,11 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
 
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -152,8 +162,7 @@
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -188,6 +197,7 @@
 
 
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -204,8 +214,7 @@
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView216"
@@ -243,8 +252,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/textView236"
                 android:layout_width="45dp"
@@ -262,8 +271,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
 
         </TableRow>
@@ -285,8 +293,7 @@
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView206"
@@ -324,8 +331,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/textView247"
                 android:layout_width="45dp"
@@ -343,8 +350,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
 
         </TableRow>
@@ -365,8 +371,7 @@
                 android:layout_width="77dp"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView232"
@@ -404,12 +409,11 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
+                android:inputType="textPersonName" />
 
 
         </TableRow>
+
         <TextView
             android:id="@+id/textView24"
             android:layout_width="match_parent"
@@ -430,7 +434,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="123dp" >
+            android:layout_height="123dp">
 
             <TextView
                 android:id="@+id/tvobsRadiografica"
@@ -446,8 +450,6 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name" />
-
-
 
 
         </TableRow>

@@ -85,6 +85,17 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
     }
 
+    private void setChangeUser(int num_id,String nombre){
+        ((MainActivity) getContext()).setNOMBRES(nombre);
+        ((MainActivity) getContext()).setId_pacienteA(num_id);
+
+    }
+    private void UserEfectt(int position){
+        idps = pacientes.get(position).getId_paciente();
+        nombreP = pacientes.get(position).getNombre();
+        setChangeUser(idps,nombreP);
+    }
+
 
     public void getConsultas() {
 
@@ -117,11 +128,16 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         View customView = inflater.inflate(R.layout.list_pacientes, parent, false);
 
         idps = pacientes.get(position).getId_paciente();
+        nombreP = pacientes.get(position).getNombre();
+
         if (idps != 0) {
              nombrePaciente = (TextView) customView.findViewById(R.id.tvNombrePaciente);
              idPaciente = (TextView) customView.findViewById(R.id.tvIdPaciente);
              edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
              telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
+
+
+
 
 
             ImageButton btnNuevaConsulta = (ImageButton) customView.findViewById(R.id.btnNuevaConsulta);
@@ -135,6 +151,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
                     id_paciente = idPaciente.getText().toString();
+                    UserEfectt(position);
+
                     setParametros(position);
                     vista = new p2ListView();
                     Titulo_Bar =  ((MainActivity) getContext()).getV_consultas_pagos();
@@ -146,6 +164,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
                     id_paciente = idPaciente.getText().toString();
+                    UserEfectt(position);
                     setParametros(position);
                     vista = new VistaRegConsulta();
                     Titulo_Bar =  ((MainActivity) getContext()).getV_reg_consulta();
@@ -183,8 +202,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             id_paciente = idPaciente.getText().toString();
+                                            UserEfectt(position);
                                             setParametros(position);
 //                                            vista = new VistaRegPlanTratNew();
+//                                            vista = new VistaRegPlanTratamiento();
                                             vista = new VistaRegPlan();
                                             Titulo_Bar = "Nuevo Plan";
                                             ((MainActivity) getContext()).setNOMBRES(pacientes.get(position).getNombre());
@@ -203,7 +224,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                         }
                     });
 
+                    UserEfectt(position);
                     setParametros(position);
+
 
 
                     TratamientoService servicio = restadpter.create(TratamientoService.class);
@@ -227,9 +250,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
 
-
-                    ((MainActivity) getContext()).setId_pacienteA(pacientes.get(position).getId_paciente());
-                    ((MainActivity) getContext()).setNOMBRES(pacientes.get(position).getNombre());
+                    UserEfectt(position);
                     // - - - - - -  UPDATE VIEW  - - - - -
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                     final View vi = View.inflate(contexto, R.layout.plan_list, null);
@@ -242,6 +263,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     aBuilder.setView(vi);
                     AlertDialog dialog = aBuilder.create();
                     dialog.show();
+
 
                     setParametros(position);
 
@@ -268,8 +290,11 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
                     id_paciente = idPaciente.getText().toString();
-                    vista = new VistaRegDiagrama();
+                    vista = new VistaRegExamen();
+
+                    UserEfectt(position);
                     setParametros(position);
+
                     Titulo_Bar =  ((MainActivity) getContext()).getV_examen_clinico();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);

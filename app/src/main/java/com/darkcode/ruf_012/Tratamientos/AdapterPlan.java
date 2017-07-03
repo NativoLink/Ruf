@@ -75,7 +75,7 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
             });
         if (id == 0) {
 //            customView.setVisibility(View.INVISIBLE);
-            id_plan.setText("No tiene ningu plan registrado en el sistema");
+            id_plan.setText("No tiene ningun plan registrado en el sistema");
             btnEditar.setVisibility(View.INVISIBLE);
             btnDetalle.setVisibility(View.INVISIBLE);
         }

@@ -26,27 +26,27 @@
                 android:layout_weight="1"
                 android:paddingLeft="16dp"
                 android:text="Paciente"
+                android:textSize="24sp"
                 tools:ignore="HardcodedText" />
 
-            <EditText
-                android:id="@+id/NombrePaciente"
+            <TextView
+                android:id="@+id/tvNombrePaciente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
-                android:hint="Nombre o ID"
-                android:inputType=""
                 android:textAlignment="center"
+                android:textSize="24sp"
                 tools:ignore="HardcodedText" />
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/holo_green_dark"
-                android:text="Buscar"
-                android:textColor="#FFFFFF"
-                tools:ignore="HardcodedText" />
+            <!--<Button-->
+                <!--android:id="@+id/button1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@android:color/holo_green_dark"-->
+                <!--android:text="Buscar"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--tools:ignore="HardcodedText" />-->
 
 
         </TableRow>

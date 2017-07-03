@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.Login.Login;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity
     String v_list_pacientes = "Listado de Pacientes";
     String v_consultas_pagos = "Consultas y Pagos";
     String v_examen_clinico = "Examen Clinico";
+    String v_reg_paciente = "Nuevo Paciente";
 
     public String getV_examen_clinico() {
         return v_examen_clinico;
@@ -273,7 +275,7 @@ public class MainActivity extends AppCompatActivity
 
     public void hideBtnUnivesal(String vistaAct){
         getSupportActionBar().setTitle( vistaActual);
-        if(vistaAct!=v_reg_consulta && vistaAct!="Nuevo Paciente"){
+        if(vistaAct!=v_reg_consulta && vistaAct!=v_reg_paciente){
             btnUniversal.hide();
         }else{
             btnUniversal.show();
@@ -656,26 +658,29 @@ public class MainActivity extends AppCompatActivity
         Fragment vista = null;
         boolean trans = false;
         if (id == R.id.nav_camera) {
-            vistaActual = v_reg_consulta;
-            vista = new VistaRegDiagrama();
+            vistaActual = v_reg_paciente;
+            vista = new VistaRegPaciente();
             trans= true;
-        } else if (id == R.id.nav_gallery) {
-            vista = new VistaEditPlan();
-            trans= true;
+//        } else if (id == R.id.nav_gallery) {
+//            vista = new VistaEditPlan();
+//            trans= true;
         } else if (id == R.id.nav_slideshow) {
             vistaActual = v_list_pacientes;
             vista = new VistaPacientes();
             trans= true;
-        } else if (id == R.id.nav_manage) {
-            vistaActual = "pagos";
-            vista = new  VistaRegPagos();
-            trans= true;
-        } else if (id == R.id.nav_share) {
-            vista = new VistaRegPaciente();
-            trans= true;
+//        } else if (id == R.id.nav_manage) {
+//            vistaActual = "pagos";
+//            vista = new  VistaRegPagos();
+//            trans= true;
+//        } else if (id == R.id.nav_share) {
+//            vista = new VistaRegPaciente();
+//            trans= true;
         } else if (id == R.id.nav_send) {
-            vista = new VistaRegPlanTratNew();
-            trans= true;
+            Intent intent  = new Intent(getApplicationContext(),Login.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
         }
 
 //        =========================================
@@ -851,11 +856,11 @@ public class MainActivity extends AppCompatActivity
         {
             Fragment vista2 = new VistaRegPaciente();
             Toast.makeText(this,"..."+vistaActual+"...",Toast.LENGTH_LONG).show();
-            cambioVista(vista2, "Nuevo Paciente");
+            cambioVista(vista2, v_reg_paciente);
 
         }
 
-        if(vistaActual=="Nuevo Paciente"){
+        if(vistaActual==v_reg_paciente){
             vistaA = vista;
             String[] split = comandos.split(" ");
             final StringBuilder nombre = new StringBuilder();
@@ -890,10 +895,6 @@ public class MainActivity extends AppCompatActivity
                 });
             }
         }
-
-
-
-
 
     }
 
