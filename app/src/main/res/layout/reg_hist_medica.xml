@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvEstadoSalud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Se encuentra en buen Estado de salud?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etestadoSalud"
+                android:layout_width="141dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvenfermedad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Que enfermedad le aqueja?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etEnfermedad"
+                android:layout_width="559dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvbajoTra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Está bajo tratamiento medico?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etbajoTra"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvtratamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Cuál es el tratamiento?"
+                android:textStyle="normal|bold"/>
+
+            <EditText
+                android:id="@+id/etTratamiento"
+                android:layout_width="443dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvmedico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medico"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etmedico"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+
+        <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvalergico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Es alérgico a algún Meidcamento, Sustancia o Alimento?"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etalergico"
+            android:layout_width="86dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/textView216"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvtipoAlergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Cuál es el Tipo de alergia?"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etTipoAlergia"
+            android:layout_width="508dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="phone" />
+
+
+    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvenfermedadS"
+                android:layout_width="354dp"
+                android:layout_height="31dp"
+                android:text="¿Ha sufrido algún tipo de enfermedad sistemática?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etaEnfermedadS"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView217"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvtipoEnfermedad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Cuál Enfermdad?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etTipoEnefermedad"
+                android:layout_width="565dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+
+        </TableRow>
+
+
+    </LinearLayout>
+
+</LinearLayout>

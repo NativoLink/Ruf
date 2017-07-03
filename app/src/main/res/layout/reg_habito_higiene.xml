@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvnumcepillar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Cuántas veces al día se cepilla?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etnumcepillar"
+                android:layout_width="83dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvenjuague"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Utiliza enjuague bucal?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etenjuague"
+                android:layout_width="83dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvhilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Utiliza hilo dental?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/ethilo"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tvrevision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Última vez que vino al odontólogo?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etREVISION"
+                android:layout_width="443dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvTRAT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Qué tipo de tratamiento se realizó?"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/ettratamientoRealizado"
+                android:layout_width="443dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+
+
+    </LinearLayout>
+
+</LinearLayout>

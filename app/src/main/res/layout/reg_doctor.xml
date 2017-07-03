@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textStyle="normal|bold"/>
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvusuario"
+                android:layout_width="51dp"
+                android:layout_height="wrap_content"
+                android:text="Usuario"
+                android:textStyle="normal|bold"/>
+
+            <EditText
+                android:id="@+id/etusuario"
+                android:layout_width="141dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvclave"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:text="Clave"
+                android:textStyle="normal|bold"/>
+
+            <EditText
+                android:id="@+id/etClave"
+                android:layout_width="117dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="numberSigned" />
+
+        </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tvDireccion_d"
+            android:layout_width="87dp"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etDireccion_d"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="39dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teléfono"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="113dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvcedula"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:text="Cedulal"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etcedula"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvEspecialidad"
+            android:layout_width="104dp"
+            android:layout_height="36dp"
+            android:text="Especialidad"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etespecialidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+    </TableRow>
+
+</LinearLayout>
+

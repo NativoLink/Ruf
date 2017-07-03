@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvLabios"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:text="Labios"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etLabios"
+                android:layout_width="90dp"
+                android:layout_height="57dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvFistulas"
+                android:layout_width="51dp"
+                android:layout_height="wrap_content"
+                android:text="Fistulas"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etFistulas"
+                android:layout_width="129dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvMovilidad"
+                android:layout_width="74dp"
+                android:layout_height="wrap_content"
+                android:text="Movilidad"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etMovilidad"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="numberSigned" />
+
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvCarrillos"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="Carrillos"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etCarrillos"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView212"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvPigmentaciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pigmentaciones"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etPigmentaciones"
+                android:layout_width="76dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView231"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvSupuracion"
+                android:layout_width="84dp"
+                android:layout_height="wrap_content"
+                android:text="Supuracion"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etSupuracion"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvLengua"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="Lengua"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etlengua"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvmalformaciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mal Formaciones"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etmalformaciones"
+                android:layout_width="67dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvDientesPri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dientes primarios: "
+                android:textStyle="normal|bold" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvpisoboca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Piso de boca"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etpisoBoca"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView216"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvbolsasP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bolsas periodontales"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etbolsasP"
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView233"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvmudados"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:text="Mudados"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etmudados"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+            <TextView
+                android:id="@+id/textView236"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvsanos"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:text="Sanos"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etsanos"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPaladarD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paladar Duro"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etpaladarD"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView206"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvtartaro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trataro"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etTartaro"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView238"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvBruxismo"
+                android:layout_width="84dp"
+                android:layout_height="wrap_content"
+                android:text="Bruxismo"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etbruxismo"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+            <TextView
+                android:id="@+id/textView247"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvTumoraciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tumoraciones"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etTumoraciones"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPaladarB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paladar Blando"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etPaladarB"
+                android:layout_width="77dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/textView232"
+                android:layout_width="39dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvManchas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manchas"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etManchas"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView243"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvGarganta"
+                android:layout_width="84dp"
+                android:layout_height="wrap_content"
+                android:text="Garganta"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etGarganta"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+
+        </TableRow>
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anotaciones"
+            android:textColor="@android:color/black"
+            android:textStyle="normal|bold" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="123dp" >
+
+            <TextView
+                android:id="@+id/tvobsRadiografica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observaciones Radiograficas"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etobsRadiografica"
+                android:layout_width="455dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tvObservacion"
+                android:layout_width="185dp"
+                android:layout_height="30dp"
+                android:text="Observacion General"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etObservacion"
+                android:layout_width="458dp"
+                android:layout_height="118dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </TableRow>
+    </LinearLayout>
+
+</LinearLayout>
