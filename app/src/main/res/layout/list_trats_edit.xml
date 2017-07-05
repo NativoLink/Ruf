@@ -11,35 +11,46 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#F2F2F2">
+        android:layout_weight="1">
 
         <CheckBox
+            android:id="@+id/cbTratE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="CheckBox"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cbTratE" />
+            android:textSize="24sp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:layout_weight="1"
             android:id="@+id/etMontoE"
-            android:hint="Monto"
-            android:textSize="16sp"
-            android:textAlignment="center"
-            android:layout_marginLeft="10dp" />
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:hint="Monto"
             android:inputType="number"
-            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <EditText
             android:id="@+id/etCantidadE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:gravity="center"
             android:hint="Cantidad"
-            android:textSize="16sp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvRealizados"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:text="TextView"
             android:textAlignment="center" />
     </TableRow>
 

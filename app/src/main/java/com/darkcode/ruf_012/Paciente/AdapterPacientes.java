@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,21 +22,15 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.Diagrama.AdapterDiagrama;
 import com.darkcode.ruf_012.Diagrama.Diagrama;
 import com.darkcode.ruf_012.Diagrama.DienteService;
-import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.Pagos.p2ListView;
 import com.darkcode.ruf_012.R;
 import com.darkcode.ruf_012.Tratamientos.AdapterPlan;
-import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 import com.darkcode.ruf_012.Tratamientos.Plan;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
-import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
-import com.darkcode.ruf_012.VistaEditPlan;
-import com.darkcode.ruf_012.VistaListConsultasPendientes;
 import com.darkcode.ruf_012.VistaRegConsulta;
 import com.darkcode.ruf_012.VistaRegPlan;
-import com.darkcode.ruf_012.VistaRegPlanTratNew;
-import com.darkcode.ruf_012.VistaRegPlanTratamiento;
+
 
 import java.util.List;
 
@@ -92,8 +85,13 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
     }
     private void UserEfectt(int position){
         idps = pacientes.get(position).getId_paciente();
+        ((MainActivity) getContext()).setId_pacienteA(idps);
         nombreP = pacientes.get(position).getNombre();
+        int id_u_plan = pacientes.get(position).getUltimo_plan();
+        int id_u_consulta = pacientes.get(position).getUltima_consulta();
         setChangeUser(idps,nombreP);
+//        Toast.makeText(getContext(), "ID_P =>"+idps+" ID_U_PL =>"+id_u_plan+" ID_U_CON =>"+id_u_consulta, Toast.LENGTH_LONG).show();
+
     }
 
 
@@ -102,7 +100,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
         PacienteService servicio = restadpter.create(PacienteService.class);
 
-        servicio.getConsultas(1, new Callback<List<Consulta>>() {
+        servicio.getConsultas( ((MainActivity) getContext()).getId_pacienteA(), new Callback<List<Consulta>>() {
             @Override
             public void success(List<Consulta> consultas, Response response) {
 
@@ -136,15 +134,22 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
              edadPaciente = (TextView) customView.findViewById(R.id.tvEdadPaciente);
              telPaciente = (TextView) customView.findViewById(R.id.tvTelefonoPaciente);
 
-
-
-
-
             ImageButton btnNuevaConsulta = (ImageButton) customView.findViewById(R.id.btnNuevaConsulta);
             ImageButton btnConsultas = (ImageButton) customView.findViewById(R.id.btnConsultas);
             ImageButton btnPlans = (ImageButton) customView.findViewById(R.id.btnPlanes);
             ImageButton btnDiagramas = (ImageButton) customView.findViewById(R.id.btnDiagramas);
             ImageButton btnExamen = (ImageButton) customView.findViewById(R.id.btnExamen);
+
+            ImageButton btnPagos = (ImageButton) customView.findViewById(R.id.btnPagos);
+            ImageButton btnHabis = (ImageButton) customView.findViewById(R.id.btnHabis);
+
+            if(pacientes.get(position).getUltimo_plan()==0){
+                btnNuevaConsulta.setVisibility(View.INVISIBLE);
+            }
+
+            if(pacientes.get(position).getUltima_consulta()==0){
+                btnDiagramas.setVisibility(View.INVISIBLE);
+            }
 
 
             btnConsultas.setOnClickListener(new View.OnClickListener() {
@@ -177,6 +182,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
 
+                    UserEfectt(position);
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                     final View vi = View.inflate(contexto, R.layout.plan_list, null);
 
@@ -202,12 +208,12 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             id_paciente = idPaciente.getText().toString();
-                                            UserEfectt(position);
+
                                             setParametros(position);
 //                                            vista = new VistaRegPlanTratNew();
 //                                            vista = new VistaRegPlanTratamiento();
                                             vista = new VistaRegPlan();
-                                            Titulo_Bar = "Nuevo Plan";
+                                            Titulo_Bar = ((MainActivity) getContext()).getV_nuevo_plan();
                                             ((MainActivity) getContext()).setNOMBRES(pacientes.get(position).getNombre());
                                             ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                                             cambiarVista(vista, Titulo_Bar);
@@ -296,6 +302,36 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     setParametros(position);
 
                     Titulo_Bar =  ((MainActivity) getContext()).getV_examen_clinico();
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
+
+            btnPagos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    vista = new VistaRegExamen();
+
+                    UserEfectt(position);
+                    setParametros(position);
+
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_list_pagos();
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    cambiarVista(vista, Titulo_Bar);
+                }
+            });
+
+            btnHabis.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    id_paciente = idPaciente.getText().toString();
+                    vista = new VistaRegExamen();
+
+                    UserEfectt(position);
+                    setParametros(position);
+
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_reg_habitos();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);
                 }

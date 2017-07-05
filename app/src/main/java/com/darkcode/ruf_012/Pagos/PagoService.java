@@ -33,4 +33,9 @@ public interface PagoService {
                      @Field("estadop") String estadop,
                      Callback<List<RegDetallePago>> callback);// no si crear una clase para esto o colocarlo en reg detalle pago
 
+
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Pagos/numRecibo.php")
+    void getNumRecibo(Callback<String> callback);// no si crear una clase para esto o colocarlo en reg detalle pago
+
 }

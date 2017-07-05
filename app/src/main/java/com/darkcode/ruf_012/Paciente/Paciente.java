@@ -25,6 +25,15 @@ public class Paciente {
     String alergia;
     String enfermedad_sistematica;
     int ultimo_plan;
+    int ultima_consulta;
+
+    public int getUltima_consulta() {
+        return ultima_consulta;
+    }
+
+    public void setUltima_consulta(int ultima_consulta) {
+        this.ultima_consulta = ultima_consulta;
+    }
 
     public int getUltimo_plan() {
         return ultimo_plan;

@@ -21,6 +21,15 @@ public class Tratamiento {
     int id_plan;
     int id_p_tratamiento;
     int cantidad;
+    int cant_r;
+
+    public int getCant_r() {
+        return cant_r;
+    }
+
+    public void setCant_r(int cant_r) {
+        this.cant_r = cant_r;
+    }
 
     public int getCantidad() {
         return cantidad;

@@ -85,15 +85,15 @@ public class VistaRegConsulta  extends Fragment {
 
 
         //==== PARAMETROS DE CADA PACIENTE  =====
-        String nombreP = this.getArguments().getString("nombre_paciente");
-        String idPaciente = this.getArguments().getString("id_paciente");
+        String nombreP = ((MainActivity) getContext()).getNOMBRES();
+        String idPaciente = String.valueOf( ((MainActivity) getContext()).getId_pacienteA() );
         String idUltimoPlan = this.getArguments().getString("ultimo_plan");
 
         final int id_paciente = Integer.valueOf(idPaciente);
         final int ultimo_plan = Integer.valueOf(idUltimoPlan);
 
 
-        Toast.makeText(getContext(), "ID_P => " + id_paciente + " ulP=>" + ultimo_plan, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "ID_P => " + id_paciente + " ulP=>" + ultimo_plan, Toast.LENGTH_LONG).show();
 
         TextView nombrePaciente = (TextView) view.findViewById(R.id.tvNombrePaciente);
         nombrePaciente.setText(nombreP);

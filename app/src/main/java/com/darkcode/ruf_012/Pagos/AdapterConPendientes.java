@@ -174,7 +174,7 @@ public class AdapterConPendientes extends ArrayAdapter {
 //        holder.estado.setText(pago.get(position).getEstado());
 
         if (idps == 0) {
-//            customView.setVisibility(View.INVISIBLE);
+            customView.setVisibility(View.INVISIBLE);
         }
 
         deudaTotal = deudaTotal + costo;

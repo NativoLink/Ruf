@@ -42,6 +42,9 @@ public class AdapterTratsRConsulta extends ArrayAdapter<Tratamiento>{
         contexto = getContext();
         final VHolder holder;
 
+        if (tratamientos.get(position).getId_p_tratamiento() != 0) {
+
+        }
         if (convertView == null) {
             holder = new VHolder();
             LayoutInflater inflater = LayoutInflater.from(contexto);

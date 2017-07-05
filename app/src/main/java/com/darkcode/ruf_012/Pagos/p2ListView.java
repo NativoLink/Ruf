@@ -34,7 +34,7 @@ public class p2ListView extends Fragment {
 
     AdapterConPendientes myItemsListAdapter1;
    AdapterRegPago myItemsListAdapter2;
-    TextView tvNombrePaciente;
+    TextView tvNombrePaciente,tvNoRecibo;
 
     public p2ListView() {
     }
@@ -48,6 +48,10 @@ public class p2ListView extends Fragment {
         listView2 = (ListView)view.findViewById(R.id.lvConAPagar);
         tvNombrePaciente= (TextView)view.findViewById(R.id.tvNombrePaciente);
         tvNombrePaciente.setText(((MainActivity)getContext()).getNOMBRES());
+
+//        tvNoRecibo= (TextView)view.findViewById(R.id.num);
+
+
 
 
 

@@ -76,6 +76,19 @@ public class MainActivity extends AppCompatActivity
     String v_examen_clinico = "Examen Clinico";
     String v_reg_paciente = "Nuevo Paciente";
 
+    String v_nuevo_plan = "Nuevo Plan";
+    String v_list_pagos = "Listado de Pagos";
+    String v_reg_habitos = "Registro Habito de Higuiene";
+
+    public String getV_nuevo_plan() {
+        return v_nuevo_plan;
+    }
+    public String getV_list_pagos() {
+        return v_list_pagos;
+    }
+    public String getV_reg_habitos() {
+        return v_reg_habitos;
+    }
     public String getV_examen_clinico() {
         return v_examen_clinico;
     }
@@ -407,7 +420,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("address", address);
         bundle.putString("id_doctor", id_doctor);
         bundle.putString("nombre", nombre);
-        cambioVistaU(vista,v_list_pacientes,bundle);
+        cambioVistaU(vista,getV_list_pacientes(),bundle);
     }
 
 
