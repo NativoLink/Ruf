@@ -142,6 +142,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             ImageButton btnPagos = (ImageButton) customView.findViewById(R.id.btnPagos);
             ImageButton btnHabis = (ImageButton) customView.findViewById(R.id.btnHabis);
+            ImageButton btnHistMed = (ImageButton) customView.findViewById(R.id.btnHistMed);
 
             if(pacientes.get(position).getUltimo_plan()==0){
                 btnNuevaConsulta.setVisibility(View.INVISIBLE);
@@ -149,6 +150,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             if(pacientes.get(position).getUltima_consulta()==0){
                 btnDiagramas.setVisibility(View.INVISIBLE);
+                btnConsultas.setVisibility(View.INVISIBLE);
+                btnPagos.setVisibility(View.INVISIBLE);
             }
 
 
@@ -336,6 +339,22 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                     cambiarVista(vista, Titulo_Bar);
                 }
             });
+
+            btnHistMed
+                    .setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            id_paciente = idPaciente.getText().toString();
+                            vista = new VistaHistMed();
+
+                            UserEfectt(position);
+                            setParametros(position);
+
+                            Titulo_Bar =  ((MainActivity) getContext()).getV_hist_med();
+                            ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                            cambiarVista(vista, Titulo_Bar);
+                        }
+                    });
 
 
             int id = pacientes.get(position).getId_paciente();

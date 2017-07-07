@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsDePlan;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
@@ -49,7 +50,7 @@ public class VistaEditPlan extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-
+//                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

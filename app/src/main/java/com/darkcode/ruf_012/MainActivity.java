@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.Doctor.VistaRegDoctor;
 import com.darkcode.ruf_012.Login.Login;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
@@ -43,6 +44,7 @@ import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
+import com.darkcode.ruf_012.Tratamientos.VistaRegTrat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,7 +81,16 @@ public class MainActivity extends AppCompatActivity
     String v_nuevo_plan = "Nuevo Plan";
     String v_list_pagos = "Listado de Pagos";
     String v_reg_habitos = "Registro Habito de Higuiene";
+    String v_reg_tratamiento = "Nuevo Tratatamiento";
+    String v_reg_doctor = "Nuevo Doctor";
+    String v_hist_med = "Historia Médica";
 
+    public String getV_hist_med() {
+        return v_hist_med;
+    }
+    public String getV_reg_tratamiento() {
+        return v_reg_tratamiento;
+    }
     public String getV_nuevo_plan() {
         return v_nuevo_plan;
     }
@@ -681,13 +692,13 @@ public class MainActivity extends AppCompatActivity
             vistaActual = v_list_pacientes;
             vista = new VistaPacientes();
             trans= true;
-//        } else if (id == R.id.nav_manage) {
-//            vistaActual = "pagos";
-//            vista = new  VistaRegPagos();
-//            trans= true;
-//        } else if (id == R.id.nav_share) {
-//            vista = new VistaRegPaciente();
-//            trans= true;
+        } else if (id == R.id.nav_reg_doctor) {
+            vistaActual = v_reg_doctor;
+            vista = new VistaRegDoctor();
+            trans= true;
+        } else if (id == R.id.nav_reg_trat) {
+            vista = new VistaRegTrat();
+            trans= true;
         } else if (id == R.id.nav_send) {
             Intent intent  = new Intent(getApplicationContext(),Login.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

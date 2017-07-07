@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"
-        android:background="@color/common_action_bar_splitter"
+        android:background="#fff"
         android:gravity="center_vertical"
         android:paddingLeft="16dp">
 

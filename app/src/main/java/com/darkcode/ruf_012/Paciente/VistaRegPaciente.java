@@ -24,11 +24,11 @@ import com.darkcode.ruf_012.R;
 public class VistaRegPaciente extends Fragment {
 
 
-    EditText et_nombre,et_sexo,et_edad,et_direccion,et_telefono,et_estado_civil,et_ocupacion,et_direccion_ocu,et_telefono_ocu,et_allegado;
+    EditText et_nombre,et_sexo,et_edad,et_direccion,et_telefono,et_ocupacion,et_direccion_ocu,et_telefono_ocu,et_allegado;
 
-    Spinner sp_sexo;
+    Spinner spSexo,spEstadoCivil;
     String txt_nombre;
-    private String[] arraySpinner;
+    private String[] arraySpinner,arraySpinnerE;
 
 
 
@@ -45,7 +45,7 @@ public class VistaRegPaciente extends Fragment {
             et_edad= (EditText) rootView.findViewById(R.id.etEdad);
             et_direccion= (EditText) rootView.findViewById(R.id.etDireccion);
             et_telefono= (EditText) rootView.findViewById(R.id.etTelefono);
-            et_estado_civil= (EditText) rootView.findViewById(R.id.etEstadoCivil);
+            spEstadoCivil= (Spinner) rootView.findViewById(R.id.spEstadoCivil);
             et_ocupacion= (EditText) rootView.findViewById(R.id.etOcupacion);
             et_direccion_ocu= (EditText)rootView.findViewById(R.id.etDireccionOcu);
             et_telefono_ocu= (EditText) rootView.findViewById(R.id.etTelefonoOcu);
@@ -55,11 +55,20 @@ public class VistaRegPaciente extends Fragment {
             this.arraySpinner = new String[] {
                     "M", "F"
             };
-            Spinner sexo = (Spinner)rootView.findViewById(R.id.spSexo);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                    android.R.layout.simple_spinner_item, arraySpinner);
-            sexo.setAdapter(adapter);
-            sexo.setSelection(1);
+            spSexo = (Spinner)rootView.findViewById(R.id.spSexo);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item, arraySpinner);
+            spSexo.setAdapter(adapter);
+            spSexo.setSelection(1);
+
+
+            this.arraySpinnerE = new String[] {
+                    "Soltero/a","Casado/a","Viudo/a"
+            };
+            ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_spinner_item, arraySpinnerE);
+            spEstadoCivil.setAdapter(adapterEstado);
+            spEstadoCivil.setSelection(1);
 
 
 

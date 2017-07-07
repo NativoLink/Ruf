@@ -48,6 +48,14 @@ public interface TratamientoService {
                           @Field("descripcion") String descripcion,
                           Callback<String> callback);
 
+
+    @Headers("Cache-Control: max-age=1")
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Tratamiento/regTratamientos.php")
+    void regTrat(@Field("nombre") int id_plan,
+                  @Field("tipo") int id_tratamiento,
+                  Callback<String> callback);
+
     @Headers("Cache-Control: max-age=1")
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Tratamiento/regPlan.php")

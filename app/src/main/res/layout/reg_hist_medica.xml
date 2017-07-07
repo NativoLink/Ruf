@@ -15,10 +15,12 @@
             android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#B2E4FB"
             android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="Historia Médica"
-            android:textColor="@android:color/black"
-            android:textSize="25dp"
+            android:textSize="30sp"
             android:textStyle="normal|bold" />
 
         <TableRow
@@ -60,8 +62,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
         </TableRow>
@@ -83,7 +84,7 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-                android:id="@+id/epbajoTra"
+                android:id="@+id/spBajoTra"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -106,7 +107,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
             <TextView
@@ -126,8 +127,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
         </TableRow>
@@ -148,7 +148,7 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-                android:id="@+id/epalergico"
+                android:id="@+id/spAlergico"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -170,7 +170,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
         </TableRow>
@@ -214,7 +214,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
         </TableRow>
@@ -232,11 +232,12 @@
             android:id="@+id/textView20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFE2DEDE"
             android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="Hábitos de Higiene"
-            android:textColor="@android:color/black"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
+            android:textSize="30sp" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -245,9 +246,9 @@
 
             <TextView
                 android:id="@+id/tvnumcepillar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight=".1"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuántas veces al día se cepilla?"
                 android:textSize="20dp"
@@ -255,7 +256,7 @@
 
             <EditText
                 android:id="@+id/etnumcepillar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
@@ -265,7 +266,7 @@
 
             <TextView
                 android:id="@+id/tvenjuague"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
@@ -274,14 +275,14 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-                android:id="@+id/epenjuague"
-                android:layout_width="wrap_content"
+                android:id="@+id/spEnjuague"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tvhilo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
@@ -291,7 +292,7 @@
 
             <Spinner
                 android:id="@+id/ephilo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
@@ -321,7 +322,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="18sp" />
 
 
         </TableRow>
@@ -348,7 +350,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="20dp" />
+                android:textSize="18sp" />
 
 
         </TableRow>
