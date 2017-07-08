@@ -30,25 +30,25 @@
 
             <TextView
                 android:id="@+id/tvEstadoSalud"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
-                android:text="¿Se encuentra en buen Estado de salud?"
+                android:text="¿Está en buen Estado de salud?"
                 android:textSize="20dp"
                 android:textStyle="normal|bold" />
 
+
             <Spinner
                 android:id="@+id/spEstadoSalud"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
 
             <TextView
                 android:id="@+id/tvenfermedad"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Que enfermedad le aqueja?"
@@ -57,8 +57,8 @@
 
             <EditText
                 android:id="@+id/etEnfermedad"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -70,30 +70,37 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvbajoTra"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Está bajo tratamiento medico?"
                 android:textSize="20dp"
                 android:textStyle="normal|bold" />
 
             <Spinner
+<<<<<<< HEAD
                 android:id="@+id/spBajoTra"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/epbajoTra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
             <TextView
                 android:id="@+id/tvtratamiento"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuál es el tratamiento?"
@@ -102,8 +109,8 @@
 
             <EditText
                 android:id="@+id/etTratamiento"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -112,8 +119,8 @@
 
             <TextView
                 android:id="@+id/tvmedico"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="Médico"
@@ -122,8 +129,8 @@
 
             <EditText
                 android:id="@+id/etmedico"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -134,31 +141,38 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvalergico"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Es alérgico a algún Medicamento, Sustancia o Alimento?"
                 android:textSize="20dp"
                 android:textStyle="normal|bold" />
 
             <Spinner
+<<<<<<< HEAD
                 android:id="@+id/spAlergico"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/epalergico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
             <TextView
                 android:id="@+id/tvtipoAlergia"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuál es el Tipo de alergia?"
                 android:textSize="20dp"
@@ -166,8 +180,9 @@
 
             <EditText
                 android:id="@+id/etTipoAlergia"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="18sp" />
@@ -177,31 +192,38 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvenfermedadS"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Ha sufrido algún tipo de enfermedad sistemática?"
                 android:textSize="20dp"
                 android:textStyle="normal|bold" />
 
             <Spinner
+<<<<<<< HEAD
                 android:id="@+id/spEnfermedadS"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/epaEnfermedadS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
             <TextView
                 android:id="@+id/tvtipoEnfermedad"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuál Enfermedad?"
                 android:textSize="20dp"
@@ -209,8 +231,8 @@
 
             <EditText
                 android:id="@+id/etTipoEnefermedad"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -241,13 +263,18 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvnumcepillar"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuántas veces al día se cepilla?"
@@ -257,7 +284,11 @@
             <EditText
                 android:id="@+id/etnumcepillar"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center_vertical"
@@ -267,7 +298,11 @@
             <TextView
                 android:id="@+id/tvenjuague"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Utiliza enjuague bucal?"
@@ -275,15 +310,25 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
+<<<<<<< HEAD
                 android:id="@+id/spEnjuague"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/epenjuague"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tvhilo"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Utiliza hilo dental?"
@@ -291,9 +336,15 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
+<<<<<<< HEAD
                 android:id="@+id/spHilo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/ephilo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
@@ -302,15 +353,16 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
 
             <TextView
                 android:id="@+id/tvrevision"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2.9"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Última vez que vino al odontólogo?"
                 android:textSize="20dp"
@@ -330,14 +382,15 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvTRAT"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2.8"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Qué tipo de tratamiento se realizó?"
                 android:textSize="20dp"
@@ -346,7 +399,7 @@
             <EditText
                 android:id="@+id/ettratamientoRealizado"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"

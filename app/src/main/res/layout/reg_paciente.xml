@@ -31,7 +31,11 @@
             <TextView
                 android:id="@+id/tvNombre"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -42,8 +46,13 @@
             <EditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
+=======
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="textPersonName"
@@ -53,7 +62,11 @@
             <TextView
                 android:id="@+id/tvSexo"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -64,6 +77,10 @@
             <Spinner
                 android:id="@+id/spSexo"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
@@ -74,7 +91,11 @@
             <TextView
                 android:id="@+id/tvEdad"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -85,15 +106,42 @@
             <EditText
                 android:id="@+id/etEdad"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="numberSigned"
+<<<<<<< HEAD
                 android:textSize="22sp" />
+=======
+                android:textSize="25dp" />
 
 
+            <TextView
+                android:id="@+id/tvResponsable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
+
+
+<<<<<<< HEAD
+=======
+            <EditText
+                android:id="@+id/etResponsable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="bottom"
+                android:inputType="textPersonName"
+                android:textSize="25dp" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
         </TableRow>
 
 
@@ -105,7 +153,11 @@
             <TextView
                 android:id="@+id/tvdireccion"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -116,7 +168,11 @@
             <EditText
                 android:id="@+id/etDireccion"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.2"
                 android:ems="10"
@@ -127,7 +183,11 @@
             <TextView
                 android:id="@+id/tvTelefono"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -138,7 +198,11 @@
             <EditText
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:ems="10"
@@ -149,7 +213,11 @@
             <TextView
                 android:id="@+id/tvEstadoCivil"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1.5"
                 android:gravity="bottom|right"
@@ -185,9 +253,15 @@
                 android:textStyle="normal|bold" />
 
             <EditText
+<<<<<<< HEAD
                 android:id="@+id/etResponsable"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/etEstadoCivil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1"
                 android:ems="10"
@@ -200,8 +274,13 @@
         <TextView
             android:id="@+id/textView25"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_marginTop="52dp"
+=======
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_weight="1"
             android:background="#FFE2DEDE"
             android:gravity="center"
@@ -212,14 +291,22 @@
 
         <TableRow
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
+=======
+            android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_margin="@dimen/activity_vertical_margin"
             android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvOcupacion"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1"
                 android:gravity="bottom|right"
@@ -230,7 +317,11 @@
             <EditText
                 android:id="@+id/etOcupacion"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="match_parent"
+=======
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1"
                 android:ems="10"
@@ -239,9 +330,15 @@
 
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/tvTelefonoOcu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/tvDireccionOcu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
 
                 android:gravity="bottom|right"
@@ -250,9 +347,16 @@
                 android:textStyle="normal|bold" />
 
             <EditText
+<<<<<<< HEAD
                 android:id="@+id/etTelefonoOcu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/etDireccionOcu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
 
                 android:ems="10"
@@ -268,6 +372,7 @@
             android:layout_weight="1">
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/tvDireccionOcu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -275,13 +380,29 @@
                 android:gravity="bottom|right"
 
                 android:text="Dirección"
+=======
+                android:id="@+id/tvTelefonoOcu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="bottom|right"
+                android:text="Teléfono"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:textSize="25dp"
                 android:textStyle="normal|bold" />
 
             <EditText
+<<<<<<< HEAD
                 android:id="@+id/etDireccionOcu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+=======
+                android:id="@+id/etTelefonoOcu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
                 android:layout_weight="1"
                 android:ems="10"

@@ -12,8 +12,8 @@
 
         <TextView
             android:id="@+id/tvNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Nombre"
@@ -22,8 +22,8 @@
 
         <EditText
             android:id="@+id/etNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
@@ -32,23 +32,23 @@
 
         <TextView
             android:id="@+id/tvtipo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tipo"
             android:gravity="bottom|right"
+            android:text="Tipo"
             android:textSize="25dp"
             android:textStyle="normal|bold" />
 
         <EditText
             android:id="@+id/ettipo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Name"
+            android:textSize="25dp" />
 
 
     </TableRow>

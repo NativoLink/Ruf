@@ -34,8 +34,13 @@
         <TextView
             android:id="@+id/tvLabios"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
             android:gravity="right|center_vertical"
             android:text="Labios"
@@ -43,6 +48,7 @@
             android:textStyle="normal|bold" />
 
         <Spinner
+<<<<<<< HEAD
             android:id="@+id/spLabios"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -51,18 +57,31 @@
             android:gravity="center"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/epLabios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
         <TextView
             android:id="@+id/tvFistulas"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Fístulas"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
         <Spinner
+<<<<<<< HEAD
             android:id="@+id/spFistulas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -70,18 +89,31 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/epFistulas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
         <TextView
             android:id="@+id/tvMovilidad"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Movilidad"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
         <Spinner
+<<<<<<< HEAD
             android:id="@+id/spMovilidad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -89,6 +121,12 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/epMovilidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -103,14 +141,21 @@
         <TextView
             android:id="@+id/tvCarrillos"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Carrillos"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
         <Spinner
+<<<<<<< HEAD
             android:id="@+id/spCarrillos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -118,11 +163,18 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/epCarrillos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
         <TextView
             android:id="@+id/tvPigmentaciones"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
@@ -138,11 +190,26 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Pigmentaciones"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epPigmentaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
         <TextView
             android:id="@+id/tvSupuracion"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
@@ -158,6 +225,20 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Supuración"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epSupuracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -171,14 +252,21 @@
         <TextView
             android:id="@+id/tvLengua"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Lengua"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
         <Spinner
+<<<<<<< HEAD
             android:id="@+id/spLengua"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -186,11 +274,18 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/eplengua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
         <TextView
             android:id="@+id/tvmalformaciones"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
@@ -206,11 +301,26 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Mal Formaciones"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/etmalformaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
         <TextView
             android:id="@+id/tvpisoboca"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
@@ -226,6 +336,20 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Piso de boca"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/eppisoBoca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -238,6 +362,7 @@
         android:layout_weight="1">
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/tvPaladarD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -245,6 +370,15 @@
             android:gravity="right|center_vertical"
             android:text="Paladar Duro"
             android:textSize="18sp"
+=======
+            android:id="@+id/tvDientesPri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Dientes primarios: "
+            android:textSize="25dp"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:textStyle="normal|bold" />
 
         <Spinner
@@ -258,6 +392,7 @@
 
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/tvtartaro"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -295,6 +430,45 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/tvmudados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Mudados"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etmudados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:id="@+id/tvsanos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Sanos"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:id="@+id/etsanos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="25dp" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -307,6 +481,7 @@
 
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/tvPaladarB"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -364,6 +539,59 @@
             android:gravity="top"
             android:paddingLeft="16dp"
             android:textAlignment="gravity" />
+=======
+            android:id="@+id/tvPaladarD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Paladar Duro"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/eppaladarD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tvtartaro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Tártaro"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epTartaro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tvBruxismo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Bruxismo"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epbruxismo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -375,15 +603,22 @@
         android:layout_weight="1">
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/tvDientesPri"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+=======
+            android:id="@+id/tvPaladarB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Dientes primarios: "
             android:textSize="20sp"
             android:textStyle="normal|bold" />
 
+<<<<<<< HEAD
 
         <TextView
             android:id="@+id/tvmudados"
@@ -423,6 +658,47 @@
             android:ems="10"
             android:inputType="numberSigned"
             android:textSize="25dp" />
+=======
+        <Spinner
+            android:id="@+id/epPaladarB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tvManchas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Manchas"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epManchas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tvGarganta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Garganta"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/epGarganta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
 
 
     </TableRow>
@@ -435,8 +711,13 @@
 
         <TextView
             android:id="@+id/tvbolsasP"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Bolsas periodontales"
@@ -445,24 +726,43 @@
 
         <Spinner
             android:id="@+id/epbolsasP"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_weight="1" />
 
         <TextView
             android:id="@+id/tvTumoraciones"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Tumoraciones"
             android:textSize="20sp"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Tumoraciones"
+            android:textSize="25dp"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:textStyle="normal|bold" />
 
         <Spinner
             android:id="@+id/epTumoraciones"
+<<<<<<< HEAD
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:layout_weight="1" />
 
 
@@ -490,9 +790,15 @@
         <TextView
             android:id="@+id/tvobsRadiografica"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Observaciones Radiográficas"
             android:textSize="20sp"
             android:textStyle="normal|bold" />
@@ -520,9 +826,15 @@
         <TextView
             android:id="@+id/tvObservacion"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="right|center_vertical"
+=======
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:text="Observacion General"
             android:textSize="20sp"
             android:textStyle="normal|bold" />
@@ -530,10 +842,14 @@
         <EditText
             android:id="@+id/etObservacion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
+<<<<<<< HEAD
+=======
+            android:text="Name"
+>>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
             android:textSize="25dp" />
 
 
