@@ -22,6 +22,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.Diagrama.DienteService;
-import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
 import com.darkcode.ruf_012.Doctor.VistaRegDoctor;
 import com.darkcode.ruf_012.Login.Login;
@@ -39,7 +39,6 @@ import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
 import com.darkcode.ruf_012.Pagos.AdapterRegPago;
 import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
-import com.darkcode.ruf_012.Pagos.p2ListView;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
@@ -166,6 +165,7 @@ public class MainActivity extends AppCompatActivity
 //      ===============================================
 
     int monto_a_pagar;
+
 
     public int  getMonto_a_pagar() {
         return monto_a_pagar;
@@ -305,6 +305,9 @@ public class MainActivity extends AppCompatActivity
             btnUniversal.show();
         }
     }
+
+
+
 
     public void setIte(ArrayList<AdapterTratsConsulta.checkItem> ite) {
         this.ite = ite;
@@ -651,6 +654,16 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        if (keyCode == event.KEYCODE_BACK) {
+            //code
+            getVistaActual();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
