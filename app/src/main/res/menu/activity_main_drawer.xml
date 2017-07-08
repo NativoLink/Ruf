@@ -14,10 +14,14 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Listado de Pacientes" />
-        <!--<item-->
-            <!--android:id="@+id/nav_manage"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Reg Plan Tratamientos" />-->
+        <item
+            android:id="@+id/nav_reg_doctor"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Nuevo Doctor" />
+        <item
+            android:id="@+id/nav_reg_trat"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Nuevo Tratamiento" />
     </group>
 
     <item android:title="Communicate">

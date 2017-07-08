@@ -6,32 +6,37 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <TextView
             android:id="@+id/tvIdPago"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/tvFechaPago"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <TextView
-            android:id="@+id/tvpago"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPago"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center" />
 
-        <Button
-            android:id="@+id/btndetalle"
+        <ImageButton
+            android:id="@+id/btnDetalleP"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight=".02"
+            android:layout_weight="1.3"
             android:background="?android:attr/listChoiceIndicatorSingle"
             android:backgroundTint="#fd6cd2e4"
             android:gravity="center"

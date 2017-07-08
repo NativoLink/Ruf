@@ -50,22 +50,14 @@
             android:layout_weight="1" >
 
             <ImageButton
-                android:id="@+id/btnNuevaConsulta"
-                style="@style/btnExamen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/add"
-                android:text="Nueva Consulta" />
-
-            <ImageButton
-                android:id="@+id/btnPlanes"
+                android:id="@+id/btnPagos"
                 style="@style/btnDiagrama"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="end"
                 android:layout_weight="1"
-                android:src="@drawable/notepad"
-                android:text="Planes" />
+                android:src="@drawable/refund"
+                android:text="Examen Clinico" />
 
             <ImageButton
                 android:id="@+id/btnConsultas"
@@ -88,14 +80,45 @@
                 android:text="Odontodiagramas" />
 
             <ImageButton
-                android:id="@+id/btnExamen"
+                android:id="@+id/btnNuevaConsulta"
                 style="@style/btnExamen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#cbefb5"
+                android:src="@drawable/add"
+                android:text="Nueva Consulta" />
+
+            <ImageButton
+                android:id="@+id/btnPlanes"
+                style="@style/btnDiagrama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/notepad"
+                android:text="Planes" />
+
+            <ImageButton
+                android:id="@+id/btnExamen"
+                style="@style/btnConsultas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_weight="1"
                 android:src="@drawable/newspaper"
                 android:text="Examen Clinico" />
+
+            <ImageButton
+                android:id="@+id/btnHabis"
+                style="@style/btnDiagrama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/toothbrush"
+                android:text="Examen Clinico" />
+
+
 
             <TextView
                 android:text="TextView"

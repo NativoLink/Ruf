@@ -55,6 +55,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
         EditText etCosto;
         CheckBox cbMarcado;
         TextView tvCosto;
+        TextView tvCantP;
         TextView tvTotalIndi;
         int ref;
     }

@@ -61,16 +61,19 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
                 convertView = inflater.inflate(R.layout.list_trats_p_consulta, parent, false);
                 holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidad);
                 holder.tvCosto = (TextView) convertView.findViewById(R.id.tvCosto);
+                holder.tvCantP = (TextView) convertView.findViewById(R.id.tvCantPlaneada);
                 holder.tvTotalIndi = (TextView) convertView.findViewById(R.id.tvTotalIndi);
                 holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbNombreTrat);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
+        if(tratamientos.get(position).getId_p_tratamiento() != 0 ){
         final checkItem ckItem = new checkItem(position);
         holder.ref = position;
         holder.cbMarcado.setText(tratamientos.get(position).getNombre());
         holder.tvCosto.setText(String.valueOf(tratamientos.get(position).getCosto()));
+        holder.tvCantP.setText(String.valueOf(tratamientos.get(position).getCant_r()+"/"+tratamientos.get(position).getCantidad()));
         holder.etCantidad.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before,
@@ -276,9 +279,7 @@ public class AdapterTratsConsulta extends ArrayAdapter<Tratamiento>{
         });
 
 
-//        }
-
-
+        }else{convertView.setVisibility(View.INVISIBLE);}
         return convertView;
 
 

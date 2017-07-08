@@ -5,17 +5,19 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#B2E4FB">
 
         <EditText
+            android:id="@+id/etBuscarPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etBuscarPaciente"
+            android:layout_marginLeft="16dp"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:hint="Nombre o ID" />
+            android:ems="10"
+            android:hint="Nombre o ID"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
         <ImageButton
             android:id="@+id/btnBuscarPaciente"

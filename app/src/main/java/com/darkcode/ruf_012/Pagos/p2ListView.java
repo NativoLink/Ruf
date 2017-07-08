@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
+import java.util.Iterator;
 import java.util.List;
 
 import retrofit.Callback;
@@ -34,7 +36,11 @@ public class p2ListView extends Fragment {
 
     AdapterConPendientes myItemsListAdapter1;
    AdapterRegPago myItemsListAdapter2;
-    TextView tvNombrePaciente;
+    TextView tvNombrePaciente,tvNoRecibo;
+    RestAdapter restadpter ;
+    PagoService servicio;
+    Button regPago;
+    EditText etNota;
 
     public p2ListView() {
     }
@@ -44,10 +50,69 @@ public class p2ListView extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.p2_list_view, container,false);
 
+        restadpter = ((MainActivity)getContext()).getRestadpter();
+        servicio = restadpter.create(PagoService.class);
+
         listView1 = (ListView)view.findViewById(R.id.lvConPendientes);
         listView2 = (ListView)view.findViewById(R.id.lvConAPagar);
         tvNombrePaciente= (TextView)view.findViewById(R.id.tvNombrePaciente);
         tvNombrePaciente.setText(((MainActivity)getContext()).getNOMBRES());
+
+        tvNoRecibo= (TextView)view.findViewById(R.id.tvnoregistro);
+        servicio.getNumRecibo(new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                tvNoRecibo.setText(s);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        regPago  = (Button)view.findViewById(R.id.btnregistrar);
+        etNota  = (EditText)view.findViewById(R.id.etNota);
+        regPago.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int total = ((MainActivity)getContext()).getTotal();
+                String nota = etNota.getText().toString();
+                servicio.regPagos(total, nota, new Callback<String>() {
+//                    aPago
+                        List<ConsultaPendiente> ite = CalcularPago();
+                    @Override
+                    public void success(String s, Response response) {
+                        int id_consulta,pago;
+                        for(int i=0; i< ite.size(); i++) {
+                            id_consulta = ite.get(i).getId_consulta();
+                            pago = ite.get(i).getPagoAbono();
+                            int id_pago  = Integer.parseInt(s);
+                            servicio.regDetallePago(id_consulta, id_pago, pago, new Callback<String>() {
+                                @Override
+                                public void success(String s, Response response) {
+                                    Toast.makeText(getContext(), "Return "+s, Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Toast.makeText(getContext(), "ERROR 2 "+error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                            Toast.makeText(getContext(), "Cantidad R => "+ ite.get(i).getCosto(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getContext(), "ERROR 1 "+error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+
+
 
 
 
@@ -103,10 +168,10 @@ public class p2ListView extends Fragment {
     private void initItems(){
         ((MainActivity)getContext()).aPago.clear();
 
-        RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
-        PagoService servicio = restadpter.create(PagoService.class);
+
+
         //PRUEBA
-        servicio.getPagos(1, new Callback<List<ConsultaPendiente>>() {
+        servicio.getPagos(((MainActivity)getContext()).getId_pacienteA(), new Callback<List<ConsultaPendiente>>() {
             @Override
             public void success(List<ConsultaPendiente> pagos, Response response) {
                 myItemsListAdapter1 = new AdapterConPendientes(getContext(), pagos);
@@ -116,9 +181,13 @@ public class p2ListView extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public List<ConsultaPendiente> CalcularPago(){
+        return ((MainActivity)getContext()).getaPago();
     }
 
 

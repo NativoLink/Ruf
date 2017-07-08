@@ -12,6 +12,20 @@ public class ConsultaPendiente {
     int pendiente;
     String estado;
 
+    //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // VARIABLE PARA SABER CUANTO VA A PAGAR O ABONAR A UNA CONSULTA
+        int pagoAbono;
+    //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+    public int getPagoAbono() {
+        return pagoAbono;
+    }
+
+    public void setPagoAbono(int pagoAbono) {
+        this.pagoAbono = pagoAbono;
+    }
+
 
     public int getId_consulta() {
         return id_consulta;
