@@ -8,15 +8,14 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:background="#02A8F3"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
         <TextView
             android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingBottom="8dp"
@@ -31,8 +30,8 @@
 
         <TextView
             android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingBottom="8dp"
@@ -48,38 +47,37 @@
     <ListView
         android:id="@+id/lvdetallePago"
         android:layout_width="match_parent"
-        android:layout_height="627dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
 
     </ListView>
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.02"
-            android:text="Total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#02A8F3"
             android:gravity="center"
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="8dp"
-android:textSize="18dp"
-            android:background="#02A8F3"
+            android:text="Total"
+            android:textColor="#FFF"
 
-            android:textColor="#FFF"/>
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tvTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="number"/>
+            android:inputType="number" />
     </TableRow>
 
 </LinearLayout>

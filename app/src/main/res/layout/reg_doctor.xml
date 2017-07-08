@@ -5,71 +5,71 @@
     android:orientation="vertical">
 
 
-        <TableRow
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/tvNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Nombre"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
 
-            <TextView
-                android:id="@+id/tvNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Nombre"
-                android:textSize="25dp"
-                android:gravity="bottom|right"
-                android:textStyle="normal|bold" />
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/etNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="25dp"
-                android:inputType="textPersonName"
-                android:text="Name" />
+        <TextView
+            android:id="@+id/tvusuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Usuario"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
 
-            <TextView
-                android:id="@+id/tvusuario"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="25dp"
-                android:gravity="bottom|right"
-                android:text="Usuario"
-                android:textStyle="normal|bold" />
+        <EditText
+            android:id="@+id/etusuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/etusuario"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="25dp"
-                android:inputType="textPersonName"
-                android:text="Name" />
+        <TextView
+            android:id="@+id/tvclave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:text="Clave"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
 
-            <TextView
-                android:id="@+id/tvclave"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Clave"
-                android:textSize="25dp"
-                android:gravity="bottom|right"
-                android:textStyle="normal|bold" />
+        <EditText
+            android:id="@+id/etClave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textSize="25dp" />
 
-            <EditText
-                android:id="@+id/etClave"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="25dp"
-                android:inputType="textPassword" />
-
-        </TableRow>
+    </TableRow>
 
 
     <TableRow
@@ -80,62 +80,62 @@
 
         <TextView
             android:id="@+id/tvDireccion_d"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="bottom|right"
             android:text="Dirección"
             android:textSize="25dp"
-            android:gravity="bottom|right"
             android:textStyle="normal|bold" />
 
         <EditText
             android:id="@+id/etDireccion_d"
-            android:layout_width="281dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:textSize="25dp"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Name"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/tvTelefono"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="bottom|right"
             android:text="Teléfono"
             android:textSize="25dp"
-            android:gravity="bottom|right"
             android:textStyle="normal|bold" />
 
         <EditText
             android:id="@+id/etTelefono"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:textSize="25dp"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/tvcedula"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="bottom|right"
             android:text="Cédula"
             android:textSize="25dp"
-            android:gravity="bottom|right"
             android:textStyle="normal|bold" />
 
         <EditText
             android:id="@+id/etcedula"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:textSize="25dp"
             android:inputType="number"
-            android:text="Name" />
+            android:text="Name"
+            android:textSize="25dp" />
 
 
     </TableRow>
@@ -147,28 +147,24 @@
 
         <TextView
             android:id="@+id/tvEspecialidad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Especialidad"
             android:textSize="25dp"
             android:textStyle="normal|bold" />
 
-        <EditText
-            android:id="@+id/etespecialidad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
-            android:ems="10"
-            android:textSize="25dp"
-
-            android:inputType="textPersonName"
-            android:text="Name" />
+        <Spinner
+            android:id="@+id/epespecialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
     </TableRow>
