@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/tvEstadoSalud"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Está en buen Estado de salud?"
@@ -48,7 +48,7 @@
             <TextView
                 android:id="@+id/tvenfermedad"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Que enfermedad le aqueja?"
@@ -85,15 +85,10 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-<<<<<<< HEAD
                 android:id="@+id/spBajoTra"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-=======
-                android:id="@+id/epbajoTra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
+
                 android:layout_weight="1" />
 
 
@@ -148,7 +143,7 @@
             <TextView
                 android:id="@+id/tvalergico"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Es alérgico a algún Medicamento, Sustancia o Alimento?"
@@ -156,15 +151,11 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-<<<<<<< HEAD
+
                 android:id="@+id/spAlergico"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-=======
-                android:id="@+id/epalergico"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
@@ -199,7 +190,7 @@
             <TextView
                 android:id="@+id/tvenfermedadS"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Ha sufrido algún tipo de enfermedad sistemática?"
@@ -207,15 +198,11 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-<<<<<<< HEAD
+
                 android:id="@+id/spEnfermedadS"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-=======
-                android:id="@+id/epaEnfermedadS"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
 
@@ -270,11 +257,8 @@
             <TextView
                 android:id="@+id/tvnumcepillar"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
                 android:layout_height="match_parent"
-=======
-                android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
+
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Cuántas veces al día se cepilla?"
@@ -284,11 +268,7 @@
             <EditText
                 android:id="@+id/etnumcepillar"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
-                android:layout_height="match_parent"
-=======
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center_vertical"
@@ -298,11 +278,8 @@
             <TextView
                 android:id="@+id/tvenjuague"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
-                android:layout_height="match_parent"
-=======
+
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Utiliza enjuague bucal?"
@@ -310,25 +287,16 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-<<<<<<< HEAD
+
                 android:id="@+id/spEnjuague"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-=======
-                android:id="@+id/epenjuague"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tvhilo"
                 android:layout_width="match_parent"
-<<<<<<< HEAD
-                android:layout_height="match_parent"
-=======
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Utiliza hilo dental?"
@@ -336,15 +304,12 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-<<<<<<< HEAD
+
                 android:id="@+id/spHilo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-=======
-                android:id="@+id/ephilo"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
->>>>>>> 5e4a7030b681fecc52531a9dcc8d635e1886f94c
+
+
                 android:layout_weight="1" />
 
 

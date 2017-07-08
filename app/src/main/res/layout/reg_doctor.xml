@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B2E4FB"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="Datos Personales"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -15,7 +26,7 @@
         <TextView
             android:id="@+id/tvNombre"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Nombre"
@@ -25,7 +36,7 @@
         <EditText
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="textPersonName" />
@@ -33,7 +44,7 @@
         <TextView
             android:id="@+id/tvusuario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Usuario"
@@ -43,7 +54,7 @@
         <EditText
             android:id="@+id/etUsuario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="textPersonName" />
@@ -51,7 +62,7 @@
         <TextView
             android:id="@+id/tvclave"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Clave"
@@ -61,7 +72,7 @@
         <EditText
             android:id="@+id/etClave"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="textPassword" />
@@ -80,7 +91,7 @@
         <TextView
             android:id="@+id/tvDireccion_d"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Dirección"
@@ -90,7 +101,7 @@
         <EditText
             android:id="@+id/etDireccion_d"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="textPersonName" />
@@ -98,7 +109,7 @@
         <TextView
             android:id="@+id/tvTelefono"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Teléfono"
@@ -108,7 +119,7 @@
         <EditText
             android:id="@+id/etTelefono"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="phone" />
@@ -116,7 +127,7 @@
         <TextView
             android:id="@+id/tvcedula"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|right"
             android:text="Cédula"
@@ -126,14 +137,13 @@
         <EditText
             android:id="@+id/etCedula"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
             android:inputType="number" />
 
 
     </TableRow>
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,22 +153,28 @@
 
         <TextView
             android:id="@+id/tvEspecialidad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:gravity="bottom|right"
             android:text="Especialidad"
             android:textSize="25dp"
             android:textStyle="normal|bold" />
 
-        <EditText
-            android:id="@+id/etEspecialidad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
+        <Spinner
+            android:id="@+id/spEspecialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:gravity="bottom|left"
 
             android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
     </TableRow>
 
@@ -171,6 +187,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="bottom|right">
 
             <TextView
