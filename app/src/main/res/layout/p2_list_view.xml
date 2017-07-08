@@ -428,7 +428,7 @@
                 android:layout_weight="0.5">
 
                 <EditText
-                    android:id="@+id/tvnota"
+                    android:id="@+id/etNota"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"

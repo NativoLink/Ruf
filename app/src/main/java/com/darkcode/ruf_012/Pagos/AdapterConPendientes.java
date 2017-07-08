@@ -219,7 +219,7 @@ public class AdapterConPendientes extends ArrayAdapter {
     public void ProcesarSaldar(int position){
         if(monto_valido == false) {
             monto_valido = true;
-            Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
             monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
             if(updateDispoSaldar(position)) {
                 ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>

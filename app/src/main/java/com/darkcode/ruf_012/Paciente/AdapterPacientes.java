@@ -23,6 +23,7 @@ import com.darkcode.ruf_012.Diagrama.AdapterDiagrama;
 import com.darkcode.ruf_012.Diagrama.Diagrama;
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Pagos.VistaPagosR;
 import com.darkcode.ruf_012.Pagos.p2ListView;
 import com.darkcode.ruf_012.R;
 import com.darkcode.ruf_012.Tratamientos.AdapterPlan;
@@ -141,8 +142,8 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             ImageButton btnExamen = (ImageButton) customView.findViewById(R.id.btnExamen);
 
             ImageButton btnPagos = (ImageButton) customView.findViewById(R.id.btnPagos);
-            ImageButton btnHabis = (ImageButton) customView.findViewById(R.id.btnHabis);
-            ImageButton btnHistMed = (ImageButton) customView.findViewById(R.id.btnHistMed);
+            ImageButton btnHistMedHabis = (ImageButton) customView.findViewById(R.id.btnHabis);
+
 
             if(pacientes.get(position).getUltimo_plan()==0){
                 btnNuevaConsulta.setVisibility(View.INVISIBLE);
@@ -314,7 +315,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public void onClick(View v) {
                     id_paciente = idPaciente.getText().toString();
-                    vista = new VistaRegExamen();
+                    vista = new VistaPagosR();
 
                     UserEfectt(position);
                     setParametros(position);
@@ -325,36 +326,22 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 }
             });
 
-            btnHabis.setOnClickListener(new View.OnClickListener() {
+            btnHistMedHabis.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     id_paciente = idPaciente.getText().toString();
-                    vista = new VistaRegExamen();
+                    vista = new VistaHistMed();
 
                     UserEfectt(position);
                     setParametros(position);
 
-                    Titulo_Bar =  ((MainActivity) getContext()).getV_reg_habitos();
+                    Titulo_Bar =  ((MainActivity) getContext()).getV_hist_med();
                     ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
                     cambiarVista(vista, Titulo_Bar);
                 }
             });
 
-            btnHistMed
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            id_paciente = idPaciente.getText().toString();
-                            vista = new VistaHistMed();
 
-                            UserEfectt(position);
-                            setParametros(position);
-
-                            Titulo_Bar =  ((MainActivity) getContext()).getV_hist_med();
-                            ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
-                            cambiarVista(vista, Titulo_Bar);
-                        }
-                    });
 
 
             int id = pacientes.get(position).getId_paciente();

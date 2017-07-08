@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity
 
 
 //    =================================
-//    |   CAPTAR PULSO DEL PEDAL        |
+//    |   CAPTAR PULSO DEL PEDAL       |
 //    =================================
     private void permitirEscuchar()
     {

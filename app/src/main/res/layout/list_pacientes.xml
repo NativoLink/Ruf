@@ -118,15 +118,7 @@
                 android:src="@drawable/toothbrush"
                 android:text="Examen Clinico" />
 
-            <ImageButton
-                android:id="@+id/btnHistMed"
-                style="@style/btnDiagrama"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:src="@drawable/toothbrush"
-                android:text="Historia Médica" />
+
 
             <TextView
                 android:text="TextView"
