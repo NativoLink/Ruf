@@ -32,7 +32,7 @@ public interface PagoService {
                         Callback<String> callback);
 
     @FormUrlEncoded
-    @GET("/WebSites/Tesis/Pagos/regPagos.php")
+    @POST("/WebSites/Tesis/Pagos/regPagos.php")
     void regPagos(@Field("total") int total,
                      @Field("nota") String nota,
                      Callback<String> callback);// no si crear una clase para esto o colocarlo en reg detalle pago

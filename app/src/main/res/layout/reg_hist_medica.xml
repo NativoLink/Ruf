@@ -191,7 +191,7 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-                android:id="@+id/epaEnfermedadS"
+                android:id="@+id/spEnfermedadS"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -291,7 +291,7 @@
                 android:textStyle="normal|bold" />
 
             <Spinner
-                android:id="@+id/ephilo"
+                android:id="@+id/spHilo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />

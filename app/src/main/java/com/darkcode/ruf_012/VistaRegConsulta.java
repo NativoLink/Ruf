@@ -139,19 +139,23 @@ public class VistaRegConsulta  extends Fragment {
 
 
         Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int total = ((MainActivity) getContext()).getTotalRegConsulta();
-                        tvCTotalRealizados.setText(String.valueOf(total));
-                        Log.v("ACTUALIZAR", "TOTAL ->" + total);
-                    }
-                });
-            }
-        }, 0, 1000); // End of your timer code.
+        try {
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int total = ((MainActivity) getContext()).getTotalRegConsulta();
+                            tvCTotalRealizados.setText(String.valueOf(total));
+                            Log.v("ACTUALIZAR", "TOTAL ->" + total);
+                        }
+                    });
+                }
+            }, 0, 1000); // End of your timer code.
+        }catch(Exception ex){
+            Log.v("EXCEPTION", "TOTAL ->" + ex);
+        }
 
 
         return view;
