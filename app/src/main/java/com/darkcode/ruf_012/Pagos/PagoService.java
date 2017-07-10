@@ -24,7 +24,7 @@ public interface PagoService {
     @GET("/WebSites/Tesis/Pagos/listPagosPacientes.php")
     void getPagosR(@Query("id_paciente") int id_paciente, Callback<List<PagoR>> callback);
 
-    @Headers("Cache-Control: max-age=1")
+    @FormUrlEncoded
     @POST("/WebSites/Tesis/Pagos/regDetallePago.php")
     void regDetallePago(@Field("id_consulta") int id_consulta,
                         @Field("id_pago") int id_pago,
@@ -34,7 +34,7 @@ public interface PagoService {
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Pagos/regPagos.php")
     void regPagos(@Field("total") int total,
-                     @Field("nota") String nota,
+                  @Field("nota") String nota,
                      Callback<String> callback);// no si crear una clase para esto o colocarlo en reg detalle pago
 
 

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -177,12 +178,16 @@ public class VistaRegConsulta  extends Fragment {
 
     public AlertDialog createNotaDialogo() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View v = inflater.inflate(R.layout.reg_nota, null);
         builder.setTitle("Agregar Nota")
         .setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Acciones
+                        EditText note =  (EditText)v.findViewById(R.id.etNota);
+                        ((MainActivity) getContext()).setNota(note.getText().toString());
+//                        Toast.makeText(getContext(), "NOTA : " + note.getText().toString(), Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton("CANCELAR",
@@ -193,9 +198,7 @@ public class VistaRegConsulta  extends Fragment {
                             }
                         });
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View v = inflater.inflate(R.layout.reg_nota, null);
 
         builder.setView(v);
 

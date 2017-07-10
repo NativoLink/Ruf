@@ -444,7 +444,7 @@
             android:textStyle="normal|bold" />
 
         <Spinner
-            android:id="@+id/epbolsasP"
+            android:id="@+id/spBolsaP"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -460,7 +460,7 @@
             android:textStyle="normal|bold" />
 
         <Spinner
-            android:id="@+id/epTumoraciones"
+            android:id="@+id/spTumoraciones"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -538,6 +538,26 @@
 
 
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Registrar" />
+    </TableRow>
+
 </LinearLayout>
 
 

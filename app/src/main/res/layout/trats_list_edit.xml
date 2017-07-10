@@ -192,7 +192,16 @@
 
                 </TableRow>
             </LinearLayout>
-        </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnNota"
+                style="@style/btnDiagrama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:src="@drawable/note" />
+            </LinearLayout>
+
 
     </LinearLayout>
 
