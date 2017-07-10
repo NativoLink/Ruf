@@ -194,7 +194,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:gravity="right|center_vertical"
-            android:text="Mal Formaciones"
+            android:text="MalFormaciones"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
 
