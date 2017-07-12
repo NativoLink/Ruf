@@ -66,6 +66,26 @@ public class MainActivity extends AppCompatActivity
     int  escucha;
     Object vistaA;
     int TotalRegConsulta = 0;
+    String nota; // <- - - NOTA PARA REGCONSULTA
+    String nota_plan; // <- - - NOTA PARA REGPLAN
+
+    public String getNota_plan() {
+        return nota_plan;
+    }
+    public void setNota_plan(String nota_plan) {
+        this.nota_plan = nota_plan;
+    }
+
+
+
+    public String getNota() {
+        return nota;
+    }
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+
 
 //    - - - - - - - - - - - - - - - - - - - -
 //    |   * * *  LISTADO DE VISTAS  * * *   |
@@ -83,6 +103,12 @@ public class MainActivity extends AppCompatActivity
     String v_reg_doctor = "Nuevo Doctor";
     String v_hist_med = "Historia Médica";
 
+    public String getV_reg_doctor() {
+        return v_reg_doctor;
+    }
+    public String getV_reg_paciente() {
+        return v_reg_paciente;
+    }
     public String getV_hist_med() {
         return v_hist_med;
     }
@@ -298,10 +324,10 @@ public class MainActivity extends AppCompatActivity
 
     public void hideBtnUnivesal(String vistaAct){
         getSupportActionBar().setTitle( vistaActual);
-        if(vistaAct!=v_reg_consulta && vistaAct!=v_reg_paciente){
-            btnUniversal.hide();
-        }else{
+        if(vistaAct==v_reg_consulta || vistaAct==getV_reg_paciente()){
             btnUniversal.show();
+        }else{
+            btnUniversal.hide();
         }
     }
 
@@ -681,21 +707,22 @@ public class MainActivity extends AppCompatActivity
         Fragment vista = null;
         boolean trans = false;
         if (id == R.id.nav_camera) {
-            vistaActual = v_reg_paciente;
+            vistaActual = getV_reg_paciente();
             vista = new VistaRegPaciente();
             trans= true;
 //        } else if (id == R.id.nav_gallery) {
 //            vista = new VistaEditPlan();
 //            trans= true;
         } else if (id == R.id.nav_slideshow) {
-            vistaActual = v_list_pacientes;
+            vistaActual = getV_list_pacientes();
             vista = new VistaPacientes();
             trans= true;
         } else if (id == R.id.nav_reg_doctor) {
-            vistaActual = v_reg_doctor;
+            vistaActual = getV_reg_doctor();
             vista = new VistaRegDoctor();
             trans= true;
         } else if (id == R.id.nav_reg_trat) {
+            vistaActual = getV_reg_tratamiento();
             vista = new VistaRegTrat();
             trans= true;
         } else if (id == R.id.nav_send) {
@@ -720,8 +747,8 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.f_main, vista);
             vistaA = vista;
-            String titulo_Bar = item.getTitle().toString();
-            vistaActual= titulo_Bar;
+//            String titulo_Bar = item.getTitle().toString();
+//            vistaActual= titulo_Bar;
             hideBtnUnivesal(vistaActual);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -750,7 +777,7 @@ public class MainActivity extends AppCompatActivity
                         id_pacienteA,
                         ite.get(i).getId_p_tratamiento(),
                         ite.get(i).getEstado(),
-                        "FALTA ESTO EN LA APP",
+                        getNota(),
                         ite.get(i).getCantidad(),
                         new Callback<String>() {
                             @Override
@@ -842,7 +869,7 @@ public class MainActivity extends AppCompatActivity
                 editDiente(pos_diente, pared, estado_pared);
             }
         }
-        if(vistaActual=="Nuevo Plan"){
+        if(vistaActual==getV_nuevo_plan()){
             DienteService servicio = restadpter.create(DienteService.class);
             for(int i=0; i< ite.size(); i++) {
                 try {
@@ -850,7 +877,7 @@ public class MainActivity extends AppCompatActivity
                             id_pacienteA,
                             ite.get(i).getId_p_tratamiento(),
                             ite.get(i).getEstado(),
-                            "FALTA ESTO EN LA APP",
+                            getNota(),
                             ite.get(i).getCantidad(),
                             new Callback<String>() {
                                 @Override

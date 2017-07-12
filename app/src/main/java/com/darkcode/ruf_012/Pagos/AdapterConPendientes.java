@@ -222,6 +222,8 @@ public class AdapterConPendientes extends ArrayAdapter {
 //            Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
             monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
             if(updateDispoSaldar(position)) {
+                int saldando = pago.get(position).getCosto(); // <- - - - - - -- - - - - - - - -{{ CANTIDA A PAGAR PARA SALDAR O ABONAR }}
+                pago.get(position).setPagoAbono(saldando); // SALDANDO EL TOTAL DE ESTA CONSULTA
                 ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                 ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
                 ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());

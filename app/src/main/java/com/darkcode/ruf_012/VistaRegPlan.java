@@ -1,5 +1,7 @@
 package com.darkcode.ruf_012;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -7,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +40,7 @@ public class VistaRegPlan  extends Fragment {
     int id_plan;
     int id_paciente;
 
-    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+    RestAdapter restadpter =   ((MainActivity) getContext()).getRestadpter();
     TratamientoService servicio  = restadpter.create(TratamientoService.class);
 
     public VistaRegPlan() {
@@ -63,7 +67,7 @@ public class VistaRegPlan  extends Fragment {
                 callback_trats = ((MainActivity) getContext()).getItemRegPlan();
 
 //                int id_paciente = 1; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
-                servicio.regPlan(id_paciente, "La descripcion tampoco esta", new Callback<Integer>() {
+                servicio.regPlan(id_paciente,  ((MainActivity) getContext()).getNota_plan(), new Callback<Integer>() {
                     @Override
                     public void success(Integer integer, Response response) {
                         id_plan = integer;
@@ -110,7 +114,45 @@ public class VistaRegPlan  extends Fragment {
             }
         });
 
+        ImageButton btnNota = (ImageButton) view.findViewById(R.id.btnNota);
+        btnNota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNotaDialogo().show();
+            }
+        });
+
         return view;
 
+    }
+
+    public AlertDialog createNotaDialogo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View v = inflater.inflate(R.layout.reg_nota, null);
+        builder.setTitle("Agregar Nota")
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                EditText note =  (EditText)v.findViewById(R.id.etNota);
+                                ((MainActivity) getContext()).setNota_plan(note.getText().toString());
+//                        Toast.makeText(getContext(), "NOTA : " + note.getText().toString(), Toast.LENGTH_LONG).show();
+                            }
+                        })
+                .setNegativeButton("CANCELAR",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Acciones
+                            }
+                        });
+
+
+
+        builder.setView(v);
+
+
+        return builder.create();
     }
 }

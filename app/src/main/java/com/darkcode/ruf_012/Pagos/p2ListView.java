@@ -86,12 +86,13 @@ public class p2ListView extends Fragment {
                         int id_consulta,pago;
                         for(int i=0; i< ite.size(); i++) {
                             id_consulta = ite.get(i).getId_consulta();
-                            pago = ite.get(i).getPagoAbono();
+                            final int pago_texting= ite.get(i).getPagoAbono();
+                            pago = 200;
                             int id_pago  = Integer.parseInt(s);
                             servicio.regDetallePago(id_consulta, id_pago, pago, new Callback<String>() {
                                 @Override
                                 public void success(String s, Response response) {
-                                    Toast.makeText(getContext(), "Return "+s, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "Return "+pago_texting, Toast.LENGTH_LONG).show();
                                 }
 
                                 @Override
