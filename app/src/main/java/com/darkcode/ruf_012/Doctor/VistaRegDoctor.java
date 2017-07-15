@@ -5,17 +5,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Paciente.Especialidad;
 import com.darkcode.ruf_012.R;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import static com.darkcode.ruf_012.R.id.spEspecialidad;
 
 /**
  * Created by NativoLink on 6/7/17.
@@ -23,37 +33,70 @@ import retrofit.client.Response;
 
 public class VistaRegDoctor extends Fragment {
 
-    TextView etNombre,etUsuario,etClave,etDireccion_d,etTelefono,etCedula,etEspecialidad;
+    EditText etNombre,etUsuario,etClave,etDireccion_d,etTelefono,etCedula;
+    Spinner spEspecialidad;
     String stNombre,stUsuario,stClave,stDireccion_d,stTelefono,stCedula,stEspecialidad;
+    Button btnRegistrar;
 
-    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+    private String[] arraySpinner;
+    int posi = 0;
+    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();;
     DoctorService servicio  = restadpter.create(DoctorService.class);
+
+    public VistaRegDoctor() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.reg_doctor, container, false);
 
-        etNombre = (TextView)view.findViewById(R.id.etNombre);
-        etUsuario = (TextView)view.findViewById(R.id.etUsuario);
-        etClave = (TextView)view.findViewById(R.id.etClave);
-        etDireccion_d = (TextView)view.findViewById(R.id.etDireccion_d);
-        etTelefono = (TextView)view.findViewById(R.id.etTelefono);
-        etCedula = (TextView)view.findViewById(R.id.etCedula);
-        etEspecialidad = (TextView)view.findViewById(R.id.etEspecialidad);
+        etNombre       = (EditText)view.findViewById(R.id.etNombre);
+        etUsuario      = (EditText)view.findViewById(R.id.etUsuario);
+        etClave        = (EditText)view.findViewById(R.id.etClave);
+        etDireccion_d  = (EditText)view.findViewById(R.id.etDireccion_d);
+        etTelefono     = (EditText)view.findViewById(R.id.etTelefono);
+        etCedula       = (EditText)view.findViewById(R.id.etCedula);
+        spEspecialidad = (Spinner)view.findViewById(R.id.spEspecialidad);
 
-        Button btnRegistrar = (Button)view.findViewById(R.id.btnRegistrar);
+        servicio.getEspecialidaddes(new Callback<List<Especialidad>>() {
+            @Override
+            public void success(List<Especialidad> especialidads, Response response) {
+                arraySpinner = new  String[especialidads.size()];
+                for(Especialidad str : especialidads)
+                {
+                    arraySpinner[posi] = str.getNombre();
+//                    Toast.makeText(getContext()," ESPEC: "+str.getNombre(), Toast.LENGTH_LONG).show();
+                    posi++;
+                }
 
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                        R.layout.spinner_item, arraySpinner);
+                spEspecialidad.setAdapter(adapter);
+                spEspecialidad.setSelection(0);
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getContext()," ERROR ESPEC: "+error, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+        btnRegistrar = (Button)view.findViewById(R.id.btnRegistrar);
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stNombre = etNombre.getText().toString();
-                stUsuario = etUsuario.getText().toString();
-                stClave = etClave.getText().toString();
-                stDireccion_d = etDireccion_d.getText().toString();
-                stTelefono = etTelefono.getText().toString();
-                stCedula = etCedula.getText().toString();
-                stEspecialidad = etEspecialidad.getText().toString();
+                stNombre       = etNombre.getText().toString();
+                stUsuario      = etUsuario.getText().toString();
+                stClave        = etClave.getText().toString();
+                stDireccion_d  = etDireccion_d.getText().toString();
+                stTelefono     = etTelefono.getText().toString();
+                stCedula       = etCedula.getText().toString();
+                stEspecialidad = spEspecialidad.getSelectedItem().toString();
 
                 if(
                         (!stNombre.equals("") && !stUsuario.equals("")) && (!stNombre.equals(" ") && !stUsuario.equals(" ")) &&

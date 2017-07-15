@@ -26,6 +26,15 @@ public class Paciente {
     String enfermedad_sistematica;
     int ultimo_plan;
     int ultima_consulta;
+    String existe_deuda;
+
+    public String getExiste_deuda() {
+        return existe_deuda;
+    }
+
+    public void setExiste_deuda(String existe_deuda) {
+        this.existe_deuda = existe_deuda;
+    }
 
     public int getUltima_consulta() {
         return ultima_consulta;

@@ -41,29 +41,29 @@ public class VistaRegExamen extends Fragment {
         TextView tvNombreP = (TextView)rootView.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());
 
-        final Spinner spLabios = (Spinner)rootView.findViewById(R.id.spLabios);
-        final Spinner spFistulas = (Spinner)rootView.findViewById(R.id.spFistulas);
-        final Spinner spMovilidad = (Spinner)rootView.findViewById(R.id.spMovilidad);
-        final Spinner spCarrillos = (Spinner)rootView.findViewById(R.id.spCarrillos);
+        final Spinner spLabios         = (Spinner)rootView.findViewById(R.id.spLabios);
+        final Spinner spFistulas       = (Spinner)rootView.findViewById(R.id.spFistulas);
+        final Spinner spMovilidad      = (Spinner)rootView.findViewById(R.id.spMovilidad);
+        final Spinner spCarrillos      = (Spinner)rootView.findViewById(R.id.spCarrillos);
         final Spinner spPigmentaciones = (Spinner)rootView.findViewById(R.id.spPigmentaciones);
-        final Spinner spSupuracion = (Spinner)rootView.findViewById(R.id.spSupuracion);
+        final Spinner spSupuracion     = (Spinner)rootView.findViewById(R.id.spSupuracion);
 
-        final Spinner spLengua = (Spinner)rootView.findViewById(R.id.spLengua);
+        final Spinner spLengua         = (Spinner)rootView.findViewById(R.id.spLengua);
         final Spinner spMalformaciones = (Spinner)rootView.findViewById(R.id.spMalformaciones);
-        final Spinner spPisoBoca = (Spinner)rootView.findViewById(R.id.spPisoBoca);
-        final Spinner spPaladarD = (Spinner)rootView.findViewById(R.id.spPaladarD);
-        final Spinner spTartaro = (Spinner)rootView.findViewById(R.id.spTartaro);
-        final Spinner spBruxismo = (Spinner)rootView.findViewById(R.id.spBruxismo);
+        final Spinner spPisoBoca       = (Spinner)rootView.findViewById(R.id.spPisoBoca);
+        final Spinner spPaladarD       = (Spinner)rootView.findViewById(R.id.spPaladarD);
+        final Spinner spTartaro        = (Spinner)rootView.findViewById(R.id.spTartaro);
+        final Spinner spBruxismo       = (Spinner)rootView.findViewById(R.id.spBruxismo);
 
-        final Spinner spPaladarB = (Spinner)rootView.findViewById(R.id.spPaladarB);
-        final Spinner spManchas = (Spinner)rootView.findViewById(R.id.spManchas);
-        final Spinner spGarganta = (Spinner)rootView.findViewById(R.id.spGarganta);
+        final Spinner spPaladarB       = (Spinner)rootView.findViewById(R.id.spPaladarB);
+        final Spinner spManchas        = (Spinner)rootView.findViewById(R.id.spManchas);
+        final Spinner spGarganta       = (Spinner)rootView.findViewById(R.id.spGarganta);
 
-        final Spinner spTumoraciones = (Spinner)rootView.findViewById(R.id.spTumoraciones);
-        final Spinner spBolsasP = (Spinner)rootView.findViewById(R.id.spBolsaP);
+        final Spinner spTumoraciones   = (Spinner)rootView.findViewById(R.id.spTumoraciones);
+        final Spinner spBolsasP        = (Spinner)rootView.findViewById(R.id.spBolsaP);
 
-        final EditText etMudados = (EditText)rootView.findViewById(R.id.etmudados);
-        final EditText etSanos = (EditText)rootView.findViewById(R.id.etsanos);
+        final EditText etMudados       = (EditText)rootView.findViewById(R.id.etmudados);
+        final EditText etSanos         = (EditText)rootView.findViewById(R.id.etsanos);
 
         final EditText etobsRadiografica = (EditText)rootView.findViewById(R.id.etobsRadiografica);
         final EditText etObservacion = (EditText)rootView.findViewById(R.id.etObservacion);
@@ -130,30 +130,30 @@ public class VistaRegExamen extends Fragment {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String labios = spLabios.getSelectedItem().toString();
-                String fistulas = spFistulas.getSelectedItem().toString();
-                String carrillos = spCarrillos.getSelectedItem().toString();
+                String labios       = spLabios.getSelectedItem().toString();
+                String fistulas     = spFistulas.getSelectedItem().toString();
+                String carrillos    = spCarrillos.getSelectedItem().toString();
                 String pigmentacion = spPigmentaciones.getSelectedItem().toString();
-                String supuracion = spSupuracion.getSelectedItem().toString();
-                String movilidad = spMovilidad.getSelectedItem().toString();
-                String lengua = spLengua.getSelectedItem().toString();
-                String malfor = spMalformaciones.getSelectedItem().toString();
-                String pisoB = spPisoBoca.getSelectedItem().toString();
-                String paladarD = spPaladarD.getSelectedItem().toString();
-                String tartaro = spTartaro.getSelectedItem().toString();
-                String bruxi = spBruxismo.getSelectedItem().toString();
-                String paladarB = spPaladarB.getSelectedItem().toString();
-                String manchas = spManchas.getSelectedItem().toString();
-                String garganta = spGarganta.getSelectedItem().toString();
+                String supuracion   = spSupuracion.getSelectedItem().toString();
+                String movilidad    = spMovilidad.getSelectedItem().toString();
+                String lengua       = spLengua.getSelectedItem().toString();
+                String malfor       = spMalformaciones.getSelectedItem().toString();
+                String pisoB        = spPisoBoca.getSelectedItem().toString();
+                String paladarD     = spPaladarD.getSelectedItem().toString();
+                String tartaro      = spTartaro.getSelectedItem().toString();
+                String bruxi        = spBruxismo.getSelectedItem().toString();
+                String paladarB     = spPaladarB.getSelectedItem().toString();
+                String manchas      = spManchas.getSelectedItem().toString();
+                String garganta     = spGarganta.getSelectedItem().toString();
 
-                String obsR = etobsRadiografica.getText().toString();
-                String obs =  etObservacion.getText().toString();
+                String obsR         = etobsRadiografica.getText().toString();
+                String obs          =  etObservacion.getText().toString();
 
-                String mudados = etMudados.getText().toString();
-                String sanos =  etSanos.getText().toString();
+                String mudados      = etMudados.getText().toString();
+                String sanos        =  etSanos.getText().toString();
 
-                String tumores = spTumoraciones.getSelectedItem().toString();
-                String bolsasP =  spBolsasP.getSelectedItem().toString();
+                String tumores      = spTumoraciones.getSelectedItem().toString();
+                String bolsasP      =  spBolsasP.getSelectedItem().toString();
 
 //                Toast.makeText(getContext(),"Result: "+labios, Toast.LENGTH_LONG).show();
 

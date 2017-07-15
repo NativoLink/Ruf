@@ -62,8 +62,6 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
 
-
-
     TextView nombrePaciente;
     TextView idPaciente;
     TextView edadPaciente;
@@ -153,6 +151,10 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 btnDiagramas.setVisibility(View.INVISIBLE);
                 btnConsultas.setVisibility(View.INVISIBLE);
                 btnPagos.setVisibility(View.INVISIBLE);
+            }
+
+            if(pacientes.get(position).getExiste_deuda().equals("false")){
+                btnNuevaConsulta.setVisibility(View.INVISIBLE);
             }
 
 

@@ -46,22 +46,12 @@ public interface PacienteService {
             @Field("nombre") String nombre,
             @Field("direccion") String direccion,
             @Field("telefono") String telefono,
-            /*
             @Field("edad") String edad,
             @Field("sexo") String sexo,
             @Field("estado_civil") String estado_civil,
             @Field("ocupacion") String ocupacion,
             @Field("direccion_oc") String direccion_oc,
             @Field("telefono_oc") String telefono_oc,
-            @Field("responsable") String responsable,
-            @Field("fecha") String fecha,
-            @Field("estado_salud") String estado_salud,
-            @Field("enfermedad") String enfermedad,
-            @Field("bajo_tratamiento") String bajo_tratamiento,
-            @Field("tratamiento") String tratamiento,
-            @Field("medico") String medico,
-            @Field("alergia") String alergia,
-            @Field("enfermedad_sistematica") String enfermedad_sistematica,*/
             Callback<String> callback);
 
     @FormUrlEncoded

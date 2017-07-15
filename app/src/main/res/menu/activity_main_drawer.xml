@@ -22,6 +22,11 @@
             android:id="@+id/nav_reg_trat"
             android:icon="@drawable/ic_menu_manage"
             android:title="Nuevo Tratamiento" />
+
+        <item
+            android:id="@+id/nav_list_doct"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Listado de Doctores" />
     </group>
 
     <item android:title="Communicate">

@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,15 +23,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
 
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.Doctor.VistaDoctores;
 import com.darkcode.ruf_012.Doctor.VistaRegDoctor;
 import com.darkcode.ruf_012.Login.Login;
 import com.darkcode.ruf_012.Paciente.PacienteService;
@@ -42,7 +47,6 @@ import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
-import com.darkcode.ruf_012.Tratamientos.VistaRegTrat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -297,7 +301,7 @@ public class MainActivity extends AppCompatActivity
 
     FloatingActionButton btnUniversal;
 
-    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+    public RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     public RestAdapter getRestadpter() {
         return restadpter;
     }
@@ -722,8 +726,13 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaRegDoctor();
             trans= true;
         } else if (id == R.id.nav_reg_trat) {
-            vistaActual = getV_reg_tratamiento();
-            vista = new VistaRegTrat();
+//            vistaActual = getV_reg_tratamiento();
+//            vista = new VistaRegTrat();
+//            trans= true;
+            regTrat().show();
+        } else if (id == R.id.nav_list_doct) {
+            vistaActual = "Listado de Doctores";
+            vista = new VistaDoctores();
             trans= true;
         } else if (id == R.id.nav_send) {
             Intent intent  = new Intent(getApplicationContext(),Login.class);
@@ -931,18 +940,18 @@ public class MainActivity extends AppCompatActivity
             }
             if(comandos.equals("guardar registro") || comandos.equals("guardar") || comandos.equals("confirmar registro")){
                 PacienteService servicio = restadpter.create(PacienteService.class);
-                servicio.regPaciente( NOMBRES, DIRECCION,TELEFONO, new Callback<String>() {
-                    @Override
-                    public void success(String s, Response response) {
-                        Toast.makeText(getApplicationContext(), "..." + s + "...", Toast.LENGTH_LONG).show();
-
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
-                    }
-                });
+//                servicio.regPaciente( NOMBRES, DIRECCION,TELEFONO, new Callback<String>() {
+//                    @Override
+//                    public void success(String s, Response response) {
+//                        Toast.makeText(getApplicationContext(), "..." + s + "...", Toast.LENGTH_LONG).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void failure(RetrofitError error) {
+//                        Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
+//                    }
+//                });
             }
         }
 
@@ -970,6 +979,37 @@ public class MainActivity extends AppCompatActivity
                 transaction.addToBackStack(null);
                 hideBtnUnivesal(vActual);
                 transaction.commit();
+     }
+
+
+     public AlertDialog regTrat(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+         LayoutInflater inflater = getLayoutInflater();
+         final View v = inflater.inflate(R.layout.reg_nota, null);
+         builder.setTitle("Agregar Tratamiento")
+                 .setPositiveButton("OK",
+                         new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
+                                 EditText note =  (EditText)v.findViewById(R.id.etNota);
+                        Toast.makeText(getApplicationContext(), "NOTA : " + note.getText().toString(), Toast.LENGTH_LONG).show();
+                             }
+                         })
+                 .setNegativeButton("CANCELAR",
+                         new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
+                                 // Acciones
+                             }
+                         });
+
+
+
+         builder.setView(v);
+
+
+         return builder.create();
      }
 
 
