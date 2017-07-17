@@ -13,18 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <CheckBox
-            android:id="@+id/cbTratE"
+        <TextView
+            android:id="@+id/tvTratE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CheckBox"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/etMontoE"
+        <TextView
+            android:id="@+id/tvMontoE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="1.3"
             android:gravity="center"
@@ -33,10 +32,10 @@
             android:textAlignment="center"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/etCantidadE"
+        <TextView
+            android:id="@+id/tvCantidadE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1.3"
             android:gravity="center"
             android:hint="Cantidad"

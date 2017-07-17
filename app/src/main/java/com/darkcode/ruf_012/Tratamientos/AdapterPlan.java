@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
+import com.darkcode.ruf_012.VistaDetallePlan;
 import com.darkcode.ruf_012.VistaEditPlan;
 
 import java.util.List;
@@ -64,13 +65,13 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
             btnDetalle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    vista = new VistaEditPlan();
-//                    Bundle arg = new Bundle();
-//                    arg.putString("id_paciente", String.valueOf(plans.get(position).getId_paciente()));
-//                    arg.putString("id_plan", String.valueOf(plans.get(position).getId_plan()));
-//                    String Titulo_Bar = "Editar Plan";
-//                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
-//                    ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
+                    vista = new VistaDetallePlan();
+                    Bundle arg = new Bundle();
+                    arg.putString("id_paciente", String.valueOf(plans.get(position).getId_paciente()));
+                    arg.putString("id_plan", String.valueOf(plans.get(position).getId_plan()));
+                    String Titulo_Bar = "Editar Plan";
+                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+                    ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
                 }
             });
         if (id == 0) {

@@ -8,43 +8,42 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
-import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta.checkItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by NativoLink on 14/3/17.
+ * Created by NativoLink on 15/7/17.
  */
 
-public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
+
+//ESTA PARTE NO LA VOY A PODER HACER
+
+
+
+public class AdapterTratsDePlanEdit  extends ArrayAdapter<Tratamiento> {
 
     private Context contexto;
     private List<Tratamiento> tratamientos;
     private boolean existe;
 
 
-    public ArrayList<checkItem> getIte() {
+    public ArrayList<AdapterTratsConsulta.checkItem> getIte() {
         return ite;
     }
 
-    private ArrayList<checkItem> ite = new ArrayList<checkItem>();
+    private ArrayList<AdapterTratsConsulta.checkItem> ite = new ArrayList<AdapterTratsConsulta.checkItem>();
     private  int cantt = 0;
     private  int monto = 0;
 
 
-    public AdapterTratsDePlan(Context context, List<Tratamiento> tratamients) {
+    public AdapterTratsDePlanEdit(Context context, List<Tratamiento> tratamients) {
         super(context, R.layout.list_trats_edit, tratamients);
         contexto=context;
         tratamientos = tratamients;
@@ -53,7 +52,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
     public static class ViewHolder {
         EditText etCantidad;
         EditText etCosto;
-        CheckBox cbMarcado;
+        TextView cbMarcado;
         TextView tvCosto;
         TextView tvCantP;
         TextView tvTotalIndi;
@@ -63,18 +62,18 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
 
 
     @Override
-        public View getView(final int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         contexto = getContext();
 
 //        if (tratamientos.get(position).getId_p_tratamiento() != 0) {
-        final ViewHolder holder;
+        final AdapterTratsDePlanEdit.ViewHolder holder;
         if (convertView == null) {
-            holder = new ViewHolder();
+            holder = new AdapterTratsDePlanEdit.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(contexto);
-            convertView = inflater.inflate(R.layout.list_trats_reg_p, parent, false);
+            convertView = inflater.inflate(R.layout.list_trats_edit, parent, false);
             holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidadE);
             holder.etCosto = (EditText) convertView.findViewById(R.id.etMontoE);
-            holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbTratE);
+            holder.cbMarcado = (TextView) convertView.findViewById(R.id.tvTratE);
 
 
             holder.etCantidad.setText(String.valueOf(tratamientos.get(position).getCantidad()));
@@ -83,10 +82,10 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             convertView.setTag(holder);
 //                cant.addTextChangedListener(new MyTextWatcher2(convertView));
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (AdapterTratsDePlanEdit.ViewHolder) convertView.getTag();
         }
 
-        final checkItem ckItem = new checkItem(position);
+        final AdapterTratsConsulta.checkItem ckItem = new AdapterTratsConsulta.checkItem(position);
         holder.ref = position;
         holder.cbMarcado.setText(tratamientos.get(position).getNombre());
         holder.etCantidad.addTextChangedListener(new TextWatcher() {
@@ -110,7 +109,6 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             public void afterTextChanged(Editable s) {
                 if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
                     cantt = Integer.valueOf(s.toString());
-                    ckItem.setChecado(true);
                     ckItem.setCantidad(cantt);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
                     ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
@@ -118,7 +116,6 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
                     ckItem.setPosi(position);
                 }else{
                     cantt = Integer.valueOf(1);
-                    ckItem.setChecado(true);
                     ckItem.setCantidad(cantt);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
                     ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
@@ -148,7 +145,6 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             public void afterTextChanged(Editable s) {
                 if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
                     monto = Integer.valueOf(s.toString());
-                    ckItem.setChecado(true);
                     ckItem.setCosto(monto);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
                     ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
@@ -156,7 +152,6 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
                     ckItem.setPosi(position);
                 }else{
                     monto = Integer.valueOf(1);
-                    ckItem.setChecado(true);
                     ckItem.setCosto(monto);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
                     ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
@@ -166,56 +161,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             }
         });
 
-        holder.cbMarcado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            //position, tratamientos.get(position).getId_tratamiento(), cantt, tratamientos.get(position).getId_p_tratamiento(
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (holder.etCantidad.getText().toString().equals(" ") ||
-                            holder.etCantidad.getText().toString().equals("") ||
-                            holder.etCantidad.getText().toString().matches("") ||
-                            holder.etCantidad.getText().toString() == "" ||
-                            holder.etCantidad.getText().toString() == null ||
-                            holder.etCantidad.getText().toString() == " " ||
-                            holder.etCantidad.getText().toString() == "0") {
-
-                        holder.etCantidad.setText("1");
-                        cantt = Integer.valueOf(holder.etCantidad.getText().toString());
-
-                    } else {
-                        cantt = Integer.valueOf(holder.etCantidad.getText().toString());
-                    }
-                    ckItem.setChecado(true);
-                    ckItem.setCantidad(cantt);
-                    ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
-                    ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
-                    ckItem.setNombreTrat(tratamientos.get(position).getNombre());
-                    ckItem.setPosi(position);
-
-                    existe = ite.contains(ckItem);
-                    if(existe==false) {
-                        ite.add(ckItem);
-                    }else{
-                        ite.set(position,ckItem);
-                    }
-
-                    Log.v("CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
-                    ((MainActivity) getContext()).setItemRegPlan(getIte());
-                } else {
-                    ckItem.setChecado(false);
-                    existe = ite.contains(ckItem);
-                    if(existe==false) {
-                        ite.add(ckItem);
-                    }else{
-                        ite.set(position,ckItem);
-                    }
-                    Log.v("NOT CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
-                    ((MainActivity) getContext()).setItemRegPlan(getIte());
-                }
-
-            }
-        });
 
 
 

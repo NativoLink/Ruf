@@ -155,6 +155,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
             if(pacientes.get(position).getExiste_deuda().equals("false")){
                 btnNuevaConsulta.setVisibility(View.INVISIBLE);
+                btnConsultas.setVisibility(View.INVISIBLE);
             }
 
 

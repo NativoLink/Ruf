@@ -35,6 +35,9 @@ public class VistaPagosR extends Fragment {
     int day,moth,year;
     TextView tvFechaIni,tvFechaFin;
 
+    String f_i = "hoy";
+    String f_f = "hoy";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class VistaPagosR extends Fragment {
                     }
                 }
                 ,day,moth,year);
+                f_i = tvFechaIni.getText().toString();
                 datepickerD.show();
 
             }
@@ -88,15 +92,16 @@ public class VistaPagosR extends Fragment {
                     }
                 }
                         ,day,moth,year);
+                f_f = tvFechaFin.getText().toString();
                 datepickerD.show();
 
             }
         });
 
-        RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();;
+        RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
         PagoService servicio = restadpter.create(PagoService.class);
 
-        servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(), new Callback<List<PagoR>>() {
+        servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(),f_i,f_f, new Callback<List<PagoR>>() {
             @Override
             public void success(List<PagoR> pagos, Response response) {
                 listAdapter = new AdapterPagosR(getContext(), pagos);

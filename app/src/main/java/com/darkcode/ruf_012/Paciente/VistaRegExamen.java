@@ -30,7 +30,7 @@ import retrofit.client.Response;
 public class VistaRegExamen extends Fragment {
 
     private String[] arraySpinner;
-    RestAdapter restadpter =   ((MainActivity) getContext()).getRestadpter();
+    RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     PacienteService servicio  = restadpter.create(PacienteService.class);
 
     @Nullable

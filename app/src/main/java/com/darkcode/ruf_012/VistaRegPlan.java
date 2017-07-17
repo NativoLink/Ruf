@@ -39,9 +39,9 @@ public class VistaRegPlan  extends Fragment {
 
     int id_plan;
     int id_paciente;
+    TratamientoService servicio;
 
-    RestAdapter restadpter =   ((MainActivity) getContext()).getRestadpter();
-    TratamientoService servicio  = restadpter.create(TratamientoService.class);
+
 
     public VistaRegPlan() {
     }
@@ -49,6 +49,9 @@ public class VistaRegPlan  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
+
+        RestAdapter restadpter =   ((MainActivity) getContext()).getRestadpter();
+        servicio  = restadpter.create(TratamientoService.class);
 
         View view = inflater.inflate(R.layout.trats_list_edit, container, false);
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);

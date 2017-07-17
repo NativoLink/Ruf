@@ -22,7 +22,10 @@ public interface PagoService {
 
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Pagos/listPagosPacientes.php")
-    void getPagosR(@Query("id_paciente") int id_paciente, Callback<List<PagoR>> callback);
+    void getPagosR(@Query("id_paciente")int id_paciente,
+                   @Query("fec_ini")String fec_ini,
+                   @Query("fecha_fin")String fecha_fin,
+                   Callback<List<PagoR>> callback);
 
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Pagos/regDetallePago.php")
@@ -41,5 +44,7 @@ public interface PagoService {
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Pagos/numRecibo.php")
     void getNumRecibo(Callback<String> callback);// no si crear una clase para esto o colocarlo en reg detalle pago
+
+
 
 }
