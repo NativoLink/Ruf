@@ -48,4 +48,9 @@ public interface DienteService {
     @GET("/WebSites/Tesis/Diagrama/listDiagramaFecha.php")
     public void listDiagramaFecha(@Query("id_paciente") int id_paciente,
                            Callback<List<Diagrama>> callback);
+
+//    @Headers("Cache-Control: max-age=1")
+//    @GET("/WebSites/Tesis/Diagrama/listDiagramaFecha.php")
+//    public void listDiagramaFecha(@Query("id_paciente") int id_paciente,
+//                                  Callback<List<Diagrama>> callback);
 }

@@ -48,6 +48,7 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
             btnEditar = (ImageButton) customView.findViewById(R.id.btnEditarPlan);
 
 
+
             btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,6 +61,7 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
                     ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
                 }
             });
+
 
 
             btnDetalle.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +81,9 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
             id_plan.setText("No tiene ningun plan registrado en el sistema");
             btnEditar.setVisibility(View.INVISIBLE);
             btnDetalle.setVisibility(View.INVISIBLE);
+        }
+        if(plans.get(position).getEstado()=="completo" || plans.get(position).getEstado().equals("completo")) {
+            btnEditar.setVisibility(View.INVISIBLE);
         }
 
 

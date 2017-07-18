@@ -218,6 +218,8 @@ public class Diente extends View {
 
         int color = 0; // CARRIE ,ETC
         if(estado.equals("restaurado")){color = Color.parseColor(restaurado);}
+        if(estado.equals("restaurant")){color = Color.parseColor(restaurado);}
+        if(estado.equals("restaurante")){color = Color.parseColor(restaurado);}
         if(estado.equals("careado")){color = Color.parseColor(careado);}
 
         //  - - - * * * > NO VALDIADOS < * * * - - -

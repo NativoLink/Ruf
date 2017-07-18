@@ -30,7 +30,7 @@ public interface DoctorService {
                           @Field("direccion") String direccion,
                           @Field("telefono") String telefono,
                           @Field("cedula") String cedula,
-                          @Field("especialidad") String especialidad,
+                          @Field("especialidad") int especialidad,
                           Callback<String> callback);
 
     @Headers("Cache-Control: max-age=1")

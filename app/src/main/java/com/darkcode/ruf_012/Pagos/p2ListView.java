@@ -100,7 +100,7 @@ public class p2ListView extends Fragment {
                                     Toast.makeText(getContext(), "ERROR 2 "+error.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             });
-                            Toast.makeText(getContext(), "Cantidad R => "+ ite.get(i).getCosto(), Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getContext(), "Cantidad R => "+ ite.get(i).getCosto(), Toast.LENGTH_LONG).show();
                         }
                     }
 

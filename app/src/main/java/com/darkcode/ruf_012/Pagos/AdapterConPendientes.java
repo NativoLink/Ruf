@@ -160,9 +160,28 @@ public class AdapterConPendientes extends ArrayAdapter {
                 AlertDialog.Builder aBuilder = new AlertDialog.Builder(getContext());
                 final View view = View.inflate(contexto, R.layout.dialog_abono, null);
 
+                final EditText edt = (EditText) view.findViewById(R.id.etMonto);
+
+                aBuilder.setTitle("Depositar Abono");
+                aBuilder.setMessage("Cant.$");
+                aBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //do something with edt.getText().toString();
+                    }
+                });
+                aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //pass
+                    }
+                });
+
                 aBuilder.setCustomTitle(view);
                 AlertDialog dialog = aBuilder.create();
                 dialog.show();
+
+                edt.requestFocus();
+                InputMethodManager imm = (InputMethodManager) contexto.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
 
             }

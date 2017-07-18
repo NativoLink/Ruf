@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -54,6 +56,22 @@ public class VistaPagosR extends Fragment {
         tvFechaIni = (TextView)rootView.findViewById(R.id.tvFechaIni);
         tvFechaFin = (TextView)rootView.findViewById(R.id.tvFechaFin);
 
+        final Calendar c = Calendar.getInstance();
+        day =c.get(Calendar.DAY_OF_MONTH);
+        moth =c.get(Calendar.MONTH);
+        year =c.get(Calendar.YEAR);
+        Format formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String s = formatter.format(c.getTime());
+        tvFechaIni.setText(s);
+
+        final Calendar cc = Calendar.getInstance();
+        day  =cc.get(Calendar.DAY_OF_MONTH);
+        moth =cc.get(Calendar.MONTH);
+        year =cc.get(Calendar.YEAR);
+        Format formatter2 = new SimpleDateFormat("yyyy/MM/dd");
+        String ss = formatter2.format(cc.getTime());
+        tvFechaFin.setText(ss);
+
 
 
 
@@ -65,13 +83,22 @@ public class VistaPagosR extends Fragment {
                 moth =c.get(Calendar.MONTH);
                 year =c.get(Calendar.YEAR);
 
+
                 DatePickerDialog datepickerD = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        tvFechaIni.setText(year+"-"+monthOfYear+"-"+dayOfMonth);
+                        String dia = ""+dayOfMonth;
+                        String mes = ""+monthOfYear;
+                       if( dayOfMonth <10){
+                            dia = "0"+dayOfMonth;
+                       }
+                        if( monthOfYear <10){
+                            mes = "0"+monthOfYear;
+                        }
+                        tvFechaIni.setText(year+"/"+mes+"/"+dia);
                     }
                 }
-                ,day,moth,year);
+                ,year,moth,day);
                 f_i = tvFechaIni.getText().toString();
                 datepickerD.show();
 
@@ -88,15 +115,25 @@ public class VistaPagosR extends Fragment {
                 DatePickerDialog datepickerD = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        tvFechaFin.setText(year+"-"+monthOfYear+"-"+dayOfMonth);
+                        String dia = ""+dayOfMonth;
+                        String mes = ""+monthOfYear;
+                        if( dayOfMonth <10){
+                            dia = "0"+dayOfMonth;
+                        }
+                        if( monthOfYear <10){
+                            mes = "0"+monthOfYear;
+                        }
+                        tvFechaFin.setText(year+"/"+mes+"/"+dia);
                     }
-                }
-                        ,day,moth,year);
+                } ,year,moth,day);
                 f_f = tvFechaFin.getText().toString();
                 datepickerD.show();
 
             }
         });
+
+
+
 
         RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
         PagoService servicio = restadpter.create(PagoService.class);

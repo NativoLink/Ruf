@@ -83,6 +83,11 @@ public class MainActivity extends AppCompatActivity
 
 
     public String getNota() {
+        if(nota==null){
+            nota= "N/A";
+        }else{
+            nota= nota+" ";
+        }
         return nota;
     }
     public void setNota(String nota) {
@@ -791,7 +796,7 @@ public class MainActivity extends AppCompatActivity
                         new Callback<String>() {
                             @Override
                             public void success(String s, Response response) {
-                                Toast.makeText(getApplicationContext(), "..." +s+"...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "..." +s+"<<...", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -801,7 +806,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     ); Thread.sleep(100);
                     }catch(InterruptedException e){}
-                    Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
                 }
                 guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
             }else{
@@ -874,6 +879,7 @@ public class MainActivity extends AppCompatActivity
                 else  if(split[1].equals("Centro")){pared = "C";}
                 else  if(split[1].equals("centros")){pared = "C";}
                 else  if(split[1].equals("Centros")){pared = "C";}
+                else  if(split[1].equals("Central")){pared = "C";}
 
                 editDiente(pos_diente, pared, estado_pared);
             }

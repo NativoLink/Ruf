@@ -16,7 +16,7 @@
             android:gravity="center"
             android:text="ABONAR"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="normal|bold" />
     </TableRow>
 
@@ -30,10 +30,10 @@
             android:id="@+id/tvmontodisp"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Monto"
             android:gravity="center"
-            android:textColor="#070707" />
+            android:text="Monto"
+            android:textColor="#070707"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/etMonto"
@@ -42,9 +42,12 @@
 
             android:background="#f2f2f2"
             android:ems="10"
+            android:hint="$ Cant."
             android:inputType="textPersonName"
             android:text=""
-            android:textColor="#141414" />
+            android:textAlignment="center"
+            android:textColor="#141414"
+            android:textSize="30sp" />
     </TableRow>
 
 </LinearLayout>

@@ -2,9 +2,11 @@ package com.darkcode.ruf_012.Doctor;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,6 +86,23 @@ public class VistaRegDoctor extends Fragment {
             }
         });
 
+        spEspecialidad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                int msupplier =spEspecialidad.getSelectedItemPosition()+1;
+                Log.v("Selected item : ","ITEM ==>"+msupplier);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
 
 
         btnRegistrar = (Button)view.findViewById(R.id.btnRegistrar);
@@ -97,6 +116,7 @@ public class VistaRegDoctor extends Fragment {
                 stTelefono     = etTelefono.getText().toString();
                 stCedula       = etCedula.getText().toString();
                 stEspecialidad = spEspecialidad.getSelectedItem().toString();
+                int especialidad = spEspecialidad.getSelectedItemPosition()+1;
 
                 if(
                         (!stNombre.equals("") && !stUsuario.equals("")) && (!stNombre.equals(" ") && !stUsuario.equals(" ")) &&
@@ -105,10 +125,11 @@ public class VistaRegDoctor extends Fragment {
                         (!stEspecialidad.equals("") &&!stEspecialidad.equals(" "))
                     )
                 {
-                    servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, stEspecialidad, new Callback<String>() {
+                    servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad, new Callback<String>() {
                         @Override
                         public void success(String s, Response response) {
-                            Toast.makeText(getContext(),s, Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getContext(),s, Toast.LENGTH_LONG).show();
+                            Log.v("NO REG","ERROR SQL->"+s);
                         }
 
                         @Override
