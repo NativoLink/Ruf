@@ -1088,46 +1088,47 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-//    public AlertDialog regAbono(String titulo, final int position, final List<ConsultaPendiente> pago, final Context context){
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//        LayoutInflater inflater = this.getLayoutInflater();
-//        final View v = inflater.inflate(R.layout.dialog_abono, null);
-//
-//        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
-//        title.setText(titulo);
-//        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int id) {
-//                EditText newTrat =  (EditText)v.findViewById(R.id.edNewAbono);
-//                int valor_a_abonar = Integer.valueOf(newTrat.getText().toString());
-//                Abonar(position, valor_a_abonar,pago, context);
-//            }
-//        })
-//                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//
-//                    }
-//                });
-//        builder.setView(v);
-//        return builder.create();
-//    }
+    public AlertDialog regAbono(String titulo, final int position, final List<ConsultaPendiente> pago, final Context context){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.dialog_abono, null);
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                EditText newTrat =  (EditText)v.findViewById(R.id.edNewAbono);
+                int valor_a_abonar = Integer.valueOf(newTrat.getText().toString());
+                Abonar(position, valor_a_abonar,pago, context);
+            }
+        })
+                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        builder.setView(v);
+        AlertDialog dialog = builder.create();
+        return dialog;
+    }
 
 
-//    public void Abonar(int position,int valor_a_abonar,List<ConsultaPendiente> pago,Context context){
-//        if(valor_a_abonar > 0) {
-//            String tipo ="abono";
-//            pago.get(position).setTipo(tipo);
-//            pago.get(position).setPagoAbono(valor_a_abonar); // SALDANDO EL TOTAL DE ESTA CONSULTA
-//            ((MainActivity) context).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-//            ((MainActivity) context).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-//            ((MainActivity) context).TotalSuma(valor_a_abonar);
-//            ((MainActivity) context).UpdateTotal();
-//            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    public void Abonar(int position,int valor_a_abonar,List<ConsultaPendiente> pago,Context context){
+        if(valor_a_abonar > 0) {
+            String tipo ="abono";
+            pago.get(position).setTipo(tipo);
+            pago.get(position).setPagoAbono(valor_a_abonar); // SALDANDO EL TOTAL DE ESTA CONSULTA
+            ((MainActivity) context).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+            ((MainActivity) context).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+            ((MainActivity) context).TotalSuma(valor_a_abonar);
+            ((MainActivity) context).UpdateTotal();
+            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 

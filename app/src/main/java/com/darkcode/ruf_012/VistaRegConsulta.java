@@ -129,7 +129,7 @@ public class VistaRegConsulta  extends Fragment {
         btnNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNotaDialogo().show();
+                createNotaDialogo("Agregar Nota").show();
             }
         });
 
@@ -172,12 +172,14 @@ public class VistaRegConsulta  extends Fragment {
     }
 
 
-    public AlertDialog createNotaDialogo() {
+    public AlertDialog createNotaDialogo(String titulo) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View v = inflater.inflate(R.layout.reg_nota, null);
-        builder.setTitle("Agregar Nota")
-        .setPositiveButton("OK",
+//        builder.setTitle("Agregar Nota")
+        TextView title = (TextView) v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+        builder.setPositiveButton("REGISTRAR",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

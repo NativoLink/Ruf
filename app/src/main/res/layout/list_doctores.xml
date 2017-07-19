@@ -6,13 +6,15 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp">
 
         <TextView
             android:id="@+id/tvIdDoctor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="22dp" />
@@ -20,7 +22,7 @@
         <TextView
             android:id="@+id/tvNombreDoctor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="22dp" />
@@ -28,9 +30,25 @@
         <TextView
             android:id="@+id/tvEspecialidad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="22dp" />
+
+        <ImageButton
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F2F2F2"
+            android:src="@drawable/edit" />
+
+        <ImageButton
+            android:id="@+id/btnInfo"
+            style="@style/btnConsultas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/view" />
     </TableRow>
 </LinearLayout>
