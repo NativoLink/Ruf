@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 import com.darkcode.ruf_012.Diagrama.VistaGetDiagrama;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.Paciente.Consulta;
+import com.darkcode.ruf_012.Paciente.Paciente;
+import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsRConsulta;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
@@ -49,7 +52,8 @@ public class VistaHistDiagrama extends Fragment{
     AdapterTratsRConsulta listAdapter = null;
 
     Bundle bundle = new Bundle();
-    TextView tvCTotalRealizados;
+    TextView tvCTotalRealizados,tvFecha;
+    String nota_msg;
 
 
     public VistaHistDiagrama (){
@@ -72,6 +76,8 @@ public class VistaHistDiagrama extends Fragment{
         transaction.replace(R.id.f_diagrama, vista_c);
         transaction.addToBackStack(null);
         transaction.commit();
+        nota_msg=".......";
+
 
 
 
@@ -82,19 +88,22 @@ public class VistaHistDiagrama extends Fragment{
         tvCTotalRealizados = (TextView) view.findViewById(R.id.tvTotalRealizado);
 
 
-        RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
+        final RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
         TratamientoService servicio = restadpter.create(TratamientoService.class);
 
 
 
         TextView nombrePaciente = (TextView) view.findViewById(R.id.tvNombrePaciente);
-//        nombrePaciente.setText(nombreP);
+        tvFecha = (TextView) view.findViewById(R.id.tvFecha);
+        String nombreP = ((MainActivity) getContext()).getNOMBRES();
+        nombrePaciente.setText(nombreP);
         if (listAdapter == null) {
             servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
                 @Override
                 public void success(List<Tratamiento> tratamientos, Response response) {
                     listAdapter = new AdapterTratsRConsulta(getContext(), tratamientos);
                     lvresult.setAdapter(listAdapter);
+
                 }
 
                 @Override
@@ -102,7 +111,11 @@ public class VistaHistDiagrama extends Fragment{
                     Toast.makeText(getContext(), "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
+
         }
+
+
+
 
 
 //        lvresult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -124,56 +137,56 @@ public class VistaHistDiagrama extends Fragment{
         btnNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNotaDialogo().show();
+                PacienteService service = restadpter.create(PacienteService.class);
+                service.unaConsulta(id_paciente, id_consulta, new Callback<Consulta>() {
+                    @Override
+                    public void success(Consulta consulta, Response response) {
+                        tvFecha.setText(consulta.getFecha());
+                        nota_msg=consulta.getDescripcion();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
+                createNotaDialogo(nota_msg).show();
             }
         });
 
 
 
-        Timer timer = new Timer();
+        final Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        int total = ((MainActivity) getContext()).getTotalRegConsulta();
-                        tvCTotalRealizados.setText(String.valueOf(total));
+                        int total = ((MainActivity) getContext()).getcTratsRTotal();
+//                        tvCTotalRealizados.setText(String.valueOf(total));
                         Log.v("ACTUALIZAR", "TOTAL ->" + total);
+                        tvCTotalRealizados.setText(String.valueOf(((MainActivity) getContext()).getcTratsRTotal()));
+                        if (total > 0) {
+                            timer.cancel();
+                            timer.purge();
+                            return;
+                        }
+
                     }
                 });
             }
-        }, 0, 1000); // End of your timer code.
+        }, 0, 1050); // End of your timer code.
 
 
 
         return view;
     }
 
-    public AlertDialog createNotaDialogo() {
+    public AlertDialog createNotaDialogo(String NOTA) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Agregar Nota")
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Acciones
-                            }
-                        })
-                .setNegativeButton("CANCELAR",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Acciones
-                            }
-                        });
-
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-        View v = inflater.inflate(R.layout.reg_nota, null);
-
-        builder.setView(v);
-
+        .setMessage(NOTA);
 
         return builder.create();
     }

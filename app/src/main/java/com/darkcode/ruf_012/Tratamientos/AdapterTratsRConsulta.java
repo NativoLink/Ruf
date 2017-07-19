@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +59,17 @@ public class AdapterTratsRConsulta extends ArrayAdapter<Tratamiento>{
             holder.ref = position;
             holder.tvNombre.setText(tratamientos.get(position).getNombre());
             holder.tvCantidad.setText(String.valueOf(tratamientos.get(position).getCantidad()));
+
             holder.tvCosto.setText(String.valueOf(tratamientos.get(position).getCosto()));
 
 
             int cant = tratamientos.get(position).getCantidad();
             int cost = tratamientos.get(position).getCosto();
             int costo_total = cant * cost;
+            costoTotal += costo_total;
+            ((MainActivity) getContext()).setcTratsRTotal(costoTotal);
             holder.tvTotalIndi.setText(String.valueOf(costo_total));
+
 
         } else {
             holder = (VHolder) convertView.getTag();

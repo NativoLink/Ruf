@@ -44,4 +44,8 @@ public interface DoctorService {
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Doctor/listBuscarDoctor.php")
     void getBuscarDoctor(@Field("nombre") String nombre, Callback<List<Doctor>> callback);
+
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Doctor/regEspecialidad.php")
+    void regEspecialidad(@Field("nombre") String nombre, Callback<String> callback);
 }

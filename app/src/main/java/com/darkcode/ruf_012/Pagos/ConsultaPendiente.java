@@ -11,6 +11,17 @@ public class ConsultaPendiente {
     int costo;
     int pendiente;
     String estado;
+    String tipo = "";
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+
 
     //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // VARIABLE PARA SABER CUANTO VA A PAGAR O ABONAR A UNA CONSULTA

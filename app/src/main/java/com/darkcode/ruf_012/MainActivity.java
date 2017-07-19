@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -35,6 +36,7 @@ import android.app.AlertDialog;
 
 import com.darkcode.ruf_012.Diagrama.DienteService;
 import com.darkcode.ruf_012.Diagrama.VistaRegDiagrama;
+import com.darkcode.ruf_012.Doctor.DoctorService;
 import com.darkcode.ruf_012.Doctor.VistaDoctores;
 import com.darkcode.ruf_012.Doctor.VistaRegDoctor;
 import com.darkcode.ruf_012.Login.Login;
@@ -47,6 +49,7 @@ import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
+import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -93,6 +96,22 @@ public class MainActivity extends AppCompatActivity
     public void setNota(String nota) {
         this.nota = nota;
     }
+//      ==========================================================
+//      |      VARIABLES PARA CONSULTAR DIAGRAMA HISTORIAL       |
+//      ==========================================================
+
+    int cTratsRTotal;
+    public int getcTratsRTotal() {
+//        Toast.makeText(this, "cTratsRTotal ==>"+cTratsRTotal, Toast.LENGTH_LONG).show();
+        return cTratsRTotal;
+    }
+    public void setcTratsRTotal(int cTratsRTotal) {
+        this.cTratsRTotal = cTratsRTotal;
+//        Toast.makeText(this, "cTratsRTotal ==>"+cTratsRTotal, Toast.LENGTH_LONG).show();
+    }
+
+
+
 
 
 
@@ -697,6 +716,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            regTrat("Registrar Tratamiento").show();
             return true;
         }
 
@@ -734,7 +754,7 @@ public class MainActivity extends AppCompatActivity
 //            vistaActual = getV_reg_tratamiento();
 //            vista = new VistaRegTrat();
 //            trans= true;
-            regTrat().show();
+            regEspecialidad("Registrar Especialidad").show();
         } else if (id == R.id.nav_list_doct) {
             vistaActual = "Listado de Doctores";
             vista = new VistaDoctores();
@@ -746,6 +766,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         }
+
+
 
 //        =========================================
 //        |    MANEJADOR DE FRAGMENT PRINCIPAL    |
@@ -988,35 +1010,124 @@ public class MainActivity extends AppCompatActivity
      }
 
 
-     public AlertDialog regTrat(){
+     public AlertDialog regTrat(String titulo){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-         LayoutInflater inflater = getLayoutInflater();
-         final View v = inflater.inflate(R.layout.reg_nota, null);
-         builder.setTitle("Agregar Tratamiento")
-                 .setPositiveButton("OK",
-                         new DialogInterface.OnClickListener() {
+
+         final TratamientoService servicio = restadpter.create(TratamientoService.class);
+
+         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+         LayoutInflater inflater = this.getLayoutInflater();
+         final View v = inflater.inflate(R.layout.dialog_trat, null);
+
+         TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+         title.setText(titulo);
+         builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int id) {
+                         EditText newTrat =  (EditText)v.findViewById(R.id.edNewTrat);
+                         servicio.regTrat(newTrat.getText().toString(), "no se el tipo", new Callback<String>() {
                              @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 EditText note =  (EditText)v.findViewById(R.id.etNota);
-                        Toast.makeText(getApplicationContext(), "NOTA : " + note.getText().toString(), Toast.LENGTH_LONG).show();
+                             public void success(String s, Response response) {
+                                Log.v("Reg","REG: TRAT: "+s);
+                                 Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
                              }
-                         })
-                 .setNegativeButton("CANCELAR",
-                         new DialogInterface.OnClickListener() {
+
                              @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 // Acciones
+                             public void failure(RetrofitError error) {
+                                 Log.v("Reg ERROR","REG: TRAT: "+error.getMessage());
                              }
                          });
+                     }
+                 })
+                 .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int id) {
 
-
-
+                     }
+                 });
          builder.setView(v);
-
-
          return builder.create();
      }
+
+
+    public AlertDialog regEspecialidad(String titulo){
+
+
+        final DoctorService servicio = restadpter.create(DoctorService.class);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.dialog_especialidad, null);
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                EditText newTrat =  (EditText)v.findViewById(R.id.edNewEspeci);
+                servicio.regEspecialidad(newTrat.getText().toString(), new Callback<String>() {
+                    @Override
+                    public void success(String s, Response response) {
+                        Log.v("Reg","REG: TRAT: "+s);
+                        Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.v("Reg ERROR","REG: TRAT: "+error.getMessage());
+                    }
+                });
+            }
+        })
+                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        builder.setView(v);
+        return builder.create();
+    }
+
+
+//    public AlertDialog regAbono(String titulo, final int position, final List<ConsultaPendiente> pago, final Context context){
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//        LayoutInflater inflater = this.getLayoutInflater();
+//        final View v = inflater.inflate(R.layout.dialog_abono, null);
+//
+//        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+//        title.setText(titulo);
+//        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int id) {
+//                EditText newTrat =  (EditText)v.findViewById(R.id.edNewAbono);
+//                int valor_a_abonar = Integer.valueOf(newTrat.getText().toString());
+//                Abonar(position, valor_a_abonar,pago, context);
+//            }
+//        })
+//                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//
+//                    }
+//                });
+//        builder.setView(v);
+//        return builder.create();
+//    }
+
+
+//    public void Abonar(int position,int valor_a_abonar,List<ConsultaPendiente> pago,Context context){
+//        if(valor_a_abonar > 0) {
+//            String tipo ="abono";
+//            pago.get(position).setTipo(tipo);
+//            pago.get(position).setPagoAbono(valor_a_abonar); // SALDANDO EL TOTAL DE ESTA CONSULTA
+//            ((MainActivity) context).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+//            ((MainActivity) context).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+//            ((MainActivity) context).TotalSuma(valor_a_abonar);
+//            ((MainActivity) context).UpdateTotal();
+//            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+//        }else{
+//            Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
 

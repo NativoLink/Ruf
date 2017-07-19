@@ -7,9 +7,20 @@ package com.darkcode.ruf_012.Paciente;
 public class Consulta {
     int id_consulta;
     int id_p_tratamiento;
+    int id_paciente;
     String estado;
     String fecha;
     String descripcion;
+
+    public int getId_paciente() {
+        return id_paciente;
+    }
+
+    public void setId_paciente(int id_paciente) {
+        this.id_paciente = id_paciente;
+    }
+
+
 
     public int getId_consulta() {
         return id_consulta;

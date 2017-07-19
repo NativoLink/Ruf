@@ -52,6 +52,9 @@ public class VistaPagosR extends Fragment {
         TextView paciente = (TextView)rootView.findViewById(R.id.tvPagosR);
         paciente.setText(((MainActivity)getContext()).getNOMBRES());
 
+        f_i = "hoy";
+        f_f = "hoy";
+
 
         tvFechaIni = (TextView)rootView.findViewById(R.id.tvFechaIni);
         tvFechaFin = (TextView)rootView.findViewById(R.id.tvFechaFin);
@@ -60,7 +63,7 @@ public class VistaPagosR extends Fragment {
         day =c.get(Calendar.DAY_OF_MONTH);
         moth =c.get(Calendar.MONTH);
         year =c.get(Calendar.YEAR);
-        Format formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String s = formatter.format(c.getTime());
         tvFechaIni.setText(s);
 
@@ -68,7 +71,7 @@ public class VistaPagosR extends Fragment {
         day  =cc.get(Calendar.DAY_OF_MONTH);
         moth =cc.get(Calendar.MONTH);
         year =cc.get(Calendar.YEAR);
-        Format formatter2 = new SimpleDateFormat("yyyy/MM/dd");
+        Format formatter2 = new SimpleDateFormat("yyyy-MM-dd");
         String ss = formatter2.format(cc.getTime());
         tvFechaFin.setText(ss);
 
@@ -95,7 +98,7 @@ public class VistaPagosR extends Fragment {
                         if( monthOfYear <10){
                             mes = "0"+monthOfYear;
                         }
-                        tvFechaIni.setText(year+"/"+mes+"/"+dia);
+                        tvFechaIni.setText(year+"-"+mes+"-"+dia);
                     }
                 }
                 ,year,moth,day);
@@ -123,7 +126,7 @@ public class VistaPagosR extends Fragment {
                         if( monthOfYear <10){
                             mes = "0"+monthOfYear;
                         }
-                        tvFechaFin.setText(year+"/"+mes+"/"+dia);
+                        tvFechaFin.setText(year+"-"+mes+"-"+dia);
                     }
                 } ,year,moth,day);
                 f_f = tvFechaFin.getText().toString();

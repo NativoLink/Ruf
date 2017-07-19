@@ -28,6 +28,26 @@ public class Paciente {
     int ultima_consulta;
     String existe_deuda;
 
+    public String getExisten_pagos() {
+        return existen_pagos;
+    }
+
+    public void setExisten_pagos(String existen_pagos) {
+        this.existen_pagos = existen_pagos;
+    }
+
+    String existen_pagos;
+
+    public String getPlan_incompleto() {
+        return plan_incompleto;
+    }
+
+    public void setPlan_incompleto(String plan_incompleto) {
+        this.plan_incompleto = plan_incompleto;
+    }
+
+    String plan_incompleto;
+
     public String getExiste_deuda() {
         return existe_deuda;
     }

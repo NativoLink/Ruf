@@ -150,12 +150,16 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
             if(pacientes.get(position).getUltima_consulta()==0){
                 btnDiagramas.setVisibility(View.INVISIBLE);
                 btnConsultas.setVisibility(View.INVISIBLE);
+            }
+            if(pacientes.get(position).getExisten_pagos().equals("false")){
                 btnPagos.setVisibility(View.INVISIBLE);
             }
-
             if(pacientes.get(position).getExiste_deuda().equals("false")){
-                btnNuevaConsulta.setVisibility(View.INVISIBLE);
                 btnConsultas.setVisibility(View.INVISIBLE);
+            }
+
+            if(pacientes.get(position).getPlan_incompleto().equals("false")){
+                btnNuevaConsulta.setVisibility(View.INVISIBLE);
             }
 
 
