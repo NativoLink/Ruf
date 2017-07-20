@@ -56,7 +56,8 @@ public class VistaRegPlan  extends Fragment {
         View view = inflater.inflate(R.layout.trats_list_edit, container, false);
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
-//        id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
+        id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
+        if(id_plan == 0){id_plan++;}
 //        id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
         id_paciente =((MainActivity) getContext()).getId_pacienteA();
 
@@ -81,7 +82,7 @@ public class VistaRegPlan  extends Fragment {
                             int id_trat = callback_trats.get(i).getId_tratamiento();
                             int cant = callback_trats.get(i).getCantidad();
                             int costo = callback_trats.get(i).getCosto();
-                            servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, "Descripcion Desde APP", new Callback<String>() {
+                            servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, new Callback<String>() {
                                 @Override
                                 public void success(String s, Response response) {
                                     Toast.makeText(getContext(),"Result: "+s.toString(), Toast.LENGTH_LONG).show();

@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ import com.darkcode.ruf_012.Doctor.DoctorService;
 import com.darkcode.ruf_012.Doctor.VistaDoctores;
 import com.darkcode.ruf_012.Doctor.VistaRegDoctor;
 import com.darkcode.ruf_012.Login.Login;
+import com.darkcode.ruf_012.Paciente.Especialidad;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
@@ -716,7 +718,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            regTrat("Registrar Tratamiento").show();
+//            regEspecialidad("Registrar Especialidad").show();
+            listEspeci();
+
+
+            return true;
+        }
+
+        if (id == R.id.reset_db) {
+            PacienteService servicio = restadpter.create(PacienteService.class);
+            servicio.resetDB(new Callback<String>() {
+                @Override
+                public void success(String s, Response response) {
+                    Log.v("ResetDB","ResetDB "+s);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.v("ResetDB ERROR","ERROR ResetDB "+error.getMessage());
+                }
+            });
             return true;
         }
 
@@ -754,7 +775,7 @@ public class MainActivity extends AppCompatActivity
 //            vistaActual = getV_reg_tratamiento();
 //            vista = new VistaRegTrat();
 //            trans= true;
-            regEspecialidad("Registrar Especialidad").show();
+            regTrat("Registrar Tratamiento").show();
         } else if (id == R.id.nav_list_doct) {
             vistaActual = "Listado de Doctores";
             vista = new VistaDoctores();
@@ -1128,6 +1149,57 @@ public class MainActivity extends AppCompatActivity
         }else{
             Toast.makeText(context, "Monto disponible = "+((MainActivity) context).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    public void listEspeci(){
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(MainActivity.this);
+//        builderSingle.setIcon(R.mipmap.ic_launcher);
+        builderSingle.setTitle("Listado de Especialidades");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1);
+
+        DoctorService servicio = restadpter.create(DoctorService.class);
+        List<Especialidad> especialids;
+        servicio.getEspecialidaddes(new Callback<List<Especialidad>>() {
+            @Override
+            public void success(List<Especialidad> especialidads, Response response) {
+                    for(Especialidad item : especialidads){
+                        arrayAdapter.add(item.getNombre());
+                    }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplicationContext(), "ERROR ESPECIALIDADES", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                String strName = arrayAdapter.getItem(which);
+//                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
+//                builderInner.setMessage(strName);
+//                builderInner.setTitle("Your Selected Item is");
+//                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog,int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                builderInner.show();
+            }
+        });
+        builderSingle.show();
     }
 
 

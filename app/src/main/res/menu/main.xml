@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/reset_db"
+        android:orderInCategory="100"
+        android:title="@string/resetdb"
+        app:showAsAction="never" />
 </menu>

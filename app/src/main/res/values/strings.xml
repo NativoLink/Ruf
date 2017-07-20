@@ -16,4 +16,5 @@
     <string name="cancelar">Cancelar</string>
     <string name="guardar">Guardar</string>
     <string name="abonar">Abonar</string>
+    <string name="resetdb">ResetDB</string>
 </resources>

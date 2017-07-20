@@ -28,6 +28,9 @@ public interface PacienteService {
     @GET("/WebSites/Tesis/Consulta/listConsulta.php")
     void getConsultas(@Query("id_paciente") int id_paciente, Callback<List<Consulta>> callback);
 
+    @GET("/WebSites/Tesis/resetDB.php")
+    void resetDB(Callback<String> callback);
+
 
     @GET("/WebSites/Tesis/Consulta/getNota.php")
     void unaConsulta(@Query("id_paciente") int id_paciente,@Query("id_consulta") int id_consulta, Callback<Consulta> callback);

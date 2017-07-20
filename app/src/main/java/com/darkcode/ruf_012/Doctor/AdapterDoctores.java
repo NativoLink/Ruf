@@ -62,6 +62,9 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
                 TextView tvDireccionD =  (TextView)v.findViewById(R.id.tvDireccionD);
                 TextView tvEspecialidadD =  (TextView)v.findViewById(R.id.tvEspecialidadD);
 
+                TextView tvID =  (TextView)v.findViewById(R.id.tvID);
+                TextView tvSexo =  (TextView)v.findViewById(R.id.tvSexo);
+
 
                 tvNombreD.setText( doctores.get(position).getNombre());
                 tvUsuarioD.setText( doctores.get(position).getUsuario());
@@ -71,6 +74,9 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
 
                 tvDireccionD.setText( doctores.get(position).getDireccion());
                 tvEspecialidadD.setText( doctores.get(position).getEspecialidad());
+
+                tvSexo.setText( doctores.get(position).getSexo());
+                tvID.setText(  String.valueOf(doctores.get(position).getId_doctor()));
 
                 TextView title =  (TextView)v.findViewById(R.id.tvTitle);
                 title.setText("Información del Doctor");

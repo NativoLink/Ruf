@@ -45,7 +45,6 @@ public interface TratamientoService {
                           @Field("id_tratamiento") int id_tratamiento,
                           @Field("cantidad") int cantidad,
                           @Field("costo") int costo,
-                          @Field("descripcion") String descripcion,
                           Callback<String> callback);
 
 
