@@ -64,10 +64,10 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
 
 
                 tvNombreD.setText( doctores.get(position).getNombre());
-                tvUsuarioD.setText( doctores.get(position).getNombre());
+                tvUsuarioD.setText( doctores.get(position).getUsuario());
 
-//                tvCedula.setText( doctores.get(position).getCedula());
-//                tvTelefono.setText( doctores.get(position).getSexo());
+                tvCedula.setText( String.valueOf(doctores.get(position).getCedula()));
+                tvTelefono.setText( doctores.get(position).getTelefono());
 
                 tvDireccionD.setText( doctores.get(position).getDireccion());
                 tvEspecialidadD.setText( doctores.get(position).getEspecialidad());

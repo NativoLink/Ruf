@@ -7,13 +7,30 @@ package com.darkcode.ruf_012.Doctor;
 public class Doctor {
     int id_doctor;
     int cedula;
+    String usuario;
     String nombre;
-    Character sexo;
+    String sexo;
     String clave;
     String direccion;
     String especialidad;
     String fecha_reg;
     String login;
+    String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
     public String isLogin() {
         return login;
@@ -47,11 +64,11 @@ public class Doctor {
         this.nombre = nombre;
     }
 
-    public Character getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Character sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
