@@ -16,6 +16,7 @@ import retrofit.http.Query;
  */
 
 public interface DienteService {
+    @Headers("Cache-Control: max-age=1")
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Diagrama/regDientes.php")
     public void guardarDiente(@Field("id_paciente") int id_paciente,

@@ -323,6 +323,37 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public int getCantidad_trat_marcado() {
+        return cantidad_trat_marcado;
+    }
+
+    public void setCantidad_trat_marcado(int cantidad_trat_marcado) {
+        this.cantidad_trat_marcado = cantidad_trat_marcado;
+    }
+
+    public int getCosto_total_general() {
+        return costo_total_general;
+    }
+
+    public void rmvCosto_total_general(int costo_indi) {
+        this.costo_total_general = this.costo_total_general - costo_indi;
+    }
+
+    public void addCosto_total_general(int costo_indi) {
+        this.costo_total_general = this.costo_total_general + costo_indi;
+    }
+
+    public void setCosto_total_general(int costo_total_general) {
+        this.costo_total_general = costo_total_general;
+    }
+
+    //     >> DETALLE DE NEW PLAN <<
+    int cantidad_trat_marcado;
+    int costo_total_general;
+
+
+
+
     // ------------ VARIABLES PARA REG-TRATAMEINTOS ------| END | ---
 
     FloatingActionButton btnUniversal;
@@ -844,7 +875,7 @@ public class MainActivity extends AppCompatActivity
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
                             }
                         }
                     ); Thread.sleep(100);

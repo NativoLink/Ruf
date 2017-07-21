@@ -22,6 +22,8 @@ import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -41,6 +43,8 @@ public class VistaRegPlan  extends Fragment {
     int id_paciente;
     TratamientoService servicio;
 
+    TextView tvCantTratas,tvCostoT;
+
 
 
     public VistaRegPlan() {
@@ -53,7 +57,7 @@ public class VistaRegPlan  extends Fragment {
         RestAdapter restadpter =   ((MainActivity) getContext()).getRestadpter();
         servicio  = restadpter.create(TratamientoService.class);
 
-        View view = inflater.inflate(R.layout.trats_list_edit, container, false);
+        View view = inflater.inflate(R.layout.trats_list_reg, container, false);
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
         id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
@@ -65,13 +69,15 @@ public class VistaRegPlan  extends Fragment {
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());
 
         btnReg = (Button) view.findViewById(R.id.btnRegPlan)  ;
+        tvCantTratas = (TextView) view.findViewById(R.id.tvCantTratas);
+        tvCostoT = (TextView) view.findViewById(R.id.tvCostoT);
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback_trats = ((MainActivity) getContext()).getItemRegPlan();
 
-//                int id_paciente = 1; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
-                servicio.regPlan(id_paciente,  ((MainActivity) getContext()).getNota_plan(), new Callback<Integer>() {
+                int COSTO = 2000; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
+                servicio.regPlan(id_paciente, COSTO, ((MainActivity) getContext()).getNota_plan(), new Callback<Integer>() {
                     @Override
                     public void success(Integer integer, Response response) {
                         id_plan = integer;
@@ -86,11 +92,13 @@ public class VistaRegPlan  extends Fragment {
                                 @Override
                                 public void success(String s, Response response) {
                                     Toast.makeText(getContext(),"Result: "+s.toString(), Toast.LENGTH_LONG).show();
+                                    Log.v("RETORNO VistaRegPlan","VistaRegPlan >>"+s);
                                 }
 
                                 @Override
                                 public void failure(RetrofitError error) {
-                                    Toast.makeText(getContext(),"ERROR: "+error.getMessage(), Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(getContext(),"ERROR: VistaRegPlan"+error.getMessage(), Toast.LENGTH_LONG).show();
+                                    Log.v("ERROR VistaRegPlan","VistaRegPlan >>"+error.getMessage());
                                 }
                             });
                         }
@@ -125,6 +133,30 @@ public class VistaRegPlan  extends Fragment {
                 createNotaDialogo().show();
             }
         });
+
+
+        Timer timer = new Timer();
+        try {
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int total_cant = ((MainActivity) getContext()).getCantidad_trat_marcado();
+                            int total_costo = ((MainActivity) getContext()).getCosto_total_general();
+                            tvCantTratas.setText(String.valueOf(total_cant));
+                            tvCostoT.setText(String.valueOf(total_costo));
+                            Log.v("ACTUALIZAR", "TOTAL ->" + total_costo);
+                        }
+                    });
+                }
+            }, 0, 1050); // End of your timer code.
+        }catch(Exception ex){
+            Log.v("EXCEPTION", "TOTAL ->" + ex);
+        }
+
+
 
         return view;
 

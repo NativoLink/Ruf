@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import retrofit.Callback;
@@ -363,14 +368,18 @@ public class VistaRegDiagrama extends Fragment {
                 servicio.guardarDiente(id_paciente,posicion,pa,estado,new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
-                        Log.d("RETORNO",">>"+s);
+                        Gson gson = new Gson();
+                        Reader reader = new StringReader(s);
+                        String str = gson.fromJson(reader, String.class);
+//                        Log.d("Debug", "str = "+str);
+                        Log.v("RETORNO VistaRegDiag",">>"+str);
 
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        Toast.makeText(getContext(), "ERROR :" + error + "...", Toast.LENGTH_LONG).show();
-                        Log.d("RETORNO",">"+error.getMessage());
+//                        Toast.makeText(getContext(), "ERROR :" + error.getResponse() + "...", Toast.LENGTH_LONG).show();
+                        Log.v("RETORNO ......",">> VistaRegDiag <<"+error.getMessage());
                     }
                 });
             }

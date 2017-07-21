@@ -90,7 +90,7 @@ public class VistaRegPlanTratamiento extends Fragment {
                 callback_trats = ((MainActivity) getContext()).getItemRegPlan();
 
                 int id_paciente = 1; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
-                servicio.regPlan(id_paciente, "La descripcion tampoco esta", new Callback<Integer>() {
+                servicio.regPlan(id_paciente,200 ,"La descripcion tampoco esta", new Callback<Integer>() {
                     @Override
                     public void success(Integer integer, Response response) {
                         id_plan = integer;
@@ -101,7 +101,7 @@ public class VistaRegPlanTratamiento extends Fragment {
                             int id_trat = callback_trats.get(i).getId_tratamiento();
                             int cant = callback_trats.get(i).getCantidad();
                             int costo = callback_trats.get(i).getCosto();
-                            servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, "Descripcion", new Callback<String>() {
+                            servicio.regTratsDeUnPlan(plan, id_trat, cant, costo, new Callback<String>() {
                                 @Override
                                 public void success(String s, Response response) {
                                     Toast.makeText(getContext(),"Result: "+s.toString(), Toast.LENGTH_LONG).show();

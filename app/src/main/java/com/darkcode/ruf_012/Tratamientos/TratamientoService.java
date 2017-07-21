@@ -59,8 +59,9 @@ public interface TratamientoService {
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Tratamiento/regPlan.php")
     void regPlan(@Field("id_paciente") int id_paciente,
-                  @Field("descripcion") String descripcion,
-                          Callback<Integer> callback);
+                 @Field("costo") int costo,
+                 @Field("descripcion") String descripcion,
+                 Callback<Integer> callback);
 
 
 }

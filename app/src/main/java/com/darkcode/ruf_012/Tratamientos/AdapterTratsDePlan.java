@@ -48,18 +48,24 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
         super(context, R.layout.list_trats_edit, tratamients);
         contexto=context;
         tratamientos = tratamients;
+        ((MainActivity) getContext()).setCantidad_trat_marcado(0);
+        ((MainActivity) getContext()).setCosto_total_general(0);
     }
 
     public static class ViewHolder {
         EditText etCantidad;
         EditText etCosto;
         CheckBox cbMarcado;
-        TextView tvCosto;
-        TextView tvCantP;
-        TextView tvTotalIndi;
+        TextView tvTotalIndi,tvCosto,tvCantP;
         int ref;
+
+        boolean checado =false;
+
+        int canti_indi,costo_indi;
+        int calculo;
     }
 
+    int cantidad_trat_marcado = 0;
 
 
     @Override
@@ -75,6 +81,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             holder.etCantidad = (EditText) convertView.findViewById(R.id.etCantidadE);
             holder.etCosto = (EditText) convertView.findViewById(R.id.etMontoE);
             holder.cbMarcado = (CheckBox) convertView.findViewById(R.id.cbTratE);
+            holder.tvTotalIndi = (TextView) convertView.findViewById(R.id.tvTotalIndi);
 
 
             holder.etCantidad.setText(String.valueOf(tratamientos.get(position).getCantidad()));
@@ -109,15 +116,41 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
 
             public void afterTextChanged(Editable s) {
                 if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-                    cantt = Integer.valueOf(s.toString());
+                    int cantt = Integer.valueOf(s.toString());
+                    holder.canti_indi = cantt;
+                    if( holder.costo_indi==0){  holder.costo_indi=1;holder.etCosto.setText("1");}
+                    int valor_anterior =  Integer.valueOf(holder.tvTotalIndi.getText().toString());
+                    int calculo = holder.costo_indi * holder.canti_indi;
+
+                    if(holder.checado) {
+                        ((MainActivity) getContext()).addCosto_total_general(calculo);
+                        ((MainActivity) getContext()).rmvCosto_total_general(valor_anterior);
+                    }
+                    holder.calculo = holder.costo_indi * holder.canti_indi;
+                    holder.tvTotalIndi.setText(String.valueOf(calculo));
+
+
+
                     ckItem.setChecado(true);
                     ckItem.setCantidad(cantt);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
                     ckItem.setId_tratamiento(tratamientos.get(position).getId_tratamiento());
                     ckItem.setNombreTrat(tratamientos.get(position).getNombre());
                     ckItem.setPosi(position);
+
                 }else{
-                    cantt = Integer.valueOf(1);
+                    int cantt = Integer.valueOf(1);
+                    holder.canti_indi = cantt;
+                    if( holder.costo_indi==0){  holder.costo_indi=1;holder.etCosto.setText("1");}
+                    int valor_anterior =  Integer.valueOf(holder.tvTotalIndi.getText().toString());
+                    int calculo = holder.costo_indi * holder.canti_indi;
+
+                    if(holder.checado) {
+                        ((MainActivity) getContext()).addCosto_total_general(calculo);
+                        ((MainActivity) getContext()).rmvCosto_total_general(valor_anterior);
+                    }
+                    holder.calculo = holder.costo_indi * holder.canti_indi;
+                    holder.tvTotalIndi.setText(String.valueOf(calculo));
                     ckItem.setChecado(true);
                     ckItem.setCantidad(cantt);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
@@ -148,6 +181,22 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             public void afterTextChanged(Editable s) {
                 if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
                     monto = Integer.valueOf(s.toString());
+                    holder.costo_indi = monto;
+
+
+                    if (holder.canti_indi == 0) {
+                        holder.canti_indi = 1;
+                        holder.etCantidad.setText("1");
+                    }
+                    int valor_anterior = Integer.valueOf(holder.tvTotalIndi.getText().toString());
+                    int calculo = holder.costo_indi * holder.canti_indi;
+                    if(holder.checado) {
+                        ((MainActivity) getContext()).addCosto_total_general(calculo);
+                        ((MainActivity) getContext()).rmvCosto_total_general(valor_anterior);
+                    }
+                    holder.calculo = holder.costo_indi * holder.canti_indi;
+                    holder.tvTotalIndi.setText(String.valueOf(calculo));
+
                     ckItem.setChecado(true);
                     ckItem.setCosto(monto);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
@@ -156,6 +205,20 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
                     ckItem.setPosi(position);
                 }else{
                     monto = Integer.valueOf(1);
+                    holder.costo_indi = monto;
+                    if (holder.canti_indi == 0) {
+                        holder.canti_indi = 1;
+                        holder.etCantidad.setText("1");
+                    }
+                    int valor_anterior = Integer.valueOf(holder.tvTotalIndi.getText().toString());
+                    int calculo = holder.costo_indi * holder.canti_indi;
+                    if(holder.checado) {
+                        ((MainActivity) getContext()).addCosto_total_general(calculo);
+                        ((MainActivity) getContext()).rmvCosto_total_general(valor_anterior);
+                    }
+
+                    holder.calculo = holder.costo_indi * holder.canti_indi;
+                    holder.tvTotalIndi.setText(String.valueOf(calculo));
                     ckItem.setChecado(true);
                     ckItem.setCosto(monto);
                     ckItem.setId_p_tratamiento(tratamientos.get(position).getId_p_tratamiento());
@@ -172,6 +235,7 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    holder.checado=true;
                     if (holder.etCantidad.getText().toString().equals(" ") ||
                             holder.etCantidad.getText().toString().equals("") ||
                             holder.etCantidad.getText().toString().matches("") ||
@@ -193,25 +257,47 @@ public class AdapterTratsDePlan extends ArrayAdapter<Tratamiento>{
                     ckItem.setNombreTrat(tratamientos.get(position).getNombre());
                     ckItem.setPosi(position);
 
+                    cantidad_trat_marcado++;
+                    ((MainActivity) getContext()).setCantidad_trat_marcado(cantidad_trat_marcado);
                     existe = ite.contains(ckItem);
+                    Log.v("CHECK","ADD TRAT =>> cantidad_trat_marcado=>"+cantidad_trat_marcado);
+
+                    int calculo = holder.costo_indi * holder.canti_indi;
+                    ((MainActivity) getContext()).addCosto_total_general(calculo);
+
                     if(existe==false) {
                         ite.add(ckItem);
+
                     }else{
+//                        cantidad_trat_marcado--;
+//                        Log.v("CHECK","REMOVE TRAT =>> cantidad_trat_marcado=>"+cantidad_trat_marcado);
                         ite.set(position,ckItem);
                     }
 
-                    Log.v("CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
+//                    Log.v("CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
                     ((MainActivity) getContext()).setItemRegPlan(getIte());
+//                    Log.v("CHECK","ADD TRAT =>> cantidad_trat_marcado=>"+cantidad_trat_marcado);
                 } else {
+                    holder.checado=false;
                     ckItem.setChecado(false);
                     existe = ite.contains(ckItem);
                     if(existe==false) {
                         ite.add(ckItem);
+//                        cantidad_trat_marcado++;
+//                        Log.v("CHECK","A®DD TRAT =>> cantidad_trat_marcado=>"+cantidad_trat_marcado);
                     }else{
                         ite.set(position,ckItem);
+
+
                     }
                     Log.v("NOT CHECK","Posi=>>"+ckItem.getPosi()+" Cant=>"+ckItem.getCantidad()+" Nomb=>"+ckItem.getNombreTrat());
                     ((MainActivity) getContext()).setItemRegPlan(getIte());
+                    cantidad_trat_marcado--;
+                    ((MainActivity) getContext()).setCantidad_trat_marcado(cantidad_trat_marcado);
+                    Log.v("CHECK","REMOVE TRAT =>> cantidad_trat_marcado=>"+cantidad_trat_marcado);
+                    int valor_anterior =  Integer.valueOf(holder.tvTotalIndi.getText().toString());
+                    ((MainActivity) getContext()).rmvCosto_total_general(valor_anterior);
+
                 }
 
             }
