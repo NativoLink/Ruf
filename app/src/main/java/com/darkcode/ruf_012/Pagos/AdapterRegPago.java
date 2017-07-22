@@ -49,6 +49,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
             holder.idConsulta = (TextView) customView.findViewById(R.id.tvConsulta);
             holder.pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
+            holder.tipo = (TextView) customView.findViewById(R.id.tvTipo);
 
             holder.btnRemove = (ImageButton) customView.findViewById(R.id.imgBtnRemove);
 
@@ -62,11 +63,15 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
             int costo = pago.get(position).getCosto();
             String costoP = Integer.toString(costo);
 
-            int pendienteP = pago.get(position).getPendiente();
-            String pen = Integer.toString(pendienteP);
+//            int pendienteP = pago.get(position).getPendiente(); //DE ESTA MANERA FUNCIONA
+            int pagoAbono = pago.get(position).getPagoAbono();
+            String pagos = Integer.toString(pagoAbono);
+
+            String tipo =  pago.get(position).getTipo();
 
             holder.idConsulta.setText(idC);
-            holder.pago_abono.setText(pen);
+            holder.pago_abono.setText(pagos);
+            holder.tipo.setText(tipo);
             holder.pago = costo;
 
             customView.setTag(holder);
@@ -100,6 +105,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
     class ViewCPagoHolder {
         TextView idConsulta;
         TextView pago_abono;
+        TextView tipo;
         int pago;
 
         ImageButton btnRemove;
@@ -112,6 +118,7 @@ public class AdapterRegPago extends ArrayAdapter<ConsultaPendiente> {
 
             final TextView idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
             TextView pago_abono = (TextView) customView.findViewById(R.id.tvPago_o_abono);
+            TextView tipo = (TextView) customView.findViewById(R.id.tvTipo);
 
 
             return customView;

@@ -35,7 +35,7 @@ public class p2ListView extends Fragment {
     ListView listView1, listView2;
 
     AdapterConPendientes myItemsListAdapter1;
-   AdapterRegPago myItemsListAdapter2;
+    AdapterRegPago myItemsListAdapter2;
     TextView tvNombrePaciente,tvNoRecibo;
     RestAdapter restadpter ;
     PagoService servicio;
@@ -49,6 +49,8 @@ public class p2ListView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.p2_list_view, container,false);
+
+        ((MainActivity)getContext()).setTotal(0);
 
         restadpter = ((MainActivity)getContext()).getRestadpter();
         servicio = restadpter.create(PagoService.class);
@@ -83,13 +85,13 @@ public class p2ListView extends Fragment {
                         List<ConsultaPendiente> ite = CalcularPago();
                     @Override
                     public void success(String s, Response response) {
-                        int id_consulta,pago;
+                        int id_consulta;
                         for(int i=0; i< ite.size(); i++) {
                             id_consulta = ite.get(i).getId_consulta();
                             final int pago_texting= ite.get(i).getPagoAbono();
-                            pago = 200;
                             int id_pago  = Integer.parseInt(s);
-                            servicio.regDetallePago(id_consulta, id_pago, pago, new Callback<String>() {
+                            int total =0; ///falta tomar
+                            servicio.regDetallePago(id_consulta, id_pago, pago_texting, total, new Callback<String>() {
                                 @Override
                                 public void success(String s, Response response) {
                                     Toast.makeText(getContext(), "Return "+pago_texting, Toast.LENGTH_LONG).show();
@@ -169,9 +171,6 @@ public class p2ListView extends Fragment {
     private void initItems(){
         ((MainActivity)getContext()).aPago.clear();
 
-
-
-        //PRUEBA
         servicio.getPagos(((MainActivity)getContext()).getId_pacienteA(), new Callback<List<ConsultaPendiente>>() {
             @Override
             public void success(List<ConsultaPendiente> pagos, Response response) {

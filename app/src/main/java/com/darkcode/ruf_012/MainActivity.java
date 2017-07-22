@@ -56,6 +56,7 @@ import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -261,10 +262,16 @@ public class MainActivity extends AppCompatActivity
         TextView saldado_total = (TextView)findViewById(R.id.tvdesaldada);
         saldado_total.setText(String.valueOf(getTvdesaldada()));
     }
+
+
+
     //    - - - TOTAL A PAGAR - - -  [ LADO DERECHO ]
     int total;
     public int getTotal() {
         return total;
+    }
+    public void setTotal(int total) {
+        this.total = total;
     }
     public void TotalSuma(int total) {
         this.total = this.total+total;
@@ -350,6 +357,8 @@ public class MainActivity extends AppCompatActivity
     //     >> DETALLE DE NEW PLAN <<
     int cantidad_trat_marcado;
     int costo_total_general;
+
+    List<ConsultaPendiente> tagsUse;
 
 
 
@@ -1146,6 +1155,7 @@ public class MainActivity extends AppCompatActivity
         LayoutInflater inflater = this.getLayoutInflater();
         final View v = inflater.inflate(R.layout.dialog_abono, null);
 
+
         TextView title =  (TextView)v.findViewById(R.id.tvTitle);
         title.setText(titulo);
         builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
@@ -1153,7 +1163,16 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int id) {
                 EditText newTrat =  (EditText)v.findViewById(R.id.edNewAbono);
                 int valor_a_abonar = Integer.valueOf(newTrat.getText().toString());
-                Abonar(position, valor_a_abonar,pago, context);
+
+
+                final ConsultaPendiente tag = pago.get(position);
+                tagsUse = getaPago();
+                if (estaEnArray(tag, tagsUse)) {
+                    Toast.makeText(getApplicationContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                } else {
+                    pago.get(position).setCosto(valor_a_abonar);
+                    Abonar(position, valor_a_abonar,pago, context);
+                }
             }
         })
                 .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
@@ -1170,9 +1189,14 @@ public class MainActivity extends AppCompatActivity
     public void Abonar(int position,int valor_a_abonar,List<ConsultaPendiente> pago,Context context){
         if(valor_a_abonar > 0) {
             String tipo ="abono";
-            pago.get(position).setTipo(tipo);
-            pago.get(position).setPagoAbono(valor_a_abonar); // SALDANDO EL TOTAL DE ESTA CONSULTA
-            ((MainActivity) context).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+
+            ConsultaPendiente ObjetoPago = new ConsultaPendiente();
+            ObjetoPago.setId_consulta(pago.get(position).getId_consulta());
+            ObjetoPago.setTipo(tipo);
+            Log.v("TIPO","TIPO >>"+tipo);
+
+            ObjetoPago.setPagoAbono(valor_a_abonar);
+            ((MainActivity) context).AddPago(ObjetoPago); // AGREGA UN NUEVO ELEMENTO A List<?>
             ((MainActivity) context).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
             ((MainActivity) context).TotalSuma(valor_a_abonar);
             ((MainActivity) context).UpdateTotal();
@@ -1231,6 +1255,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
         builderSingle.show();
+    }
+
+    public boolean estaEnArray(ConsultaPendiente cp, List<ConsultaPendiente> permitidos){
+        boolean existe = false;
+        for (Iterator<ConsultaPendiente> i = permitidos.iterator(); i.hasNext();) {
+//               Log.v("CP","ITEM => "+item);
+            ConsultaPendiente item = i.next();
+            if(item.getId_consulta() == cp.getId_consulta()){
+                Log.v("CP","EXITE CP => "+cp.getId_consulta() + " COMO ITEM => "+item.getId_consulta());
+                existe = true;
+            }
+        }
+        return existe;
+
     }
 
 

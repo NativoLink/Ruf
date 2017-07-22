@@ -6,6 +6,8 @@ package com.darkcode.ruf_012.Pagos;
 
 public class ConsultaPendiente {
 
+
+
     int id_consulta;
     String fecha;
     int costo;
@@ -19,6 +21,18 @@ public class ConsultaPendiente {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public ConsultaPendiente(){
+
+    }
+
+    public ConsultaPendiente(int id_consulta, int costo, int pagoAbono){
+
+        this.id_consulta = id_consulta;
+        this.costo = costo;
+        this.pagoAbono = pagoAbono;
+
     }
 
 

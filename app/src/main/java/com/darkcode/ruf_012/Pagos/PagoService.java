@@ -32,6 +32,7 @@ public interface PagoService {
     void regDetallePago(@Field("id_consulta") int id_consulta,
                         @Field("id_pago") int id_pago,
                         @Field("pago") int pago,
+                        @Field("total") int total,
                         Callback<String> callback);
 
     @FormUrlEncoded

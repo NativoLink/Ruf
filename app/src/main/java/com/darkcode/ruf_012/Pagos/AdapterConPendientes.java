@@ -181,6 +181,7 @@ public class AdapterConPendientes extends ArrayAdapter {
         TextView fecha;
         TextView monto;
         TextView pendiente;
+
 //        TextView estado;
 
         Button btnDetalle;

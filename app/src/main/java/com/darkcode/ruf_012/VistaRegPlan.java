@@ -76,7 +76,7 @@ public class VistaRegPlan  extends Fragment {
             public void onClick(View v) {
                 callback_trats = ((MainActivity) getContext()).getItemRegPlan();
 
-                int COSTO = 2000; // ESTA VARIABLE NO LA TENEMOS RECIVIDA AUN
+                int COSTO = ((MainActivity) getContext()).getCosto_total_general();
                 servicio.regPlan(id_paciente, COSTO, ((MainActivity) getContext()).getNota_plan(), new Callback<Integer>() {
                     @Override
                     public void success(Integer integer, Response response) {
