@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsDePlanDetalle;
@@ -35,13 +37,25 @@ public class VistaDetallePlan  extends Fragment {
         View view = inflater.inflate(R.layout.trats_list_detalle, container, false);
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
+//        int id_plan =  ((MainActivity) getContext()).getId_plan_select();
+//        int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+
         int id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
         int id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
+
+//        Toast.makeText(getContext(),"id_plan:"+id_plan+"  id_paciente:"+id_paciente, Toast.LENGTH_LONG).show();
 
         TextView tvNombreP = (TextView)view.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());
 
-        servicio.getTratsDeUnPlan(id_paciente, id_plan, new Callback<List<Tratamiento>>() {
+        TextView tvIdPlan = (TextView)view.findViewById(R.id.tvIdPlan);
+        tvIdPlan.setText("PLAN.no:"+id_plan);
+
+
+        ImageButton btnNota = (ImageButton)view.findViewById(R.id.btnNota);
+
+
+        servicio.getTratsDeUnPlanC(id_paciente, id_plan, new Callback<List<Tratamiento>>() {
             @Override
             public void success(List<Tratamiento> tratamientos, Response response) {
                 AdapterTratsDePlanDetalle listAdapter = new AdapterTratsDePlanDetalle(getContext(),tratamientos);

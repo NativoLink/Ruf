@@ -39,6 +39,7 @@ public class VistaPagosR extends Fragment {
 
     String f_i = "hoy";
     String f_f = "hoy";
+    PagoService servicio;
 
     @Nullable
     @Override
@@ -46,8 +47,12 @@ public class VistaPagosR extends Fragment {
         View rootView= inflater.inflate(R.layout.pagos_pacientes, container,false);
         lvresult = (ListView)rootView.findViewById(R.id.lvPagosPacientes);
 
+        RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
+         servicio= restadpter.create(PagoService.class);
+
         Button fecha_ini = (Button)rootView.findViewById(R.id.btnFechaIni);
         Button fecha_fin = (Button)rootView.findViewById(R.id.btnFechaFin);
+        Button btnBuscar = (Button)rootView.findViewById(R.id.btnBuscar);
 
         TextView paciente = (TextView)rootView.findViewById(R.id.tvPagosR);
         paciente.setText(((MainActivity)getContext()).getNOMBRES());
@@ -119,7 +124,7 @@ public class VistaPagosR extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         String dia = ""+dayOfMonth;
-                        String mes = ""+monthOfYear;
+                        String mes = ""+monthOfYear+1;
                         if( dayOfMonth <10){
                             dia = "0"+dayOfMonth;
                         }
@@ -135,11 +140,31 @@ public class VistaPagosR extends Fragment {
             }
         });
 
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f_i = tvFechaIni.getText().toString();
+                f_f = tvFechaFin.getText().toString();
+                servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(),f_i,f_f, new Callback<List<PagoR>>() {
+                    @Override
+                    public void success(List<PagoR> pagos, Response response) {
+                        listAdapter = new AdapterPagosR(getContext(), pagos);
+                        lvresult.setAdapter(listAdapter);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+        });
 
 
 
-        RestAdapter restadpter = ((MainActivity)getContext()).getRestadpter();
-        PagoService servicio = restadpter.create(PagoService.class);
+
+
 
         servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(),f_i,f_f, new Callback<List<PagoR>>() {
             @Override

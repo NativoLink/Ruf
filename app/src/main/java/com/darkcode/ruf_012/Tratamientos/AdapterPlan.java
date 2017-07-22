@@ -42,23 +42,15 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
             TextView id_plan = (TextView) customView.findViewById(R.id.tvPlan);
             id_plan.setText("ID:" + plans.get(position).getId_plan() + " | Fecha: (" + plans.get(position).getFecha_reg() + ")  [ " + plans.get(position).getEstado()+" ] ");
 
-
-
             btnDetalle = (ImageButton) customView.findViewById(R.id.btnDetallePlan);
             btnEditar = (ImageButton) customView.findViewById(R.id.btnEditarPlan);
-
-
 
             btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     vista = new VistaEditPlan();
-                    Bundle arg = new Bundle();
-                    arg.putString("id_paciente", String.valueOf(plans.get(position).getId_paciente()));
-                    arg.putString("id_plan", String.valueOf(plans.get(position).getId_plan()));
                     String Titulo_Bar = "Editar Plan";
-                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
-                    ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
+                    changeVista( vista,Titulo_Bar,position);
                 }
             });
 
@@ -68,14 +60,11 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
                 @Override
                 public void onClick(View v) {
                     vista = new VistaDetallePlan();
-                    Bundle arg = new Bundle();
-                    arg.putString("id_paciente", String.valueOf(plans.get(position).getId_paciente()));
-                    arg.putString("id_plan", String.valueOf(plans.get(position).getId_plan()));
-                    String Titulo_Bar = "Editar Plan";
-                    ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
-                    ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
+                    String Titulo_Bar = "Detalle de Plan";
+                    changeVista( vista,Titulo_Bar,position);
                 }
             });
+
         if (id == 0) {
 //            customView.setVisibility(View.INVISIBLE);
             id_plan.setText("No tiene ningun plan registrado en el sistema");
@@ -90,6 +79,16 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
 
 
         return customView;
+    }
+
+    public void changeVista(Fragment vista, String titulo, int position){
+        Bundle arg = new Bundle();
+        arg.putString("id_paciente", String.valueOf(plans.get(position).getId_paciente()));
+        arg.putString("id_plan", String.valueOf(plans.get(position).getId_plan()));
+        ((MainActivity) getContext()).setId_plan_select(plans.get(position).getId_plan());
+        String Titulo_Bar = "Detalle de Plan";
+        ((MainActivity) getContext()).setVistaActual(Titulo_Bar);
+        ((MainActivity) getContext()).cambioVistaU(vista, Titulo_Bar, arg);
     }
 
 }

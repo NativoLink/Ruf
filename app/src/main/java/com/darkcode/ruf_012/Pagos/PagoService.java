@@ -30,9 +30,10 @@ public interface PagoService {
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Pagos/regDetallePago.php")
     void regDetallePago(@Field("id_consulta") int id_consulta,
+                        @Field("id_paciente") int id_paciente,
                         @Field("id_pago") int id_pago,
                         @Field("pago") int pago,
-                        @Field("total") int total,
+                        @Field("tipo") String tipo,
                         Callback<String> callback);
 
     @FormUrlEncoded

@@ -35,8 +35,8 @@ public class VistaEditPlan extends Fragment {
         View view = inflater.inflate(R.layout.trats_list_edit, container, false);
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
-        int id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
-        int id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
+        int id_plan =  ((MainActivity) getContext()).getId_plan_select();
+        int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
 
         TextView tvNombreP = (TextView)view.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());

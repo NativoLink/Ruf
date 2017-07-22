@@ -37,6 +37,11 @@ public interface TratamientoService {
     void getTratsDeUnPlan(@Query("id_paciente") int id_paciente,
                           @Query("id_plan") int id_plan,Callback<List<Tratamiento>> callback);
 
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Tratamiento/listTratsDeUnPlanComp.php")
+    void getTratsDeUnPlanC(@Query("id_paciente") int id_paciente,
+                          @Query("id_plan") int id_plan,Callback<List<Tratamiento>> callback);
+
 
     @Headers("Cache-Control: max-age=1")
     @FormUrlEncoded

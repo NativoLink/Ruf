@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:background="@android:color/holo_green_light"
+                android:background="@drawable/bk_boton_plano"
                 android:text="Registrar" />
 
         </LinearLayout>

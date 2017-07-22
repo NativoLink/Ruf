@@ -61,9 +61,9 @@ public class VistaRegPlan  extends Fragment {
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
         id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
+        id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
         if(id_plan == 0){id_plan++;}
-//        id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
-        id_paciente =((MainActivity) getContext()).getId_pacienteA();
+//        id_paciente =((MainActivity) getContext()).getId_pacienteA();
 
         TextView tvNombreP = (TextView)view.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());

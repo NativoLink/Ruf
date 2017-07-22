@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,18 +90,22 @@ public class p2ListView extends Fragment {
                         for(int i=0; i< ite.size(); i++) {
                             id_consulta = ite.get(i).getId_consulta();
                             final int pago_texting= ite.get(i).getPagoAbono();
-                            int id_pago  = Integer.parseInt(s);
+                            final int id_pago  = Integer.parseInt(s);
                             int total =0; ///falta tomar
-                            servicio.regDetallePago(id_consulta, id_pago, pago_texting, total, new Callback<String>() {
+                            final String tipo = ite.get(i).getTipo();
+                            final int id_paciente =  ((MainActivity) getContext()).getId_pacienteA();
+                            servicio.regDetallePago(id_consulta, id_paciente, id_pago, pago_texting, ite.get(i).getTipo() ,new Callback<String>() {
                                 @Override
                                 public void success(String s, Response response) {
-                                    Toast.makeText(getContext(), "Return "+pago_texting, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext()," Return "+pago_texting, Toast.LENGTH_LONG).show();
+                                    Log.v("PARAMS","id_pago= "+id_pago+"   id_paciente= "+ id_paciente+" PAGO= "+ pago_texting+" TIPO= "+ tipo);
                                 }
 
                                 @Override
                                 public void failure(RetrofitError error) {
                                     Toast.makeText(getContext(), "ERROR 2 "+error.getMessage(), Toast.LENGTH_LONG).show();
                                 }
+
                             });
 //                            Toast.makeText(getContext(), "Cantidad R => "+ ite.get(i).getCosto(), Toast.LENGTH_LONG).show();
                         }

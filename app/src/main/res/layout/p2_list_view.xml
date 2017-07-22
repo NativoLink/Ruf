@@ -486,7 +486,7 @@
                     android:id="@+id/btnregistrar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@android:color/holo_green_light"
+                    android:background="@drawable/bk_boton_plano"
                     android:gravity="center"
                     android:paddingLeft="32dp"
                     android:paddingRight="32dp"

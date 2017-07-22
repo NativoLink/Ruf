@@ -443,6 +443,14 @@ public class MainActivity extends AppCompatActivity
         this.NOMBRES = NOMBRES;
     }
 
+    public int getId_plan_select() {
+        return id_plan_select;
+    }
+
+    public void setId_plan_select(int id_plan_select) {
+        this.id_plan_select = id_plan_select;
+    }
+
 //================================================
 //   * * *  VARIABLES DE PACIENTE  * * *
 
@@ -458,6 +466,7 @@ public class MainActivity extends AppCompatActivity
     int EDAD;
     int id_pacienteA;
     int ultimo_plan;
+    int id_plan_select;
 
 
 
