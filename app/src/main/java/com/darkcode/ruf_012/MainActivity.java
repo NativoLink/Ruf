@@ -45,8 +45,10 @@ import com.darkcode.ruf_012.Paciente.Especialidad;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
+import com.darkcode.ruf_012.Pagos.AdapterDetallePagoR;
 import com.darkcode.ruf_012.Pagos.AdapterRegPago;
 import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
+import com.darkcode.ruf_012.Pagos.DetallePagoR;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
@@ -812,7 +814,7 @@ public class MainActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_gallery) {
 //            vista = new VistaEditPlan();
 //            trans= true;
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.list_paciente) {
             vistaActual = getV_list_pacientes();
             vista = new VistaPacientes();
             trans= true;
@@ -1191,6 +1193,25 @@ public class MainActivity extends AppCompatActivity
 
                     }
                 });
+        builder.setView(v);
+        AlertDialog dialog = builder.create();
+        return dialog;
+    }
+
+
+    public AlertDialog detallePagosR(String titulo, final List<DetallePagoR> pagoR, final Context context){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.diag_detalle_pago, null);
+
+
+//        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+//        title.setText(titulo);
+
+        ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
+        AdapterDetallePagoR listAdapter = new AdapterDetallePagoR(getApplicationContext(), pagoR);
+        lvresult.setAdapter(listAdapter);
         builder.setView(v);
         AlertDialog dialog = builder.create();
         return dialog;

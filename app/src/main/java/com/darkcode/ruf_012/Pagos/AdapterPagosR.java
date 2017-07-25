@@ -3,6 +3,7 @@ package com.darkcode.ruf_012.Pagos;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,14 +83,15 @@ public class AdapterPagosR extends ArrayAdapter<PagoR> {
                        new Callback<List<DetallePagoR>>() {
                            @Override
                            public void success(List<DetallePagoR> pagoRs, Response response) {
-                               listAdapter = new AdapterDetallePagoR(getContext(), pagoRs);
-                               lvresult.setAdapter(listAdapter);
-
+//
+                               ((MainActivity) getContext()).detallePagosR("Detalle Pagos",pagoRs,contexto).show();
+                               Toast.makeText(getContext(), "KLK", Toast.LENGTH_LONG).show();
                            }
 
                            @Override
                            public void failure(RetrofitError error) {
-
+                               Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                               Log.v("ERROR","ERROR ==> getDetallePagosR ");
                            }
                        });
 
@@ -126,7 +128,8 @@ public class AdapterPagosR extends ArrayAdapter<PagoR> {
 
                     @Override
                     public void failure(RetrofitError error) {
-
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.v("ERROR","ERROR ==> getDetallePagosR ");
                     }
                 });
 
