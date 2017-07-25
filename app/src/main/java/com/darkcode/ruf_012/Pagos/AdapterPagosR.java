@@ -84,8 +84,8 @@ public class AdapterPagosR extends ArrayAdapter<PagoR> {
                            @Override
                            public void success(List<DetallePagoR> pagoRs, Response response) {
 //
-                               ((MainActivity) getContext()).detallePagosR("Detalle Pagos",pagoRs,contexto).show();
-                               Toast.makeText(getContext(), "KLK", Toast.LENGTH_LONG).show();
+                               ((MainActivity) getContext()).detallePagosR("Detalle Pagos",pagoRs).show();
+//                               Toast.makeText(getContext(), "KLK", Toast.LENGTH_LONG).show();
                            }
 
                            @Override
@@ -101,51 +101,5 @@ public class AdapterPagosR extends ArrayAdapter<PagoR> {
 
 
         return customView;
-    }
-
-
-    public void listDEtalleP(int position){
-
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(contexto);
-//        builderSingle.setIcon(R.mipmap.ic_launcher);
-        builderSingle.setTitle("Pagos de Consultas");
-
-//        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(contexto, android.R.layout.list_detalle_pago);
-
-        final AdapterDetallePagoR[] arrayAdapter = {null};
-
-        servicio.getDetallePagosR(
-                id_paciente,
-                pagos.get(position).getId_pago(),
-                new Callback<List<DetallePagoR>>() {
-                    @Override
-                    public void success(List<DetallePagoR> pagoRs, Response response) {
-                        listAdapter = new AdapterDetallePagoR(getContext(), pagoRs);
-                        lvresult.setAdapter(listAdapter);
-                        arrayAdapter[0] = listAdapter;
-
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        Log.v("ERROR","ERROR ==> getDetallePagosR ");
-                    }
-                });
-
-        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        builderSingle.setAdapter(arrayAdapter[0], new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builderSingle.show();
     }
 }

@@ -10,6 +10,15 @@ public class DetallePagoR {
     int id_consulta;
     int pago;
     int total;
+    String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public int getId_pago() {
         return id_pago;

@@ -15,12 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Paciente.Paciente;
+import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.R;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsRConsulta;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
+import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.VistaRegPlan;
 
 import java.util.Iterator;
 import java.util.List;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 /**
@@ -31,6 +40,8 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     private Context contexto;
     private List<ConsultaPendiente> pago;
+    TratamientoService servicio;
+    RestAdapter restadpter;
     List<ConsultaPendiente> tagsUse;
     int  Monto_u = 0 ;
 
@@ -112,6 +123,29 @@ public class AdapterConPendientes extends ArrayAdapter {
         }
 
         holder.btnSaldar.setTag(position);
+
+        holder.btnDetalle.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+                  restadpter = ((MainActivity)getContext()).getRestadpter();
+                  servicio= restadpter.create(TratamientoService.class);
+                  int id_consulta = pago.get(position).getId_consulta();
+                  int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+                  servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
+                      @Override
+                      public void success(List<Tratamiento> tratamientos, Response response) {
+                          ((MainActivity) getContext()).detalleConsultas("Detalle Consulta",tratamientos).show();
+
+                      }
+
+                      @Override
+                      public void failure(RetrofitError error) {
+                          Toast.makeText(getContext(), "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                      }
+                  });
+              }
+        });
 
 
 

@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFBB33"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/registrar"
+            android:textColor="?attr/colorControlNormal"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
@@ -13,7 +34,7 @@
         android:paddingRight="16dp">
 
         <TextView
-            android:id="@+id/t"
+            android:id="@+id/tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -26,10 +47,10 @@
             android:textColor="#FFF"
 
 
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/tv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,15 +61,28 @@
             android:paddingTop="8dp"
             android:text="Pago"
             android:textColor="#FFF"
+            android:textSize="18dp" />
 
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="Tipo"
+            android:textColor="#FFF"
             android:textSize="18dp" />
     </TableRow>
 
     <ListView
         android:id="@+id/lvdetallePago"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
+
 
     </ListView>
 
@@ -75,8 +109,9 @@
         <TextView
             android:id="@+id/tvTotal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#fdf0f8f3"
             android:inputType="number" />
     </TableRow>
 

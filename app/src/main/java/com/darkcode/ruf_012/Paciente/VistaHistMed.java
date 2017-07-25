@@ -70,25 +70,12 @@ public class VistaHistMed extends Fragment {
         final EditText  etTipoEnefermedad = (EditText)rootView.findViewById(R.id.etTipoEnefermedad);
         final EditText  ettratamientoRealizado = (EditText)rootView.findViewById(R.id.ettratamientoRealizado);
 
-        txtEnfermedad = etEnfermedad.getText().toString();
-        txtTratamiento = etTratamiento.getText().toString();
-        txtmedico = etmedico.getText().toString();
-        txtTipoEnefermedad = etTipoEnefermedad.getText().toString();
-        txtTipoAlergia = etTipoAlergia.getText().toString();
 
-        txt_spEstadoSalud = spEstadoSalud.getSelectedItem().toString();
-        txt_spBajoTra = spBajoTra.getSelectedItem().toString();
-        txt_spAlergico = spAlergico.getSelectedItem().toString();
-        txt_spEnfermedadS = spEnfermedadS.getSelectedItem().toString();
 
 
         final EditText  etnumcepillar = (EditText)rootView.findViewById(R.id.etnumcepillar);
-        txtnumcepillar = etnumcepillar.getText().toString();
         final EditText  etREVISION = (EditText)rootView.findViewById(R.id.etREVISION);
-        txtREVISION = etREVISION.getText().toString();
-        txt_spEnjuague = spEnjuague.getSelectedItem().toString();
-        txt_spHilo = spHilo.getSelectedItem().toString();
-        txttratamientoRealizado = ettratamientoRealizado.getText().toString();
+
 
         Button btnReg = (Button)rootView.findViewById(R.id.btnRegistrar);
 
@@ -97,6 +84,18 @@ public class VistaHistMed extends Fragment {
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                txtEnfermedad = etEnfermedad.getText().toString();
+                txtTratamiento = etTratamiento.getText().toString();
+                txtmedico = etmedico.getText().toString();
+                txtTipoEnefermedad = etTipoEnefermedad.getText().toString();
+                txtTipoAlergia = etTipoAlergia.getText().toString();
+
+                txt_spEstadoSalud = spEstadoSalud.getSelectedItem().toString();
+                txt_spBajoTra = spBajoTra.getSelectedItem().toString();
+                txt_spAlergico = spAlergico.getSelectedItem().toString();
+                txt_spEnfermedadS = spEnfermedadS.getSelectedItem().toString();
 
                 PacienteService servicio = restadpter.create(PacienteService.class);
                 int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
@@ -125,6 +124,13 @@ public class VistaHistMed extends Fragment {
                             }
                         }
                 );
+
+
+                txtnumcepillar = etnumcepillar.getText().toString();
+                txtREVISION = etREVISION.getText().toString();
+                txt_spEnjuague = spEnjuague.getSelectedItem().toString();
+                txt_spHilo = spHilo.getSelectedItem().toString();
+                txttratamientoRealizado = ettratamientoRealizado.getText().toString();
 
                 servicio.regHabitoHig(
                         id_paciente,

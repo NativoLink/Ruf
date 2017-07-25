@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -34,9 +35,13 @@ public class AdapterDetallePagoR extends ArrayAdapter {
 
         TextView id_consulta = (TextView)customView.findViewById(R.id.tvid_consulta);
         TextView pago = (TextView)customView.findViewById(R.id.tvpago);
+        TextView tipo = (TextView)customView.findViewById(R.id.tvTipo);
+
+//        ((MainActivity)getContext()).setTotalDetallePagosR(pagos.get(position).getTotal());
 
         id_consulta.setText(String.valueOf(pagos.get(position).getId_consulta()));
         pago.setText(String.valueOf(pagos.get(position).getPago()));
+        tipo.setText(pagos.get(position).getTipo());
 
         return customView;
     }
