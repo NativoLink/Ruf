@@ -398,6 +398,18 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
+            <TextView
+                android:id="@+id/ettipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="Tipo"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
         </TableRow>
 
         <TableRow
