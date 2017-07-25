@@ -29,6 +29,7 @@ public interface DienteService {
     @POST("/WebSites/Tesis/Consulta/regConsulta.php")
     public void regConsulta(@Field("id_paciente") int id_paciente,
                             @Field("id_p_tratamiento") int id_p_tratamiento,
+                            @Field("id_plan") int id_plan,
                             @Field("estado") String estado,
                             @Field("descripcion") String descripcion,
                             @Field("cantidad") int cantidad,

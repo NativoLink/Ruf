@@ -42,9 +42,7 @@ public class VistaRegPlan  extends Fragment {
     int id_plan;
     int id_paciente;
     TratamientoService servicio;
-
     TextView tvCantTratas,tvCostoT;
-
 
 
     public VistaRegPlan() {
@@ -61,9 +59,9 @@ public class VistaRegPlan  extends Fragment {
         final ListView lvresult = (ListView)view.findViewById(R.id.lvTratsE);
 
         id_plan = Integer.valueOf(this.getArguments().getString("id_plan"));
-        id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
+//        id_paciente = Integer.valueOf(this.getArguments().getString("id_paciente"));
         if(id_plan == 0){id_plan++;}
-//        id_paciente =((MainActivity) getContext()).getId_pacienteA();
+        id_paciente =((MainActivity) getContext()).getId_pacienteA();
 
         TextView tvNombreP = (TextView)view.findViewById(R.id.tvNombreP);
         tvNombreP.setText( ((MainActivity) getContext()).getNOMBRES());
@@ -81,7 +79,7 @@ public class VistaRegPlan  extends Fragment {
                     @Override
                     public void success(Integer integer, Response response) {
                         id_plan = integer;
-                        Toast.makeText(getContext(),"Plan: "+integer, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"Plan: "+integer+" Id_paciente: "+id_paciente, Toast.LENGTH_LONG).show();
                         for(int i=0; i< callback_trats.size(); i++) {
                             Log.v("callbacks -->","Posi =>> "+callback_trats.get(i).getPosi()+" Nomb =>>"+callback_trats.get(i).getNombreTrat()+" Monto =>>"+callback_trats.get(i).getCosto()+" Cant =>>"+callback_trats.get(i).getCantidad());
                             int plan = id_plan;

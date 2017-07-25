@@ -136,39 +136,7 @@ public class p2ListView extends Fragment {
         ((MainActivity)getContext()).getMyAdapter2().notifyDataSetChanged();
 
 
-        EditText cliente_paga = (EditText)view.findViewById(R.id.etMontoP);
-
-        cliente_paga.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-//                    int monto = Integer.valueOf(s.toString());
-//                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
-//                    Toast.makeText(getContext(),"BEFORE", Toast.LENGTH_LONG).show();
-//                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-                    int monto = Integer.valueOf(s.toString());
-                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
-//                    Toast.makeText(getContext(),"CHANGE", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-//                if(!s.toString().equals("") && s.toString()!="" && s.toString()!="0") {
-//                    int monto = Integer.valueOf(s.toString());
-//                    ((MainActivity) getContext()).setMonto_a_pagar(monto);
-//                    Toast.makeText(getContext(),"AFTER", Toast.LENGTH_LONG).show();
-//                }
-
-            }
-        });
-
-
+//        EditText cliente_paga = (EditText)view.findViewById(R.id.etMontoP);
 
         return view;
     }

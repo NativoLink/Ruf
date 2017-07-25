@@ -1,0 +1,45 @@
+package com.darkcode.ruf_012.Pagos;
+
+import android.content.Context;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.darkcode.ruf_012.R;
+
+import java.util.List;
+
+/**
+ * Created by NativoLink on 24/7/17.
+ */
+
+public class AdapterDetallePagoR extends ArrayAdapter {
+
+
+    private Context contexto;
+    private List<DetallePagoR> pagos;
+
+    public AdapterDetallePagoR(Context context, List<DetallePagoR> pagosR) {
+        super(context, R.layout.list_detalle_pago ,pagosR);
+        contexto=context;
+        pagos = pagosR;
+    }
+
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View customView = inflater.inflate(R.layout.list_detalle_pago, parent, false);
+
+
+        TextView id_consulta = (TextView)customView.findViewById(R.id.tvid_consulta);
+        TextView pago = (TextView)customView.findViewById(R.id.tvpago);
+
+        id_consulta.setText(String.valueOf(pagos.get(position).getId_consulta()));
+        pago.setText(String.valueOf(pagos.get(position).getPago()));
+
+        return customView;
+    }
+}

@@ -882,6 +882,7 @@ public class MainActivity extends AppCompatActivity
                     servicio.regConsulta(
                         id_pacienteA,
                         ite.get(i).getId_p_tratamiento(),
+                        getUltimo_plan(),
                         ite.get(i).getEstado(),
                         getNota(),
                         ite.get(i).getCantidad(),
@@ -983,6 +984,7 @@ public class MainActivity extends AppCompatActivity
                     servicio.regConsulta(
                             id_pacienteA,
                             ite.get(i).getId_p_tratamiento(),
+                            getUltimo_plan(),
                             ite.get(i).getEstado(),
                             getNota(),
                             ite.get(i).getCantidad(),

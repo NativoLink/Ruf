@@ -166,7 +166,7 @@ public class VistaPagosR extends Fragment {
 
 
 
-        servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(),f_i,f_f, new Callback<List<PagoR>>() {
+        servicio.getPagosR(((MainActivity)getContext()).getId_pacienteA(),"hoy","hoy", new Callback<List<PagoR>>() {
             @Override
             public void success(List<PagoR> pagos, Response response) {
                 listAdapter = new AdapterPagosR(getContext(), pagos);

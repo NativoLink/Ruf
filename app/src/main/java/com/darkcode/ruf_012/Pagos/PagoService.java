@@ -27,6 +27,13 @@ public interface PagoService {
                    @Query("fecha_fin")String fecha_fin,
                    Callback<List<PagoR>> callback);
 
+
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Pagos/listDetallePago.php")
+    void getDetallePagosR(@Query("id_paciente")int id_paciente,
+                   @Query("id_pago")int fec_ini,
+                   Callback<List<DetallePagoR>> callback);
+
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Pagos/regDetallePago.php")
     void regDetallePago(@Field("id_consulta") int id_consulta,
