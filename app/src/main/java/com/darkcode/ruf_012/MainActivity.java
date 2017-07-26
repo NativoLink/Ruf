@@ -852,6 +852,7 @@ public class MainActivity extends AppCompatActivity
             //PARAMS PARA ENVIAR A FRAGMENTS
             bundle.putString("id_doctor", id_doctor);
             bundle.putString("nombre", nombre);
+            bundle.putString("tipo", "registrar");
             vista.setArguments(bundle);
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

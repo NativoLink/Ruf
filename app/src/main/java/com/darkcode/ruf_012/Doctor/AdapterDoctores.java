@@ -1,10 +1,12 @@
 package com.darkcode.ruf_012.Doctor;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -26,6 +29,7 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
     private Context contexto;
     private List<Doctor> doctores;
     TextView tvIdDoctor,tvNombreDoctor,tvEspecialidad;
+    Fragment vista = null;
 
     public AdapterDoctores(Context context, List<Doctor> doctors) {
         super(context, R.layout.list_doctores, doctors);
@@ -47,6 +51,18 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
 
         ImageButton btnEditar = (ImageButton) convertView.findViewById(R.id.btnEditar);
         ImageButton btnInfo = (ImageButton) convertView.findViewById(R.id.btnInfo);
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View vi) {
+                 vista = new VistaRegDoctor();
+                 Bundle bundle = new Bundle();
+                 bundle.putInt("id_doctor_update", doctores.get(position).getId_doctor());
+                 bundle.putString("tipo", "editar");
+                 ((MainActivity) getContext()).cambioVistaU(vista,"Editar Doctor",bundle);
+             }
+
+         });
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override

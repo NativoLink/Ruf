@@ -32,6 +32,17 @@ public interface DoctorService {
                           @Field("cedula") String cedula,
                           @Field("especialidad") int especialidad,
                           Callback<String> callback);
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Doctor/updateDoctor.php")
+    public void editDoctor(@Field("id_doctor") int id_doctor,
+                           @Field("nombre") String nombre,
+                           @Field("usuario") String usuario,
+                           @Field("clave") String clave,
+                           @Field("direccion") String direccion,
+                           @Field("telefono") String telefono,
+                           @Field("cedula") String cedula,
+                           @Field("especialidad") int especialidad,
+                          Callback<String> callback);
 
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Doctor/listEspecialidad.php")
@@ -40,6 +51,10 @@ public interface DoctorService {
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Doctor/listDoctores.php")
     void getDoctores(Callback<List<Doctor>> callback);
+
+    @Headers("Cache-Control: max-age=1")
+    @GET("/WebSites/Tesis/Doctor/unDoctor.php")
+    void getDoctor(@Query("id_doctor") int id_doctor,Callback<Doctor> callback);
 
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Doctor/listBuscarDoctor.php")

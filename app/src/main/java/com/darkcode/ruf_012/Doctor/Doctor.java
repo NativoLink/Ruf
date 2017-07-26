@@ -6,7 +6,7 @@ package com.darkcode.ruf_012.Doctor;
 
 public class Doctor {
     int id_doctor;
-    int cedula;
+    String cedula;
     String usuario;
     String nombre;
     String sexo;
@@ -48,11 +48,11 @@ public class Doctor {
         this.id_doctor = id_doctor;
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

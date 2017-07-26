@@ -19,63 +19,144 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvusuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Usuario"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Nombre"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_weight="2">
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvNombre"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:text="Nombre"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|left"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/tvclave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Nueva Clave"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
 
-        <TextView
-            android:id="@+id/tvusuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:text="Usuario"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
+            <EditText
+                android:id="@+id/etClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="textPassword"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/etUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|left"
-            android:inputType="textPersonName" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvclave"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:text="Clave"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etClave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|left"
-            android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/tvclave2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Confirmar Clave"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etClaveC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="textPassword"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
+        </LinearLayout>
 
     </TableRow>
 
@@ -83,19 +164,96 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_weight="2">
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Teléfono"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvcedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="bottom|right"
+                android:text="Cédula"
+                android:textSize="25sp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|left"
+                android:inputType="number"
+                android:paddingLeft="8dp"
+                android:textAlignment="center"
+                android:textColor="#0000FF"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:id="@+id/tvDireccion_d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="7"
             android:gravity="bottom|right"
             android:text="Dirección"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="normal|bold" />
 
         <EditText
@@ -104,52 +262,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="bottom|left"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/tvTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:text="Teléfono"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
-
-        <EditText
-            android:id="@+id/etTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|left"
-            android:inputType="phone" />
-
-        <TextView
-            android:id="@+id/tvcedula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:text="Cédula"
-            android:textSize="25dp"
-            android:textStyle="normal|bold" />
-
-        <EditText
-            android:id="@+id/etCedula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="bottom|left"
-            android:inputType="number" />
-
+            android:inputType="textPersonName"
+            android:textColor="#0000FF" />
 
     </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_weight="2">
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/tvEspecialidad"
@@ -181,13 +307,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:gravity="bottom|right">
 
             <TextView
