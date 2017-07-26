@@ -51,44 +51,44 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF"
-            android:paddingBottom="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="16dp">
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#FFF"-->
+            <!--android:paddingBottom="16dp"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:paddingRight="16dp"-->
+            <!--android:paddingTop="16dp">-->
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="17dp"
-                android:layout_height="54dp"
-                android:layout_weight=".3"
-                android:gravity="center"
-                android:inputType="numberSigned"
-                android:paddingLeft="16dp"
-                android:text="Monto a Pagar"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textIsSelectable="false"
-                android:textSize="24sp"
-                tools:ignore="HardcodedText" />
+            <!--<TextView-->
+                <!--android:id="@+id/textView2"-->
+                <!--android:layout_width="17dp"-->
+                <!--android:layout_height="54dp"-->
+                <!--android:layout_weight=".3"-->
+                <!--android:gravity="center"-->
+                <!--android:inputType="numberSigned"-->
+                <!--android:paddingLeft="16dp"-->
+                <!--android:text="Monto a Pagar"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textIsSelectable="false"-->
+                <!--android:textSize="24sp"-->
+                <!--tools:ignore="HardcodedText" />-->
 
-            <EditText
-                android:id="@+id/etMontoP"
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".4"
-                android:background="@drawable/borde"
-                android:hint="$"
-                android:inputType="number"
-                android:paddingLeft="16dp"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                tools:ignore="HardcodedText"
-                tools:layout_height="match_parent" />
-        </TableRow>
+            <!--<EditText-->
+                <!--android:id="@+id/etMontoP"-->
+                <!--android:layout_width="32dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight=".4"-->
+                <!--android:background="@drawable/borde"-->
+                <!--android:hint="$"-->
+                <!--android:inputType="number"-->
+                <!--android:paddingLeft="16dp"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textAllCaps="false"-->
+                <!--tools:ignore="HardcodedText"-->
+                <!--tools:layout_height="match_parent" />-->
+        <!--</TableRow>-->
 
         <TableRow
             android:layout_width="match_parent"

@@ -40,7 +40,7 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
         int id = plans.get(position).getId_plan();
 
             TextView id_plan = (TextView) customView.findViewById(R.id.tvPlan);
-            id_plan.setText("ID:" + plans.get(position).getId_plan() + " | Fecha: (" + plans.get(position).getFecha_reg() + ")  [ " + plans.get(position).getEstado()+" ] ");
+            id_plan.setText("ID:" + plans.get(position).getId_plan() + "              Fecha: (" + plans.get(position).getFecha_reg() + ")              [ " + plans.get(position).getEstado()+" ] ");
 
             btnDetalle = (ImageButton) customView.findViewById(R.id.btnDetallePlan);
             btnEditar = (ImageButton) customView.findViewById(R.id.btnEditarPlan);

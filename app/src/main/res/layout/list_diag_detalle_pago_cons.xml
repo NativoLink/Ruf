@@ -17,8 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="#Consulta"
+            android:gravity="center"
 
+            android:text="#Consulta"
+            android:textAlignment="center"
             android:textSize="18dp" />
 
         <TextView
@@ -26,7 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Pago"
+            android:textAlignment="center"
             android:textSize="18dp" />
     </TableRow>
 

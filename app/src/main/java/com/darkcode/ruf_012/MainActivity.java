@@ -45,11 +45,15 @@ import com.darkcode.ruf_012.Paciente.Especialidad;
 import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.Paciente.VistaRegPaciente;
 import com.darkcode.ruf_012.Pagos.AdapterConPendientes;
+import com.darkcode.ruf_012.Pagos.AdapterDetallePagoR;
 import com.darkcode.ruf_012.Pagos.AdapterRegPago;
 import com.darkcode.ruf_012.Pagos.ConsultaPendiente;
+import com.darkcode.ruf_012.Pagos.DetallePagoR;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratamientos;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsConsulta;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsDConsulta;
 import com.darkcode.ruf_012.Tratamientos.AdapterTratsParaPlan;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsRConsulta;
 import com.darkcode.ruf_012.Tratamientos.Tratamiento;
 import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 
@@ -812,7 +816,7 @@ public class MainActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_gallery) {
 //            vista = new VistaEditPlan();
 //            trans= true;
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.list_paciente) {
             vistaActual = getV_list_pacientes();
             vista = new VistaPacientes();
             trans= true;
@@ -882,6 +886,7 @@ public class MainActivity extends AppCompatActivity
                     servicio.regConsulta(
                         id_pacienteA,
                         ite.get(i).getId_p_tratamiento(),
+                        getUltimo_plan(),
                         ite.get(i).getEstado(),
                         getNota(),
                         ite.get(i).getCantidad(),
@@ -902,7 +907,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
             }else{
-
+                try{
                 String[] split = comandos.split(" ");
                 String pared = "";
 
@@ -974,6 +979,8 @@ public class MainActivity extends AppCompatActivity
                 else  if(split[1].equals("Central")){pared = "C";}
 
                 editDiente(pos_diente, pared, estado_pared);
+                }catch(NumberFormatException ex){ // handle your exception
+                }
             }
         }
         if(vistaActual==getV_nuevo_plan()){
@@ -983,6 +990,7 @@ public class MainActivity extends AppCompatActivity
                     servicio.regConsulta(
                             id_pacienteA,
                             ite.get(i).getId_p_tratamiento(),
+                            getUltimo_plan(),
                             ite.get(i).getEstado(),
                             getNota(),
                             ite.get(i).getCantidad(),
@@ -1119,43 +1127,6 @@ public class MainActivity extends AppCompatActivity
      }
 
 
-    public AlertDialog regEspecialidad(String titulo){
-
-
-        final DoctorService servicio = restadpter.create(DoctorService.class);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        final View v = inflater.inflate(R.layout.dialog_especialidad, null);
-
-        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
-        title.setText(titulo);
-        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                EditText newTrat =  (EditText)v.findViewById(R.id.edNewEspeci);
-                servicio.regEspecialidad(newTrat.getText().toString(), new Callback<String>() {
-                    @Override
-                    public void success(String s, Response response) {
-                        Log.v("Reg","REG: TRAT: "+s);
-                        Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.v("Reg ERROR","REG: TRAT: "+error.getMessage());
-                    }
-                });
-            }
-        })
-                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                });
-        builder.setView(v);
-        return builder.create();
-    }
 
 
     public AlertDialog regAbono(String titulo, final int position, final List<ConsultaPendiente> pago, final Context context){
@@ -1189,6 +1160,75 @@ public class MainActivity extends AppCompatActivity
 
                     }
                 });
+        builder.setView(v);
+        AlertDialog dialog = builder.create();
+        return dialog;
+    }
+
+
+    public int getTotalDetallePagosR() {
+        return totalDetallePagosR;
+    }
+
+    public void setTotalDetallePagosR(int totalDetallePagosR) {
+        this.totalDetallePagosR = totalDetallePagosR;
+    }
+
+    int totalDetallePagosR = 0;
+    public AlertDialog detallePagosR(String titulo, final List<DetallePagoR> pagoR){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.diag_detalle_pago, null);
+
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+
+
+
+        ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
+        AdapterDetallePagoR listAdapter = new AdapterDetallePagoR(getApplicationContext(), pagoR);
+        lvresult.setAdapter(listAdapter);
+
+        TextView  totalDetallePagosR =  (TextView)v.findViewById(R.id.tvTotal);
+        totalDetallePagosR.setText(String.valueOf(getTotalDetallePagosR()));
+
+        builder.setView(v);
+        AlertDialog dialog = builder.create();
+        return dialog;
+    }
+
+    public AlertDialog detalleConsultas(String titulo, final List<Tratamiento> trats){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.diag_detalle_pago, null);
+
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+
+
+        TextView trat =  (TextView)v.findViewById(R.id.tv1);
+        trat.setText("Tratamiento");
+
+
+        TextView cantidad =  (TextView)v.findViewById(R.id.tv2);
+        cantidad.setText("Cantidad");
+
+        TextView costo =  (TextView)v.findViewById(R.id.tv3);
+        costo.setText("Costo");
+
+
+
+        ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
+        AdapterTratsDConsulta listAdapter = new AdapterTratsDConsulta(getApplicationContext(), trats);
+        lvresult.setAdapter(listAdapter);
+
+        TextView  totalDetallePagosR =  (TextView)v.findViewById(R.id.tvTotal);
+        totalDetallePagosR.setText(String.valueOf(getTotalDetallePagosR()));
+
         builder.setView(v);
         AlertDialog dialog = builder.create();
         return dialog;

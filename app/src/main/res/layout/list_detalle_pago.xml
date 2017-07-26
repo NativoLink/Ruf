@@ -10,20 +10,46 @@
 
         <TextView
             android:id="@+id/tvid_consulta"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:text="#"
-            android:textColor="#000"
-            android:textSize="34sp" />
+            android:textAlignment="center"
+            android:textColor="#60000000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvpago"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:text="pago"
-            android:textColor="#000"
-            android:textSize="34sp" />
+            android:textAlignment="center"
+            android:textColor="#60000000"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="tipo"
+            android:textAlignment="center"
+            android:textColor="#60000000"
+            android:textSize="18sp" />
     </TableRow>
 </LinearLayout>

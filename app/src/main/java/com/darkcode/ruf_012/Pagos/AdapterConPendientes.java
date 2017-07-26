@@ -15,12 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.darkcode.ruf_012.MainActivity;
+import com.darkcode.ruf_012.Paciente.Paciente;
+import com.darkcode.ruf_012.Paciente.PacienteService;
 import com.darkcode.ruf_012.R;
+import com.darkcode.ruf_012.Tratamientos.AdapterTratsRConsulta;
+import com.darkcode.ruf_012.Tratamientos.Tratamiento;
+import com.darkcode.ruf_012.Tratamientos.TratamientoService;
 import com.darkcode.ruf_012.VistaRegPlan;
 
 import java.util.Iterator;
 import java.util.List;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 /**
@@ -31,6 +40,8 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     private Context contexto;
     private List<ConsultaPendiente> pago;
+    TratamientoService servicio;
+    RestAdapter restadpter;
     List<ConsultaPendiente> tagsUse;
     int  Monto_u = 0 ;
 
@@ -113,6 +124,29 @@ public class AdapterConPendientes extends ArrayAdapter {
 
         holder.btnSaldar.setTag(position);
 
+        holder.btnDetalle.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+                  restadpter = ((MainActivity)getContext()).getRestadpter();
+                  servicio= restadpter.create(TratamientoService.class);
+                  int id_consulta = pago.get(position).getId_consulta();
+                  int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+                  servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
+                      @Override
+                      public void success(List<Tratamiento> tratamientos, Response response) {
+                          ((MainActivity) getContext()).detalleConsultas("Detalle Consulta",tratamientos).show();
+
+                      }
+
+                      @Override
+                      public void failure(RetrofitError error) {
+                          Toast.makeText(getContext(), "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                      }
+                  });
+              }
+        });
+
 
 
         holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
@@ -192,44 +226,45 @@ public class AdapterConPendientes extends ArrayAdapter {
 
     public boolean updateDispoSaldar(int position){
         boolean resta;
-        if(((MainActivity) getContext()).getMonto_a_pagar() >= pago.get(position).getCosto()){
+//        if(((MainActivity) getContext()).getMonto_a_pagar() >= pago.get(position).getCosto()){
 //            Toast.makeText(getContext(), "Puede Saldar", Toast.LENGTH_SHORT).show();
 //            monto_restante = ((MainActivity) getContext()).getMonto_a_pagar() - pago.get(position).getCosto();
             ((MainActivity) getContext()).MotoPagarResta(pago.get(position).getCosto());
             resta = true;
-        }else{
+//        }else{
             resta = false;
             Toast.makeText(getContext(), "Monto insufuciente", Toast.LENGTH_SHORT).show();
-        }
+//        }
         return resta;
     }
 
 
     public void ProcesarSaldar(int position){
         String tipo ="saldada";
-        if(monto_valido == false) {
+//        if(monto_valido == false) {
             monto_valido = true;
 //            Toast.makeText(getContext(), "==>"+ ((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
-            if(updateDispoSaldar(position)) {
+//            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
+//            if(updateDispoSaldar(position)) {
                 int saldando = pago.get(position).getCosto(); // <- - - - - - -- - - - - - - - -{{ CANTIDA A PAGAR PARA SALDAR O ABONAR }}
-                pago.get(position).setPagoAbono(saldando); // SALDANDO EL TOTAL DE ESTA CONSULTA
+                pago.get(position).setPagoAbono(saldando);// SALDANDO EL TOTAL DE ESTA CONSULTA
+                pago.get(position).setTipo(tipo); // SALDANDO EL TOTAL DE ESTA CONSULTA
                 ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
                 ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
                 ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());
                 ((MainActivity) getContext()).UpdateTotal();
-                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
-            if(updateDispoSaldar(position)) {
-                ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());
-                ((MainActivity) getContext()).UpdateTotal();
-                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
-            }
-        }
+//                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+//            }
+//        }else{
+//            monto_restante =  ((MainActivity) getContext()).getMonto_a_pagar();
+//            if(updateDispoSaldar(position)) {
+//                ((MainActivity) getContext()).AddPago(pago.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
+//                ((MainActivity) getContext()).getMyAdapter2().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
+//                ((MainActivity) getContext()).TotalSuma(pago.get(position).getCosto());
+//                ((MainActivity) getContext()).UpdateTotal();
+//                Toast.makeText(getContext(), "Monto disponible = "+((MainActivity) getContext()).getMonto_a_pagar(), Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 
 
