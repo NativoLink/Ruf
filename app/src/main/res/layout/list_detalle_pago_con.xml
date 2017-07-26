@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvid_tratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="#"
+            android:textColor="#000"
+            android:textSize="34sp"  />
+
+        <TextView
+            android:id="@+id/tvnombre_trat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre"
+            android:textColor="#000"
+            android:textSize="34sp"  />
+
+        <TextView
+            android:id="@+id/tvtipo_trat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tipo"
+            android:textColor="#000"
+            android:textSize="34sp"  />
+
+        <TextView
+            android:id="@+id/tvcantidad_trat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cantidad"
+            android:textColor="#000"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/tvCostoTrat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Costo"
+            android:textColor="#000"
+            android:textSize="34sp"  />
+
+        <TextView
+            android:id="@+id/tvfecha_trat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fecha"
+            android:textColor="#000"
+            android:textSize="34sp"  />
+    </TableRow>
+</LinearLayout>
