@@ -34,8 +34,9 @@ public interface PagoService {
                    @Query("id_pago")int fec_ini,
                    Callback<List<DetallePagoR>> callback);
 
+//    @Headers("Cache-Control: max-age=1")
     @FormUrlEncoded
-    @POST("/WebSites/Tesis/Pagos/regDetallePago.php")
+    @POST("/WebSites/Tesis/Pagos/regDetalle.php")
     void regDetallePago(@Field("id_consulta") int id_consulta,
                         @Field("id_paciente") int id_paciente,
                         @Field("id_pago") int id_pago,

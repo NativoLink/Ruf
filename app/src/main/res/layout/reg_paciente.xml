@@ -47,6 +47,7 @@
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
 
@@ -91,6 +92,7 @@
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="numberSigned"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
 
@@ -121,6 +123,7 @@
                 android:layout_weight="1.2"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
 
@@ -143,6 +146,7 @@
                 android:layout_weight="1.5"
                 android:ems="10"
                 android:inputType="phone"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
 
@@ -193,6 +197,7 @@
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
         </TableRow>
@@ -235,6 +240,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
 
 
@@ -257,6 +263,7 @@
 
                 android:ems="10"
                 android:inputType="phone"
+                android:textColor="#0000FF"
                 android:textSize="20dp" />
         </TableRow>
 
@@ -286,6 +293,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="22sp" />
         </TableRow>
 

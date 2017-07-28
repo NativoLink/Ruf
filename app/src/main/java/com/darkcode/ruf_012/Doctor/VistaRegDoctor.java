@@ -1,9 +1,11 @@
 package com.darkcode.ruf_012.Doctor;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -120,7 +122,7 @@ public class VistaRegDoctor extends Fragment {
         btnRegistrar = (Button) view.findViewById(R.id.btnRegistrar);
         if(tipo=="editar"){
 
-            id_doctor = this.getArguments().getInt("id_doctor_update");
+            id_doctor =  ((MainActivity) getContext()).getId_doctor_edit();
             btnRegistrar.setText("Actaulizar");
 
             servicio.getDoctor(id_doctor, new Callback<Doctor>() {
@@ -213,4 +215,6 @@ public class VistaRegDoctor extends Fragment {
         stCedula = etCedula.getText().toString();
         stEspecialidad = spEspecialidad.getSelectedItem().toString();
     }
+
+
 }

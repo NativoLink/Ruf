@@ -39,6 +39,9 @@ public class VistaPacientes extends Fragment {
 
     }
 
+    int id_doctor;
+    String id_d;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +49,13 @@ public class VistaPacientes extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.content_list, container, false);
 
-        final String id_d = this.getArguments().getString("id_doctor");
-        final int id_doctor = Integer.parseInt(id_d);
+        try {
+            final String id_d = this.getArguments().getString("id_doctor");
+            id_doctor = Integer.parseInt(id_d);
+
+        }catch(NumberFormatException ex){
+            Toast.makeText(getContext(),"ERROR: "+ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
         final ListView lvresult;
         lvresult = (ListView)view.findViewById(R.id.lvTrans);

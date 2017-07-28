@@ -58,6 +58,7 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
                  vista = new VistaRegDoctor();
                  Bundle bundle = new Bundle();
                  bundle.putInt("id_doctor_update", doctores.get(position).getId_doctor());
+                 ((MainActivity) getContext()).setId_doctor_edit(doctores.get(position).getId_doctor());
                  bundle.putString("tipo", "editar");
                  ((MainActivity) getContext()).cambioVistaU(vista,"Editar Doctor",bundle);
              }

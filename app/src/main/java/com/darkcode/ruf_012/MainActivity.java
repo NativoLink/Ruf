@@ -119,10 +119,22 @@ public class MainActivity extends AppCompatActivity
 
 
 
+    // - - - DOCTOR PARA EDITAR
+    int id_doctor_edit;
+
+    public int getId_doctor_edit() {
+        return id_doctor_edit;
+    }
+    public void setId_doctor_edit(int id_doctor_edit) {
+        this.id_doctor_edit = id_doctor_edit;
+    }
 
 
 
-//    - - - - - - - - - - - - - - - - - - - -
+
+
+
+    //    - - - - - - - - - - - - - - - - - - - -
 //    |   * * *  LISTADO DE VISTAS  * * *   |
 //    - - - - - - - - - - - - - - - - - - - -
     String v_reg_consulta = "Nueva Consulta";
@@ -497,6 +509,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //PARAMS RECIBIDOS POR LOGIN
         id_doctor = getIntent().getStringExtra("id_doctor");
         nombre = getIntent().getStringExtra("nombre");
@@ -521,8 +534,8 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 if(init==false) {
-//                    permitirEscuchar();
-                    Escuchar();
+                    permitirEscuchar();
+//                    Escuchar();
                     init=true;
                 }else{ Escuchar();} // PARA PRUEBAS SIN ARDUINO QUITAR LUEGO DE PROBAR
             }
@@ -555,9 +568,11 @@ public class MainActivity extends AppCompatActivity
         if(escucha>0){
             temp = escucha;
             state = true;
+            Log.v("ButtonPress","ButtonPress => TRUE");
         }else{
 //            actual = escucha;
             state = false;
+            Log.v("ButtonPress","ButtonPress => FALSE");
         }
 //        }
         return state;
@@ -584,7 +599,7 @@ public class MainActivity extends AppCompatActivity
             }
             catch (IOException e)
             {
-                msg("Error");
+                msg("Error >"+e.getMessage());
             }
         }
     }
@@ -597,20 +612,22 @@ public class MainActivity extends AppCompatActivity
 //Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-ES");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE);
-//        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
-//        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1000);
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
             startActivityForResult(intent, 1);
         } catch (ActivityNotFoundException a) {
             Toast.makeText(this, "Tu dispositivo no soporta el reconocimiento de voz", Toast.LENGTH_LONG).show();
+            Log.v("ERROR-2 BT ","BT ==>"+a);
         }
 
     }
     private void msg(String s)
     {
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
+        Log.v("ERROR-2 BT ","BT ==>"+s);
     }
 
 //    ============================
@@ -642,17 +659,19 @@ public class MainActivity extends AppCompatActivity
                     bytes = mmInStream.read(buffer);
                     mHandler.obtainMessage(2, bytes, -1, buffer)
                             .sendToTarget();
-                    Log.d("PULSADO", cont + "<<== -> " + bytes);
+                    Log.v("PULSADO", cont + "<<== -> " + bytes);
                     Escuchar();
 
                 }else{
-                    Log.d("Sin Pulsar", cont + "<<=="+ actual);
+                    Log.v("Sin Pulsar", cont + "<<=="+ actual);
                 }
                 cont++;
             }
             catch(InterruptedException e){
+                Log.v("ERROR-3 BT","==> BT");
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.v("ERROR-4 BT","==> BT");
             }
         }
     }
@@ -1319,6 +1338,14 @@ public class MainActivity extends AppCompatActivity
         }
         return existe;
 
+    }
+
+    //    ============[ OCULTAR MENU SEGUN PRIORIDAD]============
+    private void hideItem(View v)
+    {
+        NavigationView navigationView = (NavigationView)v.findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_reg_doctor).setVisible(false);
     }
 
 

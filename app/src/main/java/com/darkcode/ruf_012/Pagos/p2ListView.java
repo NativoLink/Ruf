@@ -42,6 +42,7 @@ public class p2ListView extends Fragment {
     PagoService servicio;
     Button regPago;
     EditText etNota;
+    int id_pago;
 
     public p2ListView() {
     }
@@ -90,7 +91,12 @@ public class p2ListView extends Fragment {
                         for(int i=0; i< ite.size(); i++) {
                             id_consulta = ite.get(i).getId_consulta();
                             final int pago_texting= ite.get(i).getPagoAbono();
-                            final int id_pago  = Integer.parseInt(s);
+                            id_pago = Integer.parseInt(s);
+                            try {
+                                id_pago = Integer.parseInt(s);
+                            }catch(NumberFormatException ex){
+                                Log.v("RETURN p2ListView","Exception tipo NUMBER :"+ex.getMessage());
+                            }
                             int total =0; ///falta tomar
                             final String tipo = ite.get(i).getTipo();
                             final int id_paciente =  ((MainActivity) getContext()).getId_pacienteA();
@@ -103,7 +109,8 @@ public class p2ListView extends Fragment {
 
                                 @Override
                                 public void failure(RetrofitError error) {
-                                    Toast.makeText(getContext(), "ERROR 2 "+error.getMessage(), Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(getContext(), "ERROR 2 "+error.getMessage(), Toast.LENGTH_LONG).show();
+//                                    Log.v("ERROR ","ERROR 2 ==>"+error.getMessage() +"...."+error.getBody() );
                                 }
 
                             });

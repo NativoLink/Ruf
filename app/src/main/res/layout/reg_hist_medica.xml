@@ -26,7 +26,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin">
+            android:layout_margin="8dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvEstadoSalud"
@@ -43,7 +44,8 @@
                 android:id="@+id/spEstadoSalud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@color/common_action_bar_splitter" />
 
             <TextView
                 android:id="@+id/tvenfermedad"
@@ -62,6 +64,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -71,13 +74,14 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_weight="1">
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvbajoTra"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Está bajo tratamiento medico?"
@@ -89,7 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_weight="1" />
+                android:layout_weight="1.1"
+                android:background="@color/common_action_bar_splitter" />
 
 
             <TextView
@@ -109,6 +114,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -116,7 +122,7 @@
                 android:id="@+id/tvmedico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="bottom|right"
                 android:text="Médico"
                 android:textSize="20dp"
@@ -129,6 +135,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -137,8 +144,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_weight="1">
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvalergico"
@@ -147,7 +155,7 @@
                 android:layout_weight="1"
                 android:gravity="bottom|right"
                 android:text="¿Es alérgico a algún Medicamento, Sustancia o Alimento?"
-                android:textSize="20dp"
+                android:textSize="19sp"
                 android:textStyle="normal|bold" />
 
             <Spinner
@@ -156,7 +164,8 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1.3"
+                android:background="@color/common_action_bar_splitter" />
 
 
             <TextView
@@ -176,6 +185,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -184,8 +194,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_weight="1">
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvenfermedadS"
@@ -203,14 +214,15 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@color/common_action_bar_splitter" />
 
 
             <TextView
                 android:id="@+id/tvtipoEnfermedad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.3"
                 android:gravity="bottom|right"
                 android:text="¿Cuál Enfermedad?"
                 android:textSize="20dp"
@@ -220,9 +232,10 @@
                 android:id="@+id/etTipoEnefermedad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -252,7 +265,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvnumcepillar"
@@ -273,6 +287,7 @@
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:inputType="number"
+                android:textColor="#0000FF"
                 android:textSize="20dp" />
 
             <TextView
@@ -291,7 +306,8 @@
                 android:id="@+id/spEnjuague"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1.2"
+                android:background="@color/common_action_bar_splitter" />
 
             <TextView
                 android:id="@+id/tvhilo"
@@ -310,7 +326,8 @@
                 android:layout_height="wrap_content"
 
 
-                android:layout_weight="1" />
+                android:layout_weight="1.2"
+                android:background="@color/common_action_bar_splitter" />
 
 
         </TableRow>
@@ -340,6 +357,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
 
@@ -368,6 +386,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
                 android:textSize="18sp" />
 
             <Button

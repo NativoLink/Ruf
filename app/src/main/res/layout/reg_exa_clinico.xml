@@ -45,7 +45,7 @@
         <Spinner
             android:id="@+id/spLabios"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
@@ -65,7 +65,7 @@
         <Spinner
             android:id="@+id/spFistulas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -84,7 +84,7 @@
         <Spinner
             android:id="@+id/spMovilidad"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -113,7 +113,7 @@
         <Spinner
             android:id="@+id/spCarrillos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -133,7 +133,7 @@
         <Spinner
             android:id="@+id/spPigmentaciones"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -153,7 +153,7 @@
         <Spinner
             android:id="@+id/spSupuracion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -181,7 +181,7 @@
         <Spinner
             android:id="@+id/spLengua"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -201,7 +201,7 @@
         <Spinner
             android:id="@+id/spMalformaciones"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -221,7 +221,7 @@
         <Spinner
             android:id="@+id/spPisoBoca"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -250,7 +250,7 @@
         <Spinner
             android:id="@+id/spPaladarD"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -270,7 +270,7 @@
         <Spinner
             android:id="@+id/spTartaro"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -290,7 +290,7 @@
         <Spinner
             android:id="@+id/spBruxismo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -319,7 +319,7 @@
         <Spinner
             android:id="@+id/spPaladarB"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -339,7 +339,7 @@
         <Spinner
             android:id="@+id/spManchas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -359,7 +359,7 @@
         <Spinner
             android:id="@+id/spGarganta"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
             android:paddingLeft="16dp"
@@ -402,7 +402,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="numberSigned"
-            android:textSize="25dp" />
+            android:textColor="#0000FF"
+            android:textSize="25sp" />
 
 
         <TextView
@@ -422,7 +423,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="numberSigned"
-            android:textSize="25dp" />
+            android:textColor="#0000FF"
+            android:textSize="25sp" />
 
 
     </TableRow>
@@ -446,7 +448,7 @@
         <Spinner
             android:id="@+id/spBolsaP"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
@@ -462,7 +464,7 @@
         <Spinner
             android:id="@+id/spTumoraciones"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
 
@@ -504,7 +506,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textSize="25dp" />
+            android:textColor="#0000FF"
+            android:textSize="25sp" />
 
 
     </TableRow>
@@ -534,7 +537,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textSize="25dp" />
+            android:textColor="#0000FF"
+            android:textSize="25sp" />
 
 
     </TableRow>

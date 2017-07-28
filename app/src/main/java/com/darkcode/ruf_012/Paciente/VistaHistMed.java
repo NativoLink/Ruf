@@ -97,6 +97,7 @@ public class VistaHistMed extends Fragment {
                 txt_spAlergico = spAlergico.getSelectedItem().toString();
                 txt_spEnfermedadS = spEnfermedadS.getSelectedItem().toString();
 
+
                 PacienteService servicio = restadpter.create(PacienteService.class);
                 int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
 
