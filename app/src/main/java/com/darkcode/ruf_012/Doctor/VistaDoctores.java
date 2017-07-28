@@ -3,6 +3,7 @@ package com.darkcode.ruf_012.Doctor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -27,6 +30,8 @@ public class VistaDoctores extends Fragment {
 
     ImageButton buscarPaciente;
     EditText nombrePaciente;
+    String id_d;
+    int id_doctor;
 
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     DoctorService servicio =  restadpter.create(DoctorService.class);
@@ -36,8 +41,14 @@ public class VistaDoctores extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_list, container, false);
 
-        final String id_d = this.getArguments().getString("id_doctor");
-        final int id_doctor = Integer.parseInt(id_d);
+//        final String id_d = this.getArguments().getString("id_doctor");
+        id_d = ((MainActivity) getContext()).getId_doctor();
+        try {
+            id_doctor  = Integer.parseInt(id_d);
+        }catch (NumberFormatException ex){
+            Log.v("ERROR NumberFormat"," VistaDoctores => NumberFormat - NULL");
+        }
+
 
         final ListView lvresult;
         lvresult = (ListView) view.findViewById(R.id.lvTrans);

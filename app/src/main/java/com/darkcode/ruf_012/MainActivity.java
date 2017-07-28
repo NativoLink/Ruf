@@ -410,7 +410,8 @@ public class MainActivity extends AppCompatActivity
 
     public void hideBtnUnivesal(String vistaAct){
         getSupportActionBar().setTitle( vistaActual);
-        if(vistaAct==v_reg_consulta || vistaAct==getV_reg_paciente()){
+//        if(vistaAct==v_reg_consulta || vistaAct==getV_reg_paciente()){
+        if(vistaAct==v_reg_consulta){
             btnUniversal.show();
         }else{
             btnUniversal.hide();
@@ -486,10 +487,17 @@ public class MainActivity extends AppCompatActivity
 
 
 
-//================================================
+
+    //================================================
 //  * * * VARIABLES DEL DOCTOR * * *
     String id_doctor;
     String nombre;
+    public String getId_doctor() {
+        return id_doctor;
+    }
+    public String getNombre() {
+        return nombre;
+    }
 
     private InputStream mmInStream;
     private Handler mHandler;
@@ -612,9 +620,9 @@ public class MainActivity extends AppCompatActivity
 //Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-ES");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999999999999999");
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999999999999999");
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1000);
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"9999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"9999");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 100);
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
             startActivityForResult(intent, 1);

@@ -158,23 +158,28 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp">
 
-            <Button
-                android:id="@+id/button2"
-                style="@style/btnDiagrama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Consultas" />
+            <!--<Button-->
+            <!--android:id="@+id/button2"-->
+            <!--style="@style/btnDiagrama"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Consultas" />-->
 
             <TextView
                 android:id="@+id/tvNombrePaciente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
+                android:paddingLeft="16dp"
                 android:text="TextView"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/btnNota"
@@ -298,14 +303,14 @@
         </TableRow>
 
         <TableRow
-            android:layout_weight="4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="3.6"
 
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvDoctor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />

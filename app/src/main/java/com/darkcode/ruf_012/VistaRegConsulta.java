@@ -93,7 +93,9 @@ public class VistaRegConsulta  extends Fragment {
 //        Toast.makeText(getContext(), "ID_P => " + id_paciente + " ulP=>" + ultimo_plan, Toast.LENGTH_LONG).show();
 
         TextView nombrePaciente = (TextView) view.findViewById(R.id.tvNombrePaciente);
-        nombrePaciente.setText(nombreP);
+        TextView nombreDoctor = (TextView) view.findViewById(R.id.tvDoctor);
+        nombrePaciente.setText("Paciente.: "+nombreP);
+        nombreDoctor.setText("Doctor.: "+((MainActivity) getContext()).getNombre());
         if (listAdapter == null) {
             servicio.getTratsDeUnPlan(id_paciente, ultimo_plan, new Callback<List<Tratamiento>>() {
                 @Override

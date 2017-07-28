@@ -128,15 +128,19 @@ public class VistaRegDoctor extends Fragment {
             servicio.getDoctor(id_doctor, new Callback<Doctor>() {
                 @Override
                 public void success(Doctor doctor, Response response) {
-                    etNombre.setText(doctor.getNombre());
-                    etUsuario.setText(doctor.getUsuario());
-                    etClave.setText(doctor.getClave());
-                    etClaveC.setText(doctor.getClave());
-                    etDireccion_d.setText(doctor.getDireccion());
-                    etTelefono.setText(String.valueOf(doctor.getTelefono()));
-                    etCedula.setText(String.valueOf(doctor.getCedula()));
-                    stEspecialidad = spEspecialidad.getSelectedItem().toString();
-                    especialidad_edit = spEspecialidad.getSelectedItemPosition() + 1;
+                    try {
+                        etNombre.setText(doctor.getNombre());
+                        etUsuario.setText(doctor.getUsuario());
+                        etClave.setText(doctor.getClave());
+                        etClaveC.setText(doctor.getClave());
+                        etDireccion_d.setText(doctor.getDireccion());
+                        etTelefono.setText(String.valueOf(doctor.getTelefono()));
+                        etCedula.setText(String.valueOf(doctor.getCedula()));
+                        stEspecialidad = spEspecialidad.getSelectedItem().toString();
+                        especialidad_edit = spEspecialidad.getSelectedItemPosition() + 1;
+                    }catch (NullPointerException ex){
+                        Log.v("SUCCESS DATA.NULL ", "ERROR NULL =>VistaRegDoctor" + ex.getMessage());
+                    }
                 }
 
                 @Override

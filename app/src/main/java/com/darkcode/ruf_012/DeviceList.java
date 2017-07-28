@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import java.util.Set;
 public class DeviceList extends ActionBarActivity
 {
     //Declaramos Los Componentes
-    Button btnVinculados,btnSinBT;
+    ImageButton btnVinculados,btnSinBT;
     ListView listaDispositivos;
     //Bluetooth
     private BluetoothAdapter myBluetooth = null;
@@ -42,8 +43,8 @@ public class DeviceList extends ActionBarActivity
         nombre = getIntent().getStringExtra("nombre");
 
         //Declaramos nuestros componenetes ralcionandolos con los del layout
-        btnVinculados = (Button)findViewById(R.id.button);
-        btnSinBT = (Button)findViewById(R.id.btnSinBT);
+        btnVinculados = (ImageButton)findViewById(R.id.button);
+        btnSinBT = (ImageButton)findViewById(R.id.btnSinBT);
         listaDispositivos = (ListView)findViewById(R.id.listView);
 
 
@@ -128,6 +129,8 @@ public class DeviceList extends ActionBarActivity
 
 //            Change the activity.
             i.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
+            i.putExtra("id_doctor",id_doctor);
+            i.putExtra("nombre",nombre);
             startActivity(i);
         }
     };

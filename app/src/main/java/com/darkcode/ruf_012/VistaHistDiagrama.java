@@ -94,9 +94,11 @@ public class VistaHistDiagrama extends Fragment{
 
 
         TextView nombrePaciente = (TextView) view.findViewById(R.id.tvNombrePaciente);
+        TextView nombreDoctor = (TextView) view.findViewById(R.id.tvDoctorNombre);
         tvFecha = (TextView) view.findViewById(R.id.tvFecha);
         String nombreP = ((MainActivity) getContext()).getNOMBRES();
-        nombrePaciente.setText(nombreP);
+        nombreDoctor.setText( "Doctor.: "+((MainActivity) getContext()).getNombre());
+        nombrePaciente.setText("Paciente.: "+nombreP);
         if (listAdapter == null) {
             servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
                 @Override
@@ -133,23 +135,25 @@ public class VistaHistDiagrama extends Fragment{
         setRetainInstance(true);
 
 
+
+        PacienteService service = restadpter.create(PacienteService.class);
+        service.unaConsulta(id_paciente, id_consulta, new Callback<Consulta>() {
+            @Override
+            public void success(Consulta consulta, Response response) {
+                tvFecha.setText("Fecha.: "+consulta.getFecha());
+                nota_msg=consulta.getDescripcion();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
         Button btnNota = (Button) view.findViewById(R.id.btnNota);
         btnNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PacienteService service = restadpter.create(PacienteService.class);
-                service.unaConsulta(id_paciente, id_consulta, new Callback<Consulta>() {
-                    @Override
-                    public void success(Consulta consulta, Response response) {
-                        tvFecha.setText(consulta.getFecha());
-                        nota_msg=consulta.getDescripcion();
-                    }
 
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
                 createNotaDialogo(nota_msg).show();
             }
         });
@@ -185,7 +189,7 @@ public class VistaHistDiagrama extends Fragment{
 
     public AlertDialog createNotaDialogo(String NOTA) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Agregar Nota")
+        builder.setTitle("Nota")
         .setMessage(NOTA);
 
         return builder.create();
