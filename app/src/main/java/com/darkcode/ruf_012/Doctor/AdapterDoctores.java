@@ -92,7 +92,11 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
                 tvDireccionD.setText( doctores.get(position).getDireccion());
                 tvEspecialidadD.setText( doctores.get(position).getEspecialidad());
 
-                tvSexo.setText( doctores.get(position).getSexo());
+                if(doctores.get(position).getSexo().equals("f")) {
+                    tvSexo.setText("Femenino");
+                }else{
+                    tvSexo.setText("Masculino");
+                }
                 tvID.setText(  String.valueOf(doctores.get(position).getId_doctor()));
 
                 TextView title =  (TextView)v.findViewById(R.id.tvTitle);
@@ -108,6 +112,9 @@ public class AdapterDoctores extends ArrayAdapter<Doctor> {
 
 
         int idDoctor = doctores.get(position).getId_doctor();
+        if (idDoctor == 0) {
+            convertView.setVisibility(View.INVISIBLE);
+        }
         String nombreDoctor = doctores.get(position).getNombre();
         String Especialidad = doctores.get(position).getEspecialidad();
 

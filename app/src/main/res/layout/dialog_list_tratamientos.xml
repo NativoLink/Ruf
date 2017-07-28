@@ -79,7 +79,7 @@
     </TableRow>
 
     <ListView
-        android:id="@+id/lvdetallePago"
+        android:id="@+id/lvTrats"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -90,32 +90,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#02A8F3"
-            android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:text="Total"
-            android:textColor="#FFF"
-
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/tvTotal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#fdf0f8f3"
-            android:gravity="center"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textSize="21sp" />
     </TableRow>
 
 </LinearLayout>

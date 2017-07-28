@@ -85,126 +85,124 @@ public class AdapterConPendientes extends ArrayAdapter {
         final ViewConHolder holder;
 
         int idps = pago.get(position).getId_consulta();
-//        if (idps != 0) {
-        if (customView == null) {
-            holder = new ViewConHolder();
-            LayoutInflater inflater = LayoutInflater.from(contexto);
-            customView = inflater.inflate(R.layout.list_consultas_pendientes, parent, false);
+        if (idps != 0) {
+            if (customView == null) {
+                holder = new ViewConHolder();
+                LayoutInflater inflater = LayoutInflater.from(contexto);
+                customView = inflater.inflate(R.layout.list_consultas_pendientes, parent, false);
 
-            holder.idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
-            holder.fecha = (TextView) customView.findViewById(R.id.tvfecha);
-            holder.monto = (TextView) customView.findViewById(R.id.tvmonto);
-            holder.pendiente = (TextView) customView.findViewById(R.id.tvpendiente);
+                holder.idConsulta = (TextView) customView.findViewById(R.id.tvid_consulta);
+                holder.fecha = (TextView) customView.findViewById(R.id.tvfecha);
+                holder.monto = (TextView) customView.findViewById(R.id.tvmonto);
+                holder.pendiente = (TextView) customView.findViewById(R.id.tvpendiente);
 //            holder.estado = (TextView) customView.findViewById(R.id.tvestado);
 
 
-            holder.btnDetalle = (Button) customView.findViewById(R.id.btndetalle);
-            holder.btnSaldar = (Button) customView.findViewById(R.id.btnsaldar);
-            holder.btnAbonar = (Button) customView.findViewById(R.id.btnabonar);
+                holder.btnDetalle = (Button) customView.findViewById(R.id.btndetalle);
+                holder.btnSaldar = (Button) customView.findViewById(R.id.btnsaldar);
+                holder.btnAbonar = (Button) customView.findViewById(R.id.btnabonar);
 
 
-            id = pago.get(position).getId_consulta();
-            String idC = Integer.toString(id);
+                id = pago.get(position).getId_consulta();
+                String idC = Integer.toString(id);
 
-             costo = pago.get(position).getCosto();
-            String costoP = Integer.toString(costo);
+                costo = pago.get(position).getCosto();
+                String costoP = Integer.toString(costo);
 
-            pendienteP = pago.get(position).getPendiente();
-            String pen = Integer.toString(pendienteP);
+                pendienteP = pago.get(position).getPendiente();
+                String pen = Integer.toString(pendienteP);
 
-            holder.fecha.setText(pago.get(position).getFecha());
-            holder.monto.setText(costoP);
-            holder.pendiente.setText(pen);
-            holder.idConsulta.setText(idC);
+                holder.fecha.setText(pago.get(position).getFecha());
+                holder.monto.setText(costoP);
+                holder.pendiente.setText(pen);
+                holder.idConsulta.setText(idC);
 
-            customView.setTag(holder);
-        } else {
-            holder = (ViewConHolder) customView.getTag();
-        }
+                customView.setTag(holder);
+            } else {
+                holder = (ViewConHolder) customView.getTag();
+            }
 
-        holder.btnSaldar.setTag(position);
+            holder.btnSaldar.setTag(position);
 
-        holder.btnDetalle.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+            holder.btnDetalle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                  restadpter = ((MainActivity)getContext()).getRestadpter();
-                  servicio= restadpter.create(TratamientoService.class);
-                  int id_consulta = pago.get(position).getId_consulta();
-                  int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
-                  servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
-                      @Override
-                      public void success(List<Tratamiento> tratamientos, Response response) {
-                          ((MainActivity) getContext()).detalleConsultas("Detalle Consulta",tratamientos).show();
+                    restadpter = ((MainActivity) getContext()).getRestadpter();
+                    servicio = restadpter.create(TratamientoService.class);
+                    int id_consulta = pago.get(position).getId_consulta();
+                    int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+                    servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
+                        @Override
+                        public void success(List<Tratamiento> tratamientos, Response response) {
+                            ((MainActivity) getContext()).detalleConsultas("Detalle Consulta", tratamientos).show();
 
-                      }
+                        }
 
-                      @Override
-                      public void failure(RetrofitError error) {
-                          Toast.makeText(getContext(), "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
-                      }
-                  });
-              }
-        });
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Toast.makeText(getContext(), "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
 
 
+            holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        holder.btnSaldar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    final ConsultaPendiente tag = pago.get(position);
 
-                final ConsultaPendiente tag = pago.get(position);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Desea saldar la consulta con ID("+pago.get(position).getId_consulta()+") ?")
-                        .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                tagsUse = ((MainActivity) getContext()).getaPago();
-                                if (estaEnArray(tag, tagsUse)) {
-                                    Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
-                                } else {
-                                    ProcesarSaldar(position);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Desea saldar la consulta con ID(" + pago.get(position).getId_consulta() + ") ?")
+                            .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    tagsUse = ((MainActivity) getContext()).getaPago();
+                                    if (estaEnArray(tag, tagsUse)) {
+                                        Toast.makeText(getContext(), "Ya se encuentra añadido", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        ProcesarSaldar(position);
+                                    }
                                 }
-                            }
-                        })
-                        .setTitle("Confirmar Pago")
-                        .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User cancelled the dialog
-                            }
-                        });
-                // Create the AlertDialog object and return it
+                            })
+                            .setTitle("Confirmar Pago")
+                            .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            });
+                    // Create the AlertDialog object and return it
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
 
-        holder.btnAbonar.setTag(position);
-        holder.btnAbonar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Registrar Abono", Toast.LENGTH_SHORT).show();
-                ((MainActivity) getContext()).regAbono("Registrar Abono",position,pago,contexto).show();
+            holder.btnAbonar.setTag(position);
+            holder.btnAbonar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Registrar Abono", Toast.LENGTH_SHORT).show();
+                    ((MainActivity) getContext()).regAbono("Registrar Abono", position, pago, contexto).show();
 
-            }
-        });
-
-
+                }
+            });
 
 
 //        holder.estado.setText(pago.get(position).getEstado());
 
-        if (idps == 0) {
-            customView.setVisibility(View.INVISIBLE);
-        }
+            if (idps == 0) {
+                customView.setVisibility(View.INVISIBLE);
+            }
 
-        deudaTotal = deudaTotal + costo;
-        total_pendiente += pendienteP;
-        deudaTotalSaldada = deudaTotal - total_pendiente;
-        ((MainActivity) getContext()).setTvdetotal(deudaTotal);
-        ((MainActivity) getContext()).setTvdesaldada(deudaTotalSaldada);
-        ((MainActivity) getContext()).UpddateDeuda();
+            deudaTotal = deudaTotal + costo;
+            total_pendiente += pendienteP;
+            deudaTotalSaldada = deudaTotal - total_pendiente;
+            ((MainActivity) getContext()).setTvdetotal(deudaTotal);
+            ((MainActivity) getContext()).setTvdesaldada(deudaTotalSaldada);
+            ((MainActivity) getContext()).UpddateDeuda();
+        }else{ customView.setVisibility(View.INVISIBLE);}
 
         return customView;
 

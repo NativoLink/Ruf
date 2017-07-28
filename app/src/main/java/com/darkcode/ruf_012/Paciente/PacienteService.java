@@ -24,6 +24,11 @@ public interface PacienteService {
     @POST("/WebSites/Tesis/Paciente/listBuscarPaciente.php")
     void getPaciente(@Field("nombre") String nombre,Callback<List<Paciente>> callback);
 
+    @FormUrlEncoded
+    @POST("/WebSites/Tesis/Paciente/updateEstado.php")
+    void setEstadoPaciente(@Field("id_paciente")  int id_paciente,
+                     @Field("estado")  int estado,Callback<String> callback);
+
 
     @GET("/WebSites/Tesis/Consulta/listConsulta.php")
     void getConsultas(@Query("id_paciente") int id_paciente, Callback<List<Consulta>> callback);

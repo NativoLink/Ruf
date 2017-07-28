@@ -28,6 +28,8 @@ import retrofit.client.Response;
 
 public class VistaDetallePlan  extends Fragment {
 
+    TextView tvCantTratas,tvCostoT;
+
     RestAdapter restadpter = new RestAdapter.Builder().setEndpoint("http://linksdominicana.com").build();
     TratamientoService servicio  = restadpter.create(TratamientoService.class);
     @Override
@@ -51,6 +53,9 @@ public class VistaDetallePlan  extends Fragment {
         TextView tvIdPlan = (TextView)view.findViewById(R.id.tvIdPlan);
         tvIdPlan.setText("PLAN.no:"+id_plan);
 
+        tvCantTratas = (TextView)view.findViewById(R.id.tvCantTratas);
+        tvCostoT = (TextView)view.findViewById(R.id.tvCostoT);
+
 
         ImageButton btnNota = (ImageButton)view.findViewById(R.id.btnNota);
 
@@ -60,6 +65,10 @@ public class VistaDetallePlan  extends Fragment {
             public void success(List<Tratamiento> tratamientos, Response response) {
                 AdapterTratsDePlanDetalle listAdapter = new AdapterTratsDePlanDetalle(getContext(),tratamientos);
                 lvresult.setAdapter(listAdapter);
+                tvCantTratas.setText(String.valueOf( ((MainActivity) getContext()).getCantTras()));
+                tvCostoT.setText(String.valueOf( ((MainActivity) getContext()).getCostoTotalDetalleP()));
+                ((MainActivity) getContext()).cantTras = 0;
+                ((MainActivity) getContext()).costoTotalDetalleP = 0;
             }
 
             @Override
@@ -67,6 +76,13 @@ public class VistaDetallePlan  extends Fragment {
 //                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+//        tvCantTratas.setText(String.valueOf( ((MainActivity) getContext()).getCantTras()));
+//        tvCostoT.setText(String.valueOf( ((MainActivity) getContext()).getCostoTotalDetalleP()));
+
+
+
+
 
         return view;
 

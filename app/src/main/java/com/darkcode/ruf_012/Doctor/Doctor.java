@@ -16,6 +16,11 @@ public class Doctor {
     String fecha_reg;
     String login;
     String telefono;
+    int permisos;
+
+    public int getPermisos() {
+        return permisos;
+    }
 
     public String getTelefono() {
         return telefono;

@@ -3,9 +3,11 @@ package com.darkcode.ruf_012;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -74,6 +76,7 @@ public class VistaPacientes extends Fragment {
                         AdapterPacientes listAdapter = new AdapterPacientes(getContext(), pacientes);
                         listAdapter.setId_doctor(id_d);
                         lvresult.setAdapter(listAdapter);
+
                     }
 
                     @Override
@@ -92,6 +95,17 @@ public class VistaPacientes extends Fragment {
                 AdapterPacientes listAdapter = new AdapterPacientes(getContext(), pacientes);
                 listAdapter.setId_doctor(id_d);
                 lvresult.setAdapter(listAdapter);
+                lvresult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1,
+                                                   int pos, long id) {
+                        // TODO Auto-generated method stub
+
+                        Log.v("long clicked","pos: " + pos);
+                        Toast.makeText(getContext(),"LONG PRESS", Toast.LENGTH_LONG).show();
+//                        return true;
+                    }
+                });
             }
 
             @Override

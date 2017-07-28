@@ -37,12 +37,12 @@ public class AdapterDetallePagoR extends ArrayAdapter {
         TextView pago = (TextView)customView.findViewById(R.id.tvpago);
         TextView tipo = (TextView)customView.findViewById(R.id.tvTipo);
 
-//        ((MainActivity)getContext()).setTotalDetallePagosR(pagos.get(position).getTotal());
-
         id_consulta.setText(String.valueOf(pagos.get(position).getId_consulta()));
         pago.setText(String.valueOf(pagos.get(position).getPago()));
         tipo.setText(pagos.get(position).getTipo());
 
+
         return customView;
     }
+
 }

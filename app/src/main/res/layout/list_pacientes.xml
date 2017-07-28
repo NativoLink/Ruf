@@ -119,15 +119,15 @@
                 android:text="Examen Clinico" />
 
 
-
             <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/tvIdPaciente"
                 style="@style/nombrePaciente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="#fdf0f8f3"
                 android:gravity="center"
+                android:text="TextView"
                 android:textSize="24sp" />
         </TableRow>
 

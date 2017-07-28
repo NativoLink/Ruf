@@ -279,7 +279,7 @@
 
         <TextView
             android:id="@+id/tvEspecialidad"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="bottom|right"
@@ -289,7 +289,7 @@
 
         <Spinner
             android:id="@+id/spEspecialidad"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="bottom|left"
@@ -297,10 +297,24 @@
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:id="@+id/tvSexo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+
+            android:layout_weight="1.5"
+            android:gravity="bottom|right"
+            android:text="Sexo"
+            android:textSize="25dp"
+            android:textStyle="normal|bold" />
+
+        <Spinner
+            android:id="@+id/spSexo"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:contextClickable="false"
+            android:gravity="bottom" />
 
     </TableRow>
 

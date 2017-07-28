@@ -31,6 +31,7 @@ public interface DoctorService {
                           @Field("telefono") String telefono,
                           @Field("cedula") String cedula,
                           @Field("especialidad") int especialidad,
+                          @Field("sexo") String sexo,
                           Callback<String> callback);
     @FormUrlEncoded
     @POST("/WebSites/Tesis/Doctor/updateDoctor.php")
@@ -42,6 +43,7 @@ public interface DoctorService {
                            @Field("telefono") String telefono,
                            @Field("cedula") String cedula,
                            @Field("especialidad") int especialidad,
+                           @Field("sexo") String sexo,
                           Callback<String> callback);
 
     @Headers("Cache-Control: max-age=1")

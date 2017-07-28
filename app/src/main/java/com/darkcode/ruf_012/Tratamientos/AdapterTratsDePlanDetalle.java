@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.darkcode.ruf_012.MainActivity;
 import com.darkcode.ruf_012.R;
 
 import java.util.List;
@@ -53,6 +54,12 @@ public class AdapterTratsDePlanDetalle extends ArrayAdapter<Tratamiento> {
         int realizado = tratas.get(position).getCant_r();
         String realiz_s = Integer.toString(realizado);
         totalRealiz.setText(realiz_s);
+
+        int totalCostoIndi = cost*cant;
+
+
+        ((MainActivity) getContext()).setCostoTotalDetalleP(totalCostoIndi);
+        ((MainActivity) getContext()).addOneCantTras();
 
 
 

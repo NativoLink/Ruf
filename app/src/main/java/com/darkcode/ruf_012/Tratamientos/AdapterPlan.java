@@ -61,6 +61,8 @@ public class AdapterPlan extends ArrayAdapter<Plan> {
                 public void onClick(View v) {
                     vista = new VistaDetallePlan();
                     String Titulo_Bar = "Detalle de Plan";
+//                    ((MainActivity) getContext()).cantTras = 0;
+//                    ((MainActivity) getContext()).costoTotalDetalleP = 0;
                     changeVista( vista,Titulo_Bar,position);
                 }
             });

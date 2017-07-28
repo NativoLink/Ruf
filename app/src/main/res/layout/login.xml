@@ -31,21 +31,20 @@
             tools:ignore="ExtraText">
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tvLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
-                android:background="@drawable/r"
                 android:gravity="center"
                 android:text=""
+
                 android:textAlignment="center"
                 android:textColor="#FFF"
-
                 android:textStyle="italic"
-                android:typeface="serif"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:typeface="serif" />
 
             <!--<TextView-->
             <!--android:id="@+id/textView13"-->

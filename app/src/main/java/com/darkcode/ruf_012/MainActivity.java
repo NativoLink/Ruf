@@ -132,6 +132,27 @@ public class MainActivity extends AppCompatActivity
 
 
 
+    // - - - VARIABLES PARA DETALLE DE PLAN
+    public int costoTotalDetalleP;
+    public int cantTras;
+
+    public int getCostoTotalDetalleP() {
+        return costoTotalDetalleP;
+    }
+
+    public void setCostoTotalDetalleP(int costoTotal) {
+        this.costoTotalDetalleP = this.costoTotalDetalleP + costoTotal;
+    }
+
+    public int getCantTras() {
+        return cantTras;
+    }
+
+    public void addOneCantTras() {
+        this.cantTras = this.cantTras + 1;
+    }
+
+
 
 
     //    - - - - - - - - - - - - - - - - - - - -
@@ -468,7 +489,23 @@ public class MainActivity extends AppCompatActivity
         this.id_plan_select = id_plan_select;
     }
 
-//================================================
+
+
+    public void addTotalDetallePagosR(int totalPagado) {
+        this.totalDetallePagosR = totalPagado;
+    }
+    public int getTotalDetallePagosR() {
+        return totalDetallePagosR;
+    }
+    public void setTotalDetallePagosR(int totalDetallePagosR) {
+        this.totalDetallePagosR = totalDetallePagosR;
+    }
+
+    //===========================================================
+//  * * * VARIABLES DEL DETALLE PAGOS REALIZADO  * * *
+    int totalDetallePagosR = 0;
+
+//===========================================================
 //   * * *  VARIABLES DE PACIENTE  * * *
 
     String NOMBRES;
@@ -492,6 +529,19 @@ public class MainActivity extends AppCompatActivity
 //  * * * VARIABLES DEL DOCTOR * * *
     String id_doctor;
     String nombre;
+    int permisos;
+
+    public void setPermisos(int permisos) {
+        this.permisos = permisos;
+    }
+
+
+
+    public int getPermisos() {
+        return permisos;
+    }
+
+
     public String getId_doctor() {
         return id_doctor;
     }
@@ -522,12 +572,29 @@ public class MainActivity extends AppCompatActivity
         id_doctor = getIntent().getStringExtra("id_doctor");
         nombre = getIntent().getStringExtra("nombre");
 
+        try {
+            setPermisos(Integer.valueOf(getIntent().getStringExtra("permisos")));
+
+
+            if (getPermisos() == 999) {
+
+            } else {
+                hideItem();
+            }
+        }catch (NumberFormatException ex){
+            Log.v("Permisos","Permisos MainActivity => CRASH por : "+ex.getMessage());
+        }
+
+
+
+
+
         mHandler = new Handler();
         Intent newint = getIntent();
         address = newint.getStringExtra(DeviceList.EXTRA_ADDRESS); //recivimos la mac address obtenida en la actividad anterior
 
         if(address.equals("sinBT")){
-            Log.d("sin BT","Recibido:"+address);
+            Log.v("sin BT","Recibido:"+address);
         }else {
 //        Toast.makeText(this,"ADD: "+address, Toast.LENGTH_LONG).show();
             new ConnectBT().execute(); //Call the class to connect
@@ -1194,16 +1261,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public int getTotalDetallePagosR() {
-        return totalDetallePagosR;
-    }
 
-    public void setTotalDetallePagosR(int totalDetallePagosR) {
-        this.totalDetallePagosR = totalDetallePagosR;
-    }
-
-    int totalDetallePagosR = 0;
-    public AlertDialog detallePagosR(String titulo, final List<DetallePagoR> pagoR){
+    public AlertDialog detallePagosR(String titulo, final List<DetallePagoR> pagoR,Context context){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -1212,11 +1271,15 @@ public class MainActivity extends AppCompatActivity
 
         TextView title =  (TextView)v.findViewById(R.id.tvTitle);
         title.setText(titulo);
+        ((MainActivity)context).setTotalDetallePagosR(0);
 
 
 
         ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
         AdapterDetallePagoR listAdapter = new AdapterDetallePagoR(getApplicationContext(), pagoR);
+        for (DetallePagoR pago :pagoR) {
+            ((MainActivity)context).addTotalDetallePagosR(pago.getPago());
+        }
         lvresult.setAdapter(listAdapter);
 
         TextView  totalDetallePagosR =  (TextView)v.findViewById(R.id.tvTotal);
@@ -1349,11 +1412,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     //    ============[ OCULTAR MENU SEGUN PRIORIDAD]============
-    private void hideItem(View v)
+    private void hideItem()
     {
-        NavigationView navigationView = (NavigationView)v.findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.nav_reg_doctor).setVisible(false);
+        nav_Menu.findItem(R.id.nav_reg_trat).setVisible(false);
+        nav_Menu.findItem(R.id.menuDoctores).setVisible(false);
     }
 
 

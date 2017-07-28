@@ -38,8 +38,8 @@ import static com.darkcode.ruf_012.R.id.spEspecialidad;
 public class VistaRegDoctor extends Fragment {
 
     EditText etNombre,etUsuario,etClave,etClaveC,etDireccion_d,etTelefono,etCedula;
-    Spinner spEspecialidad;
-    String stNombre,stUsuario,stClave,stDireccion_d,stTelefono,stCedula,stEspecialidad;
+    Spinner spEspecialidad,spSexo;
+    String stNombre,stUsuario,stClave,stDireccion_d,stTelefono,stCedula,stEspecialidad, stSexo;
     Button btnRegistrar;
 
     private String[] arraySpinner;
@@ -78,6 +78,15 @@ public class VistaRegDoctor extends Fragment {
         etCedula       = (EditText)view.findViewById(R.id.etCedula);
         spEspecialidad = (Spinner)view.findViewById(R.id.spEspecialidad);
 
+        this.arraySpinner = new String[] {
+                "M", "F"
+        };
+        spSexo = (Spinner)view.findViewById(R.id.spSexo);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, arraySpinner);
+        spSexo.setAdapter(adapter);
+        spSexo.setSelection(0);
+
         servicio.getEspecialidaddes(new Callback<List<Especialidad>>() {
             @Override
             public void success(List<Especialidad> especialidads, Response response) {
@@ -108,7 +117,7 @@ public class VistaRegDoctor extends Fragment {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
                 // TODO Auto-generated method stub
-                int msupplier =spEspecialidad.getSelectedItemPosition()+1;
+                int msupplier =spEspecialidad.getSelectedItemPosition();
                 Log.v("Selected item : ","ITEM ==>"+msupplier);
             }
 
@@ -137,7 +146,19 @@ public class VistaRegDoctor extends Fragment {
                         etTelefono.setText(String.valueOf(doctor.getTelefono()));
                         etCedula.setText(String.valueOf(doctor.getCedula()));
                         stEspecialidad = spEspecialidad.getSelectedItem().toString();
-                        especialidad_edit = spEspecialidad.getSelectedItemPosition() + 1;
+                        int position = 0;
+                        while(!stEspecialidad.equals(doctor.getEspecialidad())) {
+                            stEspecialidad = spEspecialidad.getSelectedItem().toString();
+                            spEspecialidad.setSelection(position);
+                            position++;
+                        }
+                        Toast.makeText(getContext(),"Spinner->"+stEspecialidad+ " getDoctor->"+doctor.getEspecialidad(), Toast.LENGTH_LONG).show();
+                        stSexo = spSexo.getSelectedItem().toString();
+                        if(doctor.getTelefono().equals("m") || doctor.getTelefono().equals("M")){
+                            spSexo.setSelection(0);
+                        }else{
+                            spSexo.setSelection(1);
+                        }
                     }catch (NullPointerException ex){
                         Log.v("SUCCESS DATA.NULL ", "ERROR NULL =>VistaRegDoctor" + ex.getMessage());
                     }
@@ -153,7 +174,7 @@ public class VistaRegDoctor extends Fragment {
                 @Override
                 public void onClick(View v) {
                     getForm();
-                    servicio.editDoctor(id_doctor, stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad_edit, new Callback<String>() {
+                    servicio.editDoctor(id_doctor, stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad_edit,stSexo, new Callback<String>() {
                         @Override
                         public void success(String s, Response response) {
                             Toast.makeText(getContext(),s, Toast.LENGTH_LONG).show();
@@ -173,6 +194,7 @@ public class VistaRegDoctor extends Fragment {
                 public void onClick(View v) {
                     getForm();
                     int especialidad = spEspecialidad.getSelectedItemPosition() + 1;
+                    stSexo = spSexo.getSelectedItem().toString();
 
                     if (
                             (!stNombre.equals("") && !stUsuario.equals("")) && (!stNombre.equals(" ") && !stUsuario.equals(" ")) &&
@@ -180,7 +202,7 @@ public class VistaRegDoctor extends Fragment {
                                     (!stTelefono.equals("") && !stCedula.equals("")) && (!stTelefono.equals(" ") && !stCedula.equals(" ")) &&
                                     (!stEspecialidad.equals("") && !stEspecialidad.equals(" "))
                             ) {
-                        servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad, new Callback<String>() {
+                        servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad,stSexo, new Callback<String>() {
                             @Override
                             public void success(String s, Response response) {
                             Toast.makeText(getContext(),s, Toast.LENGTH_LONG).show();

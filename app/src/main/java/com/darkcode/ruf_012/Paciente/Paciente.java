@@ -22,6 +22,7 @@ public class Paciente {
     String bajo_tratamiento;
     String tratamiento;
     String medico;
+    String estado;
     String alergia;
     String enfermedad_sistematica;
     int ultimo_plan;
@@ -44,6 +45,9 @@ public class Paciente {
 
     public void setPlan_incompleto(String plan_incompleto) {
         this.plan_incompleto = plan_incompleto;
+    }
+    public String getEstado() {
+        return estado;
     }
 
     String plan_incompleto;

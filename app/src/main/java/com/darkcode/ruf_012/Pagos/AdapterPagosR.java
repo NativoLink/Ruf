@@ -49,54 +49,60 @@ public class AdapterPagosR extends ArrayAdapter<PagoR> {
     @Override
     public View getView(final int position, View customView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        customView = inflater.inflate(R.layout.list_pagos_pacientes, parent,false);
+        customView = inflater.inflate(R.layout.list_pagos_pacientes, parent, false);
 
-        TextView tvIdPago = (TextView)customView.findViewById(R.id.tvIdPago);
-        TextView tvFechaPago = (TextView)customView.findViewById(R.id.tvFechaPago);
-        TextView tvPago = (TextView)customView.findViewById(R.id.tvPago);
-        ImageButton btnDetalleP = (ImageButton)customView.findViewById(R.id.btnDetalleP);
+        TextView tvIdPago = (TextView) customView.findViewById(R.id.tvIdPago);
+        TextView tvFechaPago = (TextView) customView.findViewById(R.id.tvFechaPago);
+        TextView tvPago = (TextView) customView.findViewById(R.id.tvPago);
+        ImageButton btnDetalleP = (ImageButton) customView.findViewById(R.id.btnDetalleP);
 
-        lvresult = (ListView)customView.findViewById(R.id.lvPagosPacientes);
+        lvresult = (ListView) customView.findViewById(R.id.lvPagosPacientes);
 
         String idPago = String.valueOf(pagos.get(position).getId_pago());
-        tvIdPago.setText(idPago);
+        int idP = pagos.get(position).getId_pago();
+        if(idP!=0) {
+            tvIdPago.setText(idPago);
 
-        tvFechaPago.setText(pagos.get(position).getFecha());
+            tvFechaPago.setText(pagos.get(position).getFecha());
 
-        String total = String.valueOf(pagos.get(position).getTotal());
-        tvPago.setText(total);
+            String total = String.valueOf(pagos.get(position).getTotal());
+            tvPago.setText(total);
 
-        id_paciente = ((MainActivity)getContext()).getId_pacienteA();
+            id_paciente = ((MainActivity) getContext()).getId_pacienteA();
 
 
-         restadpter = ((MainActivity)getContext()).getRestadpter();
-        servicio= restadpter.create(PagoService.class);
+            restadpter = ((MainActivity) getContext()).getRestadpter();
+            servicio = restadpter.create(PagoService.class);
 
-        btnDetalleP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                listDEtalleP(position);
-               servicio.getDetallePagosR(
-                       id_paciente,
-                       pagos.get(position).getId_pago(),
-                       new Callback<List<DetallePagoR>>() {
-                           @Override
-                           public void success(List<DetallePagoR> pagoRs, Response response) {
-//
-                               ((MainActivity) getContext()).detallePagosR("Detalle Pagos",pagoRs).show();
+            btnDetalleP.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                ((MainActivity)getContext()).setTotalDetallePagosR(0);
+                servicio.getDetallePagosR(
+                        id_paciente,
+                        pagos.get(position).getId_pago(),
+                        new Callback<List<DetallePagoR>>() {
+                            @Override
+                            public void success(List<DetallePagoR> pagoRs, Response response) {
+                                ((MainActivity) getContext()).detallePagosR("Detalle Pagos", pagoRs,contexto).show();
 //                               Toast.makeText(getContext(), "KLK", Toast.LENGTH_LONG).show();
-                           }
+                            }
 
-                           @Override
-                           public void failure(RetrofitError error) {
-                               Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                               Log.v("ERROR","ERROR ==> getDetallePagosR ");
-                           }
-                       });
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                Log.v("ERROR", "ERROR ==> getDetallePagosR ");
+                            }
+                        });
 
-            }
-        });
+                }
+            });
+        }else{
+            tvIdPago.setVisibility(View.INVISIBLE);
+            btnDetalleP.setVisibility(View.INVISIBLE);
+            tvPago.setVisibility(View.INVISIBLE);
+            tvFechaPago.setText("No tiene pagos realizado entre estas fechas");
+        }
 
 
 

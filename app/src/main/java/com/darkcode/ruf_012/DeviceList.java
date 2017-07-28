@@ -32,6 +32,7 @@ public class DeviceList extends ActionBarActivity
 
     String id_doctor;
     String nombre;
+    String permisos;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,6 +42,7 @@ public class DeviceList extends ActionBarActivity
         //=====================| RECIBIMOS VARIABLES DE SESSION | ===================
         id_doctor = getIntent().getStringExtra("id_doctor");
         nombre = getIntent().getStringExtra("nombre");
+        permisos =getIntent().getStringExtra("permisos");
 
         //Declaramos nuestros componenetes ralcionandolos con los del layout
         btnVinculados = (ImageButton)findViewById(R.id.button);
@@ -68,6 +70,7 @@ public class DeviceList extends ActionBarActivity
                 Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 turnBTon.putExtra("id_doctor",id_doctor);
                 turnBTon.putExtra("nombre",nombre);
+                turnBTon.putExtra("permisos",permisos);
                 startActivityForResult(turnBTon,1);
         }
         btnSinBT.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +82,7 @@ public class DeviceList extends ActionBarActivity
                 i.putExtra(EXTRA_ADDRESS, "sinBT"); //this will be received at ledControl (class) Activity
                 i.putExtra("id_doctor",id_doctor);
                 i.putExtra("nombre",nombre);
+                i.putExtra("permisos",permisos);
                 startActivity(i);
             }
         });
@@ -131,6 +135,7 @@ public class DeviceList extends ActionBarActivity
             i.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             i.putExtra("id_doctor",id_doctor);
             i.putExtra("nombre",nombre);
+            i.putExtra("permisos",permisos);
             startActivity(i);
         }
     };

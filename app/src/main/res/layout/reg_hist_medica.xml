@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
             <TextView
                 android:id="@+id/tvenfermedad"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_weight="1.1"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
 
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.3"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
 
             <TextView
@@ -200,7 +200,7 @@
 
             <TextView
                 android:id="@+id/tvenfermedadS"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
@@ -212,15 +212,15 @@
 
                 android:id="@+id/spEnfermedadS"
 
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
 
             <TextView
                 android:id="@+id/tvtipoEnfermedad"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.3"
                 android:gravity="bottom|right"
@@ -230,7 +230,7 @@
 
             <EditText
                 android:id="@+id/etTipoEnefermedad"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:ems="10"
@@ -307,7 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
             <TextView
                 android:id="@+id/tvhilo"
@@ -327,7 +327,7 @@
 
 
                 android:layout_weight="1.2"
-                android:background="@color/common_action_bar_splitter" />
+                android:background="#fdf0f8f3" />
 
 
         </TableRow>
