@@ -35,9 +35,6 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
     private Context contexto;
     private List<Tratamiento> tratamientos;
-    List<Tratamiento> tagsUse;
-    private boolean existe;
-
 
 
 
@@ -71,38 +68,15 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
                 holder = new ViewHolder();
                 LayoutInflater inflater = LayoutInflater.from(contexto);
                 convertView = inflater.inflate(R.layout.list_tratamientos, parent, false);
-                holder.tvNombreTratamiento = (TextView) convertView.findViewById(R.id.tvNombreTratamiento);
-                holder.imgBtnAdd = (ImageButton)convertView.findViewById(R.id.imgBtnAdd);
+                holder.tvNombreTratamiento = (TextView) convertView.findViewById(R.id.tvNombre);
+                holder.tvTipo = (TextView)convertView.findViewById(R.id.tvTipo);
 
-                holder.tvNombreTratamiento.setText( tratamientos.get(position).getNombre());
+                holder.tvNombreTratamiento.setText(tratamientos.get(position).getNombre());
+                holder.tvTipo.setText(tratamientos.get(position).getTipo());
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-
-        holder.ref = position;
-        holder.imgBtnAdd.setTag(position);
-        holder.imgBtnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-//                    int tag = (Integer)v.getTag();
-                Tratamiento tag = tratamientos.get(position);
-
-                tagsUse = ((MainActivity) getContext()).getaTras();
-                if (estaEnArray(tag, tagsUse)) {
-                    Toast.makeText(getContext(), "Ya se encuentra añadido =>"+tag, Toast.LENGTH_LONG).show();
-                } else {
-                    ((MainActivity) getContext()).AddTras(tratamientos.get(position)); // AGREGA UN NUEVO ELEMENTO A List<?>
-                    ((MainActivity) getContext()).getMyAdapter22().notifyDataSetChanged(); // ACTUALIZA EL ADAPTER SEGUN SU List<?>
-                    Toast.makeText(getContext(), "Add", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        final checkItem ckItem = new checkItem(position);
-
-
 
 
 
@@ -114,25 +88,11 @@ public class AdapterTratamientos extends ArrayAdapter<Tratamiento>{
 
     }
 
-    public boolean estaEnArray(Tratamiento cp, List<Tratamiento> permitidos){
-        boolean existe = false;
-        for (Iterator<Tratamiento> i = permitidos.iterator(); i.hasNext();) {
-//               Log.v("CP","ITEM => "+item);
-            Tratamiento item = i.next();
-            if(item.id_p_tratamiento == cp.id_p_tratamiento){
-                Log.v("CP","EXITE CP => "+cp.id_p_tratamiento + " COMO ITEM => "+item.id_p_tratamiento);
-                existe = true;
-            }
-        }
-        return existe;
-
-    }
 
 
     private class ViewHolder {
         TextView tvNombreTratamiento;
-        ImageButton imgBtnAdd;
-        int ref;
+        TextView tvTipo;
     }
 
 

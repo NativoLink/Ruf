@@ -25,10 +25,10 @@
             android:name=".DeviceList"
             android:label="LED Control" >
         </activity>
-        <activity
-            android:name=".Tratamientos.ListRegPlanTratamientos"
-            android:label="LED Control" >
-        </activity>
+        <!--<activity-->
+            <!--android:name=".Tratamientos.ListRegPlanTratamientos"-->
+            <!--android:label="LED Control" >-->
+        <!--</activity>-->
         <activity
             android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation|screenSize"

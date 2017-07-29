@@ -10,12 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.darkcode.ruf_012.Diagrama.Diente;
-import com.darkcode.ruf_012.Diagrama.DienteDB;
-import com.darkcode.ruf_012.Diagrama.DienteService;
-import com.darkcode.ruf_012.Paciente.Paciente;
-import com.darkcode.ruf_012.Paciente.PacienteService;
-import com.darkcode.ruf_012.Tratamientos.ListRegPlanTratamientos;
 
 import java.util.ArrayList;
 import java.util.List;

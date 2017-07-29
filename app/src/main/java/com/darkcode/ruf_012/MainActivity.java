@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,9 +29,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
@@ -572,6 +575,11 @@ public class MainActivity extends AppCompatActivity
         id_doctor = getIntent().getStringExtra("id_doctor");
         nombre = getIntent().getStringExtra("nombre");
 
+
+        TextView tvPerfil = (TextView)findViewById(R.id.tvPerfil);
+        tvPerfil.setText(nombre);
+        tvPerfil.setBackgroundColor(Color.argb(50, 0, 42, 105));
+
         try {
             setPermisos(Integer.valueOf(getIntent().getStringExtra("permisos")));
 
@@ -907,9 +915,8 @@ public class MainActivity extends AppCompatActivity
             vistaActual = getV_reg_paciente();
             vista = new VistaRegPaciente();
             trans= true;
-//        } else if (id == R.id.nav_gallery) {
-//            vista = new VistaEditPlan();
-//            trans= true;
+        } else if (id == R.id.list_tratamiento) {
+            listTratamientos("Listado de Tratamientos");
         } else if (id == R.id.list_paciente) {
             vistaActual = getV_list_pacientes();
             vista = new VistaPacientes();
@@ -919,10 +926,11 @@ public class MainActivity extends AppCompatActivity
             vista = new VistaRegDoctor();
             trans= true;
         } else if (id == R.id.nav_reg_trat) {
-//            vistaActual = getV_reg_tratamiento();
-//            vista = new VistaRegTrat();
-//            trans= true;
             regTrat("Registrar Tratamiento").show();
+        } else if (id == R.id.nav_reg_espec) {
+            regEspec("Registrar Especialidad").show();
+        } else if (id == R.id.nav_list_espec) {
+            listEspeci();
         } else if (id == R.id.nav_list_doct) {
             vistaActual = "Listado de Doctores";
             vista = new VistaDoctores();
@@ -1187,10 +1195,20 @@ public class MainActivity extends AppCompatActivity
 
 
          final TratamientoService servicio = restadpter.create(TratamientoService.class);
-
+         String[] arraySpinner;
          AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
          LayoutInflater inflater = this.getLayoutInflater();
-         final View v = inflater.inflate(R.layout.dialog_trat, null);
+         final View v = inflater.inflate(R.layout.dialog_trat2, null);
+
+         final Spinner spTipo;
+         arraySpinner = new String[] {
+                 "simple", "limpieza","restauracion"
+         };
+         spTipo = (Spinner)v.findViewById(R.id.spTipo);
+         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                 android.R.layout.simple_spinner_item, arraySpinner);
+         spTipo.setAdapter(adapter);
+         spTipo.setSelection(1);
 
          TextView title =  (TextView)v.findViewById(R.id.tvTitle);
          title.setText(titulo);
@@ -1198,7 +1216,8 @@ public class MainActivity extends AppCompatActivity
                      @Override
                      public void onClick(DialogInterface dialog, int id) {
                          EditText newTrat =  (EditText)v.findViewById(R.id.edNewTrat);
-                         servicio.regTrat(newTrat.getText().toString(), "no se el tipo", new Callback<String>() {
+                         String tipo  = spTipo.getSelectedItem().toString();
+                         servicio.regTrat(newTrat.getText().toString(), tipo, new Callback<String>() {
                              @Override
                              public void success(String s, Response response) {
                                 Log.v("Reg","REG: TRAT: "+s);
@@ -1220,6 +1239,46 @@ public class MainActivity extends AppCompatActivity
          builder.setView(v);
          return builder.create();
      }
+
+    public AlertDialog regEspec(String titulo){
+
+
+        final DoctorService  servicio = restadpter.create(DoctorService .class);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.dialog_trat, null);
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+        EditText newTrat0 =  (EditText)v.findViewById(R.id.edNewTrat);
+        newTrat0.setHint("Nueva Especialidad");
+        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                EditText newTrat =  (EditText)v.findViewById(R.id.edNewTrat);
+                servicio.regEspecialidad(newTrat.getText().toString(), new Callback<String>() {
+                    @Override
+                    public void success(String s, Response response) {
+                        Log.v("Reg","REG: ESPEC: "+s);
+                        Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.v("Reg ERROR","REG: ESPEC: "+error.getMessage());
+                    }
+                });
+            }
+        })
+                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        builder.setView(v);
+        return builder.create();
+    }
 
 
 
@@ -1290,7 +1349,7 @@ public class MainActivity extends AppCompatActivity
         return dialog;
     }
 
-    public AlertDialog detalleConsultas(String titulo, final List<Tratamiento> trats){
+    public AlertDialog detalleConsultas(String titulo, final List<Tratamiento> trats,Context context){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -1299,6 +1358,7 @@ public class MainActivity extends AppCompatActivity
 
         TextView title =  (TextView)v.findViewById(R.id.tvTitle);
         title.setText(titulo);
+        ((MainActivity)context).setTotalDetallePagosR(0);
 
 
         TextView trat =  (TextView)v.findViewById(R.id.tv1);
@@ -1315,6 +1375,11 @@ public class MainActivity extends AppCompatActivity
 
         ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
         AdapterTratsDConsulta listAdapter = new AdapterTratsDConsulta(getApplicationContext(), trats);
+        for (Tratamiento tratameinto :trats) {
+            int costo_indi = tratameinto.getCosto() * tratameinto.getCant_r();
+            ((MainActivity)context).addTotalDetallePagosR(costo_indi);
+            Log.v("TOTAL INDI","TOTAL INDI >>"+tratameinto.getCosto()+"*"+tratameinto.getCant_r());
+        }
         lvresult.setAdapter(listAdapter);
 
         TextView  totalDetallePagosR =  (TextView)v.findViewById(R.id.tvTotal);
@@ -1371,30 +1436,68 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+//        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
 
         builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                String strName = arrayAdapter.getItem(which);
-//                AlertDialog.Builder builderInner = new AlertDialog.Builder(MainActivity.this);
-//                builderInner.setMessage(strName);
-//                builderInner.setTitle("Your Selected Item is");
-//                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog,int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                builderInner.show();
             }
         });
         builderSingle.show();
+    }
+
+    public void listTratamientos(String titulo){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.diag_detalle_pago, null);
+
+
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+
+        TextView trat =  (TextView)v.findViewById(R.id.tv1);
+        trat.setText("Nombre");
+
+
+        TextView cantidad =  (TextView)v.findViewById(R.id.tv2);
+        cantidad.setText("Tipo");
+
+
+        View myView = v.findViewById(R.id.trTotal);
+        ViewGroup parent = (ViewGroup) myView.getParent();
+        parent.removeView(myView);
+
+
+        View myView2 = v.findViewById(R.id.tv3);
+        ViewGroup parent2 = (ViewGroup) myView2.getParent();
+        parent2.removeView(myView2);
+
+
+
+        TratamientoService servicio = restadpter.create(TratamientoService.class);
+        servicio.getTratamientos(new Callback<List<Tratamiento>>() {
+            @Override
+            public void success(List<Tratamiento> tratamientos, Response response) {
+                ListView lvresult =  (ListView)v.findViewById(R.id.lvdetallePago);
+                AdapterTratamientos listAdapter = new AdapterTratamientos(getApplicationContext(), tratamientos);
+                lvresult.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.v("ERROR listTratamientos","listTratamientos => "+error.getMessage());
+            }
+        });
+
+        builder.setView(v);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public boolean estaEnArray(ConsultaPendiente cp, List<ConsultaPendiente> permitidos){
@@ -1418,6 +1521,9 @@ public class MainActivity extends AppCompatActivity
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.nav_reg_doctor).setVisible(false);
         nav_Menu.findItem(R.id.nav_reg_trat).setVisible(false);
+//        nav_Menu.findItem(R.id.nav_list_espec).setVisible(false);
+        nav_Menu.findItem(R.id.nav_reg_espec).setVisible(false);
+
         nav_Menu.findItem(R.id.menuDoctores).setVisible(false);
     }
 

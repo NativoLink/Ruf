@@ -135,7 +135,7 @@ public class AdapterConPendientes extends ArrayAdapter {
                     servicio.getDetalleConsulta(id_paciente, id_consulta, new Callback<List<Tratamiento>>() {
                         @Override
                         public void success(List<Tratamiento> tratamientos, Response response) {
-                            ((MainActivity) getContext()).detalleConsultas("Detalle Consulta", tratamientos).show();
+                            ((MainActivity) getContext()).detalleConsultas("Detalle Consulta", tratamientos,contexto).show();
 
                         }
 

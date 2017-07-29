@@ -87,6 +87,7 @@
     </ListView>
 
     <TableRow
+        android:id="@+id/trTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

@@ -164,8 +164,8 @@ public class VistaRegPlan  extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View v = inflater.inflate(R.layout.reg_nota, null);
-        builder.setTitle("Agregar Nota")
-                .setPositiveButton("OK",
+//        builder.setTitle("Agregar Nota")
+        builder.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

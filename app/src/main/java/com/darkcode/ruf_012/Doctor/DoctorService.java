@@ -50,6 +50,8 @@ public interface DoctorService {
     @GET("/WebSites/Tesis/Doctor/listEspecialidad.php")
     void getEspecialidaddes(Callback<List<Especialidad>> callback);
 
+
+
     @Headers("Cache-Control: max-age=1")
     @GET("/WebSites/Tesis/Doctor/listDoctores.php")
     void getDoctores(Callback<List<Doctor>> callback);

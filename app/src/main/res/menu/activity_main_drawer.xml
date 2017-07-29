@@ -6,25 +6,34 @@
             <menu>
                 <item
                     android:id="@+id/nav_camera"
-                    android:icon="@drawable/ic_menu_camera"
+                    android:icon="@drawable/add"
                     android:title="Nuevo Paciente" />
                 <item
                     android:id="@+id/list_paciente"
-                    android:icon="@drawable/ic_menu_send"
+                    android:icon="@drawable/notebook"
                     android:title="Listado Pacientes" />
             </menu>
         </item>
-        <item android:title="Tratamientos">
+        <item android:title="Tratamientos y Especialidades">
         <menu>
             <item
                 android:id="@+id/nav_reg_trat"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/add"
                 android:title="Nuevo Tratamiento" />
 
             <item
+                android:id="@+id/nav_reg_espec"
+                android:icon="@drawable/add"
+                android:title="Nueva Especialidad" />
+
+            <item
                 android:id="@+id/list_tratamiento"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/notebook"
                 android:title="Listado Tratamientos" />
+            <item
+                android:id="@+id/nav_list_espec"
+                android:icon="@drawable/notebook"
+                android:title="Listado de Especialidades" />
         </menu>
     </item>
         <item
@@ -33,19 +42,21 @@
             <menu>
                 <item
                     android:id="@+id/nav_reg_doctor"
-                    android:icon="@drawable/ic_menu_manage"
+                    android:icon="@drawable/add"
                     android:title="Nuevo Doctor" />
 
                 <item
                     android:id="@+id/nav_list_doct"
-                    android:icon="@drawable/ic_menu_manage"
+                    android:icon="@drawable/notebook"
                     android:title="Listado de Doctores" />
+
+
             </menu>
         </item>
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Sesión">
         <menu>
             <!--<item-->
                 <!--android:id="@+id/nav_share"-->
@@ -53,8 +64,8 @@
                 <!--android:title="Un Diagrama(Historial)" />-->
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Salir" />
+                android:icon="@drawable/exit"
+                android:title="Cerrar Sesión" />
         </menu>
     </item>
 
