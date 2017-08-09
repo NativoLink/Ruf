@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
         pb.setVisibility(View.INVISIBLE);
 
         TextView tvLogin = (TextView)findViewById(R.id.tvLogo);
-        Typeface typeFace= Typeface.createFromAsset(getAssets(),"font/SignPainter-HouseScript.ttf");
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"SignPainter-HouseScript.ttf");
         tvLogin.setTypeface(typeFace);
 
 

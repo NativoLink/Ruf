@@ -149,7 +149,7 @@ public class VistaHistMed extends Fragment {
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Log.v("VistaHistMedi","ERROR =>regHabitoHig ");
+                                Log.v("VistaHistMedi","ERROR =>regHabitoHig "+error.getMessage());
                             }
                         }
                 );

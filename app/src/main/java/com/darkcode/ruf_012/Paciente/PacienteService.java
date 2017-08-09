@@ -67,7 +67,7 @@ public interface PacienteService {
             Callback<String> callback);
 
     @FormUrlEncoded
-    @POST("/WebSites/Tesis/Paciente/regExamenClinico.php")
+    @POST("/WebSites/Tesis/Examen/regExamenClinico.php")
     public void regExamenCli(
             @Field("id_paciente") int id_paciente,
             @Field("labios") String labios,
@@ -97,7 +97,7 @@ public interface PacienteService {
 
 
     @FormUrlEncoded
-    @POST("/WebSites/Tesis/Paciente/regHabitoHigiene.php")
+    @POST("/WebSites/Tesis/Higiene/regHabitoHigiene.php")
     public void regHabitoHig(
             @Field("id_paciente") int id_paciente,
             @Field("num_cepillar") String num_cepillar,
@@ -108,7 +108,7 @@ public interface PacienteService {
             Callback<String> callback);
 
     @FormUrlEncoded
-    @POST("/WebSites/Tesis/Paciente/regHistoriaMedica.php")
+    @POST("/WebSites/Tesis/Historia/regHistoriaMedica.php")
     public void regHistoriaMed(
             @Field("id_paciente") int id_paciente,
             @Field("estado_salud") String estado_salud,
