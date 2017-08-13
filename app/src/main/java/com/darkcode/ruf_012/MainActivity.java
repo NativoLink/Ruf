@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity
         return v_list_pacientes;
     }
 
-//      ===============================================
+    //      ===============================================
 //      |       VARIABLES PARA MANEJAR LISTAS         |
 //      ===============================================
     public AdapterConPendientes myAdapter;
@@ -320,7 +321,7 @@ public class MainActivity extends AppCompatActivity
         this.total = this.total- total;
     }
 
-//  - - - ACTAULIZAR tv TOTAL - - -
+    //  - - - ACTAULIZAR tv TOTAL - - -
     public void UpdateTotal(){
         TextView pagara_total = (TextView)findViewById(R.id.tvtotal);
         pagara_total.setText(String.valueOf(getTotal()));
@@ -617,7 +618,8 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 if(init==false) {
-                    permitirEscuchar();
+//                    permitirEscuchar();
+                    beginListenForData();
 //                    Escuchar();
                     init=true;
                 }else{ Escuchar();} // PARA PRUEBAS SIN ARDUINO QUITAR LUEGO DE PROBAR
@@ -642,7 +644,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-//      ===============================================
+    //      ===============================================
 //      |   COMPRUEBA SI EL ESTADO DEL BOTON ES NUEVO  |
 //      ===============================================
     private boolean ButtonPress(){
@@ -662,32 +664,44 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-//    =================================
+    //    =================================
 //    |   CAPTAR PULSO DEL PEDAL       |
 //    =================================
     private void permitirEscuchar()
     {
+
+//        Toast.makeText(getApplicationContext(), "permitirEscuchar", Toast.LENGTH_LONG).show();
+        Log.v("permitirEscuchar", "permitirEscuchar ==>> funct"+ actual);
         if (btSocket!=null)
         {
+
             try
             {
                 btSocket.getOutputStream().write("TF".toString().getBytes());
                 escucha = btSocket.getInputStream().available();
-                btSocket.getInputStream().read();
-//                int  escucha = btSocket.getInputStream().available(); //ESTE FUNCIONA PARO SUMA DE 3 EN 3
-
-                start();
-
-
+                Toast.makeText(getApplicationContext(), "RUNNIG SOCKET btSocket != NULL", Toast.LENGTH_LONG).show();
+                Log.v("RUNNIG ==> btSocket", " ==> escucha ->>"+escucha);
+//                btSocket.getInputStream().read();
+                beginListenForData();
+//                escucha = btSocket.getInputStream().read(); //ESTE FUNCIONA PARO SUMA DE 3 EN 3
+                Log.v("NOT RUNNIG ==> btSocket", " ==> NOT CONTINUE");
+//                start();
+//
+//
             }
             catch (IOException e)
             {
                 msg("Error >"+e.getMessage());
+                Toast.makeText(getApplicationContext(), "ERROR IOException btSocket", Toast.LENGTH_LONG).show();
+                Log.v("NOT RUNNIG ==> btSocket",  "ERROR IOException btSocket");
             }
+        }else{
+            Toast.makeText(getApplicationContext(), " ==> ERROR btSocket == NULL", Toast.LENGTH_LONG).show();
+            Log.v("ERROR ==> btSocket", " ==> btSocket == NULL");
         }
     }
 
-//  =================================
+    //  =================================
 //  |   INSTANCIAMOS EL GOOGLE NOW  |
 //  =================================
     private  void Escuchar(){
@@ -698,6 +712,7 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"9999");
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"9999");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 100);
+
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
             startActivityForResult(intent, 1);
@@ -710,10 +725,10 @@ public class MainActivity extends AppCompatActivity
     private void msg(String s)
     {
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
-        Log.v("ERROR-2 BT ","BT ==>"+s);
+        Log.v("CONECTADO BT ","BT ==>"+s);
     }
 
-//    ============================
+    //    ============================
 //         THREAD PRINCIPAL BT
 //    ============================
     @Override
@@ -727,9 +742,10 @@ public class MainActivity extends AppCompatActivity
             tmpIn = btSocket.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
+            Log.v("ERROR printStackTrace",  "ERROR ==> "+e.getMessage() );
         }
-        mmInStream = tmpIn;
-//        Message msg = mHandler.obtainMessage(444);
+        mmInputStream = tmpIn;
+        Message msg = mHandler.obtainMessage(444);
 
         while(t1 == t){
 
@@ -737,24 +753,28 @@ public class MainActivity extends AppCompatActivity
                 t1.sleep(800);
 
                 escucha = btSocket.getInputStream().available();
-//                String readMessage = new String(buffer, 0, actual);
                 if(ButtonPress()){
-                    bytes = mmInStream.read(buffer);
+//                    bytes = mmInStream.read(buffer);
+                    bytes = mmInputStream.available();
                     mHandler.obtainMessage(2, bytes, -1, buffer)
                             .sendToTarget();
                     Log.v("PULSADO", cont + "<<== -> " + bytes);
                     Escuchar();
 
                 }else{
-                    Log.v("Sin Pulsar", cont + "<<=="+ actual);
+                    bytes = mmInputStream.available();
+                    Log.v("Sin Pulsar", cont + "<<=="+ bytes+" | ECUCHA ==> "+escucha);
                 }
                 cont++;
+
             }
             catch(InterruptedException e){
                 Log.v("ERROR-3 BT","==> BT");
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.v("ERROR-4 BT","==> BT");
+                break;
             }
         }
     }
@@ -768,7 +788,7 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
     }
 
-//    ================================================
+    //    ================================================
 //        * * * FUNCIONES FRAGMENTADAS * * *
 //    ================================================
     @Override
@@ -809,17 +829,20 @@ public class MainActivity extends AppCompatActivity
             {
                 if (btSocket == null || !isBtConnected)
                 {
+                    Log.v("btSocket"," btSocket ==> RUNNING doInBackground ");
                     myBluetooth = BluetoothAdapter.getDefaultAdapter();
                     btNombre = myBluetooth.getName();
                     BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//conectamos al dispositivo y chequeamos si esta disponible
                     btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
                     btSocket.connect();
+                    Log.v("btSocket", "btSocket.connect() ==> btNombre :"+myBluetooth.getName());
                 }
             }
             catch (IOException e)
             {
                 ConnectSuccess = false;
+                Log.v("doInBackground ERROR","ERROR doInBackground "+e.getMessage());
             }
             return null;
         }
@@ -974,114 +997,115 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-//    =====================================================================================
+    //    =====================================================================================
 //                         * * *  INTERPRETE DE COMANDOS * * *
 //    =====================================================================================
     public void interpretar(String comandos,Object vista){
 
 // ----------------------------------------[ VISTA REG. DIAGRAMA ]----------------------------------------
         if(vistaActual==v_reg_consulta){
+            Toast.makeText(getApplicationContext(), v_reg_consulta+" => INTERPRETAR ==>> "+vistaActual, Toast.LENGTH_SHORT).show();
             if(comandos.equals("guardar") || comandos.equals("Guardar") || comandos.equals("guarda")) {
 
                 DienteService servicio = restadpter.create(DienteService.class);
                 for(int i=0; i< ite.size(); i++) {
                     try {
-                    servicio.regConsulta(
-                        id_pacienteA,
-                        ite.get(i).getId_p_tratamiento(),
-                        getUltimo_plan(),
-                        ite.get(i).getEstado(),
-                        getNota(),
-                        ite.get(i).getCantidad(),
-                        new Callback<String>() {
-                            @Override
-                            public void success(String s, Response response) {
-                                Toast.makeText(getApplicationContext(), "..." +s+"<<...", Toast.LENGTH_SHORT).show();
-                            }
+                        servicio.regConsulta(
+                                id_pacienteA,
+                                ite.get(i).getId_p_tratamiento(),
+                                getUltimo_plan(),
+                                ite.get(i).getEstado(),
+                                getNota(),
+                                ite.get(i).getCantidad(),
+                                new Callback<String>() {
+                                    @Override
+                                    public void success(String s, Response response) {
+                                        Toast.makeText(getApplicationContext(), "..." +s+"<<...", Toast.LENGTH_SHORT).show();
+                                    }
 
-                            @Override
-                            public void failure(RetrofitError error) {
+                                    @Override
+                                    public void failure(RetrofitError error) {
 //                                Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    ); Thread.sleep(100);
+                                    }
+                                }
+                        ); Thread.sleep(100);
                     }catch(InterruptedException e){}
 //                    Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
                 }
                 guardarDiagrama(id_pacienteA,ultimo_plan); // => id_paciente , id_plan
             }else{
                 try{
-                String[] split = comandos.split(" ");
-                String pared = "";
+                    String[] split = comandos.split(" ");
+                    String pared = "";
 
-                String keywordR = "mesial",keywordL= "distal",
-                        keywordR2 = "mecial",keywordL2= "distal",
-                        keywordR3 = "marcial" ,keywordL3 = "distal",
-                        keywordR4 = "marcial" ,keywordL4 = "distal",
-                        keywordR5 = "marcial" ,keywordL5 = "distal";
+                    String keywordR = "mesial",keywordL= "distal",
+                            keywordR2 = "mecial",keywordL2= "distal",
+                            keywordR3 = "marcial" ,keywordL3 = "distal",
+                            keywordR4 = "marcial" ,keywordL4 = "distal",
+                            keywordR5 = "marcial" ,keywordL5 = "distal";
                     int pos_diente = Integer.parseInt(split[0]);
-                String estado_pared = split[2];
+                    String estado_pared = split[2];
 
-                //------------ LEFT ---------------
-                if((pos_diente>=11 && pos_diente<=18)
-                        || (pos_diente>=51 && pos_diente<=55)
-                        || (pos_diente>=41 && pos_diente<=48)
-                        || (pos_diente>=81 && pos_diente<=85)){
-                    keywordR = "mesial";
-                    keywordL = "distal";
-                    keywordR2 = "mecial";
-                    keywordR3 = "marcial";
-                    keywordR4 = "marcial";
-                    keywordR5 = "Marcial";
-                }
+                    //------------ LEFT ---------------
+                    if((pos_diente>=11 && pos_diente<=18)
+                            || (pos_diente>=51 && pos_diente<=55)
+                            || (pos_diente>=41 && pos_diente<=48)
+                            || (pos_diente>=81 && pos_diente<=85)){
+                        keywordR = "mesial";
+                        keywordL = "distal";
+                        keywordR2 = "mecial";
+                        keywordR3 = "marcial";
+                        keywordR4 = "marcial";
+                        keywordR5 = "Marcial";
+                    }
 
-                //------------ RIGHT ---------------
-                if((pos_diente>=21 && pos_diente<=28)
-                        || (pos_diente>=61 && pos_diente<=65)
-                        || (pos_diente>=31 && pos_diente<=38)
-                        || (pos_diente>=71 && pos_diente<=75)){
-                    keywordR = "distal";
-                    keywordL = "mesial";
-                    keywordL2 = "macial";
-                    keywordL3 = "mercial";
-                    keywordL4 = "marcial";
-                    keywordL5 = "Marcial";
-                }
+                    //------------ RIGHT ---------------
+                    if((pos_diente>=21 && pos_diente<=28)
+                            || (pos_diente>=61 && pos_diente<=65)
+                            || (pos_diente>=31 && pos_diente<=38)
+                            || (pos_diente>=71 && pos_diente<=75)){
+                        keywordR = "distal";
+                        keywordL = "mesial";
+                        keywordL2 = "macial";
+                        keywordL3 = "mercial";
+                        keywordL4 = "marcial";
+                        keywordL5 = "Marcial";
+                    }
 
 
-                //PALABRAS PARECIDAS A DERECHA  O RELACIONADAS
-                if(split[1].equals("arriba")){pared = "U";}
-                else if(split[1].equals("superior")){pared = "U";}
-                else if(split[1].equals("Superior")){pared = "U";}
+                    //PALABRAS PARECIDAS A DERECHA  O RELACIONADAS
+                    if(split[1].equals("arriba")){pared = "U";}
+                    else if(split[1].equals("superior")){pared = "U";}
+                    else if(split[1].equals("Superior")){pared = "U";}
 
-                //PALABRAS PARECIDAS A ABAJO O RELACIONADAS
-                else if(split[1].equals("abajo")){pared = "D";}
-                else if(split[1].equals("Abajo")){pared = "D";}
-                else if(split[1].equals("inferior")){pared = "D";}
-                else if(split[1].equals("Inferior")){pared = "D";}
+                    //PALABRAS PARECIDAS A ABAJO O RELACIONADAS
+                    else if(split[1].equals("abajo")){pared = "D";}
+                    else if(split[1].equals("Abajo")){pared = "D";}
+                    else if(split[1].equals("inferior")){pared = "D";}
+                    else if(split[1].equals("Inferior")){pared = "D";}
 
-                //PALABRAS PARECIDAS A IZQUIERDA O RELACIONADAS
-                else if(split[1].equals(keywordL)){pared = "L";}
-                else if(split[1].equals(keywordL2)){pared = "L";}
-                else if(split[1].equals(keywordL3)){pared = "L";}
-                else if(split[1].equals(keywordL4)){pared = "L";}
-                else if(split[1].equals(keywordL5)){pared = "L";}
+                    //PALABRAS PARECIDAS A IZQUIERDA O RELACIONADAS
+                    else if(split[1].equals(keywordL)){pared = "L";}
+                    else if(split[1].equals(keywordL2)){pared = "L";}
+                    else if(split[1].equals(keywordL3)){pared = "L";}
+                    else if(split[1].equals(keywordL4)){pared = "L";}
+                    else if(split[1].equals(keywordL5)){pared = "L";}
 
-                //PALABRAS PARECIDAS A DERECHA O RELACIONADAS
-                else if(split[1].equals(keywordR)){pared = "R";}
-                else if(split[1].equals(keywordR2)){pared = "R";}
-                else if(split[1].equals(keywordR3)){pared = "R";}
-                else if(split[1].equals(keywordR4)){pared = "R";}
-                else if(split[1].equals(keywordR5)){pared = "R";}
+                    //PALABRAS PARECIDAS A DERECHA O RELACIONADAS
+                    else if(split[1].equals(keywordR)){pared = "R";}
+                    else if(split[1].equals(keywordR2)){pared = "R";}
+                    else if(split[1].equals(keywordR3)){pared = "R";}
+                    else if(split[1].equals(keywordR4)){pared = "R";}
+                    else if(split[1].equals(keywordR5)){pared = "R";}
 
-                //PALABRAS PARECIDAS A CENTRO
-                else  if(split[1].equals("centro")){pared = "C";}
-                else  if(split[1].equals("Centro")){pared = "C";}
-                else  if(split[1].equals("centros")){pared = "C";}
-                else  if(split[1].equals("Centros")){pared = "C";}
-                else  if(split[1].equals("Central")){pared = "C";}
+                    //PALABRAS PARECIDAS A CENTRO
+                    else  if(split[1].equals("centro")){pared = "C";}
+                    else  if(split[1].equals("Centro")){pared = "C";}
+                    else  if(split[1].equals("centros")){pared = "C";}
+                    else  if(split[1].equals("Centros")){pared = "C";}
+                    else  if(split[1].equals("Central")){pared = "C";}
 
-                editDiente(pos_diente, pared, estado_pared);
+                    editDiente(pos_diente, pared, estado_pared);
                 }catch(NumberFormatException ex){ // handle your exception
                 }
             }
@@ -1181,64 +1205,64 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void cambioVistaU(final Fragment vistaObj, final String vActual,Bundle parametros){
-                vistaActual = vActual;
-                vistaObj.setArguments(parametros);
-                FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.f_main, vistaObj);
-                transaction.addToBackStack(null);
-                hideBtnUnivesal(vActual);
-                transaction.commit();
-     }
+        vistaActual = vActual;
+        vistaObj.setArguments(parametros);
+        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.f_main, vistaObj);
+        transaction.addToBackStack(null);
+        hideBtnUnivesal(vActual);
+        transaction.commit();
+    }
 
 
-     public AlertDialog regTrat(String titulo){
+    public AlertDialog regTrat(String titulo){
 
 
-         final TratamientoService servicio = restadpter.create(TratamientoService.class);
-         String[] arraySpinner;
-         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-         LayoutInflater inflater = this.getLayoutInflater();
-         final View v = inflater.inflate(R.layout.dialog_trat2, null);
+        final TratamientoService servicio = restadpter.create(TratamientoService.class);
+        String[] arraySpinner;
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View v = inflater.inflate(R.layout.dialog_trat2, null);
 
-         final Spinner spTipo;
-         arraySpinner = new String[] {
-                 "simple", "limpieza","restauracion"
-         };
-         spTipo = (Spinner)v.findViewById(R.id.spTipo);
-         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                 android.R.layout.simple_spinner_item, arraySpinner);
-         spTipo.setAdapter(adapter);
-         spTipo.setSelection(1);
+        final Spinner spTipo;
+        arraySpinner = new String[] {
+                "simple", "limpieza","restauracion"
+        };
+        spTipo = (Spinner)v.findViewById(R.id.spTipo);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, arraySpinner);
+        spTipo.setAdapter(adapter);
+        spTipo.setSelection(1);
 
-         TextView title =  (TextView)v.findViewById(R.id.tvTitle);
-         title.setText(titulo);
-         builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
-                     @Override
-                     public void onClick(DialogInterface dialog, int id) {
-                         EditText newTrat =  (EditText)v.findViewById(R.id.edNewTrat);
-                         String tipo  = spTipo.getSelectedItem().toString();
-                         servicio.regTrat(newTrat.getText().toString(), tipo, new Callback<String>() {
-                             @Override
-                             public void success(String s, Response response) {
-                                Log.v("Reg","REG: TRAT: "+s);
-                                 Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
-                             }
+        TextView title =  (TextView)v.findViewById(R.id.tvTitle);
+        title.setText(titulo);
+        builder.setPositiveButton(R.string.registrar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                EditText newTrat =  (EditText)v.findViewById(R.id.edNewTrat);
+                String tipo  = spTipo.getSelectedItem().toString();
+                servicio.regTrat(newTrat.getText().toString(), tipo, new Callback<String>() {
+                    @Override
+                    public void success(String s, Response response) {
+                        Log.v("Reg","REG: TRAT: "+s);
+                        Toast.makeText(getApplicationContext(), "Registrado", Toast.LENGTH_LONG).show();
+                    }
 
-                             @Override
-                             public void failure(RetrofitError error) {
-                                 Log.v("Reg ERROR","REG: TRAT: "+error.getMessage());
-                             }
-                         });
-                     }
-                 })
-                 .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                     public void onClick(DialogInterface dialog, int id) {
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.v("Reg ERROR","REG: TRAT: "+error.getMessage());
+                    }
+                });
+            }
+        })
+                .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                     }
-                 });
-         builder.setView(v);
-         return builder.create();
-     }
+                    }
+                });
+        builder.setView(v);
+        return builder.create();
+    }
 
     public AlertDialog regEspec(String titulo){
 
@@ -1425,9 +1449,9 @@ public class MainActivity extends AppCompatActivity
         servicio.getEspecialidaddes(new Callback<List<Especialidad>>() {
             @Override
             public void success(List<Especialidad> especialidads, Response response) {
-                    for(Especialidad item : especialidads){
-                        arrayAdapter.add(item.getNombre());
-                    }
+                for(Especialidad item : especialidads){
+                    arrayAdapter.add(item.getNombre());
+                }
             }
 
             @Override
@@ -1526,6 +1550,97 @@ public class MainActivity extends AppCompatActivity
 
         nav_Menu.findItem(R.id.menuDoctores).setVisible(false);
     }
+
+//=============================================================
+//=============================================================
+//=============================================================
+
+    Thread workerThread;
+    boolean stopWorker;
+    int readBufferPosition;
+    byte[] readBuffer;
+
+    public InputStream mmInputStream;
+
+    void beginListenForData()
+    {
+
+        InputStream tmpIn = null;
+
+        try {
+            tmpIn = btSocket.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.v("ERROR printStackTrace",  "ERROR ==> "+e.getMessage() );
+        }
+        mmInputStream = tmpIn;
+
+
+        final Handler handler = new Handler();
+        final byte delimiter = 10; //This is the ASCII code for a newline character
+
+        stopWorker = false;
+        readBufferPosition = 0;
+        readBuffer = new byte[1024];
+        int atnerior =0;
+        workerThread = new Thread(new Runnable()
+
+        {
+            public void run()
+            {
+                Log.v("RUN DATA RECIVED","RUN DATA RECIVED ==> RUN");
+                while(!Thread.currentThread().isInterrupted() && !stopWorker)
+                {
+
+
+                    try
+                    {
+                        int bytesAvailable = mmInputStream.available();
+//                        Log.v("RUN DATA RECIVED","RUN DATA RECIVED ==> bytesAvailable: "+bytesAvailable);
+                        if(bytesAvailable == 2)
+                        {
+                            Escuchar();
+
+                            byte[] packetBytes = new byte[bytesAvailable];
+                            mmInputStream.read(packetBytes);
+                            for(int i=0;i<bytesAvailable;i++)
+                            {
+                                byte b = packetBytes[i];
+                                if(b == delimiter)
+                                {
+                                    byte[] encodedBytes = new byte[readBufferPosition];
+                                    Log.v("RUN DATA RECIVED","RUN DATA RECIVED ==> encodedBytes: "+encodedBytes);
+                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                    final String data = new String(encodedBytes, "US-ASCII");
+                                    readBufferPosition = 0;
+
+                                    handler.post(new Runnable()
+                                    {
+                                        public void run()
+                                        {
+                                            Log.v("BT DATA RECIVED","DATA RECIVED ==>"+data);
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    readBuffer[readBufferPosition++] = b;
+                                }
+                            }
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        Log.v("ERROR DATA RECIVED","ERROR DATA RECIVED ==>"+ex);
+                        stopWorker = true;
+                    }
+                }
+            }
+        });
+
+        workerThread.start();
+    }
+
 
 
 
