@@ -29,8 +29,10 @@ import retrofit.http.Field;
 
 public class VistaHistMed extends Fragment {
 
+    PacienteService servicio;
     private String[] arraySpinner;
     RestAdapter restadpter;
+    int id_paciente;
     Spinner spEstadoSalud,spBajoTra,spAlergico,spEnfermedadS,spEnjuague,spHilo;
     String txtEnfermedad,
             txtTratamiento,
@@ -62,6 +64,12 @@ public class VistaHistMed extends Fragment {
         spEnjuague = (Spinner)rootView.findViewById(R.id.spEnjuague);
         spHilo = (Spinner)rootView.findViewById(R.id.spHilo);
 
+        restadpter =((MainActivity) getContext()).getRestadpter();
+        servicio = restadpter.create(PacienteService.class);
+
+        id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+
+
 
         final EditText  etEnfermedad = (EditText)rootView.findViewById(R.id.etEnfermedad);
         final EditText  etTratamiento = (EditText)rootView.findViewById(R.id.etTratamiento);
@@ -79,7 +87,7 @@ public class VistaHistMed extends Fragment {
 
         Button btnReg = (Button)rootView.findViewById(R.id.btnRegistrar);
 
-        restadpter =((MainActivity) getContext()).getRestadpter();
+
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +106,8 @@ public class VistaHistMed extends Fragment {
                 txt_spEnfermedadS = spEnfermedadS.getSelectedItem().toString();
 
 
-                PacienteService servicio = restadpter.create(PacienteService.class);
-                int id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+
+
 
                 servicio.regHistoriaMed(
                         id_paciente,
@@ -168,7 +176,7 @@ public class VistaHistMed extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 R.layout.spinner_item, arraySpinner);
         spEstadoSalud.setAdapter(adapter);
-        spEstadoSalud.setSelection(1);
+        spEstadoSalud.setSelection(0);
 
         spBajoTra.setAdapter(adapter);
         spBajoTra.setSelection(1);
@@ -184,6 +192,52 @@ public class VistaHistMed extends Fragment {
 
         spHilo.setAdapter(adapter);
         spHilo.setSelection(1);
+
+
+        servicio.getHistorial(id_paciente, new Callback<HistorialMed>() {
+            @Override
+            public void success(HistorialMed historialMed, Response response) {
+
+
+                if(historialMed.getEstado_salud().equals("SI") ){spEstadoSalud.setSelection(0);}else{spEstadoSalud.setSelection(1);}
+                if(historialMed.getBajo_tratamiento().equals("SI") ){spBajoTra.setSelection(0);}else{spBajoTra.setSelection(1);}
+                if(historialMed.getAlergico().equals("SI") ){spAlergico.setSelection(0);}else{spAlergico.setSelection(1);}
+                if(historialMed.getEnfermedad_sistematica().equals("SI") ){spEnfermedadS.setSelection(0);}else{spEnfermedadS.setSelection(1);}
+
+
+//                Toast.makeText(getContext(), historialMed.getEstado_salud(), Toast.LENGTH_LONG).show();
+
+                etTipoEnefermedad.setText(historialMed.getEnfermedad_sistematica());
+                etmedico.setText(historialMed.getMedico());
+                etTipoAlergia.setText(historialMed.getTipo_alergia());
+                etTratamiento.setText(historialMed.getTratamiento());
+                etEnfermedad.setText(historialMed.getEnfermedad());
+
+
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.v("ERROR unHistorialMed ","getHistorialMed ERROR");
+            }
+        });
+
+
+        servicio.getHabito(id_paciente, new Callback<Habito>() {
+            @Override
+            public void success(Habito habito, Response response) {
+                etnumcepillar.setText(String.valueOf(habito.getNum_cepillar()));
+                etREVISION.setText(habito.getUltima_revision());
+                ettratamientoRealizado.setText(habito.getTratamiento_realizado());
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.v("ERROR getHabito "," ==>> getHabito ERROR");
+            }
+        });
 
 
 

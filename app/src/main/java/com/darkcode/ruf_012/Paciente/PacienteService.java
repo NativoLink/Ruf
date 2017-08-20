@@ -131,6 +131,13 @@ public interface PacienteService {
                                  @Field("clave_vieja") String clave_vieja, Callback<String> callback);
 
 
+    @GET("/WebSites/Tesis/Historia/unHistorial.php")
+    void getHistorial(@Query("id_paciente") int id_paciente, Callback<HistorialMed> callback);
+
+    @GET("/WebSites/Tesis/Higiene/unHabito.php")
+    void getHabito(@Query("id_paciente") int id_paciente, Callback<Habito> callback);
+
+
 
 
 }

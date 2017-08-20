@@ -76,7 +76,8 @@ import retrofit.client.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Runnable,Communicator{
 
-    TextView name;
+    public int intent_actual = 0 ;
+    public int intent_anterior = 0;
     int temp =0;
     int actual =0;
     int cont = 0;
@@ -619,7 +620,11 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
                 if(init==false) {
 //                    permitirEscuchar();
-                    beginListenForData();
+                    try {
+                        beginListenForData();
+                    }catch(Exception ex){
+
+                    }
 //                    Escuchar();
                     init=true;
                 }else{ Escuchar();} // PARA PRUEBAS SIN ARDUINO QUITAR LUEGO DE PROBAR
@@ -644,7 +649,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //      ===============================================
+//      ===============================================
 //      |   COMPRUEBA SI EL ESTADO DEL BOTON ES NUEVO  |
 //      ===============================================
     private boolean ButtonPress(){
@@ -664,7 +669,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //    =================================
+//    =================================
 //    |   CAPTAR PULSO DEL PEDAL       |
 //    =================================
     private void permitirEscuchar()
@@ -679,7 +684,7 @@ public class MainActivity extends AppCompatActivity
             {
                 btSocket.getOutputStream().write("TF".toString().getBytes());
                 escucha = btSocket.getInputStream().available();
-                Toast.makeText(getApplicationContext(), "RUNNIG SOCKET btSocket != NULL", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "RUNNIG SOCKET btSocket != NULL", Toast.LENGTH_LONG).show();
                 Log.v("RUNNIG ==> btSocket", " ==> escucha ->>"+escucha);
 //                btSocket.getInputStream().read();
                 beginListenForData();
@@ -709,13 +714,23 @@ public class MainActivity extends AppCompatActivity
 //Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "es-ES");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE);
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"9999");
-        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"9999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS ,"99999999");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS ,"99999999");
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 100);
 
+        if(intent_anterior<intent_actual) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent_anterior++;
+        }else{
+            intent_actual++;
+        }
         //Iniciamos la actividad dentro de un Try en caso sucediera un error.
         try {
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivityForResult(intent, 1);
+//            finishActivity(1);
+//            finish();
         } catch (ActivityNotFoundException a) {
             Toast.makeText(this, "Tu dispositivo no soporta el reconocimiento de voz", Toast.LENGTH_LONG).show();
             Log.v("ERROR-2 BT ","BT ==>"+a);
@@ -869,11 +884,30 @@ public class MainActivity extends AppCompatActivity
 
 // Si el reconocimiento de voz es correcto almacenamos dentro de un array los datos obtenidos.
 //Mostramos en pantalla el texto obtenido de la posición 0.
-        if (resultcode== Activity.RESULT_OK && datos!=null)
+        if (resultcode == Activity.RESULT_OK && datos!=null)
         {
             ArrayList<String> text=datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
             Toast.makeText(this,text.get(0),Toast.LENGTH_LONG).show();
             interpretar(text.get(0).toString(),vistaA);
+
+
+//            Toast.makeText(this,"==>"+ RecognizerIntent.RESULT_NO_MATCH,Toast.LENGTH_LONG).show();
+
+
+        }
+//        if(resultcode != Activity.RESULT_OK){
+//            Toast.makeText(this,"NO ENTENDI ->"+RecognizerIntent.RESULT_NO_MATCH,Toast.LENGTH_LONG).show();
+//            onBackPressed();
+//        }
+        if(resultcode == Activity.RESULT_CANCELED){
+            try {
+                datos.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                datos.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                datos.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }catch (NullPointerException ex){
+                Log.v("ERROR NullPointerEx","onActivityResult NullPointerException ==>> FLAG_ACTIVITY_CLEAR_TOP");
+            }
         }
 
     }
@@ -885,42 +919,42 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-//            regEspecialidad("Registrar Especialidad").show();
-            listEspeci();
-
-
-            return true;
-        }
-
-        if (id == R.id.reset_db) {
-            PacienteService servicio = restadpter.create(PacienteService.class);
-            servicio.resetDB(new Callback<String>() {
-                @Override
-                public void success(String s, Response response) {
-                    Log.v("ResetDB","ResetDB "+s);
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    Log.v("ResetDB ERROR","ERROR ResetDB "+error.getMessage());
-                }
-            });
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.action_settings) {
+////            regEspecialidad("Registrar Especialidad").show();
+//            listEspeci();
+//
+//
+//            return true;
+//        }
+//
+//        if (id == R.id.reset_db) {
+//            PacienteService servicio = restadpter.create(PacienteService.class);
+//            servicio.resetDB(new Callback<String>() {
+//                @Override
+//                public void success(String s, Response response) {
+//                    Log.v("ResetDB","ResetDB "+s);
+//                }
+//
+//                @Override
+//                public void failure(RetrofitError error) {
+//                    Log.v("ResetDB ERROR","ERROR ResetDB "+error.getMessage());
+//                }
+//            });
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onRestart() {
@@ -1004,7 +1038,7 @@ public class MainActivity extends AppCompatActivity
 
 // ----------------------------------------[ VISTA REG. DIAGRAMA ]----------------------------------------
         if(vistaActual==v_reg_consulta){
-            Toast.makeText(getApplicationContext(), v_reg_consulta+" => INTERPRETAR ==>> "+vistaActual, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), v_reg_consulta+" => INTERPRETAR ==>> "+vistaActual, Toast.LENGTH_SHORT).show();
             if(comandos.equals("guardar") || comandos.equals("Guardar") || comandos.equals("guarda")) {
 
                 DienteService servicio = restadpter.create(DienteService.class);
@@ -1640,7 +1674,6 @@ public class MainActivity extends AppCompatActivity
 
         workerThread.start();
     }
-
 
 
 
