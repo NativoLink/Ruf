@@ -153,6 +153,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 holder.existe_deuda = pacientes.get(position).getExiste_deuda();
                 holder.plan_incompleto = pacientes.get(position).getPlan_incompleto();
                 holder.existe_pagos = pacientes.get(position).getExisten_pagos();
+                holder.Estado = pacientes.get(position).getEstado();
                 customView.setTag(holder);
 
                 colorEstado(holder);
@@ -383,13 +384,14 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    Toast.makeText(getContext(),"USUARIO DESACTIVADO", Toast.LENGTH_LONG).show();
-                    if(pacientes.get(position).getEstado().equals("activo")){
+//                    Toast.makeText(getContext(),"USUARIO DESACTIVADO", Toast.LENGTH_LONG).show();
+                    if(holder.Estado.equals("activo")){
                          holder.estado = 1;
                     }else{
                         holder.estado = 0;
+                        holder.Estado = "inactivo";
                     }
-                    desactivarUser(pacientes.get(position).getId_paciente(),holder.estado,holder);
+                    desactivarUser(holder.id_Paciente,holder.estado,holder);
                     return false;
                 }
             });
@@ -438,18 +440,19 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
         String msg_dialog;
         if(holder.estado==1){
             holder.estado = 0;
+            holder.Estado="inactivo";
             nuevo_estado = "Inactivo";
             msg_dialog = "Deshabilitar";
 
         }else{
             holder.estado = 1;
+            holder.Estado="activo";
             nuevo_estado = "Activo";
             msg_dialog = "Habilitar";
 
         }
         aBuilder.setTitle("ESTADO DEL PACIENTE");
 //                            aBuilder.setView(vi);
-        final String finalNuevo_estado = nuevo_estado;
         aBuilder.setMessage("Desea "+msg_dialog+" este paciente?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -459,7 +462,7 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
                         servicio.setEstadoPaciente(id_paciente, holder.estado, new Callback<String>() {
                             @Override
                             public void success(String s, Response response) {
-                                Toast.makeText(getContext(), "Paciente:"+ finalNuevo_estado, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), "Paciente:"+ holder.Estado, Toast.LENGTH_LONG).show();
                                 colorEstado(holder);
                             }
 
@@ -505,6 +508,9 @@ public class AdapterPacientes extends ArrayAdapter<Paciente> {
 
         ImageButton btnPagos;
         ImageButton btnHistMedHabis;
+
+
+        String Estado;
 
 
         int ultimo_plan;

@@ -67,6 +67,15 @@ public interface PacienteService {
             Callback<String> callback);
 
     @FormUrlEncoded
+    @POST("/WebSites/Tesis/Paciente/regPaciente.php")
+    public void regPaciente(
+            @Field("nombre") String nombre,
+            @Field("direccion") String direccion,
+            @Field("telefono") String telefono,
+            @Field("edad") int edad,
+            Callback<String> callback);
+
+    @FormUrlEncoded
     @POST("/WebSites/Tesis/Examen/regExamenClinico.php")
     public void regExamenCli(
             @Field("id_paciente") int id_paciente,

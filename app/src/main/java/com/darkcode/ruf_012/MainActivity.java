@@ -616,7 +616,7 @@ public class MainActivity extends AppCompatActivity
         btnUniversal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, " - LISTO PARA ESCUCHAR - ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 if(init==false) {
 //                    permitirEscuchar();
@@ -697,11 +697,11 @@ public class MainActivity extends AppCompatActivity
             catch (IOException e)
             {
                 msg("Error >"+e.getMessage());
-                Toast.makeText(getApplicationContext(), "ERROR IOException btSocket", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "ERROR IOException btSocket", Toast.LENGTH_LONG).show();
                 Log.v("NOT RUNNIG ==> btSocket",  "ERROR IOException btSocket");
             }
         }else{
-            Toast.makeText(getApplicationContext(), " ==> ERROR btSocket == NULL", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), " ==> ERROR btSocket == NULL", Toast.LENGTH_LONG).show();
             Log.v("ERROR ==> btSocket", " ==> btSocket == NULL");
         }
     }
@@ -1169,7 +1169,7 @@ public class MainActivity extends AppCompatActivity
                             }
                     ); Thread.sleep(100);
                 }catch(InterruptedException e){}
-                Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "Cantidad R => "+ ite.get(i).getCantidad(), Toast.LENGTH_LONG).show();
             }
 
         }
@@ -1181,7 +1181,7 @@ public class MainActivity extends AppCompatActivity
                 || (comandos.equals("nuevo registro de paciente")))
         {
             Fragment vista2 = new VistaRegPaciente();
-            Toast.makeText(this,"..."+vistaActual+"...",Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"..."+vistaActual+"...",Toast.LENGTH_LONG).show();
             cambioVista(vista2, v_reg_paciente);
 
         }
@@ -1203,22 +1203,26 @@ public class MainActivity extends AppCompatActivity
                 if (split[0].equals("teléfono"))    {if(i>0){TELEFONO = telefono.append(" "+split[i]).toString();}}
                 if (split[0].equals("estado civil")){if(i>0){ESTADO_CIVIL = estado_civil.append(" "+split[i]).toString();}}
                 if (split[0].equals("sexo"))        {if(i>0){SEXO = sexo.append(" "+split[i]).toString();}}
-                regPacienteComm(NOMBRES, SEXO, 22, DIRECCION, TELEFONO, OCUPACION,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO);
+                if (split[0].equals("edad"))
+                {if(i>0){
+                    EDAD = Integer.valueOf(edad.append(" "+split[i]).toString());
+                }}
+                regPacienteComm(NOMBRES, SEXO, EDAD, DIRECCION, TELEFONO, OCUPACION,DIRECCION_OCU,TELEFONO_OCU,ALLEGADO);
             }
             if(comandos.equals("guardar registro") || comandos.equals("guardar") || comandos.equals("confirmar registro")){
                 PacienteService servicio = restadpter.create(PacienteService.class);
-//                servicio.regPaciente( NOMBRES, DIRECCION,TELEFONO, new Callback<String>() {
-//                    @Override
-//                    public void success(String s, Response response) {
-//                        Toast.makeText(getApplicationContext(), "..." + s + "...", Toast.LENGTH_LONG).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void failure(RetrofitError error) {
-//                        Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                servicio.regPaciente( NOMBRES, DIRECCION,TELEFONO,EDAD, new Callback<String>() {
+                    @Override
+                    public void success(String s, Response response) {
+                        Toast.makeText(getApplicationContext(), "..." + s + "...", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getApplicationContext(),"ERROR :"+error+"...",Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         }
 

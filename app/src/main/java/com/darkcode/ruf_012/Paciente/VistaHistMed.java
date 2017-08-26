@@ -68,6 +68,8 @@ public class VistaHistMed extends Fragment {
         servicio = restadpter.create(PacienteService.class);
 
         id_paciente = ((MainActivity) getContext()).getId_pacienteA();
+        TextView hm_p =  (TextView)rootView.findViewById(R.id.HM_paciente);
+        hm_p.setText("Paciente.: "+((MainActivity) getContext()).getNOMBRES());
 
 
 
@@ -230,6 +232,10 @@ public class VistaHistMed extends Fragment {
                 etnumcepillar.setText(String.valueOf(habito.getNum_cepillar()));
                 etREVISION.setText(habito.getUltima_revision());
                 ettratamientoRealizado.setText(habito.getTratamiento_realizado());
+
+
+                if(habito.getEnjuague().equals("SI") ){spEnjuague.setSelection(0);}else{spEnjuague.setSelection(1);}
+                if(habito.getHilo_dental().equals("SI") ){spHilo.setSelection(0);}else{spHilo.setSelection(1);}
 
             }
 

@@ -152,7 +152,7 @@ public class VistaRegDoctor extends Fragment {
                             spEspecialidad.setSelection(position);
                             position++;
                         }
-                        Toast.makeText(getContext(),"Spinner->"+stEspecialidad+ " getDoctor->"+doctor.getEspecialidad(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(),"Spinner->"+stEspecialidad+ " getDoctor->"+doctor.getEspecialidad(), Toast.LENGTH_LONG).show();
                         stSexo = spSexo.getSelectedItem().toString();
                         if(doctor.getTelefono().equals("m") || doctor.getTelefono().equals("M")){
                             spSexo.setSelection(0);
