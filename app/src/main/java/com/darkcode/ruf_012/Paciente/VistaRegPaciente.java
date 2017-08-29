@@ -34,7 +34,7 @@ public class VistaRegPaciente extends Fragment {
     EditText et_nombre,et_sexo,et_edad,et_direccion,et_telefono,et_ocupacion,et_direccion_ocu,et_telefono_ocu,et_allegado,et_cedula;
 
     Spinner spSexo,spEstadoCivil;
-    String txt_nombre,txt_edad,txt_direccion,txt_telefono,txt_ocupacion,txt_direc_ocu,txt_tel_ocu,txt_sexo,txt_est_civil,txt_cedula;
+    String txt_nombre,txt_edad,txt_direccion,txt_telefono,txt_ocupacion,txt_direc_ocu,txt_tel_ocu,txt_sexo,txt_est_civil,txt_cedula,txt_responsable;
     private String[] arraySpinner,arraySpinnerE;
     Button btnReg;
 
@@ -93,9 +93,22 @@ public class VistaRegPaciente extends Fragment {
                 txt_sexo      = spSexo.getSelectedItem().toString();
                 txt_est_civil = spEstadoCivil.getSelectedItem().toString();
                 txt_cedula    = et_cedula.getText().toString();
+                txt_responsable= et_allegado.getText().toString();
 
                 PacienteService servicio = restadpter.create(PacienteService.class);
-                servicio.regPaciente( txt_nombre, txt_direccion,txt_telefono,txt_edad,txt_sexo,txt_est_civil,txt_ocupacion,txt_direc_ocu,txt_tel_ocu, new Callback<String>() {
+                servicio.regPaciente(
+                        txt_nombre,
+                        txt_direccion,
+                        txt_telefono,
+                        txt_edad,
+                        txt_sexo,
+                        txt_est_civil,
+                        txt_ocupacion,
+                        txt_direc_ocu,
+                        txt_tel_ocu,
+                        txt_cedula,
+                        txt_responsable,
+                        new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
                         Toast.makeText(getContext(), "..." + s + "...", Toast.LENGTH_LONG).show();
@@ -157,6 +170,7 @@ public class VistaRegPaciente extends Fragment {
         et_ocupacion.setText(ocupacion);
         et_direccion_ocu.setText(DireccionOcu);
         et_telefono_ocu.setText(TelefonoOcu);
+        et_allegado.setText(Allegado);
 
     }
 

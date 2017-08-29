@@ -64,6 +64,8 @@ public interface PacienteService {
             @Field("ocupacion") String ocupacion,
             @Field("direccion_oc") String direccion_oc,
             @Field("telefono_oc") String telefono_oc,
+            @Field("cedula") String cedula,
+            @Field("responsable") String responsable,
             Callback<String> callback);
 
     @FormUrlEncoded
