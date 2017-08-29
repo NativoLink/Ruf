@@ -60,7 +60,7 @@ public class VistaRegDoctor extends Fragment {
                              Bundle savedInstanceState){
 
         try{
-             tipo = this.getArguments().getString("tipo");
+            tipo = this.getArguments().getString("tipo");
         }catch(Exception ex){
 
         }
@@ -72,7 +72,7 @@ public class VistaRegDoctor extends Fragment {
         etNombre       = (EditText)view.findViewById(R.id.etNombre);
         etUsuario      = (EditText)view.findViewById(R.id.etUsuario);
         etClave        = (EditText)view.findViewById(R.id.etClave);
-        etClaveC        = (EditText)view.findViewById(R.id.etClaveC);
+        etClaveC       = (EditText)view.findViewById(R.id.etClaveC);
         etDireccion_d  = (EditText)view.findViewById(R.id.etDireccion_d);
         etTelefono     = (EditText)view.findViewById(R.id.etTelefono);
         etCedula       = (EditText)view.findViewById(R.id.etCedula);
@@ -129,46 +129,51 @@ public class VistaRegDoctor extends Fragment {
         });
 
         btnRegistrar = (Button) view.findViewById(R.id.btnRegistrar);
-        if(tipo=="editar"){
+        if(tipo=="editar") {
 
-            id_doctor =  ((MainActivity) getContext()).getId_doctor_edit();
+            id_doctor = ((MainActivity) getContext()).getId_doctor_edit();
             btnRegistrar.setText("Actaulizar");
 
-            servicio.getDoctor(id_doctor, new Callback<Doctor>() {
-                @Override
-                public void success(Doctor doctor, Response response) {
-                    try {
-                        etNombre.setText(doctor.getNombre());
-                        etUsuario.setText(doctor.getUsuario());
-                        etClave.setText(doctor.getClave());
-                        etClaveC.setText(doctor.getClave());
-                        etDireccion_d.setText(doctor.getDireccion());
-                        etTelefono.setText(String.valueOf(doctor.getTelefono()));
-                        etCedula.setText(String.valueOf(doctor.getCedula()));
-                        stEspecialidad = spEspecialidad.getSelectedItem().toString();
-                        int position = 0;
-                        while(!stEspecialidad.equals(doctor.getEspecialidad())) {
-                            stEspecialidad = spEspecialidad.getSelectedItem().toString();
-                            spEspecialidad.setSelection(position);
-                            position++;
-                        }
-//                        Toast.makeText(getContext(),"Spinner->"+stEspecialidad+ " getDoctor->"+doctor.getEspecialidad(), Toast.LENGTH_LONG).show();
-                        stSexo = spSexo.getSelectedItem().toString();
-                        if(doctor.getTelefono().equals("m") || doctor.getTelefono().equals("M")){
-                            spSexo.setSelection(0);
-                        }else{
-                            spSexo.setSelection(1);
-                        }
-                    }catch (NullPointerException ex){
-                        Log.v("SUCCESS DATA.NULL ", "ERROR NULL =>VistaRegDoctor" + ex.getMessage());
-                    }
-                }
+//            if (etClave.getText().equals(etClaveC.getText())){
 
-                @Override
-                public void failure(RetrofitError error) {
-                    Log.v("NO REG", "ERROR SQL->" + error.getMessage());
-                }
-            });
+                servicio.getDoctor(id_doctor, new Callback<Doctor>() {
+                    @Override
+                    public void success(Doctor doctor, Response response) {
+                        try {
+                            etNombre.setText(doctor.getNombre().toString());
+                            etUsuario.setText(doctor.getUsuario().toString());
+                            etClave.setText(doctor.getClave());
+                            etClaveC.setText(doctor.getClave());
+                            etDireccion_d.setText(doctor.getDireccion().toString());
+                            etTelefono.setText(String.valueOf(doctor.getTelefono()));
+                            etCedula.setText(String.valueOf(doctor.getCedula()));
+                            stEspecialidad = spEspecialidad.getSelectedItem().toString();
+                            int position = 0;
+                            while (!stEspecialidad.equals(doctor.getEspecialidad())) {
+                                stEspecialidad = spEspecialidad.getSelectedItem().toString();
+                                spEspecialidad.setSelection(position);
+                                position++;
+                            }
+                            Toast.makeText(getContext(), "Spinner->" + stEspecialidad + " getDoctor->" + doctor.getEspecialidad(), Toast.LENGTH_LONG).show();
+                            stSexo = spSexo.getSelectedItem().toString();
+                            if (doctor.getTelefono().equals("m") || doctor.getTelefono().equals("M")) {
+                                spSexo.setSelection(0);
+                            } else {
+                                spSexo.setSelection(1);
+                            }
+                        } catch (NullPointerException ex) {
+                            Log.v("SUCCESS DATA.NULL ", "ERROR NULL =>VistaRegDoctor" + ex.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.v("NO REG", "ERROR SQL->" + error.getMessage());
+                    }
+                });
+//            }else{
+//                Toast.makeText(getContext(), "Las claves no son iguales", Toast.LENGTH_LONG).show();
+//            }
 
             btnRegistrar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,37 +194,46 @@ public class VistaRegDoctor extends Fragment {
             });
         }else {
 
-            btnRegistrar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getForm();
-                    int especialidad = spEspecialidad.getSelectedItemPosition() + 1;
-                    stSexo = spSexo.getSelectedItem().toString();
 
-                    if (
-                            (!stNombre.equals("") && !stUsuario.equals("")) && (!stNombre.equals(" ") && !stUsuario.equals(" ")) &&
-                                    (!stClave.equals("") && !stDireccion_d.equals("")) && (!stClave.equals(" ") && !stDireccion_d.equals(" ")) &&
-                                    (!stTelefono.equals("") && !stCedula.equals("")) && (!stTelefono.equals(" ") && !stCedula.equals(" ")) &&
-                                    (!stEspecialidad.equals("") && !stEspecialidad.equals(" "))
-                            ) {
-                        servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad,stSexo, new Callback<String>() {
-                            @Override
-                            public void success(String s, Response response) {
-                            Toast.makeText(getContext(),s, Toast.LENGTH_LONG).show();
+                btnRegistrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        getForm();
+                        int especialidad = spEspecialidad.getSelectedItemPosition() + 1;
+                        stSexo = spSexo.getSelectedItem().toString();
+
+                        if (
+                                (!stNombre.equals("") && !stUsuario.equals("")) && (!stNombre.equals(" ") && !stUsuario.equals(" ")) &&
+                                        (!stClave.equals("") && !stDireccion_d.equals("")) && (!stClave.equals(" ") && !stDireccion_d.equals(" ")) &&
+                                        (!stTelefono.equals("") && !stCedula.equals("")) && (!stTelefono.equals(" ") && !stCedula.equals(" ")) &&
+                                        (!stEspecialidad.equals("") && !stEspecialidad.equals(" "))
+                                ) {
+                            if (etClave.getText().equals(etClaveC.getText())){
+                            servicio.regDoctor(stNombre, stUsuario, stClave, stDireccion_d, stTelefono, stCedula, especialidad, stSexo, new Callback<String>() {
+                                @Override
+                                public void success(String s, Response response) {
+                                    Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Log.v("NO REG", "ERROR SQL->" + error.getMessage());
+                                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                            }else{
+                                Toast.makeText(getContext(), "Las claves no son iguales", Toast.LENGTH_LONG).show();
                             }
+                        } else {
+                            Toast.makeText(getContext(), "Tiene campos vacios", Toast.LENGTH_LONG).show();
+                        }
 
-                            @Override
-                            public void failure(RetrofitError error) {
-                                Log.v("NO REG", "ERROR SQL->" + error.getMessage());
-                                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    } else {
-                        Toast.makeText(getContext(), "Tiene campos vacios", Toast.LENGTH_LONG).show();
+
                     }
-                }
-            });
+                });
+
         }
 
 

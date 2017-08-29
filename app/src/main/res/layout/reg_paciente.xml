@@ -178,11 +178,11 @@
             android:layout_marginRight="16dp">
 
             <TextView
-                android:id="@+id/tvResponsable"
+                android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:layout_weight="6.5"
+                android:layout_weight="1.4"
                 android:gravity="bottom|right"
                 android:text="Tutor"
                 android:textSize="25dp"
@@ -197,6 +197,30 @@
                 android:ems="10"
                 android:gravity="bottom"
                 android:inputType="textPersonName"
+                android:textColor="#0000FF"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvCed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1.4"
+                android:gravity="bottom|right"
+                android:text="Cedula"
+                android:textSize="25dp"
+                android:textStyle="normal|bold" />
+
+            <EditText
+                android:id="@+id/etCedula"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1.2"
+                android:ems="10"
+                android:gravity="bottom"
+                android:inputType="textPersonName|number"
+                android:maxLength="11"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
